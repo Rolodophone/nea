@@ -11,9 +11,7 @@ hs_err_pid*
 .attach_pid*
 
 ## Android:
-android/libs/armeabi/
-android/libs/armeabi-v7a/
-android/libs/x86/
+android/libs/
 android/gen/
 local.properties
 com_crashlytics_export_strings.xml
@@ -32,7 +30,7 @@ www-test/
 *.symbolMap
 
 ## IntelliJ, Android Studio:
-.idea/
+.idea
 *.ipr
 *.iws
 *.iml

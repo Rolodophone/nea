@@ -54,6 +54,12 @@ TODO prototypes on controls and whether I should queue a move if it is inputted 
 
 # Documented Design
 
+## Game Events
+
+## Entity-component-system Pattern
+
+## TODO what other sections should I have?
+
 # Technical Solution
 
 # Testing

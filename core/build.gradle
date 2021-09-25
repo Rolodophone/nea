@@ -6,6 +6,7 @@ dependencies {
 	api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 	api "com.badlogicgames.ashley:ashley:$ashleyVersion"
 	api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+	api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
 	api "io.github.libktx:ktx-actors:$ktxActorsVersion"
 	api "io.github.libktx:ktx-collections:$ktxCollectionsVersion"
 	api "io.github.libktx:ktx-log:$ktxLogVersion"
@@ -17,4 +18,5 @@ dependencies {
 	api "io.github.libktx:ktx-math:$ktxMathVersion"
 	api "io.github.libktx:ktx-scene2d:$ktxScene2DVersion"
 	api "io.github.libktx:ktx-app:$ktxAppVersion"
+	api "io.github.libktx:ktx-box2d:$ktxBox2DVersion"
 }
