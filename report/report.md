@@ -70,7 +70,11 @@ TODO decide end user -- someone who has played fighting games before, knows abou
 
 ## Prototyping (~2 pages)
 
-TODO prototypes on controls and whether I should queue a move if it is inputted while another move is taking place (see final paragraph of Shadow Fight 2 research)
+TODO prototypes on controls and whether I should queue a move if it is inputted while another move is taking place (see final paragraph of Shadow Fight 2 research). I'll do 2 prototypes: 1 on graphics and 1 on controls
+
+### Graphics
+
+### Controls
 
 ## Modelling (~2 pages)
 

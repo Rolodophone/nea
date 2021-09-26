@@ -1,4 +1,4 @@
-package io.github.rolodophone.comboking.ecs.system
+package io.github.rolodophone.comboking.system
 
 import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.gdx.physics.box2d.World

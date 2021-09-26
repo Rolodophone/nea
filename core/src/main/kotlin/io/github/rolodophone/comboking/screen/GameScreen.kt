@@ -3,17 +3,10 @@ package io.github.rolodophone.comboking.screen
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.*
 import io.github.rolodophone.comboking.ComboKing
-import io.github.rolodophone.comboking.ecs.component.*
-import io.github.rolodophone.comboking.ecs.system.*
+import io.github.rolodophone.comboking.component.*
 import io.github.rolodophone.comboking.event.GameEventManager
-import io.github.rolodophone.comboking.util.getNotNull
-import io.github.rolodophone.comboking.util.halfWorldWidth
-import ktx.ashley.addComponent
 import ktx.ashley.entity
 import ktx.ashley.with
-import ktx.box2d.body
-import ktx.box2d.box
-import ktx.box2d.circle
 import ktx.box2d.createWorld
 
 private val tempVector = Vector2()
@@ -33,6 +26,16 @@ class GameScreen(game: ComboKing): ComboKingScreen(game) {
 		world = createWorld()
 
 		// add entities
+
+		val player = engine.entity {
+			with<TransformComponent> {
+				//TODO
+			}
+			with<GraphicsComponent> {
+				//TODO
+			}
+			with<PlayerComponent> {}
+		}
 
 //		val background = engine.entity {
 //			with<TransformComponent> {

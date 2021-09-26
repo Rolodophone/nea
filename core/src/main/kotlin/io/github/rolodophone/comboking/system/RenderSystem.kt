@@ -1,17 +1,16 @@
-package io.github.rolodophone.comboking.ecs.system
+package io.github.rolodophone.comboking.system
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.SortedIteratingSystem
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.utils.viewport.Viewport
-import io.github.rolodophone.comboking.ecs.component.GraphicsComponent
-import io.github.rolodophone.comboking.ecs.component.TransformComponent
+import io.github.rolodophone.comboking.component.GraphicsComponent
+import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.util.getNotNull
 import io.github.rolodophone.comboking.util.setBounds
 import ktx.ashley.allOf
 import ktx.ashley.get
 import ktx.graphics.use
-import ktx.log.error
 import ktx.log.logger
 
 private val log = logger<RenderSystem>()

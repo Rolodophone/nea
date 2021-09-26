@@ -1,4 +1,4 @@
-package io.github.rolodophone.comboking.ecs.component
+package io.github.rolodophone.comboking.component
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.physics.box2d.Body

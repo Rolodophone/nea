@@ -18,7 +18,7 @@ private const val BATCH_SIZE = 1000
 private val log = logger<ComboKing>()
 
 class ComboKing: KtxGame<ComboKingScreen>() {
-    val gameViewport = FitViewport(180f, 320f)
+    val gameViewport = FitViewport(320f, 180f)
     lateinit var batch: Batch
     lateinit var comboKingTextures: ComboKingTextures
     lateinit var engine: Engine
