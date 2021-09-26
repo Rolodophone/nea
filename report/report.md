@@ -1,8 +1,8 @@
 This is where my report will go temporarily, until I move it into a Word document. For now, I'll use a markdown file so that I can keep track of it with version control.
 
-# Analysis
+# Analysis (~12 pages)
 
-## Description
+## Description (~1 page)
 
 I will be developing an endless running and fighting game for Android. Essentially, the player will be jumping and moving between platforms (a 2D side view like in Super Mario Bros) and tackling various enemies. The game will use gesture controls (i.e. tapping and swiping the screen); I think this will create a tactile and satisfying experience for the player. The objective is to make it as far as possible before losing all your health points.
 
@@ -12,7 +12,7 @@ My initial idea was to have the player's movement fully automatic, controlled by
 
 It will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games.
 
-## Research
+## Research (~4 pages)
 
 ### Shadow Fight 2
 
@@ -64,19 +64,19 @@ TODO maybe discuss TODO about system/service hybrid
 
 ### Scene2D
 
-## End User
+## End User (~1 page)
 
 TODO decide end user -- someone who has played fighting games before, knows about them, is good at them and has an interest in a new one. Do an interview/questionnaire
 
-## Prototyping
+## Prototyping (~2 pages)
 
 TODO prototypes on controls and whether I should queue a move if it is inputted while another move is taking place (see final paragraph of Shadow Fight 2 research)
 
-## Modelling
+## Modelling (~2 pages)
 
-## Objectives
+## Objectives (~1 page)
 
-## Critical Path
+## Critical Path (~1 page)
 
 # Documented Design
 
