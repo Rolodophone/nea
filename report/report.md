@@ -4,7 +4,9 @@ This is where my report will go temporarily, until I move it into a Word documen
 
 ## Description (~1 page)
 
-I will be developing an endless running and fighting game for Android. Essentially, the player will be jumping and moving between platforms (a 2D side view like in Super Mario Bros) and tackling various enemies. The game will use gesture controls (i.e. tapping and swiping the screen); I think this will create a tactile and satisfying experience for the player. The objective is to make it as far as possible before losing all your health points.
+I will be developing an endless running and fighting game that will run on Android, Windows and Linux. Essentially, the player will be jumping and moving between the ground and a platform and tackling various enemies. It will be 2D from a side camera perspective (like in most platformer games such as Super Mario Bros). But unlike Super Mario Bros, there won't be an end point. The objective is to make it as far as possible before losing all your health points.
+
+On Android, the game will use gesture controls (i.e. tapping and swiping different areas of the screen); I think this will create a tactile and satisfying experience for the player. To clarify, the following are some examples: 
 
 TODO improve following:
 
