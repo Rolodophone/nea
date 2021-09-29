@@ -60,6 +60,16 @@ class GameScreen(game: ComboKing): ComboKingScreen(game) {
 			}
 		}
 
+		engine.entity {
+			with<TransformComponent> {
+				setSizeFromTexture(textures.prototype_stairs)
+				rect.setPosition(190f, 5f)
+			}
+			with<GraphicsComponent> {
+				sprite.setRegion(textures.prototype_stairs)
+			}
+		}
+
 		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
 		engine.run {
 			addSystem(PlayerInputSystem(gameViewport, gameEventManager))

@@ -11,6 +11,7 @@ class ComboKingTextures: Disposable {
 	val prototype_player = graphicsAtlas.findRegion("prototype_player")!!
 	val prototype_ground = graphicsAtlas.findRegion("prototype_ground")!!
 	val prototype_platform = graphicsAtlas.findRegion("prototype_platform")!!
+	val prototype_stairs = graphicsAtlas.findRegion("prototype_stairs")!!
 
 	override fun dispose() {
 		graphicsAtlas.dispose()
