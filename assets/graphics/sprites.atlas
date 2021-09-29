@@ -1,0 +1,27 @@
+
+sprites.png
+size: 343, 39
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+prototype_ground
+  rotate: false
+  xy: 2, 25
+  size: 320, 5
+  orig: 320, 5
+  offset: 0, 0
+  index: -1
+prototype_platform
+  rotate: false
+  xy: 2, 32
+  size: 320, 5
+  orig: 320, 5
+  offset: 0, 0
+  index: -1
+prototype_player
+  rotate: false
+  xy: 324, 2
+  size: 17, 35
+  orig: 17, 35
+  offset: 0, 0
+  index: -1
