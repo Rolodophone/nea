@@ -1,20 +1,24 @@
 This is where my report will go temporarily, until I move it into a Word document. For now, I'll use a markdown file so that I can keep track of it with version control.
 
-# Analysis (~12 pages)
+# Analysis (~13 pages)
 
-## Description (~1 page)
+## Description (~2 page)
+
+### Gameplay
 
 I will be developing an endless running and fighting game that will run on Android, Windows and Linux. Essentially, the player will be jumping and moving between the ground and a platform and tackling various enemies. It will be 2D from a side camera perspective (like in most platformer games such as Super Mario Bros). But unlike Super Mario Bros, there won't be an end point. The objective is to make it as far as possible before losing all your health points.
 
+### Controls
+
 On Android, the game will use gesture controls (i.e. tapping and swiping different areas of the screen); I think this will create a tactile and satisfying experience for the player. I'm not entirely decided on what the controls will be yet, but perhaps the best approach would be that the left thumb is used for moving around (using a virtual, on-screen joystick), and the right thumb is used for attacking/blocking. Then, you could punch by swiping the right hand side of the screen with your right thumb. Maybe you
 
+Of course, on Windows and Linux, the controls will have to be different. My initial idea is that the left hand will control movement using the W, A, S and D keys. The A and D keys could be used to run left or right respectively, the S key to roll or go down stairs and the W key to jump or go up stairs. The right hand will be used for attacking. Maybe it could simply be using the mouse to perform the same gestures as on Android. In other words, to punch you would click and drag the cursor to the right. 
 
+One concern I have with these controls is that they require more work from the user. Usually in a mobile fighting game, all the user has to do to punch or kick is tap a button. I want to try something new for my game as I think it would be more satisfying to attack using a combination of different swipes than simply pressing buttons, but I might be wrong and it might be too difficult to learn. I will decide what the actual controls will be through protoyping and testing to see if it feels natural and is comfortable for the user.
 
-TODO improve following:
+My initial idea was to have the player's movement fully automatic, controlled by an intelligent algorithm, however now I think that moving around is part of the fun and the strategy. I will still have to write that intelligent algorithm to control the movement of the enemies.
 
-My initial idea was to have the player's movement fully automatic, controlled by an intelligent algorithm, however now I think that moving around is part of the fun and the strategy. I will still have to write that intelligent algorithm to control the movement of the enemies. I'm not yet sure exactly how the movement controls will work – perhaps they could be semi-automatic, meaning the character carries on moving by itself with the player swiping with their left thumb to change direction; or I could use a more traditional virtual on-screen joystick. I'll decide by testing prototypes.
-
-It will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games.
+### Theme
 
 ## Research (~4 pages)
 
@@ -82,6 +86,8 @@ Finally, I may also use Scene2D[13] for the user interface. Scene2D is a part of
 
 TODO decide end user -- someone who has played fighting games before, knows about them, is good at them and has an interest in a new one. Do an interview/questionnaire
 
+It will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games.
+
 ## Prototyping (~2 pages)
 
 TODO prototypes on controls and whether I should queue a move if it is inputted while another move is taking place (see final paragraph of Shadow Fight 2 research). I'll do 2 prototypes: 1 on graphics and 1 on controls
@@ -94,7 +100,9 @@ TODO prototypes on controls and whether I should queue a move if it is inputted 
 
 ## Objectives (~1 page)
 
-## Critical Path (~1 page)
+## Execution (~1 page)
+
+TODO discuss critical path, my approach to developing a solution, and where I'll get assets from
 
 # Documented Design
 
