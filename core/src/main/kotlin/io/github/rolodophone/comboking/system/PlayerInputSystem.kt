@@ -15,8 +15,7 @@ import ktx.ashley.allOf
  */
 class PlayerInputSystem(
 	private val gameViewport: Viewport,
-	private val gameEventManager: GameEventManager,
-	private val wallWidth: Float
+	private val gameEventManager: GameEventManager
 ): IteratingSystem(
 	allOf(PlayerComponent::class, TransformComponent::class).get()
 ) {

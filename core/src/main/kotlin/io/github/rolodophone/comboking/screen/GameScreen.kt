@@ -5,6 +5,10 @@ import com.badlogic.gdx.physics.box2d.*
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.component.*
 import io.github.rolodophone.comboking.event.GameEventManager
+import io.github.rolodophone.comboking.system.DebugSystem
+import io.github.rolodophone.comboking.system.PhysicsSystem
+import io.github.rolodophone.comboking.system.PlayerInputSystem
+import io.github.rolodophone.comboking.system.RenderSystem
 import ktx.ashley.entity
 import ktx.ashley.with
 import ktx.box2d.createWorld
@@ -12,8 +16,6 @@ import ktx.box2d.createWorld
 private val tempVector = Vector2()
 
 private const val MAX_DELTA_TIME = 1/10f
-
-private const val WALL_WIDTH = 3f
 
 class GameScreen(game: ComboKing): ComboKingScreen(game) {
 	private val gameEventManager = GameEventManager()
@@ -29,88 +31,42 @@ class GameScreen(game: ComboKing): ComboKingScreen(game) {
 
 		val player = engine.entity {
 			with<TransformComponent> {
-				//TODO
+				setSizeFromTexture(textures.prototype_player)
+				rect.setPosition(120f, 5f)
 			}
 			with<GraphicsComponent> {
-				//TODO
+				sprite.setRegion(textures.prototype_player)
 			}
 			with<PlayerComponent> {}
 		}
 
-//		val background = engine.entity {
-//			with<TransformComponent> {
-//				setSizeFromTexture(textures.background)
-//				rect.setPosition(0f, 0f)
-//				z = -10
-//			}
-//			with<GraphicsComponent> {
-//				sprite.setRegion(textures.background)
-//			}
-//		}
-//
-//		val paddle = engine.entity {
-//			with<TransformComponent> {
-//				setSizeFromTexture(textures.paddle_normal)
-//				rect.setCenter(gameViewport.halfWorldWidth(), PaddleComponent.Y)
-//			}
-//			with<GraphicsComponent> {
-//				sprite.setRegion(textures.paddle_normal)
-//			}
-//			with<PaddleComponent>()
-//		}
-//
-//		val ball = engine.entity {
-//			with<GraphicsComponent> {
-//				sprite.setRegion(textures.ball)
-//			}
-//			with<PhysicsComponent> {
-//				body = world.body(type = BodyDef.BodyType.DynamicBody) {
-//					position.set(
-//						gameViewport.halfWorldWidth(),
-//						PaddleComponent.Y + textures.paddle_normal.regionHeight / 2f + textures.ball.regionHeight / 2f
-//					)
-//
-//					circle(radius = textures.ball.regionWidth / 2f)
-//				}
-//			}
-//			with<BallComponent>()
-//  		}
-//
-//		val firingLine = engine.entity {
-//			with<TransformComponent> {
-//				setSizeFromTexture(textures.firing_line)
-//				rect.setPosition(ball.getNotNull(PhysicsComponent.mapper).body!!.position)
-//				rect.x -= textures.firing_line.regionWidth / 2f
-//			}
-//			with<GraphicsComponent> {
-//				sprite.setRegion(textures.firing_line)
-//				sprite.setOrigin(textures.firing_line.regionWidth / 2f, 0f)
-//				visible = false
-//			}
-//			with<FiringLineComponent>()
-//		}
-//
-//		val brick = engine.entity {
-//			with<TransformComponent> {
-//				setSizeFromTexture(textures.brick_red)
-//				rect.setCenter(gameViewport.halfWorldWidth(), gameViewport.worldHeight - 60)
-//			}
-//			with<GraphicsComponent> {
-//				sprite.setRegion(textures.brick_red)
-//			}
-//			with<BrickComponent>()
-//		}
-//
-//		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
-//		engine.run {
-//			addSystem(PlayerInputSystem(gameViewport, gameEventManager, WALL_WIDTH))
-//			addSystem(RenderSystem(batch, gameViewport))
-//			addSystem(AimAndFireSystem(gameEventManager, paddle, ball, firingLine))
-//			addSystem(PhysicsSystem(world))
-//			addSystem(SpinSystem())
-//			addSystem(BallBounceSystem(gameViewport, paddle, WALL_WIDTH))
-//			addSystem(DebugSystem(gameEventManager, paddle, ball, world, gameViewport))
-//		}
+		engine.entity {
+			with<TransformComponent> {
+				setSizeFromTexture(textures.prototype_ground)
+				rect.setPosition(0f, 0f)
+			}
+			with<GraphicsComponent> {
+				sprite.setRegion(textures.prototype_ground)
+			}
+		}
+
+		engine.entity {
+			with<TransformComponent> {
+				setSizeFromTexture(textures.prototype_platform)
+				rect.setPosition(0f, 90f)
+			}
+			with<GraphicsComponent> {
+				sprite.setRegion(textures.prototype_platform)
+			}
+		}
+
+		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
+		engine.run {
+			addSystem(PlayerInputSystem(gameViewport, gameEventManager))
+			addSystem(RenderSystem(batch, gameViewport))
+			addSystem(PhysicsSystem(world))
+			addSystem(DebugSystem(gameEventManager, world, gameViewport))
+		}
 	}
 
 	override fun hide() {

@@ -14,8 +14,6 @@ import io.github.rolodophone.comboking.event.GameEventManager
 @Suppress("unused")
 class DebugSystem(
 	private val gameEventManager: GameEventManager,
-	private val paddle: Entity,
-	private val ball: Entity,
 	private val world: World,
 	private val gameViewport: Viewport
 ): EntitySystem() {
