@@ -14,9 +14,9 @@ My initial idea was to have the player's movement fully automatic, controlled by
 
 On Android, the game will use gesture controls (i.e. tapping and swiping different areas of the screen); I think this will create a tactile and satisfying experience for the player. I'm not entirely decided on what the controls will be yet, but perhaps the best approach would be that the left thumb is used for moving around (using a virtual, on-screen joystick), and the right thumb is used for attacking/blocking. Then, you could punch by swiping the right-hand side of the screen with your right thumb. Maybe you could swipe diagonally upwards for a high punch, or directionally downwards for a low punch.
 
-Of course, on Windows and Linux, the controls will have to be different. My initial idea is that the left hand will control movement using the W, A, S and D keys. The A and D keys could be used to run left or right respectively, the S key to roll or go down stairs and the W key to jump or go up stairs. The right hand will be used for attacking. Maybe it could simply be using the mouse to perform the same gestures as on Android. In other words, to punch you would click and drag the cursor to the right. 
+Of course, on Windows and Linux, the controls will have to be different. My initial idea is that the left hand will control movement using the W, A, S and D keys. The A and D keys could be used to run left or right respectively, the S key to roll or go down to the ground level, and the W key to jump or go up to the platform. The right hand will be used for attacking. Maybe it could simply be using the mouse to perform the same gestures as on Android. In other words, to punch you would click and drag the cursor to the right. 
 
-One concern I have with these controls is that they require more work from the user. Usually in a mobile fighting game, all the user has to do to punch or kick is tap a button. I want to try something new for my game as I think it would be more satisfying to attack using a combination of different swipes than simply pressing buttons, but I might be wrong and it might be too difficult to learn. I will decide what the actual controls will be through protoyping and testing to see if it feels natural and is comfortable for the user.
+One concern I have with these controls is that they require more work from the user. Usually in a mobile fighting game, all the user has to do to punch or kick is tap a button. I want to try something new for my game as I think it would be more satisfying to attack using a combination of different swipes than simply pressing buttons, but I might be wrong – it might be too difficult to learn. I will decide what the actual controls will be through prototyping and testing to see if it feels natural and is comfortable for the user.
 
 ### Theme
 
@@ -32,7 +32,7 @@ There is much to learn here that I can apply to my project. One is that I should
 
 One thing I didn't like about this game is that as far as I can tell, although different opponents look different and use different weapons, they behave in largely the same way. This made the game repetitive as it felt like I was doing the same thing over and over. In my game, I will make sure that the different enemies behave significantly differently. Furthermore, in Shadow Fight, the battles always took place in a flat, featureless area and were always 1-on-1, which contributed to this monotonous feeling. In my game, there will be different platforms and multiple enemies coming from different directions, so no two fights will be the same.
 
-Finally, one more thing the game does well is how it seamlessly transitions from move to move. From what I can see, the game does this by always bringing the player back to the same rest position after each move. That way, for each move, you just have to animate it being performed from rest, to the move, and then back to rest. This saves on having extra animations for going directly from each move to each other move. Moreover, if you press the buttons to perform another move when your character is just about to finish a move, it will wait until the current move finishes and then perform the new move. But this only applies to near the end of a move: if you attempt to do another move immediately after *starting* a move, your input will get ignored. To decide how I want this to work in my game, I will write some different prototypes, so TODO END-USER and I can decide which one feels the best.
+Finally, one more thing the game does well is how it seamlessly transitions from move to move. From what I can see, the game does this by always bringing the player back to the same rest position after each move. That way, for each move, you just have to animate it being performed from rest, to the move, and then back to rest. This saves on having extra animations for going directly from each move to each other move. Moreover, if you press the buttons to perform another move when your character is just about to finish a move, it will wait until the current move finishes and then perform the new move. But this only applies to near the end of a move: if you attempt to do another move immediately after *starting* a move, your input will get ignored. To decide how I want this to work in my game, I will write different prototypes for each method when I do my technical solution, so TODO END-USER and I can decide which one feels the best.
 
 ### Prizefighters 2
 
@@ -90,11 +90,94 @@ It will be targeted at teenagers to young adults, because that is the age group 
 
 ## Prototyping (~2 pages)
 
-TODO prototypes on controls and whether I should queue a move if it is inputted while another move is taking place (see final paragraph of Shadow Fight 2 research). I'll do 2 prototypes: 1 on graphics and 1 on controls
+TODO include screenshots of it running on Linux and Android and key snippets of code
 
-### Graphics
+Before I can even get started on the game, there is a lot of low-level coding that needs to take place, to set up all the libraries I am using and do all sorts of things that aren't directly related to the game. It didn't take too long though, as I could copy and adapt my code from my other libGDX project.
 
-### Controls
+The project is divided into 3 modules: android, core and lwjgl3. android contains code specific to the Android version; lwjgl3 is code for the Windows/Linux version (libGDX uses a library called LWJGL behind the scenes); and core is for all other code that isn't specific to a platform. Core will be the largest module by far as it will contain pretty much the whole game. android and lwjgl3 will contain just the launcher code.
+
+Now I will briefly explain how my prototype works, on a high level. See Documented Design/Entity-component-system Pattern for a detailed explanation of entities, components and systems.
+
+```kotlin
+// add entities
+
+val player = engine.entity {
+	with<TransformComponent> {
+		setSizeFromTexture(textures.prototype_player)
+		rect.setPosition(120f, 5f)
+	}
+	with<GraphicsComponent> {
+		sprite.setRegion(textures.prototype_player)
+	}
+	with<PlayerComponent> {}
+}
+
+engine.entity {
+	with<TransformComponent> {
+		setSizeFromTexture(textures.prototype_ground)
+		rect.setPosition(0f, 0f)
+	}
+	with<GraphicsComponent> {
+		sprite.setRegion(textures.prototype_ground)
+	}
+}
+
+engine.entity {
+	with<TransformComponent> {
+		setSizeFromTexture(textures.prototype_platform)
+		rect.setPosition(0f, 90f)
+	}
+	with<GraphicsComponent> {
+		sprite.setRegion(textures.prototype_platform)
+	}
+}
+
+engine.entity {
+	with<TransformComponent> {
+		setSizeFromTexture(textures.prototype_stairs)
+		rect.setPosition(190f, 5f)
+	}
+	with<GraphicsComponent> {
+		sprite.setRegion(textures.prototype_stairs)
+	}
+}
+
+//add systems to engine
+engine.run {
+	addSystem(RenderSystem(batch, gameViewport))
+}
+```
+
+First, I create my entities and add them to the engine. For each entity I initialise the components that the entity will have. For example, the ground entity has a TransformComponent and a GraphicsComponent. I set the size of the TransformComponent to the dimensions of the ground sprite, and I set the position to the origin. Then I set the texture of the GraphicsComponent to the ground sprite.
+
+```kotlin
+override fun update(deltaTime: Float) {
+	gameViewport.apply()
+	batch.use(gameViewport.camera.combined) {
+		super.update(deltaTime)
+	}
+}
+
+override fun processEntity(entity: Entity, deltaTime: Float) {
+	val transformComp = entity.getNotNull(TransformComponent.mapper)
+	val graphicsComp = entity.getNotNull(GraphicsComponent.mapper)
+
+	if (graphicsComp.sprite.texture == null) {
+		log.error { "Entity $entity has no texture for rendering" }
+		return
+	}
+
+	if (!graphicsComp.visible) return
+	
+	graphicsComp.sprite.setBounds(transformComp.rect)
+	graphicsComp.sprite.rotation = transformComp.rotation
+	graphicsComp.sprite.draw(batch)
+}
+```
+
+Then, I add all the systems to the engine. My prototype only uses one system: the RenderSystem. This system iterates over all entities that have both a TransformComponent and a GraphicsComponent, and draws them onto the screen. I override the update method, which is called once per frame and would usually iterate over all the entities and call processEntity for each one with both a TransformComponent and a GraphicsComponent. I change it to first apply the gameViewport, which moves the camera so that any subsequent rendering is in world coordinates. Next I use the SpriteBatch, which means that all the render calls inside it are just drawing onto the batch, and then at the end of the block the batch will optimise them for processing my the GPU and then send them off.
+
+In processEntity, I
 
 ## Modelling (~2 pages)
 

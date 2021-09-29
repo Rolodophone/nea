@@ -72,10 +72,7 @@ class GameScreen(game: ComboKing): ComboKingScreen(game) {
 
 		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
 		engine.run {
-			addSystem(PlayerInputSystem(gameViewport, gameEventManager))
 			addSystem(RenderSystem(batch, gameViewport))
-			addSystem(PhysicsSystem(world))
-			addSystem(DebugSystem(gameEventManager, world, gameViewport))
 		}
 	}
 

@@ -43,20 +43,7 @@ class RenderSystem(
 
 		if (!graphicsComp.visible) return
 
-		// use interpolated position if entity has MoveComponent; otherwise use TransformComponent.rect
-//		val moveComp = entity[MoveComponent.mapper]
-//		if (moveComp == null) {
-			graphicsComp.sprite.setBounds(transformComp.rect)
-//		}
-//		else {
-//			graphicsComp.sprite.setBounds(
-//				moveComp.interpolatedPosition.x,
-//				moveComp.interpolatedPosition.y,
-//				transformComp.rect.width,
-//				transformComp.rect.height
-//			)
-//		}
-
+		graphicsComp.sprite.setBounds(transformComp.rect)
 		graphicsComp.sprite.rotation = transformComp.rotation
 		graphicsComp.sprite.draw(batch)
 	}
