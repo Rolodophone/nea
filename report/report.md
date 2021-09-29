@@ -6,7 +6,7 @@ This is where my report will go temporarily, until I move it into a Word documen
 
 I will be developing an endless running and fighting game that will run on Android, Windows and Linux. Essentially, the player will be jumping and moving between the ground and a platform and tackling various enemies. It will be 2D from a side camera perspective (like in most platformer games such as Super Mario Bros). But unlike Super Mario Bros, there won't be an end point. The objective is to make it as far as possible before losing all your health points.
 
-On Android, the game will use gesture controls (i.e. tapping and swiping different areas of the screen); I think this will create a tactile and satisfying experience for the player. I'm not entirely decided on what the controls will be yet, but perhaps the best approach would be that the left thumb is used for moving around (using a virtual, on-screen joystick), and the right thumb is used for attacking/blocking. Then, you could punch by swiping the right hand side of the screen with your right thumb. Maybe you
+On Android, the game will use gesture controls (i.e. tapping and swiping different areas of the screen); I think this will create a tactile and satisfying experience for the player. I'm not entirely decided on what the controls will be yet, but perhaps the best approach would be that the left thumb is used for moving around (using a virtual, on-screen joystick), and the right thumb is used for attacking/blocking. Then, you could punch by swiping the right-hand side of the screen with your right thumb. Maybe you could swipe diagonally upwards for a high punch, or directionally downwards for a low punch.
 
 
 
