@@ -34,6 +34,20 @@ One concern I have with these controls is that they require more work from the u
 
 The protagonist of the game (the character that the user controls) will be a woman called Jane Pond. She is a spy who was working undercover in a foreign intelligence headquarters, but she got found out, so she has to run for her life. However, she wasn't carrying a weapon (so that she didn't attract attention), so she must fend for herself empty-handed.
 
+## End User
+
+TODO Do an interview
+
+The game will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games. My third party will be Rudy Moran, a year 13 sixth form student. Below is my brief interview with him.
+
+**What is your favourite fighting game and why?**
+
+**What do you think makes a good endless running game?**
+
+**What important thing do many games get wrong?**
+
+**In your opinion, what should be the most important objectives for my game?**
+
 ## Research
 
 ### Shadow Fight 2
@@ -93,12 +107,6 @@ However, the language I will be using is Kotlin[10], not Java, primarily because
 For any physics, I will likely use Box2D[12] as it works well with libGDX (they have created a Java/libGDX wrapper for it) and provides all that I need. I may not need much physics in my game, as it is mostly jumping on platforms, but using Box2D will give me the ability to add nearly anything I want to my game without worrying about its physics being too difficult for me. I want the other areas of my game to be the complex parts, code that is specific to my game and that there are no pre-existing libraries for.
 
 Finally, I may also use Scene2D[13] for the user interface. Scene2D is a part of libGDX designed for managing text, buttons, menus and other UI elements. It expects you to provide any graphical assets in the form of its Skin class and JSON files that reference images. However, the libGDX tests provide some assets that anyone is allowed to use, so I will use them.
-
-## End User (~1 page)
-
-TODO decide end user -- someone who has played fighting games before, knows about them, is good at them and has an interest in a new one. Do an interview/questionnaire
-
-It will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games.
 
 ## Prototyping
 
