@@ -28,6 +28,8 @@ One concern I have with these controls is that they require more work from the u
 
 ### Theme
 
+The protagonist of the game (the character that the user controls) will be a woman called Jane Pond. She is a spy who was working undercover in a foreign intelligence headquarters, but she got found out, so she has to run for her life. However, she wasn't carrying a weapon (so that she didn't attract attention) so she has to fend for herself empty-handed.
+
 ## Research (~4 pages)
 
 ### Shadow Fight 2
