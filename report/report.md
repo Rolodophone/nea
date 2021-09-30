@@ -6,7 +6,15 @@ This is where my report will go temporarily, until I move it into a Word documen
 
 ### Gameplay
 
-I will be developing an endless running and fighting game that will run on Android, Windows and Linux. Essentially, the player will be jumping and moving between the ground and a platform and tackling various enemies. It will be 2D from a side camera perspective (like in most platformer games such as Super Mario Bros). But unlike Super Mario Bros, there won't be an end point. The objective is to make it as far as possible before losing all your health points.
+I will be developing an endless running and fighting game that will run on Android, Windows and Linux. Essentially, the player will be running and jumping between the ground and a raised platform and tackling various enemies. It will be 2D from a side camera perspective (like in most platformer games such as Super Mario Bros). But unlike Super Mario Bros, there won't be an end point. The objective is to make it as far as possible before losing all your health points.
+
+There will be various different types of enemy, each with noticeably different behaviour. For example, there could be one type which has lots of health and tries to block your path, and there could be another type which attacks in large groups and they coordinate to surround you.
+
+As for how the combat will work, it will be mostly melee. This is because I can't see how I can make ranged combat fun – there isn't much much variety in shooting from afar. On the other hand, there can be lots of variety in melee combat: high punches, low punches, spinning punches, uppercuts, low kicks, front kicks, high kicks, turning kicks and jumping kicks. My idea is to have all of these different moves available to the player, and each has their advantages and disadvantages.
+
+Another important aspect of the gameplay will be moving between the two levels (the ground level and the raised platform), to stay in a location that makes it easier to combat. For instance, the player may want to stay on the upper level as much as possible, so that they can eliminate enemies easily by jumping down and performing a drop kick. But if enemies come at you from the upper level, you may want to go down to the lower level so you can run past them.
+
+There will be several methods of switching between the 2 levels. First, there will be the self-explanatory staircases and ladders, which appear from time to time, and offer an easy way to go up or down. But you should also be able to jump up on top of a table on the ground level and jump up, grabbing hold of the banister and climbing over it onto the first floor. Furthermore if you are on the upper level and wish to descend, you should be able to climb over the banister, and drop to the floor, and roll. If you fail to time the roll correctly you will receive fall damage. These last two methods will be difficult to pull off (especially to pull off quickly), so they will be an alternative method aimed at experienced players, and are intended to add more variety to the game.
 
 ### Controls
 
