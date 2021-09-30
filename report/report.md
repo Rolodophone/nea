@@ -42,7 +42,9 @@ If you press the "Play" button, a siren will start and a picture of Jane Pond wi
 
 The "Tutorial" button has the same effect as the "Play" button, except it interactively shows you how to play the game. At the end of the tutorial, it transitions smoothly into the real game.
 
-TODO UI of game
+The game UI will consist of the score displayed in the top left, along with a pause button. When the pause button is pressed, the game logic and animation is suspended, and a popup appears stating that the game has been paused. This popup contains a button to resume the game.
+
+Finally, when the user loses all of their health, a popup appears saying that you have died. It also states your final score and highscore and has a buttons to play again and to return to the main menu.
 
 ## Research (~4 pages)
 
