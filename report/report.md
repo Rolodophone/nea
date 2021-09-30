@@ -6,7 +6,7 @@ This is where my report will go temporarily, until I move it into a Word documen
 
 ### Gameplay
 
-I will be developing an endless running and fighting game that will run on Android, Windows and Linux. Essentially, the player will be running and jumping between the ground and a raised platform and tackling various enemies. It will be 2D from a side camera perspective (like in most platformer games such as Super Mario Bros). But unlike Super Mario Bros, there won't be an end point. The objective is to make it as far as possible before losing all your health points.
+I will be developing an endless running and fighting game that will run on Android, Windows and Linux. Essentially, the player will be running and jumping between the ground and a raised platform and tackling various enemies. It will be 2D from a side camera perspective (like in most platformer games such as Super Mario Bros; see the images in the Prototyping section). But unlike Super Mario Bros, there won't be an end point. The objective is to make it as far as possible before losing all your health points.
 
 There will be various different types of enemy, each with noticeably different behaviour. For example, there could be one type which has lots of health and tries to block your path, and there could be another type which attacks in large groups and they coordinate to surround you.
 
@@ -29,6 +29,20 @@ One concern I have with these controls is that they require more work from the u
 ### Theme
 
 The protagonist of the game (the character that the user controls) will be a woman called Jane Pond. She is a spy who was working undercover in a foreign intelligence headquarters, but she got found out, so she has to run for her life. However, she wasn't carrying a weapon (so that she didn't attract attention) so she has to fend for herself empty-handed.
+
+### User interface
+
+The UI will be fairly simple as the focus of this project is on the game. When the user opens the app, they will see Jane Pond spying undercover on the left (an animated loop). On the right there is a large screen displaying the highscore and 4 buttons: "Play", "Tutorial", "Settings" and "Credits".
+
+If the user taps the "Settings" button, various settings will be displayed on the screen (e.g. SFX volume, music volume) along with a button to go back.
+
+The "Credits" button will display the credits along with a button to go back.
+
+If you press the "Play" button, a siren will start and a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected". Jane will start running and this will transition smoothly into the game.
+
+The "Tutorial" button has the same effect as the "Play" button, except it interactively shows you how to play the game. At the end of the tutorial, it transitions smoothly into the real game.
+
+TODO UI of game
 
 ## Research (~4 pages)
 
