@@ -1,12 +1,16 @@
 This is where my report will go temporarily, until I move it into a Word document. For now, I'll use a markdown file so that I can keep track of it with version control.
 
-# Analysis (~13 pages)
+TODO add images to the whole thing
 
-## Description (~2 page)
+# Analysis
+
+## Description
 
 ### Gameplay
 
 I will be developing an endless running and fighting game that will run on Android, Windows and Linux. Essentially, the player will be running and jumping between the ground and a raised platform and tackling various enemies. It will be 2D from a side camera perspective (like in most platformer games such as Super Mario Bros; see the images in the Prototyping section). But unlike Super Mario Bros, there won't be an end point. The objective is to make it as far as possible before losing all your health points.
+
+TODO SMB image on the side
 
 There will be various different types of enemy, each with noticeably different behaviour. For example, there could be one type which has lots of health and tries to block your path, and there could be another type which attacks in large groups and they coordinate to surround you.
 
@@ -28,25 +32,9 @@ One concern I have with these controls is that they require more work from the u
 
 ### Theme
 
-The protagonist of the game (the character that the user controls) will be a woman called Jane Pond. She is a spy who was working undercover in a foreign intelligence headquarters, but she got found out, so she has to run for her life. However, she wasn't carrying a weapon (so that she didn't attract attention) so she has to fend for herself empty-handed.
+The protagonist of the game (the character that the user controls) will be a woman called Jane Pond. She is a spy who was working undercover in a foreign intelligence headquarters, but she got found out, so she has to run for her life. However, she wasn't carrying a weapon (so that she didn't attract attention) so she must fend for herself empty-handed.
 
-### User interface
-
-The UI will be fairly simple as the focus of this project is on the game. When the user opens the app, they will see Jane Pond spying undercover on the left (an animated loop). On the right there is a large screen displaying the highscore and 4 buttons: "Play", "Tutorial", "Settings" and "Credits".
-
-If the user taps the "Settings" button, various settings will be displayed on the screen (e.g. SFX volume, music volume) along with a button to go back.
-
-The "Credits" button will display the credits along with a button to go back.
-
-If you press the "Play" button, a siren will start and a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected". Jane will start running and this will transition smoothly into the game.
-
-The "Tutorial" button has the same effect as the "Play" button, except it interactively shows you how to play the game. At the end of the tutorial, it transitions smoothly into the real game.
-
-The game UI will consist of the score displayed in the top left, along with a pause button. When the pause button is pressed, the game logic and animation is suspended, and a popup appears stating that the game has been paused. This popup contains a button to resume the game.
-
-Finally, when the user loses all of their health, a popup appears saying that you have died. It also states your final score and highscore and has a buttons to play again and to return to the main menu.
-
-## Research (~4 pages)
+## Research
 
 ### Shadow Fight 2
 
@@ -64,11 +52,11 @@ Finally, one more thing the game does well is how it seamlessly transitions from
 
 ![Prizefighters 2 gameplay](./images/prizefighter-2.jpg)
 
-TODO add Temple Run images beside text with caption "As the character moves, the user sees the building from a different angle"
-
 Prizefighters 2[4] is also a mobile game. In this game, the player has a 1v1 boxing fight against a computer-controlled opponent. The game essentially has two parts: the career aspect, where you manage your boxer's career and see him or her progress; and the actual fighting aspect, i.e. learning how to combat different opponents and exploit their weaknesses. I do not plan to have a similar career aspect to my game, so I will focus on the fighting instead.
 
 As you can see from the image, the perspective is pseudo-3D, with the player's character appearing in front of the computer-controlled opponent. However, it still uses 2-dimensional assets, and the camera's perspective is fixed. This is in contrast to Shadow Fight 2, where the characters appear side by side. As my game is an endless runner, the character will be moving through a world, so to show that the character is moving I would have to have a backdrop moving past the character (like in Temple Run). This would mean 3D assets, which would add too much unnecessary complexity to my game. I want my game's technical complexity to be in other areas, such as the enemies' AI, therefore I will use a camera perspective similar to Shadow Fight and not Prizefighters.
+
+TODO add Temple Run images beside text with caption "As the character moves, the user sees the building from a different angle"
 
 After playing the game for around one hour, I found the gameplay fairly simple and repetitive. It seemed to consist of guarding yourself until your opponent stops throwing punches, then throwing some punches back. There is a gameplay feature that aims to make it more interesting: "special punches". The in-game tutorial attempts to explain how they work, but when I tried to use them, they didn't seem to deal much damage, and I was better off just focusing on the easy but boring blocking and punching. 
 
@@ -98,8 +86,6 @@ TODO add pictures
 
 TODO maybe discuss TODO about system/service hybrid
 
-TODO libGDX, Ashley, libKTX, Scene2D, Box2D
-
 To develop my game I will use libGDX[9], which is a cross-platform Java game development framework. It provides the basics for what I need in my game (such as audio, graphics, user input and maths APIs), while still being flexible – it doesn't tie you into a specific approach, like Unity does. Also, there are other frameworks that are made by the libGDX project but are optional extensions. One of these that I will use is Ashley, which is a tiny framework for the entity-component-system pattern. I will discuss ECS in the *Modelling* section.
 
 However, the language I will be using is Kotlin[10], not Java, primarily because I am more proficient at it. In addition, its main benefits over Java are conciseness and null-safety. As it is completely interoperable with Java, I see no downsides to using it. In fact, there is already a library called libKTX[11] which adapts libGDX to better take advantage of Kotlin's benefits. I will also use libKTX in my project.
@@ -114,7 +100,7 @@ TODO decide end user -- someone who has played fighting games before, knows abou
 
 It will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games.
 
-## Prototyping (~2 pages)
+## Prototyping
 
 TODO include screenshots of it running on Linux and Android and key snippets of code
 
@@ -205,7 +191,25 @@ Then, I add all the systems to the engine. My prototype only uses one system: th
 
 In processEntity (this gets called once for each entity that should be rendered), I get the entity's TransformComponent and GraphicsComponent. I then ensure that the GraphicsComponent has a texture and that it is set to be visible. Finally, I set the bounds and rotation of the sprite as specified by TransformComponent, and I draw it.
 
-## Modelling (~2 pages)
+## Modelling
+
+### User Interface
+
+![UI state diagram](./images/statediagram.png)
+
+When the user opens the app, they will see Jane Pond spying undercover on the left (an animated loop). On the right there is a large screen displaying the highscore and 4 buttons: "Play", "Tutorial", "Settings" and "Credits".
+
+If the user taps the "Settings" button, various settings will be displayed on the screen (e.g. SFX volume, music volume) along with a button to go back.
+
+The "Credits" button will display the credits along with a button to go back.
+
+If you press the "Play" button, a siren will start and a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected". Jane will start running and this will transition smoothly into the game.
+
+The "Tutorial" button has the same effect as the "Play" button, except it interactively shows you how to play the game. At the end of the tutorial, it transitions smoothly into the real game.
+
+The game UI will consist of the score displayed in the top left, along with a pause button. When the pause button is pressed, the game logic and animation is suspended, and a popup appears stating that the game has been paused. This popup contains a button to resume the game.
+
+Finally, when the user loses all of their health, a popup appears saying that you have died. It also states your final score and highscore and has a buttons to play again and to return to the main menu.
 
 ## Objectives (~1 page)
 
