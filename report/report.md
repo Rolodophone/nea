@@ -257,7 +257,7 @@ The game UI will consist of the score displayed in the top left, along with a pa
 
 Finally, when the user loses all of their health, a popup appears saying that you have died. It also states your final score and highscore and has a buttons to play again and to return to the main menu.
 
-## Objectives (~1 page)
+## Objectives
 
 TODO fix numbering
 
@@ -343,6 +343,8 @@ TODO add sketches to better explain things
 	1. The game should render a background behind Jane
 	2. Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly
 	3. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
+	4. The score increases when Jane progresses to the right
+	5. The score also increases when Jane eliminates enemies
 8. Game over popup
 	1. When the player runs out of health, a game over popup should be displayed
 	2. The score should be displayed
@@ -370,13 +372,22 @@ TODO add sketches to better explain things
 4. Other weapons
 	1. There could be other weapons that Jane could pick up and use, such as a knife
 
-## Execution (~1 page)
+## Execution
 
 TODO discuss critical path, my approach to developing a solution, and where I'll get assets from
 
 The critical path for my game (the crucial steps that are most important to get done) are:
 
-1. 
+1. Main menu with a "play" button
+2. Score displayed at the top of the screen
+3. Jane can run left and right
+4. Score increases as Jane runs to the right
+5. Enemies appear randomly
+6. Jane can attack the enemies
+7. The enemies can decrease Jane's health
+8. When Jane's health reaches zero, the game is over
+9. The game over popup displays the final score
+10. The game over popup has a button to play again
 
 # Documented Design
 
