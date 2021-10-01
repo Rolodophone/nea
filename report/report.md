@@ -40,11 +40,16 @@ TODO Do an interview
 
 The game will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games. My third party will be Rudy Moran, a year 13 sixth form student.
 
-Rudy has experience playing PC and Android games so his opinion is valuable help. I did prepare some questions for him but the conversation diverged and the result was more useful than the questions anyway. Below are my notes for the conversation.
+Rudy has experience playing PC and Android games so his opinion is valuable help. I did prepare some questions for him but the conversation diverged and the result was more useful than the questions anyway.
+
+There are many features that were mentioned in the conversation that I could add to my game, however I must be careful not to add too many features because that would make it too hard to code and maintain. I have outlined below each of my notes my thoughts on it and the extent to which I will implement it in my game.
+
+Below are my notes for the conversation.
 
 **What do you think makes a good endless running game?**
 
-- High score definitely
+- *High score definitely*
+	Was already going to do this
 - Should change each time you play it
 - Needs some level of randomisation
 - Pickups and items
@@ -66,8 +71,6 @@ Rudy has experience playing PC and Android games so his opinion is valuable help
 - Swipe with knife for area of effect damage
 - Buttons to change between weapons you have picked up
 - There could be a pistol but with limited ammo, which could be picked up as a rare item
-
-
 
 ## Research
 
