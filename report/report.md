@@ -20,6 +20,8 @@ Another important aspect of the gameplay will be moving between the two levels (
 
 There will be several methods of switching between the 2 levels. First, there will be the self-explanatory staircases and ladders, which appear from time to time, and offer an easy way to go up or down. But you should also be able to jump up on top of a table on the ground level and jump up, grabbing hold of the banister and climbing over it onto the first floor. Furthermore, if you are on the upper level and wish to descend, you should be able to climb over the banister, and drop to the floor, and roll. If you fail to time the roll correctly, you will receive fall damage. These last two methods will be difficult to pull off (especially to pull off quickly), so they will be an alternative method aimed at experienced players, and are intended to add more variety to the game.
 
+Above is my initial description of the game. Since writing the rest of the analysis, I have decided to add some features and I've decided in more detail how the game will work. The description above is still correct, it's just missing those extra features. See my objectives for a more comprehensive description of my game.
+
 ### Controls
 
 My initial idea was to have the player's movement fully automatic, controlled by an intelligent algorithm, however now I think that moving around is part of the fun and the strategy. I will still have to write that intelligent algorithm to control the movement of the enemies.
@@ -42,17 +44,26 @@ The game will be targeted at teenagers to young adults, because that is the age 
 
 Rudy has experience playing PC and Android games so his opinion is valuable help. I did prepare some questions for him but the conversation diverged and the result was more useful than the questions anyway.
 
-There are many features that were mentioned in the conversation that I could add to my game, however I must be careful not to add too many features because that would make it too hard to code and maintain. I have outlined below each of my notes my thoughts on it and the extent to which I will implement it in my game.
+There are many features that were mentioned in the conversation that I could add to my game, however I must be careful not to add too many features because that would make it too hard to code and maintain. I have outlined beside each of my notes my thoughts on it and the extent to which I will implement it in my game.
 
 Below are my notes for the conversation.
 
 **What do you think makes a good endless running game?**
 
-- *High score definitely*
-	Was already going to do this
+- High score definitely
+  - Was already going to do this
 - Should change each time you play it
+  - Will be randomised and I will implement a leveling up system
 - Needs some level of randomisation
+  - The layout and enemies will be randomised
 - Pickups and items
+  - I will implement a limited number of items
+  - A bandage item that recovers some health
+  - Jane will carry a pistol that can only carry 6 rounds
+  - An ammo item that replenishes the pistol back up to 6 rounds
+  - The ammo item will be very rare so the game still requires mainly melee combat and isn't too easy
+  - Jane will be able to switch between using the pistol and her hands and feet when the user draws a circle with their right thumb
+  - TODO move this to objectives and replace with a shorter summary
 
 **Can you give some examples of items or powerups that I can include in my game?**
 
