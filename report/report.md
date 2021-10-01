@@ -42,46 +42,49 @@ TODO Do an interview
 
 The game will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games. My third party will be Rudy Moran, a year 13 sixth form student.
 
-Rudy has experience playing PC and Android games so his opinion is valuable help. I did prepare some questions for him but the conversation diverged and the result was more useful than the questions anyway.
+Rudy has experience playing PC and Android games, so his opinion is valuable help. I did prepare some questions for him, but the conversation diverged, and the result was more useful than the questions anyway.
 
-There are many features that were mentioned in the conversation that I could add to my game, however I must be careful not to add too many features because that would make it too hard to code and maintain. I have outlined beside each of my notes my thoughts on it and the extent to which I will implement it in my game.
+There are many features that were mentioned in the conversation that I could add to my game, however I must be careful not to add too many features because that would make it too hard to code and maintain. I have outlined beside each of my notes my thoughts on it, and the extent to which I will implement it in my game.
 
 Below are my notes for the conversation.
 
-**What do you think makes a good endless running game?**
+***What do you think makes a good endless running game?***
 
 - High score definitely
   - Was already going to do this
 - Should change each time you play it
-  - Will be randomised and I will implement a leveling up system
+  - Will be randomised, and I will implement a leveling up system
 - Needs some level of randomisation
   - The layout and enemies will be randomised
 - Pickups and items
-  - I will implement a limited number of items
-  - A bandage item that recovers some health
-  - Jane will carry a pistol that can only carry 6 rounds
-  - An ammo item that replenishes the pistol back up to 6 rounds
-  - The ammo item will be very rare so the game still requires mainly melee combat and isn't too easy
-  - Jane will be able to switch between using the pistol and her hands and feet when the user draws a circle with their right thumb
-  - TODO move this to objectives and replace with a shorter summary
+  - I will implement a small number of items
 
-**Can you give some examples of items or powerups that I can include in my game?**
+***Can you give some examples of items or power-ups that I can include in my game?***
 
 - Health pickup, like bandages
+	- I will implement bandages
 - Different weapons that you can pick up
+  - I will implement a pistol but that will likely be the only weapon, and Jane will start out with it
 
-**What important thing do many games get wrong?**
+***What important thing do many games get wrong?***
 
 - Become stale quickly
+	- I will implement leveling up, and the layout will be randomised so no two runs will be the same
 - If there's no progress, you're going to get bored quickly
+	- You will be able to level up, which should create a sense of progress
 - Needs a highscore or leveling up
-- Leveling up means permanently improving the player's abilities (e.g. more health) using XP earnt by getting far
+	- See above
+- Leveling up means permanently improving the player's abilities (e.g. more health) using XP earned by getting far
+  - This is how leveling up will work in my game
 
-***Other ideas that came up in the conversation***
+**Other ideas that came up in the conversation**
 
 - Swipe with knife for area of effect damage
+	- I will not implement a knife as that would make punching and kicking useless
 - Buttons to change between weapons you have picked up
-- There could be a pistol but with limited ammo, which could be picked up as a rare item
+	- Instead of another button, the user will be able to draw a circle with their right thumb to switch between using fists and using the pistol
+- There could be a pistol but with limited ammunition, which could be picked up as a rare item
+  - I will do this, and the pistol's ammo capacity can be another ability that you can level up
 
 ## Research
 
