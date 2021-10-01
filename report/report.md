@@ -148,7 +148,7 @@ Finally, I may also use Scene2D[13] for the user interface. Scene2D is a part of
 
 ## Prototyping
 
-TODO include screenshots of it running on Linux and Android and key snippets of code
+![Screenshot of prototype](./images/prototypescreenshot.jpg)
 
 Before I can even get started on the game, there is a lot of low-level coding that needs to take place, to set up all the libraries I am using and do all sorts of things that aren't directly related to the game. It didn't take too long though, as I could copy and adapt my code from my other libGDX project.
 
@@ -263,9 +263,11 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 
 TODO fix numbering
 
-Since writing the rest of my analysis, my idea for the game has changed somewhat. For example, I have decided to focus on the Android version because I think it's better to focus on just one platform. I've designed the controls and gameplay with Android in mind and they are so closely tied that I would have to redesign the whole game for it to be a nice experience on a PC. I will still be making a Windows version and Linux version, but the controls won't be very ergonomic. This list of objectives is the most complete and up-to-date definition of what my game should be like.
+Since writing the rest of my analysis, my idea for the game has changed somewhat. This list of objectives is the most complete and up-to-date definition of what my game should be like.
 
 ### A-level Standard Objectives
+
+TODO add sketches to better explain things
 
 1. Main menu
 	1. The "play" button should start the game
@@ -277,11 +279,26 @@ Since writing the rest of my analysis, my idea for the game has changed somewhat
 	7. The buttons should be displayed on the screen
 	8. The highscore should also be displayed on this screen
 	9. Jane should appear to be spying undercover before she is found out (before the game starts)
-2. Abilities screen
-	 1. 
+2. Abilities
+	1. Should display the amount of XP the user currently has
+	2. Should display the current level of each of Jane's abilities
+	3. Each ability should have a button to upgrade it
+	4. Should display the cost of upgrading each ability
+	5. Should display the amount the ability level would go up by if the user were to press the button
+	6. Pressing a button should increase the ability level by the amount specified and decrease the XP by the amount specified
+	6. There should be a button to return to the main menu
+	7. The level of each of Jane's abilities and the user's current XP level should persist when the app is closed
+2. Settings
+	1. There should be a setting to change SFX volume
+	1. There should be a setting to change music volume
+	1. There should be a setting to show the tutorial button instead of the play button on the main menu 
+	1. The "show tutorial" settings should revert back to off automatically once the tutorial has been played
+	1. There should be a setting to change the position of the controls
+	1. There should be a setting to change the size of the controls
+	1. There should be a setting to change the opacity of the controls
 2. Game UI
-	1. There should be the score displayed in the top left corner
-	2. There should be a pause button next to the score
+	1. There should be the current score displayed at the top
+	2. There should be a pause button displayed
 	3. Pressing the pause button pauses the game logic and animation
 	4. Pressing the pause button displays a popup
 	4. The popup indicates that the game is paused
@@ -289,6 +306,10 @@ Since writing the rest of my analysis, my idea for the game has changed somewhat
 	6. The popup includes a button to return to the main menu
 	7. The resume button resumes game logic and animation and closes the popup
 	8. The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
+	9. The movement controls should be displayed in the bottom left and the combat controls in the bottom right
+	10. The movement controls should look like a circle divided diagonally into 4 sectors (see my sketch)
+	11. The combat controls should look like a circle divided into 6 sectors (see sketch)
+	12. The movement and combat controls should only be displayed on Android
 3. Game movement controls
 	1. Pressing down the left/A button will move Jane to the left at a constant speed until the button is released
 	2. Pressing down the right/D button will move Jane to the right at a constant speed until the button is released
@@ -321,9 +342,10 @@ Since writing the rest of my analysis, my idea for the game has changed somewhat
 	24. Pressing more than 1 of the buttons on the left-hand side simultaneously should have no effect
 4.Game physics
 	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased by an amount that is proportional to the distance dropped
-	2. Jane should not be able to walk through TODO
-	3. 
+	2. Jane should not be able to walk through TODO should Jane be able to walk through enemies?
+	3. Jane should be able to walk past staircases, ladders and crates
 5. Game combat controls
+	1. 
 6. Enemies
 7. Items
 8. Game over popup
@@ -334,7 +356,7 @@ Since writing the rest of my analysis, my idea for the game has changed somewhat
 	1. There should be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
 	2. Jane should then start running towards the right
 	3. The camera should zoom out and the game UI (i.e. the score and pause button) should appear
-2. There should be a tutorial
+2. Tutorial
 	1. TODO
 
 ## Execution (~1 page)
