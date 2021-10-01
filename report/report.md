@@ -263,6 +263,8 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 
 TODO fix numbering
 
+Since writing the rest of my analysis, my idea for the game has changed somewhat. For example, I have decided to focus on the Android version because I think it's better to focus on just one platform. I've designed the controls and gameplay with Android in mind and they are so closely tied that I would have to redesign the whole game for it to be a nice experience on a PC. I will still be making a Windows version and Linux version, but the controls won't be very ergonomic. This list of objectives is the most complete and up-to-date definition of what my game should be like.
+
 ### A-level Standard Objectives
 
 1. Main menu
