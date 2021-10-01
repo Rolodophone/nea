@@ -241,17 +241,19 @@ In processEntity (this gets called once for each entity that should be rendered)
 
 ### User Interface
 
-![UI state diagram](./images/statediagram.png)
+![UI state diagram](./images/statediagram.jpg)
 
-When the user opens the app, they will see Jane Pond spying undercover on the left (an animated loop). On the right there is a large screen displaying the highscore and 4 buttons: "Play", "Tutorial", "Settings" and "Credits".
+When the user opens the app, they will see Jane Pond spying undercover on the left (an animated loop). On the right there is a large screen displaying the highscore and 4 buttons: "Play", "Abilities", "Settings" and "Credits".
 
-If the user taps the "Settings" button, various settings will be displayed on the screen (e.g. SFX volume, music volume) along with a button to go back.
+If the user taps the "Settings" button, various settings will be displayed on the screen (e.g. SFX volume, music volume, show tutorial) along with a button to go back.
 
 The "Credits" button will display the credits along with a button to go back.
 
-If you press the "Play" button, a siren will start, and a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected". Jane will start running and this will transition smoothly into the game.
+If you press the "Abilities" button, the screen will display the amount of XP the user currently has, and the current level of each of Jane's abilities, each with a button to upgrade it. For example, there will be a max health ability. The screen will display the current max health, with a button to upgrade it. The button should display the cost of upgrading and the amount the max health would go up by should you press the button. There should also be a button to return to the main menu.
 
-The "Tutorial" button has the same effect as the "Play" button, except it interactively shows you how to play the game. At the end of the tutorial, it transitions smoothly into the real game.
+If you press the "Play" button, a siren will start, and a picture of Jane Pond will appear on the screen, along with the flashing words, "IMPOSTOR DETECTED". Jane will start running and this will transition smoothly into the game.
+
+If the user hasn't completed the tutorial since installing the app, or the "show tutorial" option was enabled in the settings, the "Play" button will be replaced by a "Tutorial" button. When this is pressed, the game will start in tutorial mode. This means that it interactively shows you how to play the game. At the end of the tutorial, it transitions smoothly into the real game.
 
 The game UI will consist of the score displayed in the top left, along with a pause button. When the pause button is pressed, the game logic and animation is suspended, and a popup appears stating that the game has been paused. This popup contains a button to resume the game.
 
@@ -259,11 +261,13 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 
 ## Objectives (~1 page)
 
+TODO fix numbering
+
 ### A-level Standard Objectives
 
-1. The game should open with a main menu with buttons and an animation loop of Jane
+1. Main menu
 	1. The "play" button should start the game
-	2. The "tutorial" button should start the tutorial
+	2. The "abilities" button should display the abilities screen
 	3. The "settings" button should display the settings
 	4. The "credits" button should display the credits
 	5. The settings and menu screens should have a button to go back to the main menu
@@ -271,7 +275,9 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 	7. The buttons should be displayed on the screen
 	8. The highscore should also be displayed on this screen
 	9. Jane should appear to be spying undercover before she is found out (before the game starts)
-2. The game should have appropriate UI
+2. Abilities screen
+	 1. 
+2. Game UI
 	1. There should be the score displayed in the top left corner
 	2. There should be a pause button next to the score
 	3. Pressing the pause button pauses the game logic and animation
@@ -281,7 +287,7 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 	6. The popup includes a button to return to the main menu
 	7. The resume button resumes game logic and animation and closes the popup
 	8. The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
-3. The game movement controls should work as expected
+3. Game movement controls
 	1. Pressing down the left/A button will move Jane to the left at a constant speed until the button is released
 	2. Pressing down the right/D button will move Jane to the right at a constant speed until the button is released
 	3. Tapping the up/W button should make Jane jump up and either left or right, whichever direction she most recently travelled in
@@ -311,13 +317,14 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 	22. When Jane is standing on a crate the controls are as if she is on the upper level, so she can move left and right, jump, roll and drop down
 	23. When Jane goes past the end of the crate (either by moving left or right or by rolling), she drops down
 	24. Pressing more than 1 of the buttons on the left-hand side simultaneously should have no effect
-4. The game physics should work as expected
+4.Game physics
 	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased by an amount that is proportional to the distance dropped
 	2. Jane should not be able to walk through TODO
 	3. 
-5. The game combat controls should work like this
-6. There should be enemies
-7. There should be a game over popup
+5. Game combat controls
+6. Enemies
+7. Items
+8. Game over popup
 
 ### Extension Objectives
 
@@ -325,6 +332,8 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 	1. There should be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
 	2. Jane should then start running towards the right
 	3. The camera should zoom out and the game UI (i.e. the score and pause button) should appear
+2. There should be a tutorial
+	1. TODO
 
 ## Execution (~1 page)
 
