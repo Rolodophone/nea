@@ -38,27 +38,36 @@ The protagonist of the game (the character that the user controls) will be a wom
 
 TODO Do an interview
 
-The game will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games. My third party will be Rudy Moran, a year 13 sixth form student. Below is my brief interview with him.
+The game will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games. My third party will be Rudy Moran, a year 13 sixth form student.
 
-**What is your favourite fighting game and why?**
-
-**
+Rudy has experience playing PC and Android games so his opinion is valuable help. I did prepare some questions for him but the conversation diverged and the result was more useful than the questions anyway. Below are my notes for the conversation.
 
 **What do you think makes a good endless running game?**
 
-**
+- High score definitely
+- Should change each time you play it
+- Needs some level of randomisation
+- Pickups and items
+
+**Can you give some examples of items or powerups that I can include in my game?**
+
+- Health pickup, like bandages
+- Different weapons that you can pick up
 
 **What important thing do many games get wrong?**
 
-**
+- Become stale quickly
+- If there's no progress, you're going to get bored quickly
+- Needs a highscore or leveling up
+- Leveling up means permanently improving the player's abilities (e.g. more health) using XP earnt by getting far
 
-**What is your opinion on my objectives?**
+***Other ideas that came up in the conversation***
 
-**
+- Swipe with knife for area of effect damage
+- Buttons to change between weapons you have picked up
+- There could be a pistol but with limited ammo, which could be picked up as a rare item
 
-**Are there any objectives that you think I should add?**
 
-**
 
 ## Research
 
@@ -284,9 +293,11 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 	21. Holding down the up/W button while Jane is in the air just below the upper level (for example, she jumped from a crate or staircase) should make Jane climb on onto the upper level
 	22. When Jane is standing on a crate the controls are as if she is on the upper level, so she can move left and right, jump, roll and drop down
 	23. When Jane goes past the end of the crate (either by moving left or right or by rolling), she drops down
-	19. Pressing more than 1 of the buttons on the left-hand side simultaneously should have no effect
+	24. Pressing more than 1 of the buttons on the left-hand side simultaneously should have no effect
 4. The game physics should work as expected
 	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased by an amount that is proportional to the distance dropped
+	2. Jane should not be able to walk through TODO
+	3. 
 5. The game combat controls should work like this
 6. There should be enemies
 7. There should be a game over popup
