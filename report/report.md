@@ -24,7 +24,7 @@ There will be several methods of switching between the 2 levels. First, there wi
 
 My initial idea was to have the player's movement fully automatic, controlled by an intelligent algorithm, however now I think that moving around is part of the fun and the strategy. I will still have to write that intelligent algorithm to control the movement of the enemies.
 
-On Android, the game will use gesture controls (i.e. tapping and swiping different areas of the screen); I think this will create a tactile and satisfying experience for the player. I'm not entirely decided on what the controls will be yet, but perhaps the best approach would be that the left thumb is used for moving around (using a virtual, on-screen joystick), and the right thumb is used for attacking/blocking. Then, you could punch by swiping the right-hand side of the screen with your right thumb. Maybe you could swipe diagonally upwards for a high punch, or directionally downwards for a low punch.
+On Android, the game will use gesture controls (i.e. tapping and swiping different areas of the screen); I think this will create a tactile and satisfying experience for the player. I'm not entirely decided on what the controls will be yet, but perhaps the best approach would be that the left thumb is used for moving around (using 4 virtual, on-screen buttons), and the right thumb is used for attacking/blocking. Then, you could punch by swiping the right-hand side of the screen with your right thumb. Maybe you could swipe diagonally upwards for a high punch, or directionally downwards for a low punch.
 
 Of course, on Windows and Linux, the controls will have to be different. My initial idea is that the left hand will control movement using the W, A, S and D keys. The A and D keys could be used to run left or right respectively, the S key to roll or go down to the ground level, and the W key to jump or go up to the platform. The right hand will be used for attacking. Maybe it could simply be using the mouse to perform the same gestures as on Android. In other words, to punch you would click and drag the cursor to the right. 
 
@@ -42,11 +42,23 @@ The game will be targeted at teenagers to young adults, because that is the age 
 
 **What is your favourite fighting game and why?**
 
+**
+
 **What do you think makes a good endless running game?**
+
+**
 
 **What important thing do many games get wrong?**
 
-**In your opinion, what should be the most important objectives for my game?**
+**
+
+**What is your opinion on my objectives?**
+
+**
+
+**Are there any objectives that you think I should add?**
+
+**
 
 ## Research
 
@@ -221,9 +233,78 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 
 ## Objectives (~1 page)
 
+### A-level Standard Objectives
+
+1. The game should open with a main menu with buttons and an animation loop of Jane
+	1. The "play" button should start the game
+	2. The "tutorial" button should start the tutorial
+	3. The "settings" button should display the settings
+	4. The "credits" button should display the credits
+	5. The settings and menu screens should have a button to go back to the main menu
+	6. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
+	7. The buttons should be displayed on the screen
+	8. The highscore should also be displayed on this screen
+	9. Jane should appear to be spying undercover before she is found out (before the game starts)
+2. The game should have appropriate UI
+	1. There should be the score displayed in the top left corner
+	2. There should be a pause button next to the score
+	3. Pressing the pause button pauses the game logic and animation
+	4. Pressing the pause button displays a popup
+	4. The popup indicates that the game is paused
+	5. The popup includes a button to resume the game
+	6. The popup includes a button to return to the main menu
+	7. The resume button resumes game logic and animation and closes the popup
+	8. The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
+3. The game movement controls should work as expected
+	1. Pressing down the left/A button will move Jane to the left at a constant speed until the button is released
+	2. Pressing down the right/D button will move Jane to the right at a constant speed until the button is released
+	3. Tapping the up/W button should make Jane jump up and either left or right, whichever direction she most recently travelled in
+	4. Tapping the up/W button while Jane is in the air should have no effect
+	5. Tapping the down/S button while Jane is on the ground level or the upper level should make her do a forward roll and then get back up
+	6. Holding down the down/S button while Jane is on the upper level should make Jane drop down from the upper level
+	7. Holding down the down/S button while Jane is on the ground level should have no effect
+	8. Tapping the up/W button while near the foot of a staircase should put Jane on the first step instead of making her jump
+	9. Tapping the down/S button while near the top of a staircase should put Jane on the top step instead of making her roll 
+	9. Pressing the left/A button while on a staircase that goes from right to left should make Jane climb the staircase
+	10. Pressing the left/A button while on a staircase that goes from left to right should make Jane go down the staircase
+	10. Pressing the right/D button while on a staircase that goes from right to left should make Jane go down the staircase
+	11. Pressing the right/D button while on a staircase that goes from left to right should make Jane climb the staircase
+	12. When reaching the top of a staircase, Jane should continue moving horizontally in the same direction as the staircase, until the left/A or right/D button is released
+	13. Pressing the up/W button while on a staircase should make Jane jump up and either left or right, whichever direction she most recently travelled in
+	14. Tapping the down/S button while on a staircase should have no effect
+	15. Holding down the down/S button while on a staircase should make Jane drop from the staircase
+	13. Holding the up/W button while near the bottom of ladder should put Jane on the first rung instead of jumping
+	14. Holding the down/S button while near the top of a ladder should put Jane on the last rung instead of making her drop down
+	15. Pressing the up/W button while on a ladder should make Jane climb up the ladder
+	16. Pressing the down/S button while on a ladder should make Jane climb down the ladder
+	17. When Jane reaches the top or bottom of a ladder, she should not roll or jump, despite the up/W or down/S button being pressed
+	18. Tapping the left/A button or right/D button while on a ladder should have no effect
+	18. Holding down the left/A or right/D button while on a ladder should make Jane drop off the ladder
+	19. Holding down the up/W button while near a large crate should make Jane climb on top of the crate
+	21. Holding down the up/W button while Jane is in the air just below the upper level (for example, she jumped from a crate or staircase) should make Jane climb on onto the upper level
+	22. When Jane is standing on a crate the controls are as if she is on the upper level, so she can move left and right, jump, roll and drop down
+	23. When Jane goes past the end of the crate (either by moving left or right or by rolling), she drops down
+	19. Pressing more than 1 of the buttons on the left-hand side simultaneously should have no effect
+4. The game physics should work as expected
+	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased by an amount that is proportional to the distance dropped
+5. The game combat controls should work like this
+6. There should be enemies
+7. There should be a game over popup
+
+### Extension Objectives
+
+1. Pressing the "play" button should transition seamlessly into the game
+	1. There should be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
+	2. Jane should then start running towards the right
+	3. The camera should zoom out and the game UI (i.e. the score and pause button) should appear
+
 ## Execution (~1 page)
 
 TODO discuss critical path, my approach to developing a solution, and where I'll get assets from
+
+The critical path for my game (the crucial steps that are most important to get done) are:
+
+1. 
 
 # Documented Design
 
