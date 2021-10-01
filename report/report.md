@@ -38,8 +38,6 @@ The protagonist of the game (the character that the user controls) will be a wom
 
 ## End User
 
-TODO Do an interview
-
 The game will be targeted at teenagers to young adults, because that is the age group which plays the most live-action computer games. My third party will be Rudy Moran, a year 13 sixth form student.
 
 Rudy has experience playing PC and Android games, so his opinion is valuable help. I did prepare some questions for him, but the conversation diverged, and the result was more useful than the questions anyway.
@@ -263,7 +261,7 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 
 TODO fix numbering
 
-Since writing the rest of my analysis, my idea for the game has changed somewhat. This list of objectives is the most complete and up-to-date definition of what my game should be like.
+Since writing the rest of my analysis, my idea for the game has changed somewhat. This list of objectives is the most complete and up-to-date definition of what my game should be like. In addition, I have deliberately left out details on exactly how the controls for movement and combat will work, as this is likely to change many times and I will need to decide this through rapidly iterating between prototyping and testing and asking Rudy for his opinion.
 
 ### A-level Standard Objectives
 
@@ -291,13 +289,14 @@ TODO add sketches to better explain things
 2. Settings
 	1. There should be a setting to change SFX volume
 	1. There should be a setting to change music volume
-	1. There should be a setting to show the tutorial button instead of the play button on the main menu 
-	1. The "show tutorial" settings should revert back to off automatically once the tutorial has been played
-	1. There should be a setting to change the position of the controls
-	1. There should be a setting to change the size of the controls
-	1. There should be a setting to change the opacity of the controls
+	1. There should be a button to return to the main menu
+2. Credits
+	1. All the credits should be displayed
+	2. The user should be able to scroll if not all the credits fit on the screen
+	3. There should be a button to return to the main menu
 2. Game UI
 	1. There should be the current score displayed at the top
+	1. The current health should also be displayed
 	2. There should be a pause button displayed
 	3. Pressing the pause button pauses the game logic and animation
 	4. Pressing the pause button displays a popup
@@ -310,54 +309,66 @@ TODO add sketches to better explain things
 	10. The movement controls should look like a circle divided diagonally into 4 sectors (see my sketch)
 	11. The combat controls should look like a circle divided into 6 sectors (see sketch)
 	12. The movement and combat controls should only be displayed on Android
-3. Game movement controls
-	1. Pressing down the left/A button will move Jane to the left at a constant speed until the button is released
-	2. Pressing down the right/D button will move Jane to the right at a constant speed until the button is released
-	3. Tapping the up/W button should make Jane jump up and either left or right, whichever direction she most recently travelled in
-	4. Tapping the up/W button while Jane is in the air should have no effect
-	5. Tapping the down/S button while Jane is on the ground level or the upper level should make her do a forward roll and then get back up
-	6. Holding down the down/S button while Jane is on the upper level should make Jane drop down from the upper level
-	7. Holding down the down/S button while Jane is on the ground level should have no effect
-	8. Tapping the up/W button while near the foot of a staircase should put Jane on the first step instead of making her jump
-	9. Tapping the down/S button while near the top of a staircase should put Jane on the top step instead of making her roll 
-	9. Pressing the left/A button while on a staircase that goes from right to left should make Jane climb the staircase
-	10. Pressing the left/A button while on a staircase that goes from left to right should make Jane go down the staircase
-	10. Pressing the right/D button while on a staircase that goes from right to left should make Jane go down the staircase
-	11. Pressing the right/D button while on a staircase that goes from left to right should make Jane climb the staircase
-	12. When reaching the top of a staircase, Jane should continue moving horizontally in the same direction as the staircase, until the left/A or right/D button is released
-	13. Pressing the up/W button while on a staircase should make Jane jump up and either left or right, whichever direction she most recently travelled in
-	14. Tapping the down/S button while on a staircase should have no effect
-	15. Holding down the down/S button while on a staircase should make Jane drop from the staircase
-	13. Holding the up/W button while near the bottom of ladder should put Jane on the first rung instead of jumping
-	14. Holding the down/S button while near the top of a ladder should put Jane on the last rung instead of making her drop down
-	15. Pressing the up/W button while on a ladder should make Jane climb up the ladder
-	16. Pressing the down/S button while on a ladder should make Jane climb down the ladder
-	17. When Jane reaches the top or bottom of a ladder, she should not roll or jump, despite the up/W or down/S button being pressed
-	18. Tapping the left/A button or right/D button while on a ladder should have no effect
-	18. Holding down the left/A or right/D button while on a ladder should make Jane drop off the ladder
-	19. Holding down the up/W button while near a large crate should make Jane climb on top of the crate
-	21. Holding down the up/W button while Jane is in the air just below the upper level (for example, she jumped from a crate or staircase) should make Jane climb on onto the upper level
-	22. When Jane is standing on a crate the controls are as if she is on the upper level, so she can move left and right, jump, roll and drop down
-	23. When Jane goes past the end of the crate (either by moving left or right or by rolling), she drops down
-	24. Pressing more than 1 of the buttons on the left-hand side simultaneously should have no effect
-4.Game physics
+3. Movement and physics
+	1. Jane should be able to run left and right
+	2. Jane should be able to jump
+	2. Jane should be able to roll
+	2. Jane should be able to go up or down staircases
+	2. Jane should be able to go up or down ladders
+	2. Jane should be able to climb on top of large objects
+	2. Jane should be able to jump from large objects to climb onto the upper level
+	2. Jane should be able to drop from the upper level down to the ground level
+	3. Jane should only be able to jump when she is on solid ground
 	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased by an amount that is proportional to the distance dropped
-	2. Jane should not be able to walk through TODO should Jane be able to walk through enemies?
-	3. Jane should be able to walk past staircases, ladders and crates
-5. Game combat controls
-	1. 
+	2. Jane should not be able to walk through enemies; they should block her path
+	3. Jane should be able to walk past staircases, ladders and other objects
+5. Combat
+	1. Jane should be able to punch enemies
+	1. Jane should be able to kick enemies
+	1. Jane should be able to shoot enemies with her pistol
+	2. Jane should only be able to shoot when she has at least one round in her pistol
 6. Enemies
+	1. There should be at least 3 different types of enemy
+	2. Each type of enemy should behave noticeably differently
+	3. The enemies should be controlled by a rule-based AI
+	4. The enemies should appear to behave intelligently
+	5. Enemies should be able to deal damage to Jane, which decreases her health
 7. Items
+	1. There should be at least 3 different types of item, including an ammunition item and a bandage item
+	2. When Jane touches an item, the item's effect should be applied
+	3. When touching the ammo item, Jane's pistol is filled back up to its maximum capacity
+	3. The ammunition item should be rare enough so that the player is usually forced to use punch and kick rather than use the pistol
+	4. When touching the bandage item, Jane's health is increased (but not past the maximum health)
+8. Game logic
+	1. The game should render a background behind Jane
+	2. Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly
+	3. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
 8. Game over popup
+	1. When the player runs out of health, a game over popup should be displayed
+	2. The score should be displayed
+	3. The highscore should be displayed
+	4. There should be a button to play again
+	5. There should be a button to return to the main menu
+	6. If the user has beaten their highscore, the popup should indicate this
+	7. The highscore should be saved so that it persists when the app is closed
 
 ### Extension Objectives
 
-1. Pressing the "play" button should transition seamlessly into the game
-	1. There should be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
-	2. Jane should then start running towards the right
-	3. The camera should zoom out and the game UI (i.e. the score and pause button) should appear
+1. Pressing the "play" button could transition seamlessly into the game
+	1. There could be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
+	2. Jane could then start running towards the right
+	3. The camera could zoom out and the game UI (i.e. the score and pause button) could appear
 2. Tutorial
-	1. TODO
+	1. There could be a tutorial that teaches you the controls for the game
+	2. It could also teach you strategies on how to play the game well
+	3. It could be interactive, i.e. it teaches you as you play the game
+	4. There could be different levels of tutorial: a basic tutorial to get started, an intermediate tutorial, and an advanced tutorial
+	5. There could be a button in the main menu that starts the tutorial
+3. Background objects
+	1. There could be objects that appear randomly, such as a desk, a plant or a door
+	2. Jane would not be able to interact with these objects; she would walk past them as it they weren't there
+4. Other weapons
+	1. There could be other weapons that Jane could pick up and use, such as a knife
 
 ## Execution (~1 page)
 
