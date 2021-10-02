@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameScreen
+import io.github.rolodophone.comboking.screen.MainMenuScreen
+import io.github.rolodophone.comboking.system.RenderSystem
 import ktx.app.KtxGame
 import ktx.log.debug
 import ktx.log.logger
@@ -31,8 +33,13 @@ class ComboKing: KtxGame<ComboKingScreen>() {
         comboKingTextures = ComboKingTextures()
         engine = PooledEngine()
 
-        addScreen(GameScreen(this))
-        setScreen<GameScreen>()
+        //add systems to engine (it is recommended to render *before* stepping the physics for some reason)
+        engine.run {
+            addSystem(RenderSystem(batch, gameViewport))
+        }
+
+        addScreen(MainMenuScreen(this))
+        setScreen<MainMenuScreen>()
     }
 
     override fun dispose() {
