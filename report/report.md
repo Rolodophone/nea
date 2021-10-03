@@ -83,6 +83,8 @@ Below are my notes for the conversation.
 	- Instead of another button, the user will be able to draw a circle with their right thumb to switch between using fists and using the pistol
 - There could be a pistol but with limited ammunition, which could be picked up as a rare item
   - I will do this, and the pistol's ammo capacity can be another ability that you can level up
+	
+I also asked Rudy for his opinion on using touch gestures on Android rather than virtual buttons, which most mobile games use. He liked the idea.
 
 ## Research
 
