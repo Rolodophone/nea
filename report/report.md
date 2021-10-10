@@ -342,7 +342,7 @@ TODO add sketches to better explain things
 8. Game logic
 	1. The game should render a background behind Jane
 	2. Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly
-	3. Staircases, ladders, objects that Jane can climb on top of, enemies and items should not appear too close together or too far apart so as to make the game unfairly easy or hard
+	3. Staircases, ladders, objects that Jane can climb on top of, enemies and items should not appear too close together or too far apart, making the game unfairly easy or hard
 	3. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
 	4. The score increases when Jane progresses to the right
 	5. The score also increases when Jane eliminates enemies
@@ -387,7 +387,7 @@ TODO add sketches to better explain things
 	3. The current number of coins that the user has could be displayed in the shop (see below)
 	4. The game over popup could display the number of coins gained in that run
 7. Shop
-	1. The could be another button in the main menu to open the shop screen
+	1. There could be another button in the main menu to open the shop screen
 	2. In the shop screen, the player's current number of coins could be displayed
 	3. The user could buy various different items using their coins
 	4. Each item could cost a specific number of coins
