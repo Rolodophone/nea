@@ -274,7 +274,7 @@ TODO add sketches to better explain things
 	4. The "credits" button should display the credits
 	5. The settings and menu screens should have a button to go back to the main menu
 	6. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
-	7. The buttons should be displayed on the screen
+	7. The buttons should be displayed on this screen
 	8. The highscore should also be displayed on this screen
 	9. Jane should appear to be spying undercover before she is found out (before the game starts)
 2. Abilities
@@ -305,10 +305,6 @@ TODO add sketches to better explain things
 	6. The popup includes a button to return to the main menu
 	7. The resume button resumes game logic and animation and closes the popup
 	8. The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
-	9. The movement controls should be displayed in the bottom left and the combat controls in the bottom right
-	10. The movement controls should look like a circle divided diagonally into 4 sectors (see my sketch)
-	11. The combat controls should look like a circle divided into 6 sectors (see sketch)
-	12. The movement and combat controls should only be displayed on Android
 3. Movement and physics
 	1. Jane should be able to run left and right
 	2. Jane should be able to jump
@@ -319,12 +315,14 @@ TODO add sketches to better explain things
 	2. Jane should be able to jump from large objects to climb onto the upper level
 	2. Jane should be able to drop from the upper level down to the ground level
 	3. Jane should only be able to jump when she is on solid ground
-	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased by an amount that is proportional to the distance dropped
+	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased
 	2. Jane should not be able to walk through enemies; they should block her path
 	3. Jane should be able to walk past staircases, ladders and other objects
 5. Combat
 	1. Jane should be able to punch enemies
+	2. There should be at least 3 different types of punches
 	1. Jane should be able to kick enemies
+	2. There should be at least 3 different types of kicks
 	1. Jane should be able to shoot enemies with her pistol
 	2. Jane should only be able to shoot when she has at least one round in her pistol
 6. Enemies
@@ -342,6 +340,7 @@ TODO add sketches to better explain things
 8. Game logic
 	1. The game should render a background behind Jane
 	2. Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly
+	3. Staircases, ladders, objects that Jane can climb on top of, enemies and items should not appear too close together or too far apart so as to make the game unfairly easy or hard
 	3. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
 	4. The score increases when Jane progresses to the right
 	5. The score also increases when Jane eliminates enemies
@@ -349,6 +348,7 @@ TODO add sketches to better explain things
 	1. When the player runs out of health, a game over popup should be displayed
 	2. The score should be displayed
 	3. The highscore should be displayed
+	4. The XP gained should be displayed
 	4. There should be a button to play again
 	5. There should be a button to return to the main menu
 	6. If the user has beaten their highscore, the popup should indicate this
@@ -371,6 +371,28 @@ TODO add sketches to better explain things
 	2. Jane would not be able to interact with these objects; she would walk past them as it they weren't there
 4. Other weapons
 	1. There could be other weapons that Jane could pick up and use, such as a knife
+5. Missions
+	1. There could be various missions available to complete
+	2. They could be displayed on groups of 3
+	3. When the user completes all 3 missions, their level could increase and they could be presented with the next 3 missions
+	4. The user's current level could be displayed on the main menu
+	5. The 3 active missions could be displayed in the main menu
+	6. The 3 active missions could be displayed for a few seconds after the user presses the "play" button
+	7. The missions that are already completed could be highlighted to indicate that they're completed
+6. Coins
+	1. Coins could appear in the game
+	2. The player could collect the coins when they run through them
+	3. The current number of coins that the user has could be displayed in the shop (see below)
+	4. The game over popup could display the number of coins gained in that run
+7. Shop
+	1. The could be another button in the main menu to open the shop screen
+	2. In the shop screen, the player's current number of coins could be displayed
+	3. The user could buy various different items using their coins
+	4. Each item could cost a specific number of coins
+	5. Some items could be consumable (meaning they are used up in the game and to use them again the user would have to buy them again)
+	6. The user could be able to buy more than one of each consumable item
+	7. Some items could be permanent (meaning they are not used up in the game and once purchased they can be used forever)
+	8. The user shouldn't be able to buy more than one of each permanent item
 
 ## Execution
 
