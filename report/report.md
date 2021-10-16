@@ -439,7 +439,7 @@ I will use ECS, which I believe to be a very good programming pattern and will i
 - Whenever it reuses an old component, libGDX first calls the `reset` method to prepare the component to be used again
 - Example components: `TransformComponent` (specifies position and orientation of an entity), `GraphicsComponent` (specifies texture and whether it should be rendered)
 
-### System
+### Systems
 
 - A system is a class that contains code for a specific part of the game logic
 - Systems act on the data stored in different entities' components
@@ -457,6 +457,18 @@ I will use ECS, which I believe to be a very good programming pattern and will i
 TODO describe how they will work. They can use ECS, i.e. there will be an EnemyComponent and perhaps other components that only some enemies will use. There may be methods such as CalculateMoveDirection and CalculateAttack. Where will these be? In the component? In a system? Maybe I could use gdxAI's behaviour trees, or I could implement something myself.
 
 ## Game Events
+
+- These will be controlled by a `GameEventManager` class
+- Any system will be able to listen to a game event, which means the system calls a method on the game event manager and passes in a lambda that gets called whenever the event is triggered
+- Any system is also able to trigger an event
+
+## Graphical User Interface
+
+For this I will use Scene2D, which provides abstractions for buttons and menus and handles UI events.
+
+### Actors
+
+- They are 
 
 ## TODO what other sections should I have?
 
