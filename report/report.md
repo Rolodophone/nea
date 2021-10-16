@@ -415,9 +415,40 @@ The critical path for my game (the crucial steps that are most important to get 
 
 # Documented Design
 
-TODO should I do the design section before coding, after coding or alongside coding? Before coding is difficult as I don't know much about how the code will look yet; after coding would allow me to document the design in the most detail but wouldn't show refinement; and alongside coding would allow me to show the refinement process of design but wouldn't have as much detail. Ask Mr Abbas which is better.
-
 ## Entity-component-system Pattern
+
+I will use ECS, which I believe to be a very good programming pattern and will increase cohesion and reduce coupling.
+
+### Entities
+
+- Just a bag of components
+- Often initialises each component with specific values, e.g. a player entity might specify the coordinates of the transform component
+- Examples are: the player, a specific enemy, a specific item, a specific flight of stairs, and perhaps also abstract things such as game state
+- They can be hard-coded or generated dynamically
+- In libGDX they are an object
+- You can add and remove them from the engine to remove them from the game, while their state is still saved in the object
+- I will probably initialise them from a screen's initialiser (e.g. player) or dynamically from a system (e.g. the enemies and items)
+
+### Components
+
+- Only holds data related to a specific thing
+- Because each entity can have any combination of components, ECS is a more flexible approach to reusing code than inheritance
+- In libGDX they are a class
+- I will put all my components in the `component` package
+- When I add components to an entity, libGDX tries to reuse component instances from deleted entities, or otherwise creates a new instance
+- Whenever it reuses an old component, libGDX first calls the `reset` method to prepare the component to be used again
+- Example components: `TransformComponent` (specifies position and orientation of an entity), `GraphicsComponent` (specifies texture and whether it should be rendered)
+
+### System
+
+- A system is a class that contains code for a specific part of the game logic
+- Systems act on the data stored in different entities' components
+- Separating game code into different systems increases cohesion and makes specific sections of code easier to find
+- It makes it easier to turn on or off specific functionality
+- For example `PhysicsSystem`, `InputSystem`, `RenderSystem`
+- Systems can also be added and removed from the engine at runtime to turn them on or off
+- `IteratingSystem`s are a type of system that iterate over a group of entities that have specific components and perform some task for each entity
+- For example, `RenderSystem` is an `IteratingSystem` that iterates over all entities with a `TransformComponent` and a `GraphicsComponent` and renders each one onto the screen
 
 ## Enemy AI
 
