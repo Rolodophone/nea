@@ -8,12 +8,23 @@ import com.badlogic.gdx.utils.Disposable
 class ComboKingTextures: Disposable {
 	private val graphicsAtlas = TextureAtlas(Gdx.files.internal("graphics/sprites.atlas"))
 
-	val prototype_player = graphicsAtlas.findRegion("prototype_player")!!
-	val prototype_ground = graphicsAtlas.findRegion("prototype_ground")!!
-	val prototype_platform = graphicsAtlas.findRegion("prototype_platform")!!
-	val prototype_stairs = graphicsAtlas.findRegion("prototype_stairs")!!
+	val prototype_player = loadTextureRegion("prototype_player")
+	val prototype_ground = loadTextureRegion("prototype_ground")
+	val prototype_platform = loadTextureRegion("prototype_platform")
+	val prototype_stairs = loadTextureRegion("prototype_stairs")
+	val main_menu_bg = loadTextureRegion("main_menu_bg")
 
 	override fun dispose() {
 		graphicsAtlas.dispose()
+	}
+	
+	private fun loadTextureRegion(name: String): TextureAtlas.AtlasRegion {
+		val region = graphicsAtlas.findRegion(name)
+		
+		if (region == null) {
+			throw AssertionError("Region $name not found in texture atlas.")
+		}
+		
+		else return region
 	}
 }

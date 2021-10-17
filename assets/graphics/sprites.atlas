@@ -1,33 +1,40 @@
 
 sprites.png
-size: 324, 103
+size: 324, 108
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
+main_menu_bg
+  rotate: false
+  xy: 2, 2
+  size: 160, 90
+  orig: 160, 90
+  offset: 0, 0
+  index: -1
 prototype_ground
   rotate: false
-  xy: 2, 89
+  xy: 2, 94
   size: 320, 5
   orig: 320, 5
   offset: 0, 0
   index: -1
 prototype_platform
   rotate: false
-  xy: 2, 96
+  xy: 2, 101
   size: 320, 5
   orig: 320, 5
   offset: 0, 0
   index: -1
 prototype_player
   rotate: false
-  xy: 104, 52
+  xy: 266, 57
   size: 17, 35
   orig: 17, 35
   offset: 0, 0
   index: -1
 prototype_stairs
   rotate: false
-  xy: 2, 2
+  xy: 164, 7
   size: 100, 85
   orig: 100, 85
   offset: 0, 0
