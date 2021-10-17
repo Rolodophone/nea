@@ -468,7 +468,28 @@ For this I will use Scene2D, which provides abstractions for buttons and menus a
 
 ### Actors
 
-- They are 
+- They are the nodes on Scene2D's scene graph
+- Each actor is a visible UI element, for example a button or some text
+- Scene2D detects touch events and notifies the actors about them
+
+### Groups
+
+- These are a type of actor that can have child actors
+- For example, a popup box
+- When a touch event is received, the root group is notified first
+
+### Scene
+
+- The scene handles rendering the whole application and distributing input events
+- It has a viewport, which handles camera perspective and how the app should look on different resolutions
+- For instance, I might use a `FitViewport`, which means that the game has a constant aspect ratio across all devices
+- This is done by scaling the game and drawing black bars
+- The viewport also contains a camera instance which describes the model, view and projection matrices
+- I can manipulate the view matrix to zoom in or out on certain parts of the game
+
+### Widgets
+
+- These are pre-made actors that implement commonly used UI elements, such as buttons and checkboxes
 
 ## TODO what other sections should I have?
 
