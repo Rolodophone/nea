@@ -17,6 +17,6 @@ abstract class ComboKingScreen(val game: ComboKing): KtxScreen {
     }
 
     override fun resize(width: Int, height: Int) {
-        gameViewport.update(width, height, true)
+        gameViewport.update(width, height, false)
     }
 }

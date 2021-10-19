@@ -2,6 +2,7 @@ package io.github.rolodophone.comboking.system
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.SortedIteratingSystem
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.github.rolodophone.comboking.component.GraphicsComponent
@@ -26,6 +27,11 @@ class RenderSystem(
 	compareBy { entity -> entity[TransformComponent.mapper] }
 ) {
 	override fun update(deltaTime: Float) {
+//		(gameViewport.camera as OrthographicCamera).zoom = 0.5f
+//		gameViewport.camera.update()
+//		(gameViewport.camera as OrthographicCamera).translate(gameViewport.worldWidth / 2f, gameViewport.worldHeight /
+//				2f)
+//		gameViewport.camera.update()
 		gameViewport.apply()
 		batch.use(gameViewport.camera.combined) {
 			super.update(deltaTime)
