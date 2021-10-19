@@ -27,11 +27,6 @@ class RenderSystem(
 	compareBy { entity -> entity[TransformComponent.mapper] }
 ) {
 	override fun update(deltaTime: Float) {
-//		(gameViewport.camera as OrthographicCamera).zoom = 0.5f
-//		gameViewport.camera.update()
-//		(gameViewport.camera as OrthographicCamera).translate(gameViewport.worldWidth / 2f, gameViewport.worldHeight /
-//				2f)
-//		gameViewport.camera.update()
 		gameViewport.apply()
 		batch.use(gameViewport.camera.combined) {
 			super.update(deltaTime)

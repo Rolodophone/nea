@@ -9,10 +9,10 @@ import ktx.ashley.with
 
 class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 	override fun show() {
-		//zoom in
+		//set camera
 		with(gameViewport.camera as OrthographicCamera) {
 			zoom = 0.5f
-			translate(gameViewport.worldWidth / 4f, gameViewport.worldHeight / 4f)
+			position.set(gameViewport.worldWidth / 4f, gameViewport.worldHeight / 4f, 0f)
 			update()
 		}
 
@@ -25,9 +25,5 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				sprite.setRegion(textures.main_menu_bg)
 			}
 		}
-	}
-
-	override fun dispose() {
-
 	}
 }
