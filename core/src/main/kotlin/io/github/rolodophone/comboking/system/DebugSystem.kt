@@ -1,7 +1,6 @@
 package io.github.rolodophone.comboking.system
 
 import com.badlogic.ashley.core.Engine
-import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer
 import com.badlogic.gdx.physics.box2d.World
@@ -15,7 +14,7 @@ import io.github.rolodophone.comboking.event.GameEventManager
 class DebugSystem(
 	private val gameEventManager: GameEventManager,
 	private val world: World,
-	private val gameViewport: Viewport
+	private val viewport: Viewport
 ): EntitySystem() {
 	private lateinit var debugRenderer: Box2DDebugRenderer
 
@@ -30,6 +29,6 @@ class DebugSystem(
 	override fun update(deltaTime: Float) {
 
 		//render Box2D bodies
-		debugRenderer.render(world, gameViewport.camera.combined)
+		debugRenderer.render(world, viewport.camera.combined)
 	}
 }

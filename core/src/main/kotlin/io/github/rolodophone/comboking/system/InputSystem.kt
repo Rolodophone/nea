@@ -14,7 +14,7 @@ import ktx.ashley.allOf
  * Handles player input and triggers the appropriate [GameEvent]s.
  */
 class InputSystem(
-	private val gameViewport: Viewport,
+	private val viewport: Viewport,
 	private val gameEventManager: GameEventManager
 ): IteratingSystem(
 	allOf(PlayerComponent::class, TransformComponent::class).get()

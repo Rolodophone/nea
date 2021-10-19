@@ -2,8 +2,8 @@ package io.github.rolodophone.comboking.system
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.SortedIteratingSystem
-import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.github.rolodophone.comboking.component.GraphicsComponent
 import io.github.rolodophone.comboking.component.TransformComponent
@@ -21,14 +21,15 @@ private val log = logger<RenderSystem>()
  */
 class RenderSystem(
 	private val batch: Batch,
-	private val gameViewport: Viewport
+	private val stage: Stage,
+	private val viewport: Viewport
 ): SortedIteratingSystem(
 	allOf(TransformComponent::class, GraphicsComponent::class).get(),
 	compareBy { entity -> entity[TransformComponent.mapper] }
 ) {
 	override fun update(deltaTime: Float) {
-		gameViewport.apply()
-		batch.use(gameViewport.camera.combined) {
+		viewport.apply()
+		batch.use(viewport.camera.combined) {
 			super.update(deltaTime)
 		}
 	}

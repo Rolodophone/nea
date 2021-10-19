@@ -10,9 +10,9 @@ import ktx.ashley.with
 class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 	override fun show() {
 		//set camera
-		with(gameViewport.camera as OrthographicCamera) {
+		with(viewport.camera as OrthographicCamera) {
 			zoom = 0.5f
-			position.set(gameViewport.worldWidth / 4f, gameViewport.worldHeight / 4f, 0f)
+			position.set(viewport.worldWidth / 4f, viewport.worldHeight / 4f, 0f)
 			update()
 		}
 

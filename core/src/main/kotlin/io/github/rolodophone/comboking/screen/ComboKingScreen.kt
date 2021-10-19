@@ -7,7 +7,7 @@ private const val MAX_DELTA_TIME = 1/10f
 
 abstract class ComboKingScreen(val game: ComboKing): KtxScreen {
     val batch = game.batch
-    val gameViewport = game.gameViewport
+    val viewport = game.viewport
     val engine = game.engine
     val textures = game.comboKingTextures
 
@@ -17,6 +17,6 @@ abstract class ComboKingScreen(val game: ComboKing): KtxScreen {
     }
 
     override fun resize(width: Int, height: Int) {
-        gameViewport.update(width, height, false)
+        viewport.update(width, height, false)
     }
 }
