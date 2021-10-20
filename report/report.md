@@ -499,6 +499,8 @@ For this I will use Scene2D, which provides abstractions for buttons and menus a
 - `ScoreSystem`: listens to game events and increases score
 - `SpawningSystem`: randomly spawns items, enemies and background objects
 - `InputSystem`: makes the player move/attack by responding to keyboard, mouse and touch input
+- `PhysicsSystem`: steps the Box2D world to update the coordinates of entities
+- `GameSystem`: controls high-level game logic
 
 ## TODO what other sections should I have?
 
