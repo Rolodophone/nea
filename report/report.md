@@ -464,6 +464,8 @@ TODO describe how they will work. They can use ECS, i.e. there will be an EnemyC
 
 ## Graphical User Interface
 
+TODO actually I think I won't use Scene2D because my game's UI will be fairly simple (just buttons, touch gestures, check boxes and possibly scrolling) so it will be better to implement it myself and get credit for it than to spend time learning how to use scene2d. Scene2D operates completely differently than Ashley so I would have to work out how to combine the two, but it might be easier to just implement buttons etc myself.
+
 For this I will use Scene2D, which provides abstractions for buttons and menus and handles UI events.
 
 ### Actors
@@ -490,6 +492,13 @@ For this I will use Scene2D, which provides abstractions for buttons and menus a
 ### Widgets
 
 - These are pre-made actors that implement commonly used UI elements, such as buttons and checkboxes
+
+## Systems overview
+
+- `RenderSystem`: renders entities
+- `ScoreSystem`: listens to game events and increases score
+- `SpawningSystem`: randomly spawns items, enemies and background objects
+- `InputSystem`: makes the player move/attack by responding to keyboard, mouse and touch input
 
 ## TODO what other sections should I have?
 
