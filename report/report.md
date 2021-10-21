@@ -451,9 +451,9 @@ I will use ECS, which I believe to be a very good programming pattern and will i
 
 ## Enemy AI
 
-(rule-based)
+There could be an `EnemyComponent` that has a variable `enemyAI` of type `EnemyAI`. I would have an abstract class `EnemyAI` with methods such as `decideAction` that has various different implementations. Each different type of enemy will have an `EnemyComponent` that will have a different `EnemyAI`.
 
-TODO describe how they will work. They can use ECS, i.e. there will be an EnemyComponent and perhaps other components that only some enemies will use. There may be methods such as CalculateMoveDirection and CalculateAttack. Where will these be? In the component? In a system? Maybe I could use gdxAI's behaviour trees, or I could implement something myself.
+The actual AI could be implemented as such: first, the enemy decides what state it should be in based on context such as how near the player is. Different states could include `APPROACH_PLAYER`, `ATTACK_PLAYER`, and `RETREAT`. Then, based on the state it's in, it decides where to move and what attacks to do.
 
 ## Game Events
 
@@ -507,15 +507,9 @@ For this I will use Scene2D, which provides abstractions for buttons and menus a
 
 These are all the systems I can think of for the moment.
 
-## How will ... work?
+## Persistent storage
 
-### Enemy AI
-
-There could be an `EnemyComponent` that has a variable `enemyAI` of type `EnemyAI`. I would have an abstract class `EnemyAI` with methods such as `decideAction` that has various different implementations. Each different type of enemy will have an `EnemyComponent` that will have a different `EnemyAI`.
-
-The actual AI could be implemented as such: first, the enemy decides what state it should be in based on context such as how near the player is. Different states could include `APPROACH_PLAYER`, `ATTACK_PLAYER`, and `RETREAT`. Then, based on the state it's in, it decides where to move and what attacks to do.
-
-## TODO what other sections should I have?
+The highscore and other persistent data will be stored in a single JSON file. libGDX has a JSON serialisation and deserialisation API.
 
 # Technical Solution
 
