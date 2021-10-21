@@ -274,7 +274,6 @@ TODO add sketches to better explain things
 	2. The "abilities" button should display the abilities screen
 	3. The "settings" button should display the settings
 	4. The "credits" button should display the credits
-	5. The settings and menu screens should have a button to go back to the main menu
 	6. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
 	7. The buttons should be displayed on this screen
 	8. The highscore should also be displayed on this screen
