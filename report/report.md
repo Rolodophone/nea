@@ -274,7 +274,6 @@ TODO add sketches to better explain things
 	2. The "abilities" button should display the abilities screen
 	3. The "settings" button should display the settings
 	4. The "credits" button should display the credits
-	5. The settings and menu screens should have a button to go back to the main menu
 	6. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
 	7. The buttons should be displayed on this screen
 	8. The highscore should also be displayed on this screen
@@ -452,9 +451,9 @@ I will use ECS, which I believe to be a very good programming pattern and will i
 
 ## Enemy AI
 
-(rule-based)
+There could be an `EnemyComponent` that has a variable `enemyAI` of type `EnemyAI`. I would have an abstract class `EnemyAI` with methods such as `decideAction` that has various different implementations. Each different type of enemy will have an `EnemyComponent` that will have a different `EnemyAI`.
 
-TODO describe how they will work. They can use ECS, i.e. there will be an EnemyComponent and perhaps other components that only some enemies will use. There may be methods such as CalculateMoveDirection and CalculateAttack. Where will these be? In the component? In a system? Maybe I could use gdxAI's behaviour trees, or I could implement something myself.
+The actual AI could be implemented as such: first, the enemy decides what state it should be in based on context such as how near the player is. Different states could include `APPROACH_PLAYER`, `ATTACK_PLAYER`, and `RETREAT`. Then, based on the state it's in, it decides where to move and what attacks to do.
 
 ## Game Events
 
@@ -463,6 +462,8 @@ TODO describe how they will work. They can use ECS, i.e. there will be an EnemyC
 - Any system is also able to trigger an event
 
 ## Graphical User Interface
+
+TODO actually I think I won't use Scene2D because my game's UI will be fairly simple (just buttons, touch gestures, check boxes and possibly scrolling) so it will be better to implement it myself and get credit for it than to spend time learning how to use scene2d. Scene2D operates completely differently than Ashley so I would have to work out how to combine the two, but it might be easier to just implement buttons etc myself.
 
 For this I will use Scene2D, which provides abstractions for buttons and menus and handles UI events.
 
@@ -491,7 +492,24 @@ For this I will use Scene2D, which provides abstractions for buttons and menus a
 
 - These are pre-made actors that implement commonly used UI elements, such as buttons and checkboxes
 
-## TODO what other sections should I have?
+## Systems overview
+
+- `RenderSystem`: renders entities
+- `ScoreSystem`: listens to game events and increases score
+- `SpawningSystem`: randomly spawns items, enemies and background objects
+- `InputSystem`: makes the player move/attack by responding to keyboard, mouse and touch input
+- `PhysicsSystem`: steps the Box2D world to update the coordinates of entities
+- `GameSystem`: controls high-level game logic
+- `AnimationSystem`: controls animations such as Jane's animation in the main menu
+- `PlayerActionSystem`: listens to game events from `InputSystem` and triggers combat and movement game events
+- `CombatSystem`: controls combat between Jane and enemies
+- `DebugSystem`: temporary code for debugging
+
+These are all the systems I can think of for the moment.
+
+## Persistent storage
+
+The highscore and other persistent data will be stored in a single JSON file. libGDX has a JSON serialisation and deserialisation API.
 
 # Technical Solution
 
