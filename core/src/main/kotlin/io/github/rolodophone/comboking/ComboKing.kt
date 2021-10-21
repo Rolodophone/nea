@@ -10,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.github.rolodophone.comboking.screen.ComboKingScreen
+import io.github.rolodophone.comboking.screen.GameScreen
 import io.github.rolodophone.comboking.screen.MainMenuScreen
+import io.github.rolodophone.comboking.system.ButtonSystem
 import io.github.rolodophone.comboking.system.RenderSystem
 import ktx.app.KtxGame
 import ktx.log.logger
@@ -41,10 +43,13 @@ class ComboKing: KtxGame<ComboKingScreen>() {
 		engine = PooledEngine()
 
 		addScreen(MainMenuScreen(this))
+		addScreen(GameScreen(this))
+
 		setScreen<MainMenuScreen>()
 
 		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
 		engine.run {
+			addSystem(ButtonSystem(viewport))
 			addSystem(RenderSystem(batch, stage, viewport))
 		}
 	}

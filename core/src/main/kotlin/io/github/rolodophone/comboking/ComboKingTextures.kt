@@ -13,6 +13,10 @@ class ComboKingTextures: Disposable {
 	val prototype_platform = loadTextureRegion("prototype_platform")
 	val prototype_stairs = loadTextureRegion("prototype_stairs")
 	val main_menu_bg = loadTextureRegion("main_menu_bg")
+	val btn_play = loadTextureRegion("btn_play")
+	val btn_skills = loadTextureRegion("btn_skills")
+	val btn_options = loadTextureRegion("btn_options")
+	val btn_credits = loadTextureRegion("btn_credits")
 
 	override fun dispose() {
 		graphicsAtlas.dispose()

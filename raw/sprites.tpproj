@@ -32,7 +32,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:prototype_stairs.png,type:Input,regionName:null},{path:prototype_ground.png,type:Input,regionName:null},{path:prototype_platform.png,type:Input,regionName:null},{path:prototype_player.png,type:Input,regionName:null},{path:main_menu_bg.png,type:Input,regionName:null}]
+inputFiles=[{path:prototype_stairs.png,type:Input,regionName:null},{path:prototype_ground.png,type:Input,regionName:null},{path:prototype_platform.png,type:Input,regionName:null},{path:prototype_player.png,type:Input,regionName:null},{path:main_menu_bg.png,type:Input,regionName:null},{path:btn_skills.png,type:Input,regionName:null},{path:btn_credits.png,type:Input,regionName:null},{path:btn_options.png,type:Input,regionName:null},{path:btn_play.png,type:Input,regionName:null}]
 
 
 -PROJ-

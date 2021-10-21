@@ -4,6 +4,34 @@ size: 324, 108
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
+btn_credits
+  rotate: false
+  xy: 285, 77
+  size: 36, 15
+  orig: 36, 15
+  offset: 0, 0
+  index: -1
+btn_options
+  rotate: false
+  xy: 285, 60
+  size: 36, 15
+  orig: 36, 15
+  offset: 0, 0
+  index: -1
+btn_play
+  rotate: false
+  xy: 266, 26
+  size: 36, 15
+  orig: 36, 15
+  offset: 0, 0
+  index: -1
+btn_skills
+  rotate: false
+  xy: 285, 43
+  size: 36, 15
+  orig: 36, 15
+  offset: 0, 0
+  index: -1
 main_menu_bg
   rotate: false
   xy: 2, 2

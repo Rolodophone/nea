@@ -1,5 +1,6 @@
 package io.github.rolodophone.comboking.screen
 
+import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.component.GraphicsComponent
 import io.github.rolodophone.comboking.component.PlayerComponent
@@ -11,9 +12,14 @@ class GameScreen(game: ComboKing): ComboKingScreen(game) {
 
 	@Suppress("UNUSED_VARIABLE")
 	override fun show() {
+		//set camera
+		with(viewport.camera as OrthographicCamera) {
+			zoom = 1f
+			position.set(viewport.worldWidth / 2f, viewport.worldHeight / 2f, 0f)
+			update()
+		}
 
 		// add entities
-
 		val player = engine.entity {
 			with<TransformComponent> {
 				setSizeFromTexture(textures.prototype_player)
@@ -54,5 +60,9 @@ class GameScreen(game: ComboKing): ComboKingScreen(game) {
 				sprite.setRegion(textures.prototype_stairs)
 			}
 		}
+	}
+
+	override fun hide() {
+		engine.removeAllEntities()
 	}
 }
