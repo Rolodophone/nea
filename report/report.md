@@ -414,6 +414,8 @@ The critical path for my game (the crucial steps that are most important to get 
 
 # Documented Design
 
+The following is a temporary summary of the structure of my project. I will be able to go into more detail when I've done more of the technical solution
+
 ## Entity-component-system Pattern
 
 I will use ECS, which I believe to be a very good programming pattern and will increase cohesion and reduce coupling.
