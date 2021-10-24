@@ -21,7 +21,6 @@ private val log = logger<RenderSystem>()
  */
 class RenderSystem(
 	private val batch: Batch,
-	private val stage: Stage,
 	private val viewport: Viewport
 ): SortedIteratingSystem(
 	allOf(TransformComponent::class, GraphicsComponent::class).get(),
