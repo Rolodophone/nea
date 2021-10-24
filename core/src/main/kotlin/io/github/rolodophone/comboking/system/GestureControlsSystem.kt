@@ -13,7 +13,7 @@ import ktx.ashley.allOf
 /**
  * Handles player input and triggers the appropriate [GameEvent]s.
  */
-class InputSystem(
+class GestureControlsSystem(
 	private val viewport: Viewport,
 	private val gameEventManager: GameEventManager
 ): IteratingSystem(
