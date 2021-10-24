@@ -309,7 +309,7 @@ TODO add sketches to better explain things
 3. Movement and physics
 	1. Jane should be able to run left and right
 	2. Jane should be able to jump
-	2. Jane should be able to roll
+	2. Jane should not be able to jump while in the air
 	2. Jane should be able to go up or down staircases
 	2. Jane should be able to go up or down ladders
 	2. Jane should be able to climb on top of large objects
