@@ -10,6 +10,7 @@ abstract class ComboKingScreen(val game: ComboKing): KtxScreen {
     val viewport = game.viewport
     val engine = game.engine
     val textures = game.comboKingTextures
+    val gameEventManager = game.gameEventManager
 
     override fun render(delta: Float) {
         val newDeltaTime = if (delta > MAX_DELTA_TIME) MAX_DELTA_TIME else delta

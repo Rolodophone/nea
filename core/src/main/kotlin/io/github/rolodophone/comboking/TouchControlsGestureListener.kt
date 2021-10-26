@@ -6,20 +6,30 @@ import io.github.rolodophone.comboking.event.GameEvent
 import io.github.rolodophone.comboking.event.GameEventManager
 
 /**
+ * The minimum distance (in pixels) that the cursor has to be dragged for it to register as a swipe
+ */
+private const val MIN_SWIPE_DISTANCE = 40f
+
+/**
  * Handles detecting the touch gesture controls
  */
 class TouchControlsGestureListener(
 	private val gameEventManager: GameEventManager
 ): GestureDetector.GestureListener {
+
+	private var touchHoldX = 0f
+	private var touchHoldY = 0f
+
+	/**
+	 * Returns a customised gesture detector for this listener
+	 */
+	fun createGestureDetector() = GestureDetector(20f, 0.4f, 1.1f, Integer.MAX_VALUE.toFloat(), this)
+
+
 	// Each method returns true to indicate that the event shouldn't be passed on to other input processors or false
 	// to indicate that it should be passed on.
 
-	private var touchDownX = 0f
-	private var touchDownY = 0f
-
 	override fun touchDown(x: Float, y: Float, pointer: Int, button: Int): Boolean {
-		touchDownX = x
-		touchDownY = y
 		return false
 	}
 
@@ -36,11 +46,15 @@ class TouchControlsGestureListener(
 	}
 
 	override fun pan(x: Float, y: Float, deltaX: Float, deltaY: Float): Boolean {
-		if (x < touchDownX) {
+		if (x < touchHoldX - MIN_SWIPE_DISTANCE) {
+			touchHoldX = x
 			gameEventManager.trigger(GameEvent.PlayerMoveInput.RunLeft)
+			println("Left")
 		}
-		else {
+		else if (x > touchHoldX + MIN_SWIPE_DISTANCE) {
+			touchHoldX = x
 			gameEventManager.trigger(GameEvent.PlayerMoveInput.RunRight)
+			println("Right")
 		}
 
 		return true

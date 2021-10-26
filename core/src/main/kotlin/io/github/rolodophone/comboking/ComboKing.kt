@@ -40,10 +40,7 @@ class ComboKing: KtxGame<ComboKingScreen>() {
 		comboKingTextures = ComboKingTextures()
 		engine = PooledEngine()
 
-		Gdx.input.inputProcessor = InputMultiplexer(
-			ButtonInputProcessor(engine, viewport),
-			GestureDetector(TouchControlsGestureListener(gameEventManager))
-		)
+		Gdx.input.inputProcessor = InputMultiplexer(ButtonInputProcessor(engine, viewport))
 
 		addScreen(MainMenuScreen(this))
 		addScreen(GameScreen(this))
