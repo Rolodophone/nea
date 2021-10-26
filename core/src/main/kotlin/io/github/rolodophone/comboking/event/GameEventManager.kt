@@ -22,6 +22,11 @@ class GameEventManager {
 		}
 	}
 
+	fun <E: GameEvent> stopListening(event: E, callback: (event: E) -> Unit) {
+		val callbackSet = callbacks[event]
+		callbackSet?.remove(callback)
+	}
+
 	fun trigger(event: GameEvent) {
 		val listenerSet = callbacks[event]
 
