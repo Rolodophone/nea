@@ -4,8 +4,11 @@ import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.PooledEngine
 import com.badlogic.gdx.Application.LOG_DEBUG
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.InputMultiplexer
+import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.input.GestureDetector
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameScreen
@@ -35,7 +38,10 @@ class ComboKing: KtxGame<ComboKingScreen>() {
 		comboKingTextures = ComboKingTextures()
 		engine = PooledEngine()
 
-		Gdx.input.inputProcessor = ComboKingInputProcessor(engine, viewport)
+		Gdx.input.inputProcessor = InputMultiplexer(
+			ButtonInputProcessor(engine, viewport),
+			GestureDetector(TouchControlsGestureListener())
+		)
 
 		addScreen(MainMenuScreen(this))
 		addScreen(GameScreen(this))
