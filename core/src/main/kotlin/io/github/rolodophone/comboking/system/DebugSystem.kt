@@ -13,22 +13,15 @@ import io.github.rolodophone.comboking.event.GameEventManager
 @Suppress("unused")
 class DebugSystem(
 	private val gameEventManager: GameEventManager,
-	private val world: World,
 	private val viewport: Viewport
 ): EntitySystem() {
-	private lateinit var debugRenderer: Box2DDebugRenderer
 
 	override fun addedToEngine(engine: Engine) {
-		debugRenderer = Box2DDebugRenderer()
 	}
 
 	override fun removedFromEngine(engine: Engine) {
-		debugRenderer.dispose()
 	}
 
 	override fun update(deltaTime: Float) {
-
-		//render Box2D bodies
-		debugRenderer.render(world, viewport.camera.combined)
 	}
 }

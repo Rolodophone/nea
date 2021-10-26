@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.input.GestureDetector
 import com.badlogic.gdx.utils.viewport.FitViewport
+import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameScreen
 import io.github.rolodophone.comboking.screen.MainMenuScreen
@@ -26,6 +27,7 @@ private val log = logger<ComboKing>()
 
 class ComboKing: KtxGame<ComboKingScreen>() {
 	val viewport = FitViewport(WORLD_WIDTH, WORLD_HEIGHT)
+	val gameEventManager = GameEventManager()
 	lateinit var batch: Batch
 	lateinit var comboKingTextures: ComboKingTextures
 	lateinit var engine: Engine
@@ -40,7 +42,7 @@ class ComboKing: KtxGame<ComboKingScreen>() {
 
 		Gdx.input.inputProcessor = InputMultiplexer(
 			ButtonInputProcessor(engine, viewport),
-			GestureDetector(TouchControlsGestureListener())
+			GestureDetector(TouchControlsGestureListener(gameEventManager))
 		)
 
 		addScreen(MainMenuScreen(this))
