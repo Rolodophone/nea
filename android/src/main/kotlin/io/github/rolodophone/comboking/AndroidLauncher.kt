@@ -8,8 +8,10 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 class AndroidLauncher : AndroidApplication() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		initialize(ComboKing(), AndroidApplicationConfiguration().apply {
-			useImmersiveMode = true
-		})
+
+		initialize(
+			ComboKing { gameEventManager -> TouchControlsGestureListener(gameEventManager).createGestureDetector() },
+			AndroidApplicationConfiguration().apply { useImmersiveMode = true }
+		)
 	}
 }

@@ -2,24 +2,28 @@ package io.github.rolodophone.comboking.screen
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
+import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.input.GestureDetector
 import io.github.rolodophone.comboking.ComboKing
-import io.github.rolodophone.comboking.TouchControlsGestureListener
 import io.github.rolodophone.comboking.component.GraphicsComponent
 import io.github.rolodophone.comboking.component.PlayerComponent
 import io.github.rolodophone.comboking.component.TransformComponent
+import io.github.rolodophone.comboking.event.GameEventManager
 import ktx.ashley.entity
 import ktx.ashley.with
 
-class GameScreen(game: ComboKing): ComboKingScreen(game) {
+class GameScreen(
+	game: ComboKing,
+	private val createPlayerInputProcessor: (GameEventManager) -> InputProcessor
+): ComboKingScreen(game) {
+
 	private lateinit var gestureDetector: GestureDetector
 
 	@Suppress("UNUSED_VARIABLE")
 	override fun show() {
 		//add gesture detector
-		gestureDetector = TouchControlsGestureListener(gameEventManager).createGestureDetector()
-		(Gdx.input.inputProcessor as InputMultiplexer).addProcessor(gestureDetector)
+		(Gdx.input.inputProcessor as InputMultiplexer).addProcessor(createPlayerInputProcessor(gameEventManager))
 
 		//set camera
 		with(viewport.camera as OrthographicCamera) {

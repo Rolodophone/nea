@@ -8,7 +8,6 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.input.GestureDetector
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
@@ -25,7 +24,17 @@ private const val BATCH_SIZE = 1000
 
 private val log = logger<ComboKing>()
 
-class ComboKing: KtxGame<ComboKingScreen>() {
+
+/**
+ * The main class. This is created from a platform-specific launcher to start the app.
+ *
+ * @param createPlayerInputProcessor The function that creates the [InputProcessor] that will be used to detect the
+ * game controls input. This is passed in as a parameter as the controls are different on Android and PC.
+ */
+class ComboKing(
+	private val createPlayerInputProcessor: (GameEventManager) -> InputProcessor
+): KtxGame<ComboKingScreen>() {
+
 	val viewport = FitViewport(WORLD_WIDTH, WORLD_HEIGHT)
 	val gameEventManager = GameEventManager()
 	lateinit var batch: Batch
@@ -43,7 +52,7 @@ class ComboKing: KtxGame<ComboKingScreen>() {
 		Gdx.input.inputProcessor = InputMultiplexer(ButtonInputProcessor(engine, viewport))
 
 		addScreen(MainMenuScreen(this))
-		addScreen(GameScreen(this))
+		addScreen(GameScreen(this, createPlayerInputProcessor))
 
 		setScreen<MainMenuScreen>()
 
