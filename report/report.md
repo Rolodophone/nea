@@ -293,7 +293,7 @@ TODO add sketches to better explain things
 	1. There should be a button to return to the main menu
 2. Credits
 	1. All the credits should be displayed
-	2. The user should be able to scroll if not all the credits fit on the screen
+	2. The user should be able to scroll (unless all the credits fit on the screen)
 	3. There should be a button to return to the main menu
 2. Game UI
 	1. There should be the current score displayed at the top
