@@ -6,9 +6,11 @@ import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.component.GraphicsComponent
+import io.github.rolodophone.comboking.component.MoveComponent
 import io.github.rolodophone.comboking.component.PlayerComponent
 import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.event.GameEventManager
+import io.github.rolodophone.comboking.system.PlayerMoveSystem
 import ktx.ashley.entity
 import ktx.ashley.with
 
@@ -18,6 +20,8 @@ class GameScreen(
 ): ComboKingScreen(game) {
 
 	private lateinit var playerInputProcessor: InputProcessor
+
+	private lateinit var playerMoveSystem: PlayerMoveSystem
 
 	@Suppress("UNUSED_VARIABLE")
 	override fun show() {
@@ -41,6 +45,7 @@ class GameScreen(
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.prototype_player)
 			}
+			with<MoveComponent>()
 			with<PlayerComponent> {}
 		}
 
@@ -73,10 +78,17 @@ class GameScreen(
 				sprite.setRegion(textures.prototype_stairs)
 			}
 		}
+
+		//add systems
+		playerMoveSystem = PlayerMoveSystem(player, gameEventManager)
+		engine.run {
+			addSystem(playerMoveSystem)
+		}
 	}
 
 	override fun hide() {
 		engine.removeAllEntities()
-		(Gdx.input.inputProcessor as InputMultiplexer).removeProcessor(gestureDetector)
+		(Gdx.input.inputProcessor as InputMultiplexer).removeProcessor(playerInputProcessor)
+		engine.removeSystem(playerMoveSystem)
 	}
 }

@@ -48,12 +48,14 @@ class TouchControlsGestureListener(
 	override fun pan(x: Float, y: Float, deltaX: Float, deltaY: Float): Boolean {
 		if (x < touchHoldX - MIN_SWIPE_DISTANCE) {
 			touchHoldX = x
-			gameEventManager.trigger(GameEvent.PlayerMoveInput.RunLeft)
+			GameEvent.PlayerMoveInput.moveAction = MoveAction.RUN_LEFT
+			gameEventManager.trigger(GameEvent.PlayerMoveInput)
 			println("Left")
 		}
 		else if (x > touchHoldX + MIN_SWIPE_DISTANCE) {
 			touchHoldX = x
-			gameEventManager.trigger(GameEvent.PlayerMoveInput.RunRight)
+			GameEvent.PlayerMoveInput.moveAction = MoveAction.RUN_RIGHT
+			gameEventManager.trigger(GameEvent.PlayerMoveInput)
 			println("Right")
 		}
 
@@ -61,7 +63,8 @@ class TouchControlsGestureListener(
 	}
 
 	override fun panStop(x: Float, y: Float, pointer: Int, button: Int): Boolean {
-		gameEventManager.trigger(GameEvent.PlayerMoveInput.Stop)
+		GameEvent.PlayerMoveInput.moveAction = MoveAction.STOP
+		gameEventManager.trigger(GameEvent.PlayerMoveInput)
 		return false
 	}
 
