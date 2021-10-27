@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.OrthographicCamera
-import com.badlogic.gdx.input.GestureDetector
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.component.GraphicsComponent
 import io.github.rolodophone.comboking.component.PlayerComponent
@@ -18,12 +17,13 @@ class GameScreen(
 	private val createPlayerInputProcessor: (GameEventManager) -> InputProcessor
 ): ComboKingScreen(game) {
 
-	private lateinit var gestureDetector: GestureDetector
+	private lateinit var playerInputProcessor: InputProcessor
 
 	@Suppress("UNUSED_VARIABLE")
 	override fun show() {
-		//add gesture detector
-		(Gdx.input.inputProcessor as InputMultiplexer).addProcessor(createPlayerInputProcessor(gameEventManager))
+		//add player controls input processor
+		playerInputProcessor = createPlayerInputProcessor(gameEventManager)
+		(Gdx.input.inputProcessor as InputMultiplexer).addProcessor(playerInputProcessor)
 
 		//set camera
 		with(viewport.camera as OrthographicCamera) {
