@@ -11,7 +11,7 @@ import io.github.rolodophone.comboking.event.GameEventManager
 private const val MIN_SWIPE_DISTANCE = 40f
 
 /**
- * Handles detecting the touch gesture controls
+ * Handles detecting the touch gesture controls on Android.
  */
 class TouchControlsGestureListener(
 	private val gameEventManager: GameEventManager
