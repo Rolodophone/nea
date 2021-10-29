@@ -48,7 +48,9 @@ class GameScreen(
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.prototype_player)
 			}
-			with<MoveComponent>()
+			with<MoveComponent>() {
+				runSpeed = 120f
+			}
 			with<PlayerComponent> {}
 		}
 
