@@ -10,6 +10,7 @@ import io.github.rolodophone.comboking.component.MoveComponent
 import io.github.rolodophone.comboking.component.PlayerComponent
 import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.event.GameEventManager
+import io.github.rolodophone.comboking.system.CameraSystem
 import io.github.rolodophone.comboking.system.MoveSystem
 import io.github.rolodophone.comboking.system.PlayerInputSystem
 import ktx.ashley.entity
@@ -24,8 +25,8 @@ class GameScreen(
 
 	private lateinit var playerInputSystem: PlayerInputSystem
 	private lateinit var moveSystem: MoveSystem
+	private lateinit var cameraSystem: CameraSystem
 
-	@Suppress("UNUSED_VARIABLE")
 	override fun show() {
 		//add player controls input processor
 		playerInputProcessor = createPlayerInputProcessor(gameEventManager)
@@ -84,9 +85,12 @@ class GameScreen(
 		//add systems
 		playerInputSystem = PlayerInputSystem(player, gameEventManager)
 		moveSystem = MoveSystem()
+		cameraSystem = CameraSystem(viewport, player)
+
 		engine.run {
 			addSystem(playerInputSystem)
 			addSystem(moveSystem)
+			addSystem(cameraSystem)
 		}
 	}
 
@@ -98,6 +102,7 @@ class GameScreen(
 		engine.run {
 			removeSystem(playerInputSystem)
 			removeSystem(moveSystem)
+			removeSystem(cameraSystem)
 		}
 	}
 }

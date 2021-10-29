@@ -8,6 +8,9 @@ import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 
+/**
+ * Moves entities according to their current move action as specified by their [MoveComponent].
+ */
 class MoveSystem: IteratingSystem(
 	allOf(TransformComponent::class, MoveComponent::class).get()
 ) {
