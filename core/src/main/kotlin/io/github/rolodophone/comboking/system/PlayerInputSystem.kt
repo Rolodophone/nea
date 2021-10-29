@@ -11,7 +11,7 @@ import io.github.rolodophone.comboking.util.getNotNull
 /**
  * Keeps the player's [MoveComponent] up-to-date based on user input.
  */
-class PlayerMoveSystem(
+class PlayerInputSystem(
 	private val player: Entity,
 	private val gameEventManager: GameEventManager
 ) : EntitySystem() {

@@ -12,7 +12,11 @@ class MoveComponent: Component, Pool.Poolable {
 
 	var moveAction = MoveAction.STOP
 
+	var runSpeed = 40f
+
 	override fun reset() {
 		moveAction = MoveAction.STOP
+
+		runSpeed = 40f
 	}
 }

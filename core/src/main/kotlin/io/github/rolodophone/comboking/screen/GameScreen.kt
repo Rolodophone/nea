@@ -10,7 +10,8 @@ import io.github.rolodophone.comboking.component.MoveComponent
 import io.github.rolodophone.comboking.component.PlayerComponent
 import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.event.GameEventManager
-import io.github.rolodophone.comboking.system.PlayerMoveSystem
+import io.github.rolodophone.comboking.system.MoveSystem
+import io.github.rolodophone.comboking.system.PlayerInputSystem
 import ktx.ashley.entity
 import ktx.ashley.with
 
@@ -21,7 +22,8 @@ class GameScreen(
 
 	private lateinit var playerInputProcessor: InputProcessor
 
-	private lateinit var playerMoveSystem: PlayerMoveSystem
+	private lateinit var playerInputSystem: PlayerInputSystem
+	private lateinit var moveSystem: MoveSystem
 
 	@Suppress("UNUSED_VARIABLE")
 	override fun show() {
@@ -80,15 +82,22 @@ class GameScreen(
 		}
 
 		//add systems
-		playerMoveSystem = PlayerMoveSystem(player, gameEventManager)
+		playerInputSystem = PlayerInputSystem(player, gameEventManager)
+		moveSystem = MoveSystem()
 		engine.run {
-			addSystem(playerMoveSystem)
+			addSystem(playerInputSystem)
+			addSystem(moveSystem)
 		}
 	}
 
 	override fun hide() {
 		engine.removeAllEntities()
+
 		(Gdx.input.inputProcessor as InputMultiplexer).removeProcessor(playerInputProcessor)
-		engine.removeSystem(playerMoveSystem)
+
+		engine.run {
+			removeSystem(playerInputSystem)
+			removeSystem(moveSystem)
+		}
 	}
 }
