@@ -24,7 +24,7 @@ class RenderSystem(
 	private val viewport: Viewport
 ): SortedIteratingSystem(
 	allOf(TransformComponent::class, GraphicsComponent::class).get(),
-	compareBy { entity -> entity[TransformComponent.mapper] }
+	compareBy { entity -> entity.getNotNull(TransformComponent.mapper).CompareByZ() }
 ) {
 	override fun update(deltaTime: Float) {
 		viewport.apply()
@@ -45,7 +45,6 @@ class RenderSystem(
 		if (!graphicsComp.visible) return
 
 		graphicsComp.sprite.setBounds(transformComp.rect)
-		graphicsComp.sprite.rotation = transformComp.rotation
 		graphicsComp.sprite.draw(batch)
 	}
 }
