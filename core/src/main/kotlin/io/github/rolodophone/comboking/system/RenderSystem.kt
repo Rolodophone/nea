@@ -44,7 +44,7 @@ class RenderSystem(
 
 		if (!graphicsComp.visible) return
 
-		graphicsComp.sprite.setBounds(transformComp.rect)
+		graphicsComp.sprite.setBounds(transformComp.x, transformComp.y, transformComp.width, transformComp.height)
 		graphicsComp.sprite.draw(batch)
 	}
 }

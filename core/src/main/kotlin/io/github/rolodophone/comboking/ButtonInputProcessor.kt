@@ -43,7 +43,7 @@ class ButtonInputProcessor(
 		for (buttonEntity in buttons) {
 			val transformComp = buttonEntity.getNotNull(TransformComponent.mapper)
 
-			if (transformComp.rect.contains(
+			if (transformComp.contains(
 					viewport.unprojectX(screenX.toFloat()),
 					viewport.unprojectY(screenY.toFloat())
 			)) {
@@ -61,7 +61,7 @@ class ButtonInputProcessor(
 			// check if the button that was pressed was released
 			val transformComp = buttonEntity.getNotNull(TransformComponent.mapper)
 
-			if (transformComp.rect.contains(
+			if (transformComp.contains(
 					viewport.unprojectX(screenX.toFloat()),
 					viewport.unprojectY(screenY.toFloat())
 			)) {

@@ -42,8 +42,9 @@ class GameScreen(
 		// add entities
 		val player = engine.entity {
 			with<TransformComponent> {
+				x = 120f
+				y = 5f
 				setSizeFromTexture(textures.prototype_player)
-				rect.setPosition(120f, 5f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.prototype_player)
@@ -56,8 +57,9 @@ class GameScreen(
 
 		engine.entity {
 			with<TransformComponent> {
+				x = 0f
+				y = 0f
 				setSizeFromTexture(textures.prototype_ground)
-				rect.setPosition(0f, 0f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.prototype_ground)
@@ -66,8 +68,9 @@ class GameScreen(
 
 		engine.entity {
 			with<TransformComponent> {
+				x = 0f
+				y = 90f
 				setSizeFromTexture(textures.prototype_platform)
-				rect.setPosition(0f, 90f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.prototype_platform)
@@ -76,8 +79,9 @@ class GameScreen(
 
 		engine.entity {
 			with<TransformComponent> {
+				x = 190f
+				y = 5f
 				setSizeFromTexture(textures.prototype_stairs)
-				rect.setPosition(190f, 5f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.prototype_stairs)

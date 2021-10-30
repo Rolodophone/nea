@@ -19,16 +19,16 @@ class CameraSystem(
 	override fun update(deltaTime: Float) {
 		val playerTransformComp = player.getNotNull(TransformComponent.mapper)
 
-		if (viewport.camera.position.x > playerTransformComp.rect.x
+		if (viewport.camera.position.x > playerTransformComp.x
 				+ viewport.worldWidth / 2f - PLAYER_TRACK_LEFT_MARGIN) {
 			// player is too close to left side of screen
-			viewport.camera.position.x = (playerTransformComp.rect.x
+			viewport.camera.position.x = (playerTransformComp.x
 				+ viewport.worldWidth / 2f - PLAYER_TRACK_LEFT_MARGIN)
 		}
-		else if (viewport.camera.position.x < playerTransformComp.rect.x + playerTransformComp.rect.width
+		else if (viewport.camera.position.x < playerTransformComp.x + playerTransformComp.width
 				- viewport.worldWidth / 2f + PLAYER_TRACK_RIGHT_MARGIN) {
 			// player is too close to right side of screen
-			viewport.camera.position.x = (playerTransformComp.rect.x + playerTransformComp.rect.width
+			viewport.camera.position.x = (playerTransformComp.x + playerTransformComp.width
 				- viewport.worldWidth / 2f + PLAYER_TRACK_RIGHT_MARGIN)
 		}
 	}

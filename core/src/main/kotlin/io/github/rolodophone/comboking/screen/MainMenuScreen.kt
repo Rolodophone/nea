@@ -20,8 +20,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		// background
 		engine.entity {
 			with<TransformComponent> {
+				x = 0f
+				y = 0f
 				setSizeFromTexture(textures.main_menu_bg)
-				rect.setPosition(0f, 0f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.main_menu_bg)
@@ -31,8 +32,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		//buttons
 		engine.entity {
 			with<TransformComponent> {
+				x = 70f
+				y = 43f
 				setSizeFromTexture(textures.btn_play)
-				rect.setPosition(70f, 43f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.btn_play)
@@ -43,8 +45,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		}
 		engine.entity {
 			with<TransformComponent> {
+				x = 111f
+				y = 43f
 				setSizeFromTexture(textures.btn_skills)
-				rect.setPosition(111f, 43f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.btn_skills)
@@ -55,8 +58,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		}
 		engine.entity {
 			with<TransformComponent> {
+				x = 70f
+				y = 21f
 				setSizeFromTexture(textures.btn_options)
-				rect.setPosition(70f, 21f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.btn_options)
@@ -67,8 +71,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		}
 		engine.entity {
 			with<TransformComponent> {
+				x = 111f
+				y = 21f
 				setSizeFromTexture(textures.btn_credits)
-				rect.setPosition(111f, 21f)
 			}
 			with<GraphicsComponent> {
 				sprite.setRegion(textures.btn_credits)

@@ -21,10 +21,10 @@ class MoveSystem: IteratingSystem(
 		when (moveComp.moveAction) {
 			MoveAction.STOP -> {}
 			MoveAction.RUN_LEFT -> {
-				transformComp.rect.x -= moveComp.runSpeed * deltaTime
+				transformComp.x -= moveComp.runSpeed * deltaTime
 			}
 			MoveAction.RUN_RIGHT -> {
-				transformComp.rect.x += moveComp.runSpeed * deltaTime
+				transformComp.x += moveComp.runSpeed * deltaTime
 			}
 		}
 	}
