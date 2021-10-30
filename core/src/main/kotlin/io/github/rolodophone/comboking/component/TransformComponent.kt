@@ -3,19 +3,12 @@ package io.github.rolodophone.comboking.component
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Rectangle
-import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
 class TransformComponent: Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<TransformComponent>()
-	}
-
-	inner class CompareByZ: Comparable<TransformComponent> {
-		override fun compareTo(other: TransformComponent): Int {
-			return z - other.z
-		}
 	}
 
 	private val rect = Rectangle()

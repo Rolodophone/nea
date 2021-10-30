@@ -24,7 +24,7 @@ class RenderSystem(
 	private val viewport: Viewport
 ): SortedIteratingSystem(
 	allOf(TransformComponent::class, GraphicsComponent::class).get(),
-	compareBy { entity -> entity.getNotNull(TransformComponent.mapper).CompareByZ() }
+	compareBy { entity -> entity.getNotNull(TransformComponent.mapper).z }
 ) {
 	override fun update(deltaTime: Float) {
 		viewport.apply()
