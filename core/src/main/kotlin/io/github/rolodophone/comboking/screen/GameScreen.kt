@@ -47,7 +47,7 @@ class GameScreen(
 				setSizeFromTexture(textures.prototype_player)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.prototype_player)
+				textureRegion = textures.prototype_player
 			}
 			with<MoveComponent>() {
 				runSpeed = 120f
@@ -62,7 +62,7 @@ class GameScreen(
 				setSizeFromTexture(textures.prototype_ground)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.prototype_ground)
+				textureRegion = textures.prototype_ground
 			}
 		}
 
@@ -73,7 +73,7 @@ class GameScreen(
 				setSizeFromTexture(textures.prototype_platform)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.prototype_platform)
+				textureRegion = textures.prototype_platform
 			}
 		}
 
@@ -84,7 +84,7 @@ class GameScreen(
 				setSizeFromTexture(textures.prototype_stairs)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.prototype_stairs)
+				textureRegion = textures.prototype_stairs
 			}
 		}
 

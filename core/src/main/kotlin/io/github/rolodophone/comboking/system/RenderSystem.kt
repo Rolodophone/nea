@@ -3,6 +3,7 @@ package io.github.rolodophone.comboking.system
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.SortedIteratingSystem
 import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.github.rolodophone.comboking.component.GraphicsComponent
@@ -26,6 +27,8 @@ class RenderSystem(
 	allOf(TransformComponent::class, GraphicsComponent::class).get(),
 	compareBy { entity -> entity.getNotNull(TransformComponent.mapper).z }
 ) {
+	private val sprite = Sprite() //reused for each entity to draw using a batch
+
 	override fun update(deltaTime: Float) {
 		viewport.apply()
 		batch.use(viewport.camera.combined) {
@@ -34,17 +37,19 @@ class RenderSystem(
 	}
 
 	override fun processEntity(entity: Entity, deltaTime: Float) {
-		val transformComp = entity.getNotNull(TransformComponent.mapper)
 		val graphicsComp = entity.getNotNull(GraphicsComponent.mapper)
-
-		if (graphicsComp.sprite.texture == null) {
-			log.error { "Entity $entity has no texture for rendering" }
-			return
-		}
 
 		if (!graphicsComp.visible) return
 
-		graphicsComp.sprite.setBounds(transformComp.x, transformComp.y, transformComp.width, transformComp.height)
-		graphicsComp.sprite.draw(batch)
+		if (graphicsComp.textureRegion == null) {
+			log.error { "Entity $entity is set to be visible but has no texture." }
+			return
+		}
+
+		val transformComp = entity.getNotNull(TransformComponent.mapper)
+
+		sprite.setBounds(transformComp.x, transformComp.y, transformComp.width, transformComp.height)
+		sprite.setRegion(graphicsComp.textureRegion)
+		sprite.draw(batch)
 	}
 }

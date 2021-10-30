@@ -25,7 +25,7 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				setSizeFromTexture(textures.main_menu_bg)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.main_menu_bg)
+				textureRegion = textures.main_menu_bg
 			}
 		}
 
@@ -37,7 +37,7 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				setSizeFromTexture(textures.btn_play)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.btn_play)
+				textureRegion = textures.btn_play
 			}
 			with<ButtonComponent> {
 				onPress = { game.setScreen<GameScreen>() }
@@ -50,7 +50,7 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				setSizeFromTexture(textures.btn_skills)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.btn_skills)
+				textureRegion = textures.btn_skills
 			}
 			with<ButtonComponent> {
 				onPress = { }
@@ -63,7 +63,7 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				setSizeFromTexture(textures.btn_options)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.btn_options)
+				textureRegion = textures.btn_options
 			}
 			with<ButtonComponent> {
 				onPress = { }
@@ -76,7 +76,7 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				setSizeFromTexture(textures.btn_credits)
 			}
 			with<GraphicsComponent> {
-				sprite.setRegion(textures.btn_credits)
+				textureRegion = textures.btn_credits
 			}
 			with<ButtonComponent> {
 				onPress = { }
