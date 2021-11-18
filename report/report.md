@@ -319,6 +319,10 @@ TODO add sketches to better explain things
 	3. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
 	4. The score increases when Jane progresses to the right
 	5. The score also increases when Jane eliminates enemies
+8. Sound
+	1. A music loop should be played in the main menu
+	2. A different loop should be played in the game
+	3. Sound effects should be played whenever it makes sense (e.g. the player or an enemy was hit)
 8. Game over screen
 	1. When the player runs out of health, a game over screen should be displayed
 	2. The score should be displayed
