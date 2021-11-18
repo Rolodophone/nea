@@ -4,7 +4,7 @@ package io.github.rolodophone.comboking.lwjgl3
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.InputProcessor
-import io.github.rolodophone.comboking.MoveAction
+import io.github.rolodophone.comboking.component.MoveComponent.MoveAction
 import io.github.rolodophone.comboking.event.GameEvent
 import io.github.rolodophone.comboking.event.GameEventManager
 

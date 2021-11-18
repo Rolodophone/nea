@@ -2,12 +2,15 @@ package io.github.rolodophone.comboking.component
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.utils.Pool
-import io.github.rolodophone.comboking.MoveAction
 import ktx.ashley.mapperFor
 
 class MoveComponent: Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<MoveComponent>()
+	}
+
+	enum class MoveAction {
+		STOP, RUN_LEFT, RUN_RIGHT
 	}
 
 	var moveAction = MoveAction.STOP

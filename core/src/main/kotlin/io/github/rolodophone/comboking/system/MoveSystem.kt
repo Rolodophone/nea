@@ -2,7 +2,7 @@ package io.github.rolodophone.comboking.system
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
-import io.github.rolodophone.comboking.MoveAction
+import io.github.rolodophone.comboking.component.MoveComponent.MoveAction
 import io.github.rolodophone.comboking.component.MoveComponent
 import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.util.getNotNull

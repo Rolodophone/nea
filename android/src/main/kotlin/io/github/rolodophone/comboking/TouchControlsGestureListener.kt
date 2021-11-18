@@ -2,6 +2,7 @@ package io.github.rolodophone.comboking
 
 import com.badlogic.gdx.input.GestureDetector
 import com.badlogic.gdx.math.Vector2
+import io.github.rolodophone.comboking.component.MoveComponent.MoveAction
 import io.github.rolodophone.comboking.event.GameEvent
 import io.github.rolodophone.comboking.event.GameEventManager
 
