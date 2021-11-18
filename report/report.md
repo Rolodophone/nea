@@ -271,22 +271,11 @@ TODO add sketches to better explain things
 
 1. Main menu
 	1. The "play" button should start the game
-	2. The "abilities" button should display the abilities screen
 	3. The "settings" button should display the settings
 	4. The "credits" button should display the credits
 	6. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
 	7. The buttons should be displayed on this screen
 	8. The highscore should also be displayed on this screen
-	9. Jane should appear to be spying undercover before she is found out (before the game starts)
-2. Abilities
-	1. Should display the amount of XP the user currently has
-	2. Should display the current level of each of Jane's abilities
-	3. Each ability should have a button to upgrade it
-	4. Should display the cost of upgrading each ability
-	5. Should display the amount the ability level would go up by if the user were to press the button
-	6. Pressing a button should increase the ability level by the amount specified and decrease the XP by the amount specified
-	6. There should be a button to return to the main menu
-	7. The level of each of Jane's abilities and the user's current XP level should persist when the app is closed
 2. Settings
 	1. There should be a setting to change SFX volume
 	1. There should be a setting to change music volume
@@ -309,14 +298,7 @@ TODO add sketches to better explain things
 3. Movement and physics
 	1. Jane should be able to run left and right
 	2. Jane should be able to jump
-	2. Jane should be able to roll
-	2. Jane should be able to go up or down staircases
 	2. Jane should be able to go up or down ladders
-	2. Jane should be able to climb on top of large objects
-	2. Jane should be able to jump from large objects to climb onto the upper level
-	2. Jane should be able to drop from the upper level down to the ground level
-	3. Jane should only be able to jump when she is on solid ground
-	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased
 	2. Jane should not be able to walk through enemies; they should block her path
 	3. Jane should be able to walk past staircases, ladders and other objects
 5. Combat
@@ -324,20 +306,12 @@ TODO add sketches to better explain things
 	2. There should be at least 3 different types of punches
 	1. Jane should be able to kick enemies
 	2. There should be at least 3 different types of kicks
-	1. Jane should be able to shoot enemies with her pistol
-	2. Jane should only be able to shoot when she has at least one round in her pistol
 6. Enemies
 	1. There should be at least 3 different types of enemy
 	2. Each type of enemy should behave noticeably differently
 	3. The enemies should be controlled by a rule-based AI
 	4. The enemies should appear to behave intelligently
 	5. Enemies should be able to deal damage to Jane, which decreases her health
-7. Items
-	1. There should be at least 3 different types of item, including an ammunition item and a bandage item
-	2. When Jane touches an item, the item's effect should be applied
-	3. When touching the ammo item, Jane's pistol is filled back up to its maximum capacity
-	3. The ammunition item should be rare enough so that the player is usually forced to use punch and kick rather than use the pistol
-	4. When touching the bandage item, Jane's health is increased (but not past the maximum health)
 8. Game logic
 	1. The game should render a background behind Jane
 	2. Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly
@@ -345,32 +319,58 @@ TODO add sketches to better explain things
 	3. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
 	4. The score increases when Jane progresses to the right
 	5. The score also increases when Jane eliminates enemies
-8. Game over popup
-	1. When the player runs out of health, a game over popup should be displayed
+8. Game over screen
+	1. When the player runs out of health, a game over screen should be displayed
 	2. The score should be displayed
 	3. The highscore should be displayed
 	4. The XP gained should be displayed
 	4. There should be a button to play again
 	5. There should be a button to return to the main menu
-	6. If the user has beaten their highscore, the popup should indicate this
+	6. If the user has beaten their highscore, this should be indicated
 	7. The highscore should be saved so that it persists when the app is closed
 
 ### Extension Objectives
 
-1. Pressing the "play" button could transition seamlessly into the game
-	1. There could be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
+1. Extra-nice main menu screen
+	1. Jane could be animated to appear to be spying undercover before she is found out (before the game starts)
+	1. When the "play" button is pressed, there could be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
 	2. Jane could then start running towards the right
-	3. The camera could zoom out and the game UI (i.e. the score and pause button) could appear
+	3. Then, the camera could zoom out and the game UI (i.e. the score and pause button) could appear (thereby seamlessly transitioning from the main menu to the game)
+2. Abilities screen
+	1. There could be a button in the main menu to open the abilities screen
+	1. Could display the amount of XP the user currently has
+	2. Could display the current level of each of Jane's abilities
+	3. Each ability could have a button to upgrade it
+	4. Could display the cost of upgrading each ability
+	5. Could display the amount the ability level would go up by if the user were to press the button
+	6. Pressing a button could increase the ability level by the amount specified and decrease the XP by the amount specified
+	6. There could be a button to return to the main menu
+	7. The level of each of Jane's abilities and the user's current XP level could persist when the app is closed
 2. Tutorial
 	1. There could be a tutorial that teaches you the controls for the game
 	2. It could also teach you strategies on how to play the game well
 	3. It could be interactive, i.e. it teaches you as you play the game
 	4. There could be different levels of tutorial: a basic tutorial to get started, an intermediate tutorial, and an advanced tutorial
 	5. There could be a button in the main menu that starts the tutorial
+2. More movement options
+	1. Jane could be able to roll
+	2. Jane could be able to go up or down staircases
+	2. Jane could be able to climb on top of large objects
+	2. Jane could be able to jump from large objects to climb onto the upper level
+	2. Jane could be able to drop from the upper level down to the ground level
+	3. Jane could only be able to jump when she is on solid ground
+	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased
 3. Background objects
 	1. There could be objects that appear randomly, such as a desk, a plant or a door
 	2. Jane would not be able to interact with these objects; she would walk past them as it they weren't there
-4. Other weapons
+7. Items
+	1. There could be at least 3 different types of item, including an ammunition item and a bandage item
+	2. When Jane touches an item, the item's effect could be applied
+	3. When touching the ammo item, Jane's pistol is filled back up to its maximum capacity
+	3. The ammunition item could be rare enough so that the player is usually forced to use punch and kick rather than use the pistol
+	4. When touching the bandage item, Jane's health is increased (but not past the maximum health)
+	1. Jane could be able to shoot enemies with her pistol
+	2. Jane could only be able to shoot when she has at least one round in her pistol
 	1. There could be other weapons that Jane could pick up and use, such as a knife
 5. Missions
 	1. There could be various missions available to complete
