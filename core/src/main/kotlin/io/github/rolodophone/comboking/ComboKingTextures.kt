@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.utils.Disposable
 
+/**
+ * Stores the game's textures.
+ */
 @Suppress("unused","PropertyName")
 class ComboKingTextures: Disposable {
 	private val graphicsAtlas = TextureAtlas(Gdx.files.internal("graphics/sprites.atlas"))

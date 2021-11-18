@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
+/**
+ * Entities with a [TransformComponent] have a size and position in the game world.
+ */
 class TransformComponent: Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<TransformComponent>()

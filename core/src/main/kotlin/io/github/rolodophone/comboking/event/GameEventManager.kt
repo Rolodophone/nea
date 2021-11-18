@@ -2,9 +2,16 @@ package io.github.rolodophone.comboking.event
 
 import com.badlogic.gdx.utils.ObjectMap
 
+
+/**
+ * Enables listening to and triggering [GameEvent]s.
+ */
 class GameEventManager {
 	private val callbacks = ObjectMap<GameEvent, MutableSet<(GameEvent) -> Unit>>()
 
+	/**
+	 * Register the given callback for the given type of [GameEvent].
+	 */
 	fun <E: GameEvent> listen(event: E, callback: (event: E) -> Unit) {
 		val callbackSet = callbacks[event]
 
@@ -22,11 +29,17 @@ class GameEventManager {
 		}
 	}
 
+	/**
+	 * Deregister the given callback for the given type of [GameEvent].
+	 */
 	fun <E: GameEvent> stopListening(event: E, callback: (event: E) -> Unit) {
 		val callbackSet = callbacks[event]
 		callbackSet?.remove(callback)
 	}
 
+	/**
+	 * Trigger the registered callbacks for the given [GameEvent].
+	 */
 	fun trigger(event: GameEvent) {
 		val listenerSet = callbacks[event]
 

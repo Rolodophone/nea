@@ -5,6 +5,9 @@ import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
+/**
+ * Not yet implemented.
+ */
 class PhysicsComponent: Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<PhysicsComponent>()

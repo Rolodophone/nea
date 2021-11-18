@@ -5,6 +5,9 @@ import ktx.app.KtxScreen
 
 private const val MAX_DELTA_TIME = 1/10f
 
+/**
+ * Common code for all screens.
+ */
 abstract class ComboKingScreen(val game: ComboKing): KtxScreen {
     val batch = game.batch
     val viewport = game.viewport

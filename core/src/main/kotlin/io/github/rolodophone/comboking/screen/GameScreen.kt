@@ -16,6 +16,9 @@ import io.github.rolodophone.comboking.system.PlayerInputSystem
 import ktx.ashley.entity
 import ktx.ashley.with
 
+/**
+ * The screen that's showing when the game is being played.
+ */
 class GameScreen(
 	game: ComboKing,
 	private val createPlayerInputProcessor: (GameEventManager) -> InputProcessor

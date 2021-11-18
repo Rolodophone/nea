@@ -8,6 +8,9 @@ import io.github.rolodophone.comboking.component.TransformComponent
 import ktx.ashley.entity
 import ktx.ashley.with
 
+/**
+ * The screen that's showing when the user is in the main menu.
+ */
 class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 	override fun show() {
 		//set camera

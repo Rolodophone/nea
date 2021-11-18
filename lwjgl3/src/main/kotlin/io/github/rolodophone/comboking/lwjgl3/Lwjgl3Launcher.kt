@@ -4,7 +4,9 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import io.github.rolodophone.comboking.ComboKing
 
-/** Launches the desktop (LWJGL3) application.  */
+/**
+ * Launches the game on desktop (LWJGL3).
+ */
 fun main() {
 	Lwjgl3Application(
 		ComboKing { gameEventManager ->

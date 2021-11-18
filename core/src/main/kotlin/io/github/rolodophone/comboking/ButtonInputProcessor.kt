@@ -13,7 +13,7 @@ import ktx.ashley.EngineEntity
 import ktx.ashley.allOf
 
 /**
- * Handles touch and key events for buttons
+ * Handles touch and key events for buttons.
  */
 class ButtonInputProcessor(
 	private val engine: Engine,

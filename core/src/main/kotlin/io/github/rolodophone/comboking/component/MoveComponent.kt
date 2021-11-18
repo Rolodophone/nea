@@ -4,6 +4,9 @@ import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
+/**
+ * Entities with a [MoveComponent] can move like a human (e.g. running, jumping).
+ */
 class MoveComponent: Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<MoveComponent>()
