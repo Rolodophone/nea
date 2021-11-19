@@ -519,6 +519,91 @@ The highscore and other persistent data will be stored in a single JSON file. li
 
 # Technical Solution
 
+## Table of contents
+
+### Android module
+
+Class/file                                 |Description                                                                            
+-------------------------------------------|---------------------------------------------------------------------------------------
+AndroidLauncher                            |Launches the game on Android.                                                          
+TouchControlsGestureListener               |Handles detecting the touch gesture controls on Android.                               
+
+### Lwjgl3 (desktop) module
+
+Class/file                                 |Description                                                                            
+-------------------------------------------|---------------------------------------------------------------------------------------
+KeyboardControlsInputProcessor             |Handles keyboard and mouse events for player controls on PC.                           
+Lwjgl3Launcher                             |Launches the game on desktop (LWJGL3).                                                 
+
+### Core module
+
+Class/file                                 |Description                                                                            
+-------------------------------------------|---------------------------------------------------------------------------------------
+component.ButtonComponent                  |Entities with a [ButtonComponent] can be clicked on by the user.                       
+component.GraphicsComponent                |Entities with a [GraphicsComponent] and a [TransformComponent] are drawn on the screen.
+component.MoveComponent                    |Entities with a [MoveComponent] can move like a human (e.g. running, jumping).
+component.TransformComponent               |Entities with a [TransformComponent] have a size and position in the game world.
+event.GameEvent                            |An event that can be triggered and responded to. Each event type can store its own data.
+event.GameEventManager                     |Enables listening to and triggering [GameEvent]s.
+screen.ComboKingScreen                     |Common code for all screens.
+screen.GameScreen                          |The screen that's showing when the game is being played.
+screen.MainMenuScreen                      |The screen that's showing when the user is in the main menu.
+system.CameraSystem                        |Pans the camera to keep the player entity visible on the screen.
+system.DebugSystem                         |Controls debugging features. This System will probably be disabled in the release.
+system.MoveSystem                          |Moves entities according to their current move action as specified by their [MoveComponent].
+system.PlayerInputSystem                   |Keeps the player's [MoveComponent] up-to-date based on user input.
+system.RenderSystem                        |Renders the entities on the screen.
+system.ScoreSystem                         |Increases the score when certain game events are triggered.
+system.SpawningSystem                      |Spawns entities such as enemies and items semi-randomly.
+util.Util                                  |Various utility functions.
+ButtonInputProcessor                       |Handles touch and key events for buttons.
+ComboKing                                  |The main class. This is created from a platform-specific launcher to start the app.
+ComboKingTextures                          |Stores the game's textures.
+
+## Groups
+
+### Group A
+
+What I've done                             |Evidence
+-------------------------------------------|---------------------------------------------------------------------------------------
+Complex use of ECS model                   |component and system packages, and entities defined in GameScreen and MainMenuScreen
+Passing around lambda functions            |GameEventManager (each callback is a lambda function)
+Generic functions                          |GameEventManager, Entity.getNotNull (in Util file)
+Complex game events model                  |GameEventManager
+3-module structure (meaning vast majority of code is platform-agnostic)|See AndroidLauncher, Lwjgl3Launcher and ComboKing for how the modules speak to each other
+
+### Group B
+
+What I've done                             |Evidence
+-------------------------------------------|---------------------------------------------------------------------------------------
+Map of a set                               |GameEventManager, see callbacks property
+Companion objects (static fields)          |Each of the components
+Encapsulation                              |TransformComponent
+Dealing with nullable types                |GraphicsComponent, GameEventManager
+Enum classes                               |MoveComponent.MoveAction
+Sealed classes                             |GameEvent
+
+### Group C
+
+What I've done                             |Evidence
+-------------------------------------------|---------------------------------------------------------------------------------------
+Simple mathematical calculations           |TouchControlsGestureListener.pan, CameraSystem.update, Util
+Private properties                         |TransformComponent, CameraSystem
+Getters and setters                        |TransformComponent
+Casting                                    |TransformComponent.setSizeFromTexture, GameScreen.show
+
+## Objectives
+
+Objective                                            |Implementation
+-----------------------------------------------------|-----------------------------------------------------------------------------
+1.1. The "play" button should start the game         |MainMenuScreen 46
+1.5. The buttons should be displayed on this screen  |MainMenuScreen 36-87
+5.1. Jane should be able to run left and right       |MoveSystem 23-28
+
+## Code
+
+TODO include code (see [GitHub repo](https://github.com/Rolodophone/nea) for code for now)
+
 # Testing
 
 # Evaluation
