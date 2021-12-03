@@ -80,17 +80,6 @@ class GameScreen(
 			}
 		}
 
-		engine.entity {
-			with<TransformComponent> {
-				x = 190f
-				y = 5f
-				setSizeFromTexture(textures.prototype_stairs)
-			}
-			with<GraphicsComponent> {
-				textureRegion = textures.prototype_stairs
-			}
-		}
-
 		//add systems
 		playerInputSystem = PlayerInputSystem(player, gameEventManager)
 		moveSystem = MoveSystem()
