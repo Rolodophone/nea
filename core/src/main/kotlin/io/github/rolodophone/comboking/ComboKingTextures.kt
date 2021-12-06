@@ -12,9 +12,6 @@ class ComboKingTextures: Disposable {
 	private val graphicsAtlas = TextureAtlas(Gdx.files.internal("graphics/sprites.atlas"))
 
 	val prototype_player = loadTextureRegion("prototype_player")
-	val prototype_ground = loadTextureRegion("prototype_ground")
-	val prototype_platform = loadTextureRegion("prototype_platform")
-	val prototype_stairs = loadTextureRegion("prototype_stairs")
 	val main_menu_bg = loadTextureRegion("main_menu_bg")
 	val btn_play = loadTextureRegion("btn_play")
 	val btn_skills = loadTextureRegion("btn_skills")

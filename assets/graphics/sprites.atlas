@@ -1,69 +1,55 @@
 
 sprites.png
-size: 324, 108
+size: 486, 184
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 btn_credits
   rotate: false
-  xy: 285, 77
+  xy: 343, 75
   size: 36, 15
   orig: 36, 15
   offset: 0, 0
   index: -1
 btn_options
   rotate: false
-  xy: 285, 60
+  xy: 343, 58
   size: 36, 15
   orig: 36, 15
   offset: 0, 0
   index: -1
 btn_play
   rotate: false
-  xy: 266, 26
+  xy: 381, 58
   size: 36, 15
   orig: 36, 15
   offset: 0, 0
   index: -1
 btn_skills
   rotate: false
-  xy: 285, 43
+  xy: 381, 75
   size: 36, 15
   orig: 36, 15
   offset: 0, 0
   index: -1
-main_menu_bg
+game_bg
   rotate: false
   xy: 2, 2
+  size: 320, 180
+  orig: 320, 180
+  offset: 0, 0
+  index: -1
+main_menu_bg
+  rotate: false
+  xy: 324, 92
   size: 160, 90
   orig: 160, 90
   offset: 0, 0
   index: -1
-prototype_ground
-  rotate: false
-  xy: 2, 94
-  size: 320, 5
-  orig: 320, 5
-  offset: 0, 0
-  index: -1
-prototype_platform
-  rotate: false
-  xy: 2, 101
-  size: 320, 5
-  orig: 320, 5
-  offset: 0, 0
-  index: -1
 prototype_player
   rotate: false
-  xy: 266, 57
+  xy: 324, 55
   size: 17, 35
   orig: 17, 35
-  offset: 0, 0
-  index: -1
-prototype_stairs
-  rotate: false
-  xy: 164, 7
-  size: 100, 85
-  orig: 100, 85
   offset: 0, 0
   index: -1

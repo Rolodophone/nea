@@ -10,6 +10,7 @@ import io.github.rolodophone.comboking.component.MoveComponent
 import io.github.rolodophone.comboking.component.PlayerComponent
 import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.event.GameEventManager
+import io.github.rolodophone.comboking.system.BackgroundSystem
 import io.github.rolodophone.comboking.system.CameraSystem
 import io.github.rolodophone.comboking.system.MoveSystem
 import io.github.rolodophone.comboking.system.PlayerInputSystem
@@ -29,6 +30,7 @@ class GameScreen(
 	private lateinit var playerInputSystem: PlayerInputSystem
 	private lateinit var moveSystem: MoveSystem
 	private lateinit var cameraSystem: CameraSystem
+	private lateinit var backgroundSystem: BackgroundSystem
 
 	override fun show() {
 		//add player controls input processor
@@ -58,37 +60,17 @@ class GameScreen(
 			with<PlayerComponent> {}
 		}
 
-		engine.entity {
-			with<TransformComponent> {
-				x = 0f
-				y = 0f
-				setSizeFromTexture(textures.prototype_ground)
-			}
-			with<GraphicsComponent> {
-				textureRegion = textures.prototype_ground
-			}
-		}
-
-		engine.entity {
-			with<TransformComponent> {
-				x = 0f
-				y = 90f
-				setSizeFromTexture(textures.prototype_platform)
-			}
-			with<GraphicsComponent> {
-				textureRegion = textures.prototype_platform
-			}
-		}
-
 		//add systems
 		playerInputSystem = PlayerInputSystem(player, gameEventManager)
 		moveSystem = MoveSystem()
 		cameraSystem = CameraSystem(viewport, player)
+		backgroundSystem = BackgroundSystem(textures, player)
 
 		engine.run {
 			addSystem(playerInputSystem)
 			addSystem(moveSystem)
 			addSystem(cameraSystem)
+			addSystem(backgroundSystem)
 		}
 	}
 

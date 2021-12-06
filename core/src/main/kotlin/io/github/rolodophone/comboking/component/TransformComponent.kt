@@ -35,11 +35,11 @@ class TransformComponent: Component, Pool.Poolable {
 	/**
 	 * The sprite will be drawn after all sprites with a lower [z]
 	 */
-	var z = 0
+	var z = 0f
 
 	override fun reset() {
 		rect.set(0f, 0f, 0f, 0f)
-		z = 0
+		z = 0f
 	}
 
 	fun setSizeFromTexture(texture: TextureRegion) {

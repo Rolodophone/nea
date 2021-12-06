@@ -6,8 +6,6 @@ import com.badlogic.gdx.utils.viewport.Viewport
 import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.util.getNotNull
 
-private const val PLAYER_TRACK_LEFT_MARGIN = 120f
-private const val PLAYER_TRACK_RIGHT_MARGIN = 120f
 
 /**
  * Pans the camera to keep the player entity visible on the screen.
@@ -16,6 +14,12 @@ class CameraSystem(
 	private val viewport: Viewport,
 	private val player: Entity
 ): EntitySystem() {
+
+	companion object {
+		const val PLAYER_TRACK_LEFT_MARGIN = 120f
+		const val PLAYER_TRACK_RIGHT_MARGIN = 120f
+	}
+
 	override fun update(deltaTime: Float) {
 		val playerTransformComp = player.getNotNull(TransformComponent.mapper)
 
