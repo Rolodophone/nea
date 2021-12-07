@@ -1,6 +1,7 @@
 package io.github.rolodophone.comboking.component
 
 import com.badlogic.ashley.core.Component
+import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
@@ -10,19 +11,26 @@ import ktx.ashley.mapperFor
 class MoveComponent: Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<MoveComponent>()
+		const val ACC_GRAVITY = -2000f
 	}
 
 	enum class MoveAction {
-		STOP, RUN_LEFT, RUN_RIGHT
+		STOP, RUN_LEFT, RUN_RIGHT, JUMP
 	}
 
-	var moveAction = MoveAction.STOP
-
+	//these may be specified when creating the entity. If not specified they'll have the default value defined below
 	var runSpeed = 100f
+	var jumpSpeed = 100f
+
+	//these shouldn't be specified when creating the entity, as they will be controlled by MoveSystem
+	var moveAction = MoveAction.STOP
+	var yVelocity = 0f
 
 	override fun reset() {
-		moveAction = MoveAction.STOP
-
 		runSpeed = 100f
+		jumpSpeed = 100f
+
+		moveAction = MoveAction.STOP
+		yVelocity = 0f
 	}
 }
