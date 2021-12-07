@@ -20,7 +20,7 @@ class MoveComponent: Component, Pool.Poolable {
 
 	//these may be specified when creating the entity. If not specified they'll have the default value defined below
 	var runSpeed = 100f
-	var jumpSpeed = 100f
+	var jumpSpeed = 600f
 
 	//these shouldn't be specified when creating the entity, as they will be controlled by MoveSystem
 	var moveAction = MoveAction.STOP
@@ -28,7 +28,7 @@ class MoveComponent: Component, Pool.Poolable {
 
 	override fun reset() {
 		runSpeed = 100f
-		jumpSpeed = 100f
+		jumpSpeed = 600f
 
 		moveAction = MoveAction.STOP
 		yVelocity = 0f
