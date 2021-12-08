@@ -298,9 +298,8 @@ TODO add sketches to better explain things
 3. Movement and physics
 	1. Jane should be able to run left and right
 	2. Jane should be able to jump
-	2. Jane should be able to go up or down ladders
+	2. Jane should be able to go up or down between the ground and upper level
 	2. Jane should not be able to walk through enemies; they should block her path
-	3. Jane should be able to walk past staircases, ladders and other objects
 5. Combat
 	1. Jane should be able to punch enemies
 	2. There should be at least 3 different types of punches
@@ -327,7 +326,6 @@ TODO add sketches to better explain things
 	1. When the player runs out of health, a game over screen should be displayed
 	2. The score should be displayed
 	3. The highscore should be displayed
-	4. The XP gained should be displayed
 	4. There should be a button to play again
 	5. There should be a button to return to the main menu
 	6. If the user has beaten their highscore, this should be indicated
