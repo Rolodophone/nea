@@ -5,15 +5,9 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
-import io.github.rolodophone.comboking.component.GraphicsComponent
-import io.github.rolodophone.comboking.component.MoveComponent
-import io.github.rolodophone.comboking.component.PlayerComponent
-import io.github.rolodophone.comboking.component.TransformComponent
+import io.github.rolodophone.comboking.component.*
 import io.github.rolodophone.comboking.event.GameEventManager
-import io.github.rolodophone.comboking.system.BackgroundSystem
-import io.github.rolodophone.comboking.system.CameraSystem
-import io.github.rolodophone.comboking.system.MoveSystem
-import io.github.rolodophone.comboking.system.PlayerInputSystem
+import io.github.rolodophone.comboking.system.*
 import ktx.ashley.entity
 import ktx.ashley.with
 
@@ -31,6 +25,7 @@ class GameScreen(
 	private lateinit var moveSystem: MoveSystem
 	private lateinit var cameraSystem: CameraSystem
 	private lateinit var backgroundSystem: BackgroundSystem
+	private lateinit var scoreSystem: ScoreSystem
 
 	override fun show() {
 		//add player controls input processor
@@ -54,10 +49,19 @@ class GameScreen(
 			with<GraphicsComponent> {
 				textureRegion = textures.prototype_player
 			}
-			with<MoveComponent>() {
+			with<MoveComponent> {
 				runSpeed = 120f
 			}
-			with<PlayerComponent> {}
+			with<PlayerComponent>()
+		}
+		val scoreEntity = engine.entity {
+			with<TransformComponent> {
+				x = 0f
+				y = 170f
+				width = 32f
+				height = 10f
+			}
+			with<ScoreComponent>()
 		}
 
 		//add systems
@@ -65,12 +69,14 @@ class GameScreen(
 		moveSystem = MoveSystem()
 		cameraSystem = CameraSystem(viewport, player)
 		backgroundSystem = BackgroundSystem(textures, player)
+		scoreSystem = ScoreSystem(player, scoreEntity)
 
 		engine.run {
 			addSystem(playerInputSystem)
 			addSystem(moveSystem)
 			addSystem(cameraSystem)
 			addSystem(backgroundSystem)
+			addSystem(scoreSystem)
 		}
 	}
 
