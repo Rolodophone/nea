@@ -29,11 +29,11 @@ class KeyboardControlsInputProcessor(
 				gameEventManager.trigger(GameEvent.PlayerMoveInput)
 				return true
 			}
-			Input.Keys.W -> {
-				GameEvent.PlayerMoveInput.moveAction = MoveAction.JUMP
-				gameEventManager.trigger(GameEvent.PlayerMoveInput)
-				return true
-			}
+//			Input.Keys.W -> {
+//				GameEvent.PlayerMoveInput.moveAction = MoveAction.JUMP
+//				gameEventManager.trigger(GameEvent.PlayerMoveInput)
+//				return true
+//			}
 		}
 
 		return false
