@@ -6,8 +6,11 @@ import com.badlogic.gdx.Application.LOG_DEBUG
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
@@ -16,6 +19,7 @@ import io.github.rolodophone.comboking.screen.MainMenuScreen
 import io.github.rolodophone.comboking.system.RenderSystem
 import io.github.rolodophone.comboking.system.TextRenderSystem
 import ktx.app.KtxGame
+import ktx.graphics.use
 import ktx.log.logger
 
 private const val WORLD_WIDTH = 320f
@@ -42,6 +46,8 @@ class ComboKing(
 	lateinit var comboKingTextures: ComboKingTextures
 	lateinit var engine: Engine
 
+	lateinit var testFont: BitmapFont
+
 	override fun create() {
 		Gdx.app.logLevel = LOG_DEBUG
 
@@ -61,6 +67,16 @@ class ComboKing(
 		engine.run {
 			addSystem(RenderSystem(batch, viewport))
 			addSystem(TextRenderSystem(batch, viewport))
+		}
+
+		testFont = BitmapFont()
+	}
+
+	override fun render() {
+		super.render()
+		batch.use {
+			testFont.color = Color.WHITE
+			testFont.draw(batch, "Testing", 0f, 0f)
 		}
 	}
 
