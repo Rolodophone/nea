@@ -22,8 +22,9 @@ import ktx.app.KtxGame
 import ktx.graphics.use
 import ktx.log.logger
 
-private const val WORLD_WIDTH = 320f
-private const val WORLD_HEIGHT = 180f
+// 16x9 aspect ratio with a highest common factor of 20. This means I can scale by any multiple of 1/20
+const val WORLD_WIDTH = 16*20
+const val WORLD_HEIGHT = 9*20
 
 private const val BATCH_SIZE = 1000
 
@@ -40,7 +41,7 @@ class ComboKing(
 	private val createPlayerInputProcessor: (GameEventManager) -> InputProcessor
 ): KtxGame<ComboKingScreen>() {
 
-	val viewport = FitViewport(WORLD_WIDTH, WORLD_HEIGHT)
+	val viewport = FitViewport(WORLD_WIDTH.toFloat(), WORLD_HEIGHT.toFloat())
 	val gameEventManager = GameEventManager()
 	lateinit var batch: Batch
 	lateinit var comboKingTextures: ComboKingTextures
