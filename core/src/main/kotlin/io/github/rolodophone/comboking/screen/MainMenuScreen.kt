@@ -15,8 +15,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 	override fun show() {
 		//set camera
 		with(viewport.camera as OrthographicCamera) {
-			zoom = 0.5f
-			position.set(viewport.worldWidth / 4f, viewport.worldHeight / 4f, 0f)
+			zoom = 7/20f
+			position.set(viewport.worldWidth * 7/40f, viewport.worldHeight * 7/40f, 0f)
 			update()
 		}
 
@@ -35,8 +35,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		//buttons
 		engine.entity {
 			with<TransformComponent> {
-				x = 70f
-				y = 43f
+				x = 49f
+				y = 37f
 				setSizeFromTexture(textures.btn_play)
 			}
 			with<GraphicsComponent> {
@@ -48,21 +48,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		}
 		engine.entity {
 			with<TransformComponent> {
-				x = 111f
-				y = 43f
-				setSizeFromTexture(textures.btn_skills)
-			}
-			with<GraphicsComponent> {
-				textureRegion = textures.btn_skills
-			}
-			with<ButtonComponent> {
-				onPress = { }
-			}
-		}
-		engine.entity {
-			with<TransformComponent> {
-				x = 70f
-				y = 21f
+				x = 49f
+				y = 26f
 				setSizeFromTexture(textures.btn_options)
 			}
 			with<GraphicsComponent> {
@@ -74,8 +61,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		}
 		engine.entity {
 			with<TransformComponent> {
-				x = 111f
-				y = 21f
+				x = 49f
+				y = 15f
 				setSizeFromTexture(textures.btn_credits)
 			}
 			with<GraphicsComponent> {
