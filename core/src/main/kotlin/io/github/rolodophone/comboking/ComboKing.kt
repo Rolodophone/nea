@@ -47,8 +47,6 @@ class ComboKing(
 	lateinit var comboKingTextures: ComboKingTextures
 	lateinit var engine: Engine
 
-	lateinit var testFont: BitmapFont
-
 	override fun create() {
 		Gdx.app.logLevel = LOG_DEBUG
 
@@ -68,16 +66,6 @@ class ComboKing(
 		engine.run {
 			addSystem(RenderSystem(batch, viewport))
 			addSystem(TextRenderSystem(batch, viewport))
-		}
-
-		testFont = BitmapFont()
-	}
-
-	override fun render() {
-		super.render()
-		batch.use {
-			testFont.color = Color.WHITE
-			testFont.draw(batch, "Testing", 0f, 0f)
 		}
 	}
 

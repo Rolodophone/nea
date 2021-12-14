@@ -21,16 +21,22 @@ class TextRenderSystem(
 	allOf(TransformComponent::class, TextComponent::class).get()
 ) {
 	private lateinit var font: BitmapFont
+	private lateinit var textProjectionMatrix: Matrix4
 
 	override fun addedToEngine(engine: Engine) {
 		font = BitmapFont()
+
+		// move the origin from the centre of the screen to the top left
+		textProjectionMatrix = viewport.camera.projection.cpy()
+			.translate(viewport.screenWidth / 2f, viewport.screenHeight / 2f, 0f)
+
 		super.addedToEngine(engine)
 	}
 
 	override fun update(deltaTime: Float) {
 		// draw text using just projection matrix so that coordinates are interpreted as screen coordinates,
-		// not game world coordinates
-		batch.use(viewport.camera.projection) {
+		// not game world coordinates.
+		batch.use(textProjectionMatrix) {
 			super.update(deltaTime)
 		}
 	}
@@ -40,6 +46,6 @@ class TextRenderSystem(
 		val textComp = entity.getNotNull(TextComponent.mapper)
 
 		font.color = Color.WHITE
-		font.draw(batch, textComp.text, 50f, 50f/*transformComp.x, transformComp.y*/)
+		font.draw(batch, textComp.text, 0f, 0f/*transformComp.x, transformComp.y*/)
 	}
 }
