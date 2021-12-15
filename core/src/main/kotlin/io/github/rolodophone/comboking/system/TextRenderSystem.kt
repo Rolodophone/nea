@@ -26,9 +26,10 @@ class TextRenderSystem(
 	override fun addedToEngine(engine: Engine) {
 		font = BitmapFont()
 
-		// move the origin from the centre of the screen to the top left
+		// save the un-zoomed projection matrix for using when drawing text, so that text isn't moved when the
+		// camera moves. Translate it to put the origin in the bottom left.
 		textProjectionMatrix = viewport.camera.projection.cpy()
-			.translate(viewport.screenWidth / 2f, viewport.screenHeight / 2f, 0f)
+			.translate(-viewport.worldWidth / 2f, -viewport.worldHeight / 2f, 0f)
 
 		super.addedToEngine(engine)
 	}
@@ -46,6 +47,7 @@ class TextRenderSystem(
 		val textComp = entity.getNotNull(TextComponent.mapper)
 
 		font.color = Color.WHITE
-		font.draw(batch, textComp.text, 0f, 0f/*transformComp.x, transformComp.y*/)
+		font.draw(batch, textComp.text, 0f, 10f/*transformComp.x, transformComp.y*/)
+		//note that the coords are the top left of the text, not the bottom left as I would expect
 	}
 }

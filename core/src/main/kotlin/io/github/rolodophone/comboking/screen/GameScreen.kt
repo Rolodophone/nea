@@ -26,7 +26,6 @@ class GameScreen(
 	private lateinit var cameraSystem: CameraSystem
 	private lateinit var backgroundSystem: BackgroundSystem
 	private lateinit var scoreSystem: ScoreSystem
-	private lateinit var textRenderSystem: TextRenderSystem
 
 	override fun show() {
 		//add player controls input processor

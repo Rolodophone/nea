@@ -60,13 +60,16 @@ class ComboKing(
 		addScreen(MainMenuScreen(this))
 		addScreen(GameScreen(this, createPlayerInputProcessor))
 
-		setScreen<MainMenuScreen>()
+		//update viewport so that TextRenderSystem can save the projection matrix
+		viewport.update(viewport.screenWidth, viewport.screenHeight, true)
 
 		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
 		engine.run {
 			addSystem(RenderSystem(batch, viewport))
 			addSystem(TextRenderSystem(batch, viewport))
 		}
+
+		setScreen<MainMenuScreen>()
 	}
 
 	override fun dispose() {
