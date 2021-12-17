@@ -1,26 +1,26 @@
 
 sprites.png
-size: 438, 184
+size: 406, 184
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 btn_credits
   rotate: false
-  xy: 343, 97
+  xy: 343, 115
   size: 29, 9
   orig: 29, 9
   offset: 0, 0
   index: -1
 btn_options
   rotate: false
-  xy: 343, 108
+  xy: 343, 126
   size: 30, 9
   orig: 30, 9
   offset: 0, 0
   index: -1
 btn_play
   rotate: false
-  xy: 324, 71
+  xy: 324, 89
   size: 17, 9
   orig: 17, 9
   offset: 0, 0
@@ -34,14 +34,14 @@ game_bg
   index: -1
 main_menu_bg
   rotate: false
-  xy: 324, 119
-  size: 112, 63
-  orig: 112, 63
+  xy: 324, 137
+  size: 80, 45
+  orig: 80, 45
   offset: 0, 0
   index: -1
 prototype_player
   rotate: false
-  xy: 324, 82
+  xy: 324, 100
   size: 17, 35
   orig: 17, 35
   offset: 0, 0

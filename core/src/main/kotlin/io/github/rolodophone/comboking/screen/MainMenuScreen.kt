@@ -15,8 +15,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 	override fun show() {
 		//set camera
 		with(viewport.camera as OrthographicCamera) {
-			zoom = 7/20f
-			position.set(viewport.worldWidth * 7/40f, viewport.worldHeight * 7/40f, 0f)
+			zoom = 1/4f
+			position.set(viewport.worldWidth * 1/8f, viewport.worldHeight * 1/8f, 0f)
 			update()
 		}
 
