@@ -1,0 +1,22 @@
+https://wiki.creativecommons.org/wiki/best_practices_for_attribution
+Remember to keep this short because not much fits on the screen
+
+Programming
+‾‾‾‾‾‾‾‾‾‾‾
+Programming by Sergi Lange-Soler
+Written in Kotlin
+Using libGDX
+With extensions from KTX
+
+Artwork
+‾‾‾‾‾‾‾
+Artwork by Sergi Lange-Soler
+Using Aseprite
+
+Music
+‾‾‾‾‾
+TODO
+
+Fonts
+‾‾‾‾‾
+"Visitor BRK" by Brian Kent
