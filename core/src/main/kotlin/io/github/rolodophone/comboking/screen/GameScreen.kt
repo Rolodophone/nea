@@ -57,7 +57,7 @@ class GameScreen(
 		val scoreEntity = engine.entity {
 			with<TransformComponent> {
 				x = 0f
-				y = 170f
+				y = 175f
 				width = 32f
 				height = 10f
 			}

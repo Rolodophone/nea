@@ -47,6 +47,8 @@ class ComboKing(
 	lateinit var comboKingTextures: ComboKingTextures
 	lateinit var engine: Engine
 
+	lateinit var textRenderSystem: TextRenderSystem
+
 	override fun create() {
 		Gdx.app.logLevel = LOG_DEBUG
 
@@ -63,10 +65,12 @@ class ComboKing(
 		//update viewport so that TextRenderSystem can save the projection matrix
 		viewport.update(viewport.screenWidth, viewport.screenHeight, true)
 
+		textRenderSystem = TextRenderSystem(batch, viewport)
+
 		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
 		engine.run {
 			addSystem(RenderSystem(batch, viewport))
-			addSystem(TextRenderSystem(batch, viewport))
+			addSystem(textRenderSystem)
 		}
 
 		setScreen<MainMenuScreen>()
@@ -75,7 +79,7 @@ class ComboKing(
 	override fun dispose() {
 		log.debug { "Disposing game" }
 
-		super.dispose()
+		super.dispose() // disposes all registered screens
 
 		log.debug {
 			val sb = batch as SpriteBatch
@@ -84,5 +88,7 @@ class ComboKing(
 		batch.dispose()
 
 		comboKingTextures.dispose()
+
+		textRenderSystem.dispose() // this system must be disposed because it holds a font
 	}
 }
