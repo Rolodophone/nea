@@ -3,6 +3,7 @@ package io.github.rolodophone.comboking.system
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
 import io.github.rolodophone.comboking.component.ScoreComponent
+import io.github.rolodophone.comboking.component.TextComponent
 import io.github.rolodophone.comboking.component.TransformComponent
 import io.github.rolodophone.comboking.util.getNotNull
 
@@ -15,10 +16,13 @@ class ScoreSystem(
 ) : EntitySystem() {
 	override fun update(deltaTime: Float) {
 		val scoreComp = scoreEntity.getNotNull(ScoreComponent.mapper)
+		val scoreTextComp = scoreEntity.getNotNull(TextComponent.mapper)
 		val playerTransformComp = player.getNotNull(TransformComponent.mapper)
 
 		//calculate score
 		scoreComp.score =
-			playerTransformComp.x
+			playerTransformComp.x.toInt()
+
+		scoreTextComp.text = "score: ${scoreComp.score}"
 	}
 }

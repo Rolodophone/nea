@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
+import io.github.rolodophone.comboking.WORLD_HEIGHT
 import io.github.rolodophone.comboking.component.*
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.system.*
@@ -56,16 +57,11 @@ class GameScreen(
 		}
 		val scoreEntity = engine.entity {
 			with<TransformComponent> {
-				x = 0f
-				y = 175f
-				width = 32f
-				height = 10f
+				x = 1f
+				y = WORLD_HEIGHT - TextComponent.FONT_HEIGHT - 1f
 			}
 			with<ScoreComponent>()
-			with<TextComponent> {
-				text = "Temporary"
-			} //text is set each frame by ScoreSystem
-
+			with<TextComponent>() //text is set each frame by ScoreSystem
 		}
 
 		//add systems

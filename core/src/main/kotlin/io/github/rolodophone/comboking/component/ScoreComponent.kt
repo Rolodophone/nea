@@ -9,9 +9,9 @@ class ScoreComponent: Component, Pool.Poolable {
 		val mapper = mapperFor<ScoreComponent>()
 	}
 
-	var score = 0f
+	var score = 0
 
 	override fun reset() {
-		score = 0f
+		score = 0
 	}
 }

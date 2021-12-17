@@ -56,7 +56,11 @@ class TextRenderSystem(
 
 		// add the height of the font because by default text is drawn with the origin at the top left. Adding the
 		// on the height means the text is drawn with the origin in the bottom left, consistent with the rest of my game
-		font.draw(batch, textComp.text, transformComp.x, transformComp.y + TextComponent.FONT_HEIGHT)
+
+		// convert text to uppercase because this font uses the lowercase letters as slight variants of the capital
+		// letters. So I'm converting all text for the letters to look consistent
+
+		font.draw(batch, textComp.text.uppercase(), transformComp.x, transformComp.y + TextComponent.FONT_HEIGHT)
 	}
 
 	override fun dispose() {
