@@ -11,6 +11,9 @@ import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.entity
 import ktx.ashley.with
 
+/**
+ * Draws the repeating background.
+ */
 class BackgroundSystem(
 	private val textures: ComboKingTextures,
 	private val player: Entity
