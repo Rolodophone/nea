@@ -21,8 +21,8 @@ class ScoreSystem(
 
 		//calculate score
 		scoreComp.score =
-			playerTransformComp.x.toInt()
+			playerTransformComp.x.toInt() - 120
 
-		scoreTextComp.text = "score: ${scoreComp.score}"
+		scoreTextComp.text = "SCORE: ${scoreComp.score}"
 	}
 }

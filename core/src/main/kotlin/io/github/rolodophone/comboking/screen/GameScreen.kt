@@ -27,6 +27,7 @@ class GameScreen(
 	private lateinit var cameraSystem: CameraSystem
 	private lateinit var backgroundSystem: BackgroundSystem
 	private lateinit var scoreSystem: ScoreSystem
+	private lateinit var enemySpawningSystem: EnemySpawningSystem
 
 	override fun show() {
 		//add player controls input processor
@@ -70,6 +71,7 @@ class GameScreen(
 		cameraSystem = CameraSystem(viewport, player)
 		backgroundSystem = BackgroundSystem(textures, player)
 		scoreSystem = ScoreSystem(player, scoreEntity)
+		enemySpawningSystem = EnemySpawningSystem(player, textures)
 
 		engine.run {
 			addSystem(playerInputSystem)
@@ -77,6 +79,7 @@ class GameScreen(
 			addSystem(cameraSystem)
 			addSystem(backgroundSystem)
 			addSystem(scoreSystem)
+			addSystem(enemySpawningSystem)
 		}
 	}
 

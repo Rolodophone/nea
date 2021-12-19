@@ -5,7 +5,7 @@ package io.github.rolodophone.comboking.util
 import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.ComponentMapper
 import com.badlogic.ashley.core.Entity
-import com.badlogic.gdx.graphics.g2d.Sprite
+import kotlin.random.Random.Default.nextFloat
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.viewport.Viewport
@@ -48,3 +48,5 @@ fun <T : Component> Entity.getNotNull(mapper: ComponentMapper<T>): T {
 	requireNotNull(component) { "Entity $this hasn't got the requested component" }
 	return component
 }
+
+fun nextFloat(from: Float, until: Float) = (nextFloat() * (until - from)) + from

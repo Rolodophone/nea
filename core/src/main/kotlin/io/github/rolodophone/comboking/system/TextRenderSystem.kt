@@ -30,7 +30,7 @@ class TextRenderSystem(
 
 	override fun addedToEngine(engine: Engine) {
 		// load font
-		font = BitmapFont(Gdx.files.classpath("font/visitor.fnt"), Gdx.files.classpath("font/visitor.png"), false)
+		font = BitmapFont(Gdx.files.internal("font/visitor.fnt"), Gdx.files.internal("font/visitor.png"), false)
 
 		// save the un-zoomed projection matrix for using when drawing text, so that text isn't moved when the
 		// camera moves. Translate it to put the origin in the bottom left.

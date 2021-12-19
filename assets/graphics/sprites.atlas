@@ -20,7 +20,7 @@ btn_options
   index: -1
 btn_play
   rotate: false
-  xy: 324, 89
+  xy: 324, 52
   size: 17, 9
   orig: 17, 9
   offset: 0, 0
@@ -39,9 +39,16 @@ main_menu_bg
   orig: 80, 45
   offset: 0, 0
   index: -1
-prototype_player
+prototype_enemy
   rotate: false
   xy: 324, 100
+  size: 17, 35
+  orig: 17, 35
+  offset: 0, 0
+  index: -1
+prototype_player
+  rotate: false
+  xy: 324, 63
   size: 17, 35
   orig: 17, 35
   offset: 0, 0
