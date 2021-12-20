@@ -1,5 +1,6 @@
 https://wiki.creativecommons.org/wiki/best_practices_for_attribution
 Remember to keep this short because not much fits on the screen
+Should I donate to the people who's assets I've used?
 
 Programming
 ‾‾‾‾‾‾‾‾‾‾‾
@@ -12,6 +13,7 @@ Artwork
 ‾‾‾‾‾‾‾
 Artwork by Sergi Lange-Soler
 Using Aseprite
+TODO should I credit https://rvros.itch.io/animated-pixel-hero?
 
 Music
 ‾‾‾‾‾

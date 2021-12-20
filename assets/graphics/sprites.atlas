@@ -1,55 +1,17 @@
-
 sprites.png
-size: 406, 184
-format: RGBA8888
-filter: Nearest, Nearest
-repeat: none
+size:404,182
+repeat:none
 btn_credits
-  rotate: false
-  xy: 343, 115
-  size: 29, 9
-  orig: 29, 9
-  offset: 0, 0
-  index: -1
+bounds:342,114,29,9
 btn_options
-  rotate: false
-  xy: 343, 126
-  size: 30, 9
-  orig: 30, 9
-  offset: 0, 0
-  index: -1
+bounds:342,125,30,9
 btn_play
-  rotate: false
-  xy: 324, 52
-  size: 17, 9
-  orig: 17, 9
-  offset: 0, 0
-  index: -1
+bounds:323,51,17,9
 game_bg
-  rotate: false
-  xy: 2, 2
-  size: 320, 180
-  orig: 320, 180
-  offset: 0, 0
-  index: -1
+bounds:1,1,320,180
 main_menu_bg
-  rotate: false
-  xy: 324, 137
-  size: 80, 45
-  orig: 80, 45
-  offset: 0, 0
-  index: -1
+bounds:323,136,80,45
 prototype_enemy
-  rotate: false
-  xy: 324, 100
-  size: 17, 35
-  orig: 17, 35
-  offset: 0, 0
-  index: -1
+bounds:323,99,17,35
 prototype_player
-  rotate: false
-  xy: 324, 63
-  size: 17, 35
-  orig: 17, 35
-  offset: 0, 0
-  index: -1
+bounds:323,62,17,35
