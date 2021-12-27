@@ -47,10 +47,10 @@ class GameScreen(
 			with<TransformComponent> {
 				x = 120f
 				y = 5f
-				setSizeFromTexture(textures.prototype_player)
+				setSizeFromTexture(textures.player)
 			}
 			with<GraphicsComponent> {
-				textureRegion = textures.prototype_player
+				textureRegion = textures.player
 			}
 			with<MoveComponent> {
 				runSpeed = 120f
