@@ -1,111 +1,160 @@
 
 sprites.png
-size: 392, 266
+size: 615, 204
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 btn_credits
   rotate: false
-  xy: 52, 27
+  xy: 1, 1
   size: 29, 9
   orig: 29, 9
   offset: 0, 0
   index: -1
 btn_options
   rotate: false
-  xy: 20, 27
+  xy: 1, 12
   size: 30, 9
   orig: 30, 9
   offset: 0, 0
   index: -1
 btn_play
   rotate: false
-  xy: 374, 256
+  xy: 33, 12
   size: 17, 9
   orig: 17, 9
   offset: 0, 0
   index: -1
 game_bg
   rotate: false
-  xy: 1, 85
+  xy: 1, 23
   size: 320, 180
   orig: 320, 180
   offset: 0, 0
   index: -1
 main_menu_bg
   rotate: false
-  xy: 1, 38
+  xy: 323, 158
   size: 80, 45
   orig: 80, 45
   offset: 0, 0
   index: -1
+office_worker_enter_door
+  rotate: false
+  xy: 565, 71
+  size: 36, 68
+  orig: 36, 68
+  offset: 0, 0
+  index: -1
+office_worker_exit_door
+  rotate: false
+  xy: 463, 7
+  size: 36, 68
+  orig: 36, 68
+  offset: 0, 0
+  index: -1
+office_worker_exit_door_kb
+  rotate: false
+  xy: 577, 1
+  size: 36, 68
+  orig: 36, 68
+  offset: 0, 0
+  index: -1
+office_worker_hit_kb0
+  rotate: false
+  xy: 501, 1
+  size: 36, 68
+  orig: 36, 68
+  offset: 0, 0
+  index: -1
+office_worker_hit_kb1
+  rotate: false
+  xy: 425, 7
+  size: 36, 68
+  orig: 36, 68
+  offset: 0, 0
+  index: -1
+office_worker_idle
+  rotate: false
+  xy: 527, 71
+  size: 36, 68
+  orig: 36, 68
+  offset: 0, 0
+  index: -1
+office_worker_idle_kb
+  rotate: false
+  xy: 374, 88
+  size: 36, 68
+  orig: 36, 68
+  offset: 0, 0
+  index: -1
+office_worker_push
+  rotate: false
+  xy: 539, 1
+  size: 36, 68
+  orig: 36, 68
+  offset: 0, 0
+  index: -1
 player_enter_door
   rotate: false
-  xy: 323, 139
+  xy: 323, 30
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_exit_door
   rotate: false
-  xy: 83, 21
+  xy: 412, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_idle0
   rotate: false
-  xy: 323, 203
+  xy: 323, 94
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_idle1
   rotate: false
-  xy: 236, 21
+  xy: 565, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_punch0
   rotate: false
-  xy: 287, 11
+  xy: 425, 77
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_punch1
   rotate: false
-  xy: 134, 21
+  xy: 463, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch0
   rotate: false
-  xy: 338, 11
+  xy: 476, 77
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch1
   rotate: false
-  xy: 185, 21
+  xy: 514, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch2
   rotate: false
-  xy: 323, 75
+  xy: 374, 24
   size: 49, 62
   orig: 49, 62
-  offset: 0, 0
-  index: -1
-prototype_enemy
-  rotate: false
-  xy: 1, 1
-  size: 17, 35
-  orig: 17, 35
   offset: 0, 0
   index: -1
