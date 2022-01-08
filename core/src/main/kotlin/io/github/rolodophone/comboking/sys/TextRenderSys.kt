@@ -1,4 +1,4 @@
-package io.github.rolodophone.comboking.system
+package io.github.rolodophone.comboking.sys
 
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
@@ -10,20 +10,20 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.Viewport
-import io.github.rolodophone.comboking.component.TextComponent
-import io.github.rolodophone.comboking.component.TransformComponent
+import io.github.rolodophone.comboking.comp.TextComp
+import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 import ktx.graphics.use
 
 /**
- * Draws the text of entities with a [TextComponent].
+ * Draws the text of entities with a [TextComp].
  */
-class TextRenderSystem(
+class TextRenderSys(
 	private val batch: Batch,
 	private val viewport: Viewport,
 ): IteratingSystem(
-	allOf(TransformComponent::class, TextComponent::class).get()
+	allOf(TransformComp::class, TextComp::class).get()
 ), Disposable {
 	private lateinit var font: BitmapFont
 	private lateinit var textProjectionMatrix: Matrix4
@@ -49,8 +49,8 @@ class TextRenderSystem(
 	}
 
 	override fun processEntity(entity: Entity, deltaTime: Float) {
-		val transformComp = entity.getNotNull(TransformComponent.mapper)
-		val textComp = entity.getNotNull(TextComponent.mapper)
+		val transformComp = entity.getNotNull(TransformComp.mapper)
+		val textComp = entity.getNotNull(TextComp.mapper)
 
 		font.color = Color.WHITE
 
@@ -60,7 +60,7 @@ class TextRenderSystem(
 		// convert text to uppercase because this font uses the lowercase letters as slight variants of the capital
 		// letters. So I'm converting all text for the letters to look consistent
 
-		font.draw(batch, textComp.text.uppercase(), transformComp.x, transformComp.y + TextComponent.FONT_HEIGHT)
+		font.draw(batch, textComp.text.uppercase(), transformComp.x, transformComp.y + TextComp.FONT_HEIGHT)
 	}
 
 	override fun dispose() {

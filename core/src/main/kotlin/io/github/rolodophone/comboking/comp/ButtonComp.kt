@@ -1,15 +1,15 @@
-package io.github.rolodophone.comboking.component
+package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
 /**
- * Entities with a [ButtonComponent] can be clicked on by the user.
+ * Entities with a [ButtonComp] can be clicked on by the user.
  */
-class ButtonComponent : Component, Pool.Poolable {
+class ButtonComp : Component, Pool.Poolable {
 	companion object {
-		val mapper = mapperFor<ButtonComponent>()
+		val mapper = mapperFor<ButtonComp>()
 	}
 
 	var onPress: () -> Unit = {}

@@ -1,24 +1,24 @@
-package io.github.rolodophone.comboking.system
+package io.github.rolodophone.comboking.sys
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
-import io.github.rolodophone.comboking.component.MoveComponent.MoveAction
-import io.github.rolodophone.comboking.component.MoveComponent
-import io.github.rolodophone.comboking.component.TransformComponent
+import io.github.rolodophone.comboking.comp.MoveComp.MoveAction
+import io.github.rolodophone.comboking.comp.MoveComp
+import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 
 /**
- * Moves entities according to their current move action as specified by their [MoveComponent].
+ * Moves entities according to their current move action as specified by their [MoveComp].
  */
-class MoveSystem: IteratingSystem(
-	allOf(TransformComponent::class, MoveComponent::class).get()
+class MoveSys: IteratingSystem(
+	allOf(TransformComp::class, MoveComp::class).get()
 ) {
 	private var playerIsJumping = false
 
 	override fun processEntity(entity: Entity, deltaTime: Float) {
-		val transformComp = entity.getNotNull(TransformComponent.mapper)
-		val moveComp = entity.getNotNull(MoveComponent.mapper)
+		val transformComp = entity.getNotNull(TransformComp.mapper)
+		val moveComp = entity.getNotNull(MoveComp.mapper)
 
 		when (moveComp.moveAction) {
 			MoveAction.STOP -> {}
@@ -34,7 +34,7 @@ class MoveSystem: IteratingSystem(
 				//TODO enums: one for player input and one for any sentient entity's current movement.
 
 				if (playerIsJumping) {
-					moveComp.yVelocity += MoveComponent.ACC_GRAVITY * deltaTime
+					moveComp.yVelocity += MoveComp.ACC_GRAVITY * deltaTime
 					transformComp.y += moveComp.yVelocity * deltaTime
 				}
 				else {

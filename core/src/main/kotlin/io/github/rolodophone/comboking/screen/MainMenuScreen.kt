@@ -2,9 +2,9 @@ package io.github.rolodophone.comboking.screen
 
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
-import io.github.rolodophone.comboking.component.ButtonComponent
-import io.github.rolodophone.comboking.component.GraphicsComponent
-import io.github.rolodophone.comboking.component.TransformComponent
+import io.github.rolodophone.comboking.comp.ButtonComp
+import io.github.rolodophone.comboking.comp.GraphicsComp
+import io.github.rolodophone.comboking.comp.TransformComp
 import ktx.ashley.entity
 import ktx.ashley.with
 
@@ -22,53 +22,53 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 
 		// background
 		engine.entity {
-			with<TransformComponent> {
+			with<TransformComp> {
 				x = 0f
 				y = 0f
 				setSizeFromTexture(textures.main_menu_bg)
 			}
-			with<GraphicsComponent> {
+			with<GraphicsComp> {
 				textureRegion = textures.main_menu_bg
 			}
 		}
 
 		//buttons
 		engine.entity {
-			with<TransformComponent> {
+			with<TransformComp> {
 				x = 34f
 				y = 29f
 				setSizeFromTexture(textures.btn_play)
 			}
-			with<GraphicsComponent> {
+			with<GraphicsComp> {
 				textureRegion = textures.btn_play
 			}
-			with<ButtonComponent> {
+			with<ButtonComp> {
 				onPress = { game.setScreen<GameScreen>() }
 			}
 		}
 		engine.entity {
-			with<TransformComponent> {
+			with<TransformComp> {
 				x = 34f
 				y = 18f
 				setSizeFromTexture(textures.btn_options)
 			}
-			with<GraphicsComponent> {
+			with<GraphicsComp> {
 				textureRegion = textures.btn_options
 			}
-			with<ButtonComponent> {
+			with<ButtonComp> {
 				onPress = { }
 			}
 		}
 		engine.entity {
-			with<TransformComponent> {
+			with<TransformComp> {
 				x = 34f
 				y = 7f
 				setSizeFromTexture(textures.btn_credits)
 			}
-			with<GraphicsComponent> {
+			with<GraphicsComp> {
 				textureRegion = textures.btn_credits
 			}
-			with<ButtonComponent> {
+			with<ButtonComp> {
 				onPress = { }
 			}
 		}

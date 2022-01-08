@@ -1,13 +1,13 @@
-package io.github.rolodophone.comboking.component
+package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
-class AnimationComponent : Component, Pool.Poolable {
+class AnimationComp : Component, Pool.Poolable {
 	companion object {
-		val mapper = mapperFor<AnimationComponent>()
+		val mapper = mapperFor<AnimationComp>()
 	}
 
 	class AnimationLoop(val frameDuration: Float, val frames: List<TextureRegion>)

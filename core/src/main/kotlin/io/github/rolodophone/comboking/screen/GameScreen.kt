@@ -7,9 +7,9 @@ import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.WORLD_HEIGHT
-import io.github.rolodophone.comboking.component.*
+import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.event.GameEventManager
-import io.github.rolodophone.comboking.system.*
+import io.github.rolodophone.comboking.sys.*
 import ktx.ashley.entity
 import ktx.ashley.with
 
@@ -39,38 +39,38 @@ class GameScreen(
 
 		// add entities
 		val player = engine.entity {
-			with<TransformComponent> {
+			with<TransformComp> {
 				x = 120f
 				y = 5f
 				setSizeFromTexture(textures.player_idle0)
 			}
-			with<GraphicsComponent> {
+			with<GraphicsComp> {
 				textureRegion = textures.player_idle0
 			}
-			with<MoveComponent> {
+			with<MoveComp> {
 				runSpeed = 120f
 			}
-			with<PlayerComponent>()
+			with<PlayerComp>()
 		}
 		val scoreEntity = engine.entity {
-			with<TransformComponent> {
+			with<TransformComp> {
 				x = 1f
-				y = WORLD_HEIGHT - TextComponent.FONT_HEIGHT - 1f
+				y = WORLD_HEIGHT - TextComp.FONT_HEIGHT - 1f
 			}
-			with<ScoreComponent>()
-			with<TextComponent>() //text is set each frame by ScoreSystem
+			with<ScoreComp>()
+			with<TextComp>() //text is set each frame by ScoreSys
 		}
 
 		//add systems
 		gameScreenSystems = listOf(
-			PlayerInputSystem(player, gameEventManager),
-			MoveSystem(),
-			CameraSystem(viewport, player),
-			BackgroundSystem(textures, player),
-			ScoreSystem(player, scoreEntity),
+			PlayerInputSys(player, gameEventManager),
+			MoveSys(),
+			CameraSys(viewport, player),
+			BackgroundSys(textures, player),
+			ScoreSys(player, scoreEntity),
 			EnemySpawningSystem(player, textures),
-			AISystem(player),
-			AnimationSystem()
+			AISys(player),
+			AnimationSys()
 		)
 
 		gameScreenSystems?.forEach { system ->

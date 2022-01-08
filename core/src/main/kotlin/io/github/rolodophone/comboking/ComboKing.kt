@@ -6,20 +6,16 @@ import com.badlogic.gdx.Application.LOG_DEBUG
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameScreen
 import io.github.rolodophone.comboking.screen.MainMenuScreen
-import io.github.rolodophone.comboking.system.RenderSystem
-import io.github.rolodophone.comboking.system.TextRenderSystem
+import io.github.rolodophone.comboking.sys.RenderSystem
+import io.github.rolodophone.comboking.sys.TextRenderSys
 import ktx.app.KtxGame
-import ktx.graphics.use
 import ktx.log.logger
 
 // 16x9 aspect ratio with a highest common factor of 20. This means I can scale by any multiple of 1/20
@@ -47,7 +43,7 @@ class ComboKing(
 	lateinit var comboKingTextures: ComboKingTextures
 	lateinit var engine: Engine
 
-	lateinit var textRenderSystem: TextRenderSystem
+	lateinit var textRenderSys: TextRenderSys
 
 	override fun create() {
 		Gdx.app.logLevel = LOG_DEBUG
@@ -62,15 +58,15 @@ class ComboKing(
 		addScreen(MainMenuScreen(this))
 		addScreen(GameScreen(this, createPlayerInputProcessor))
 
-		//update viewport so that TextRenderSystem can save the projection matrix
+		//update viewport so that TextRenderSys can save the projection matrix
 		viewport.update(viewport.screenWidth, viewport.screenHeight, true)
 
-		textRenderSystem = TextRenderSystem(batch, viewport)
+		textRenderSys = TextRenderSys(batch, viewport)
 
 		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
 		engine.run {
 			addSystem(RenderSystem(batch, viewport))
-			addSystem(textRenderSystem)
+			addSystem(textRenderSys)
 		}
 
 		setScreen<MainMenuScreen>()
@@ -89,6 +85,6 @@ class ComboKing(
 
 		comboKingTextures.dispose()
 
-		textRenderSystem.dispose() // this system must be disposed because it holds a font
+		textRenderSys.dispose() // this system must be disposed because it holds a font
 	}
 }

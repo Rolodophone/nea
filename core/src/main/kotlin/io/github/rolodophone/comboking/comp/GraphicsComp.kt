@@ -1,17 +1,16 @@
-package io.github.rolodophone.comboking.component
+package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
-import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
 /**
- * Entities with a [GraphicsComponent] and a [TransformComponent] are drawn on the screen.
+ * Entities with a [GraphicsComp] and a [TransformComp] are drawn on the screen.
  */
-class GraphicsComponent: Component, Pool.Poolable {
+class GraphicsComp: Component, Pool.Poolable {
 	companion object {
-		val mapper = mapperFor<GraphicsComponent>()
+		val mapper = mapperFor<GraphicsComp>()
 	}
 
 	/**

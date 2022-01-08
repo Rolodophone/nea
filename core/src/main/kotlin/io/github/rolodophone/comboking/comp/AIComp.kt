@@ -1,17 +1,17 @@
-package io.github.rolodophone.comboking.component
+package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.Entity
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
-import io.github.rolodophone.comboking.component.MoveComponent.MoveAction
+import io.github.rolodophone.comboking.comp.MoveComp.MoveAction
 
 /**
- * Entities with an [AIComponent] move and fight according to a rule-based AI
+ * Entities with an [AIComp] move and fight according to a rule-based AI
  */
-class AIComponent: Component, Pool.Poolable {
+class AIComp: Component, Pool.Poolable {
 	companion object {
-		val mapper = mapperFor<AIComponent>()
+		val mapper = mapperFor<AIComp>()
 	}
 
 	var determineState: (enemy: Entity, player: Entity) -> Int

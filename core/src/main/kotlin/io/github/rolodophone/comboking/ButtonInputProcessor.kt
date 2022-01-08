@@ -4,12 +4,11 @@ import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.utils.viewport.Viewport
-import io.github.rolodophone.comboking.component.ButtonComponent
-import io.github.rolodophone.comboking.component.TransformComponent
+import io.github.rolodophone.comboking.comp.ButtonComp
+import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 import io.github.rolodophone.comboking.util.unprojectX
 import io.github.rolodophone.comboking.util.unprojectY
-import ktx.ashley.EngineEntity
 import ktx.ashley.allOf
 
 /**
@@ -38,10 +37,10 @@ class ButtonInputProcessor(
 
 	override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
 		// check if a button was pressed down
-		val buttons = engine.getEntitiesFor(allOf(ButtonComponent::class, TransformComponent::class).get())
+		val buttons = engine.getEntitiesFor(allOf(ButtonComp::class, TransformComp::class).get())
 
 		for (buttonEntity in buttons) {
-			val transformComp = buttonEntity.getNotNull(TransformComponent.mapper)
+			val transformComp = buttonEntity.getNotNull(TransformComp.mapper)
 
 			if (transformComp.contains(
 					viewport.unprojectX(screenX.toFloat()),
@@ -59,14 +58,14 @@ class ButtonInputProcessor(
 		buttonPressed?.let { buttonEntity ->
 
 			// check if the button that was pressed was released
-			val transformComp = buttonEntity.getNotNull(TransformComponent.mapper)
+			val transformComp = buttonEntity.getNotNull(TransformComp.mapper)
 
 			if (transformComp.contains(
 					viewport.unprojectX(screenX.toFloat()),
 					viewport.unprojectY(screenY.toFloat())
 			)) {
 				//execute button action
-				val buttonComp = buttonEntity.getNotNull(ButtonComponent.mapper)
+				val buttonComp = buttonEntity.getNotNull(ButtonComp.mapper)
 				buttonComp.onPress()
 				buttonPressed = null
 				return true

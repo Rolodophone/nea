@@ -1,4 +1,4 @@
-package io.github.rolodophone.comboking.component
+package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.graphics.g2d.TextureRegion
@@ -7,11 +7,11 @@ import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
 /**
- * Entities with a [TransformComponent] have a size and position in the game world.
+ * Entities with a [TransformComp] have a size and position in the game world.
  */
-class TransformComponent: Component, Pool.Poolable {
+class TransformComp: Component, Pool.Poolable {
 	companion object {
-		val mapper = mapperFor<TransformComponent>()
+		val mapper = mapperFor<TransformComp>()
 	}
 
 	private val rect = Rectangle()

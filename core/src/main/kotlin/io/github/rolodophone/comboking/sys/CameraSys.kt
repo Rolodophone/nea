@@ -1,16 +1,16 @@
-package io.github.rolodophone.comboking.system
+package io.github.rolodophone.comboking.sys
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.gdx.utils.viewport.Viewport
-import io.github.rolodophone.comboking.component.TransformComponent
+import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 
 
 /**
  * Pans the camera to keep the player entity visible on the screen.
  */
-class CameraSystem(
+class CameraSys(
 	private val viewport: Viewport,
 	private val player: Entity
 ): EntitySystem() {
@@ -21,7 +21,7 @@ class CameraSystem(
 	}
 
 	override fun update(deltaTime: Float) {
-		val playerTransformComp = player.getNotNull(TransformComponent.mapper)
+		val playerTransformComp = player.getNotNull(TransformComp.mapper)
 
 		if (viewport.camera.position.x > playerTransformComp.x
 				+ viewport.worldWidth / 2f - PLAYER_TRACK_LEFT_MARGIN) {

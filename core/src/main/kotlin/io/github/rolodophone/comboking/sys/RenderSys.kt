@@ -1,12 +1,12 @@
-package io.github.rolodophone.comboking.system
+package io.github.rolodophone.comboking.sys
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.SortedIteratingSystem
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.utils.viewport.Viewport
-import io.github.rolodophone.comboking.component.GraphicsComponent
-import io.github.rolodophone.comboking.component.TransformComponent
+import io.github.rolodophone.comboking.comp.GraphicsComp
+import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 import ktx.graphics.use
@@ -21,8 +21,8 @@ class RenderSystem(
 	private val batch: Batch,
 	private val viewport: Viewport
 ): SortedIteratingSystem(
-	allOf(TransformComponent::class, GraphicsComponent::class).get(),
-	compareBy { entity -> entity.getNotNull(TransformComponent.mapper).z }
+	allOf(TransformComp::class, GraphicsComp::class).get(),
+	compareBy { entity -> entity.getNotNull(TransformComp.mapper).z }
 ) {
 	private val sprite = Sprite() //reused for each entity to draw using a batch
 
@@ -34,7 +34,7 @@ class RenderSystem(
 	}
 
 	override fun processEntity(entity: Entity, deltaTime: Float) {
-		val graphicsComp = entity.getNotNull(GraphicsComponent.mapper)
+		val graphicsComp = entity.getNotNull(GraphicsComp.mapper)
 
 		if (!graphicsComp.visible) return
 
@@ -43,7 +43,7 @@ class RenderSystem(
 			return
 		}
 
-		val transformComp = entity.getNotNull(TransformComponent.mapper)
+		val transformComp = entity.getNotNull(TransformComp.mapper)
 
 		sprite.setBounds(transformComp.x, transformComp.y, transformComp.width, transformComp.height)
 		sprite.setRegion(graphicsComp.textureRegion)
