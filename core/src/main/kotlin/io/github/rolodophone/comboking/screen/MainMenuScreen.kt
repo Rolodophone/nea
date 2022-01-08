@@ -35,8 +35,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		//buttons
 		engine.entity {
 			with<TransformComponent> {
-				x = 49f
-				y = 37f
+				x = 34f
+				y = 29f
 				setSizeFromTexture(textures.btn_play)
 			}
 			with<GraphicsComponent> {
@@ -48,8 +48,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		}
 		engine.entity {
 			with<TransformComponent> {
-				x = 49f
-				y = 26f
+				x = 34f
+				y = 18f
 				setSizeFromTexture(textures.btn_options)
 			}
 			with<GraphicsComponent> {
@@ -61,8 +61,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 		}
 		engine.entity {
 			with<TransformComponent> {
-				x = 49f
-				y = 15f
+				x = 34f
+				y = 7f
 				setSizeFromTexture(textures.btn_credits)
 			}
 			with<GraphicsComponent> {

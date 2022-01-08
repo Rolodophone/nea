@@ -53,10 +53,10 @@ class EnemySpawningSystem(
 					else playerTransformComp.x - WORLD_WIDTH
 				y = (if (nextBoolean()) nextInt(0, 11)
 					 else nextInt(90, 101)).toFloat()
-				setSizeFromTexture(textures.prototype_enemy)
+				setSizeFromTexture(textures.office_worker_idle)
 			}
 			with<GraphicsComponent> {
-				textureRegion = textures.prototype_enemy
+				textureRegion = textures.office_worker_idle
 			}
 			with<MoveComponent> {
 				runSpeed = 80f
