@@ -14,7 +14,7 @@ import io.github.rolodophone.comboking.util.getNotNull
 class PlayerInputSys(
 	private val player: Entity,
 	private val gameEventManager: GameEventManager
-) : EntitySystem() {
+) : EntitySystem(0) {
 
 	private val eventCallback = { event: GameEvent.PlayerMoveInput ->
 		val moveComp = player.getNotNull(MoveComp.mapper)

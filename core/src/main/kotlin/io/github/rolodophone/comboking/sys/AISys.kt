@@ -10,13 +10,13 @@ import ktx.ashley.allOf
 class AISys(
 	private val player: Entity
 ): IteratingSystem(
-	allOf(AIComp::class, MoveComp::class).get()
+	allOf(AIComp::class, MoveComp::class).get(), 10
 ) {
 	override fun processEntity(entity: Entity, deltaTime: Float) {
 		val entityAIComp = entity.getNotNull(AIComp.mapper)
 		val entityMoveComp = entity.getNotNull(MoveComp.mapper)
 
-		val state = entityAIComp.determineState(entity, player)
-		entityMoveComp.moveAction = entityAIComp.determineMoveAction(entity, player, state)
+		entityAIComp.state = entityAIComp.determineState(entity, player)
+		entityMoveComp.moveAction = entityAIComp.determineMoveAction(entity, player, entityAIComp.state)
 	}
 }

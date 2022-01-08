@@ -23,7 +23,7 @@ import io.github.rolodophone.comboking.comp.MoveComp.MoveAction
 class EnemySpawningSystem(
 	private val player: Entity,
 	private val textures: ComboKingTextures
-): EntitySystem() {
+): EntitySystem(15) {
 
 	lateinit var playerTransformComp: TransformComp
 

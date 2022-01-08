@@ -13,7 +13,7 @@ import io.github.rolodophone.comboking.util.getNotNull
 class CameraSys(
 	private val viewport: Viewport,
 	private val player: Entity
-): EntitySystem() {
+): EntitySystem(20) {
 
 	companion object {
 		const val PLAYER_TRACK_LEFT_MARGIN = 120f

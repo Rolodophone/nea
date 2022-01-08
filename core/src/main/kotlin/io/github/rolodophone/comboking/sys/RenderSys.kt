@@ -22,7 +22,8 @@ class RenderSystem(
 	private val viewport: Viewport
 ): SortedIteratingSystem(
 	allOf(TransformComp::class, GraphicsComp::class).get(),
-	compareBy { entity -> entity.getNotNull(TransformComp.mapper).z }
+	compareBy { entity -> entity.getNotNull(TransformComp.mapper).z },
+	30
 ) {
 	private val sprite = Sprite() //reused for each entity to draw using a batch
 

@@ -16,7 +16,7 @@ import ktx.ashley.with
 class BackgroundSys(
 	private val textures: ComboKingTextures,
 	private val player: Entity
-): EntitySystem() {
+): EntitySystem(20) {
 
 	private lateinit var walls: List<Entity>
 	private var leftmostWallIndex = 0

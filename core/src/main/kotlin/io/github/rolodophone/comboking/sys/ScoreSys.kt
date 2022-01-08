@@ -13,7 +13,7 @@ import io.github.rolodophone.comboking.util.getNotNull
 class ScoreSys(
 	private val player: Entity,
 	private val scoreEntity: Entity
-) : EntitySystem() {
+) : EntitySystem(10) {
 	override fun update(deltaTime: Float) {
 		val scoreComp = scoreEntity.getNotNull(ScoreComp.mapper)
 		val scoreTextComp = scoreEntity.getNotNull(TextComp.mapper)

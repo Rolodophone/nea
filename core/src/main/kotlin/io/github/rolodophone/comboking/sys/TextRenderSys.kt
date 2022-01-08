@@ -23,7 +23,7 @@ class TextRenderSys(
 	private val batch: Batch,
 	private val viewport: Viewport,
 ): IteratingSystem(
-	allOf(TransformComp::class, TextComp::class).get()
+	allOf(TransformComp::class, TextComp::class).get(), 35
 ), Disposable {
 	private lateinit var font: BitmapFont
 	private lateinit var textProjectionMatrix: Matrix4

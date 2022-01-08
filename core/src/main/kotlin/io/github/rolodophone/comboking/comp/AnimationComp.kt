@@ -10,13 +10,22 @@ class AnimationComp : Component, Pool.Poolable {
 		val mapper = mapperFor<AnimationComp>()
 	}
 
-	class AnimationLoop(val frameDuration: Float, val frames: List<TextureRegion>)
+	class AnimationLoop(val frameDuration: Int, val frames: List<TextureRegion>)
 
 	var animationLoops = listOf<AnimationLoop>()
-	var determineAnimationLoop: (state: Int) -> Int = { _ -> 0 }
+	var determineAnimationLoop: (state: Int?, moveAction: MoveComp.MoveAction?) -> Int = { _, _ -> 0 }
+
+	//for use of AnimationSys
+	var animationLoop = 0
+	var timeOfLastFrameChange = 0L
+	var frameIndex = 0
 
 	override fun reset() {
 		animationLoops = listOf()
-		determineAnimationLoop = { _ -> 0 }
+		determineAnimationLoop = { _, _ -> 0 }
+
+		animationLoop = 0
+		timeOfLastFrameChange = 0L
+		frameIndex = 0
 	}
 }

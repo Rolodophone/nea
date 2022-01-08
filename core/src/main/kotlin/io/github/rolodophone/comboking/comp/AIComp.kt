@@ -19,8 +19,12 @@ class AIComp: Component, Pool.Poolable {
 	var determineMoveAction: (enemy: Entity, player: Entity, state: Int) -> MoveAction
 			= { _, _, _ -> MoveAction.STOP }
 
+	var state = 0
+
 	override fun reset() {
 		determineState = { _, _ -> 0 }
 		determineMoveAction = { _, _, _ -> MoveAction.STOP }
+
+		state = 0
 	}
 }

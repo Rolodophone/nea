@@ -12,7 +12,7 @@ import ktx.ashley.allOf
  * Moves entities according to their current move action as specified by their [MoveComp].
  */
 class MoveSys: IteratingSystem(
-	allOf(TransformComp::class, MoveComp::class).get()
+	allOf(TransformComp::class, MoveComp::class).get(), 10
 ) {
 	private var playerIsJumping = false
 

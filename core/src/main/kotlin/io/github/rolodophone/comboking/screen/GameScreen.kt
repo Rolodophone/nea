@@ -44,8 +44,21 @@ class GameScreen(
 				y = 5f
 				setSizeFromTexture(textures.player_idle0)
 			}
-			with<GraphicsComp> {
-				textureRegion = textures.player_idle0
+			with<GraphicsComp>()
+			with<AnimationComp> {
+				animationLoops = listOf(
+					AnimationComp.AnimationLoop(462, listOf(textures.player_idle0, textures.player_idle1)),
+					AnimationComp.AnimationLoop(77, listOf(textures.player_run0, textures.player_run1,
+						textures.player_run2, textures.player_run3, textures.player_run4, textures.player_run5,
+						textures.player_run6, textures.player_run7))
+				)
+				determineAnimationLoop = { _, moveAction ->
+					when (moveAction) {
+						MoveComp.MoveAction.STOP -> 0
+						MoveComp.MoveAction.RUN_LEFT, MoveComp.MoveAction.RUN_RIGHT -> 1
+						else -> 0
+					}
+				}
 			}
 			with<MoveComp> {
 				runSpeed = 120f

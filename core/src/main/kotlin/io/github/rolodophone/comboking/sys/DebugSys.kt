@@ -12,7 +12,7 @@ import io.github.rolodophone.comboking.event.GameEventManager
 class DebugSys(
 	private val gameEventManager: GameEventManager,
 	private val viewport: Viewport
-): EntitySystem() {
+): EntitySystem(-10) {
 
 	override fun addedToEngine(engine: Engine) {
 	}
