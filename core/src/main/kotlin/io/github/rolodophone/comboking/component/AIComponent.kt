@@ -14,12 +14,13 @@ class AIComponent: Component, Pool.Poolable {
 		val mapper = mapperFor<AIComponent>()
 	}
 
-	var determineState: (enemy: Entity, player: Entity) -> Int = { _: Entity, _: Entity -> 0 }
+	var determineState: (enemy: Entity, player: Entity) -> Int
+			= { _, _ -> 0 }
 	var determineMoveAction: (enemy: Entity, player: Entity, state: Int) -> MoveAction
-			= { _: Entity, _: Entity, _: Int -> MoveAction.STOP }
+			= { _, _, _ -> MoveAction.STOP }
 
 	override fun reset() {
-		determineState = { _: Entity, _: Entity -> 0 }
-		determineMoveAction = { _: Entity, _: Entity, _: Int -> MoveAction.STOP }
+		determineState = { _, _ -> 0 }
+		determineMoveAction = { _, _, _ -> MoveAction.STOP }
 	}
 }

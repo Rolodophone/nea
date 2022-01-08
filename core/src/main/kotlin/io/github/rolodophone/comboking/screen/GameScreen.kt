@@ -1,5 +1,6 @@
 package io.github.rolodophone.comboking.screen
 
+import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
@@ -22,13 +23,7 @@ class GameScreen(
 
 	private lateinit var playerInputProcessor: InputProcessor
 
-	private lateinit var playerInputSystem: PlayerInputSystem
-	private lateinit var moveSystem: MoveSystem
-	private lateinit var cameraSystem: CameraSystem
-	private lateinit var backgroundSystem: BackgroundSystem
-	private lateinit var scoreSystem: ScoreSystem
-	private lateinit var enemySpawningSystem: EnemySpawningSystem
-	private lateinit var aiSystem: AISystem
+	private var gameScreenSystems: List<EntitySystem>? = null
 
 	override fun show() {
 		//add player controls input processor
@@ -67,22 +62,19 @@ class GameScreen(
 		}
 
 		//add systems
-		playerInputSystem = PlayerInputSystem(player, gameEventManager)
-		moveSystem = MoveSystem()
-		cameraSystem = CameraSystem(viewport, player)
-		backgroundSystem = BackgroundSystem(textures, player)
-		scoreSystem = ScoreSystem(player, scoreEntity)
-		enemySpawningSystem = EnemySpawningSystem(player, textures)
-		aiSystem = AISystem(player)
+		gameScreenSystems = listOf(
+			PlayerInputSystem(player, gameEventManager),
+			MoveSystem(),
+			CameraSystem(viewport, player),
+			BackgroundSystem(textures, player),
+			ScoreSystem(player, scoreEntity),
+			EnemySpawningSystem(player, textures),
+			AISystem(player),
+			AnimationSystem()
+		)
 
-		engine.run {
-			addSystem(playerInputSystem)
-			addSystem(moveSystem)
-			addSystem(cameraSystem)
-			addSystem(backgroundSystem)
-			addSystem(scoreSystem)
-			addSystem(enemySpawningSystem)
-			addSystem(aiSystem)
+		gameScreenSystems?.forEach { system ->
+			engine.addSystem(system)
 		}
 	}
 
@@ -91,10 +83,10 @@ class GameScreen(
 
 		(Gdx.input.inputProcessor as InputMultiplexer).removeProcessor(playerInputProcessor)
 
-		engine.run {
-			removeSystem(playerInputSystem)
-			removeSystem(moveSystem)
-			removeSystem(cameraSystem)
+		gameScreenSystems?.forEach { system ->
+			engine.removeSystem(system)
 		}
+
+		gameScreenSystems = null
 	}
 }
