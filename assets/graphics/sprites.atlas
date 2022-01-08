@@ -1,271 +1,327 @@
 
 sprites.png
-size: 666, 262
+size: 730, 268
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 btn_credits
   rotate: false
-  xy: 1, 12
+  xy: 694, 130
   size: 29, 9
   orig: 29, 9
   offset: 0, 0
   index: -1
 btn_options
   rotate: false
-  xy: 1, 23
+  xy: 1, 29
   size: 30, 9
   orig: 30, 9
   offset: 0, 0
   index: -1
 btn_play
   rotate: false
-  xy: 553, 60
+  xy: 1, 18
   size: 17, 9
   orig: 17, 9
   offset: 0, 0
   index: -1
 game_bg
   rotate: false
-  xy: 1, 81
+  xy: 1, 87
   size: 320, 180
   orig: 320, 180
   offset: 0, 0
   index: -1
 main_menu_bg
   rotate: false
-  xy: 1, 34
+  xy: 1, 40
   size: 80, 45
   orig: 80, 45
   offset: 0, 0
   index: -1
 office_worker_enter_door
   rotate: false
-  xy: 363, 1
+  xy: 479, 1
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_exit_door
   rotate: false
-  xy: 439, 1
+  xy: 555, 1
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_exit_door_kb
   rotate: false
-  xy: 618, 53
+  xy: 669, 1
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_hit_kb0
   rotate: false
-  xy: 477, 1
+  xy: 593, 1
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_hit_kb1
   rotate: false
-  xy: 401, 1
+  xy: 517, 1
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_idle
   rotate: false
-  xy: 629, 123
+  xy: 441, 1
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_idle_kb
   rotate: false
-  xy: 629, 193
+  xy: 403, 1
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_push
   rotate: false
-  xy: 515, 1
+  xy: 631, 1
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_run0
   rotate: false
-  xy: 123, 11
+  xy: 574, 71
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run1
   rotate: false
-  xy: 323, 1
+  xy: 363, 1
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run2
   rotate: false
-  xy: 203, 11
+  xy: 123, 17
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run3
   rotate: false
-  xy: 83, 11
+  xy: 454, 71
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run4
   rotate: false
-  xy: 283, 11
+  xy: 243, 17
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run5
   rotate: false
-  xy: 163, 11
+  xy: 614, 71
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run6
   rotate: false
-  xy: 578, 65
+  xy: 414, 71
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run7
   rotate: false
-  xy: 243, 11
+  xy: 163, 17
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+office_worker_run_kb0
+  rotate: false
+  xy: 494, 71
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+office_worker_run_kb1
+  rotate: false
+  xy: 283, 17
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+office_worker_run_kb2
+  rotate: false
+  xy: 654, 71
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+office_worker_run_kb3
+  rotate: false
+  xy: 374, 71
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+office_worker_run_kb4
+  rotate: false
+  xy: 203, 17
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+office_worker_run_kb5
+  rotate: false
+  xy: 534, 71
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+office_worker_run_kb6
+  rotate: false
+  xy: 323, 7
+  size: 38, 68
+  orig: 38, 68
+  offset: 0, 0
+  index: -1
+office_worker_run_kb7
+  rotate: false
+  xy: 83, 17
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 player_enter_door
   rotate: false
-  xy: 323, 135
+  xy: 323, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_exit_door
   rotate: false
-  xy: 425, 199
+  xy: 425, 205
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_idle0
   rotate: false
-  xy: 323, 199
+  xy: 323, 205
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_idle1
   rotate: false
-  xy: 578, 199
+  xy: 578, 205
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_punch0
   rotate: false
-  xy: 374, 71
+  xy: 680, 205
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_punch1
   rotate: false
-  xy: 476, 135
+  xy: 476, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run0
   rotate: false
-  xy: 578, 135
+  xy: 578, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run1
   rotate: false
-  xy: 425, 135
+  xy: 425, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run2
   rotate: false
-  xy: 425, 71
+  xy: 629, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run3
   rotate: false
-  xy: 527, 199
+  xy: 527, 205
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run4
   rotate: false
-  xy: 374, 199
+  xy: 374, 205
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run5
   rotate: false
-  xy: 323, 71
+  xy: 629, 205
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run6
   rotate: false
-  xy: 476, 199
+  xy: 476, 205
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run7
   rotate: false
-  xy: 527, 71
+  xy: 323, 77
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch0
   rotate: false
-  xy: 476, 71
+  xy: 680, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch1
   rotate: false
-  xy: 527, 135
+  xy: 527, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch2
   rotate: false
-  xy: 374, 135
+  xy: 374, 141
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
