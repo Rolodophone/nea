@@ -5,17 +5,13 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
 import io.github.rolodophone.comboking.ComboKingTextures
 import io.github.rolodophone.comboking.WORLD_WIDTH
-import io.github.rolodophone.comboking.comp.AIComp
-import io.github.rolodophone.comboking.comp.GraphicsComp
-import io.github.rolodophone.comboking.comp.MoveComp
-import io.github.rolodophone.comboking.comp.TransformComp
+import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.util.getNotNull
 import io.github.rolodophone.comboking.util.nextFloat
 import ktx.ashley.entity
 import ktx.ashley.with
 import kotlin.random.Random.Default.nextBoolean
 import kotlin.random.Random.Default.nextInt
-import io.github.rolodophone.comboking.comp.MoveComp.MoveAction
 
 /**
  * Spawns the enemy entities automatically.
@@ -55,28 +51,41 @@ class EnemySpawningSystem(
 					 else nextInt(90, 101)).toFloat()
 				setSizeFromTexture(textures.office_worker_idle)
 			}
-			with<GraphicsComp> {
-				textureRegion = textures.office_worker_idle
+			with<GraphicsComp>()
+			with<AnimationComp> {
+				animationLoops = listOf(
+					AnimationComp.AnimationLoop(Int.MAX_VALUE, listOf(textures.office_worker_idle)),
+					AnimationComp.AnimationLoop(77, listOf(textures.office_worker_run0, textures.office_worker_run1,
+						textures.office_worker_run2, textures.office_worker_run3, textures.office_worker_run4,
+						textures.office_worker_run5, textures.office_worker_run6, textures.office_worker_run7))
+				)
+				determineAnimationLoop = { _, action ->
+					when (action) {
+						Action.IDLE -> 0
+						Action.RUN -> 1
+						else -> 0
+					}
+				}
 			}
-			with<MoveComp> {
+			with<ActionComp> {
 				runSpeed = 80f
 			}
 			with<AIComp> {
 				//States: 0 Idle
 				//        1 Attack player
 				determineState = { _, _ -> 1 }
-
-				determineMoveAction = { enemy, player, state ->
+				determineAction = { _, _, state ->
+					when (state) {
+						1 -> Action.RUN
+						else -> Action.IDLE
+					}
+				}
+				determineFacing = { enemy, player, _ ->
 					val playerTransformComp = player.getNotNull(TransformComp.mapper)
 					val enemyTransformComp = enemy.getNotNull(TransformComp.mapper)
 
-					when (state) {
-						1 -> {
-							if (playerTransformComp.x < enemyTransformComp.x) MoveAction.RUN_LEFT
-							else MoveAction.RUN_RIGHT
-						}
-						else -> MoveAction.STOP
-					}
+					if (playerTransformComp.x < enemyTransformComp.x) Facing.LEFT
+					else Facing.RIGHT
 				}
 			}
 		}

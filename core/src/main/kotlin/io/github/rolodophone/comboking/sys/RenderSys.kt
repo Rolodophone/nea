@@ -48,6 +48,7 @@ class RenderSystem(
 
 		sprite.setBounds(transformComp.x, transformComp.y, transformComp.width, transformComp.height)
 		sprite.setRegion(graphicsComp.textureRegion)
+		sprite.setFlip(graphicsComp.flippedHorizontally, false)
 		sprite.draw(batch)
 	}
 }

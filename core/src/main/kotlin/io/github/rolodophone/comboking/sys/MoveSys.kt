@@ -2,48 +2,31 @@ package io.github.rolodophone.comboking.sys
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
-import io.github.rolodophone.comboking.comp.MoveComp.MoveAction
-import io.github.rolodophone.comboking.comp.MoveComp
+import io.github.rolodophone.comboking.comp.Action
+import io.github.rolodophone.comboking.comp.ActionComp
+import io.github.rolodophone.comboking.comp.Facing
 import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 
 /**
- * Moves entities according to their current move action as specified by their [MoveComp].
+ * Moves entities according to their current move action as specified by their [ActionComp].
  */
 class MoveSys: IteratingSystem(
-	allOf(TransformComp::class, MoveComp::class).get(), 10
+	allOf(TransformComp::class, ActionComp::class).get(), 10
 ) {
-	private var playerIsJumping = false
-
 	override fun processEntity(entity: Entity, deltaTime: Float) {
 		val transformComp = entity.getNotNull(TransformComp.mapper)
-		val moveComp = entity.getNotNull(MoveComp.mapper)
+		val actionComp = entity.getNotNull(ActionComp.mapper)
 
-		when (moveComp.moveAction) {
-			MoveAction.STOP -> {}
-			MoveAction.RUN_LEFT -> {
-				transformComp.x -= moveComp.runSpeed * deltaTime
-			}
-			MoveAction.RUN_RIGHT -> {
-				transformComp.x += moveComp.runSpeed * deltaTime
-			}
-			MoveAction.JUMP -> {
-				//TODO temporary way to detect when the player has just jumped. I'll redesign the way moving works once
-				//TODO I start enemy AI because I will know what I need better then. Maybe I should have 2 different
-				//TODO enums: one for player input and one for any sentient entity's current movement.
-
-				if (playerIsJumping) {
-					moveComp.yVelocity += MoveComp.ACC_GRAVITY * deltaTime
-					transformComp.y += moveComp.yVelocity * deltaTime
-				}
-				else {
-					moveComp.yVelocity = moveComp.jumpSpeed
-					playerIsJumping = true
+		when (actionComp.action) {
+			Action.IDLE -> {}
+			Action.RUN -> {
+				when (actionComp.facing) {
+					Facing.LEFT -> transformComp.x -= actionComp.runSpeed * deltaTime
+					Facing.RIGHT -> transformComp.x += actionComp.runSpeed * deltaTime
 				}
 			}
 		}
-
-		if (moveComp.moveAction != MoveAction.JUMP) playerIsJumping = false
 	}
 }

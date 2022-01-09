@@ -1,12 +1,11 @@
 package io.github.rolodophone.comboking.lwjgl3
 
-
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.InputProcessor
-import io.github.rolodophone.comboking.comp.MoveComp.MoveAction
 import io.github.rolodophone.comboking.event.GameEvent
 import io.github.rolodophone.comboking.event.GameEventManager
+import io.github.rolodophone.comboking.event.PlayerInput
 
 /**
  * Handles keyboard and mouse events for player controls on PC.
@@ -20,18 +19,18 @@ class KeyboardControlsInputProcessor(
 	override fun keyDown(keycode: Int): Boolean {
 		when (keycode) {
 			Input.Keys.A -> {
-				GameEvent.PlayerMoveInput.moveAction = MoveAction.RUN_LEFT
-				gameEventManager.trigger(GameEvent.PlayerMoveInput)
+				GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+				gameEventManager.trigger(GameEvent.PlayerInputEvent)
 				return true
 			}
 			Input.Keys.D -> {
-				GameEvent.PlayerMoveInput.moveAction = MoveAction.RUN_RIGHT
-				gameEventManager.trigger(GameEvent.PlayerMoveInput)
+				GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
+				gameEventManager.trigger(GameEvent.PlayerInputEvent)
 				return true
 			}
 //			Input.Keys.W -> {
-//				GameEvent.PlayerMoveInput.moveAction = MoveAction.JUMP
-//				gameEventManager.trigger(GameEvent.PlayerMoveInput)
+//				GameEvent.PlayerPlayerInput.moveAction = MoveAction.JUMP
+//				gameEventManager.trigger(GameEvent.PlayerPlayerInput)
 //				return true
 //			}
 		}
@@ -43,23 +42,23 @@ class KeyboardControlsInputProcessor(
 		when (keycode) {
 			Input.Keys.A -> {
 				if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-					GameEvent.PlayerMoveInput.moveAction = MoveAction.RUN_RIGHT
-					gameEventManager.trigger(GameEvent.PlayerMoveInput)
+					GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
+					gameEventManager.trigger(GameEvent.PlayerInputEvent)
 				}
 				else {
-					GameEvent.PlayerMoveInput.moveAction = MoveAction.STOP
-					gameEventManager.trigger(GameEvent.PlayerMoveInput)
+					GameEvent.PlayerInputEvent.input = PlayerInput.STOP
+					gameEventManager.trigger(GameEvent.PlayerInputEvent)
 				}
 				return true
 			}
 			Input.Keys.D -> {
 				if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-					GameEvent.PlayerMoveInput.moveAction = MoveAction.RUN_LEFT
-					gameEventManager.trigger(GameEvent.PlayerMoveInput)
+					GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+					gameEventManager.trigger(GameEvent.PlayerInputEvent)
 				}
 				else {
-					GameEvent.PlayerMoveInput.moveAction = MoveAction.STOP
-					gameEventManager.trigger(GameEvent.PlayerMoveInput)
+					GameEvent.PlayerInputEvent.input = PlayerInput.STOP
+					gameEventManager.trigger(GameEvent.PlayerInputEvent)
 				}
 				return true
 			}

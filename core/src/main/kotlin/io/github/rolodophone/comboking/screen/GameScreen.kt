@@ -52,15 +52,15 @@ class GameScreen(
 						textures.player_run2, textures.player_run3, textures.player_run4, textures.player_run5,
 						textures.player_run6, textures.player_run7))
 				)
-				determineAnimationLoop = { _, moveAction ->
-					when (moveAction) {
-						MoveComp.MoveAction.STOP -> 0
-						MoveComp.MoveAction.RUN_LEFT, MoveComp.MoveAction.RUN_RIGHT -> 1
+				determineAnimationLoop = { _, action ->
+					when (action) {
+						Action.IDLE -> 0
+						Action.RUN -> 1
 						else -> 0
 					}
 				}
 			}
-			with<MoveComp> {
+			with<ActionComp> {
 				runSpeed = 120f
 			}
 			with<PlayerComp>()

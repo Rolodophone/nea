@@ -13,7 +13,8 @@ class AnimationComp : Component, Pool.Poolable {
 	class AnimationLoop(val frameDuration: Int, val frames: List<TextureRegion>)
 
 	var animationLoops = listOf<AnimationLoop>()
-	var determineAnimationLoop: (state: Int?, moveAction: MoveComp.MoveAction?) -> Int = { _, _ -> 0 }
+	var determineAnimationLoop: (state: Int?, action: Action?) -> Int = { _, _ -> 0 }
+	var flipWhenFacingLeft = true
 
 	//for use of AnimationSys
 	var animationLoop = 0
@@ -23,6 +24,7 @@ class AnimationComp : Component, Pool.Poolable {
 	override fun reset() {
 		animationLoops = listOf()
 		determineAnimationLoop = { _, _ -> 0 }
+		flipWhenFacingLeft = true
 
 		animationLoop = 0
 		timeOfLastFrameChange = 0L

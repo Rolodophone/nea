@@ -18,9 +18,11 @@ class GraphicsComp: Component, Pool.Poolable {
 	 */
 	var textureRegion: TextureRegion? = null
 	var visible = true
+	var flippedHorizontally = false
 
 	override fun reset() {
 		textureRegion = null
 		visible = true
+		flippedHorizontally = false
 	}
 }

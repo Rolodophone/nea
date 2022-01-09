@@ -2,9 +2,9 @@ package io.github.rolodophone.comboking
 
 import com.badlogic.gdx.input.GestureDetector
 import com.badlogic.gdx.math.Vector2
-import io.github.rolodophone.comboking.comp.MoveComp.MoveAction
 import io.github.rolodophone.comboking.event.GameEvent
 import io.github.rolodophone.comboking.event.GameEventManager
+import io.github.rolodophone.comboking.event.PlayerInput
 
 /**
  * The minimum distance (in pixels) that the cursor has to be dragged for it to register as a swipe
@@ -49,23 +49,21 @@ class TouchControlsGestureListener(
 	override fun pan(x: Float, y: Float, deltaX: Float, deltaY: Float): Boolean {
 		if (x < touchHoldX - MIN_SWIPE_DISTANCE) {
 			touchHoldX = x
-			GameEvent.PlayerMoveInput.moveAction = MoveAction.RUN_LEFT
-			gameEventManager.trigger(GameEvent.PlayerMoveInput)
-			println("Left")
+			GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+			gameEventManager.trigger(GameEvent.PlayerInputEvent)
 		}
 		else if (x > touchHoldX + MIN_SWIPE_DISTANCE) {
 			touchHoldX = x
-			GameEvent.PlayerMoveInput.moveAction = MoveAction.RUN_RIGHT
-			gameEventManager.trigger(GameEvent.PlayerMoveInput)
-			println("Right")
+			GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
+			gameEventManager.trigger(GameEvent.PlayerInputEvent)
 		}
 
 		return true
 	}
 
 	override fun panStop(x: Float, y: Float, pointer: Int, button: Int): Boolean {
-		GameEvent.PlayerMoveInput.moveAction = MoveAction.STOP
-		gameEventManager.trigger(GameEvent.PlayerMoveInput)
+		GameEvent.PlayerInputEvent.input = PlayerInput.STOP
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
 		return false
 	}
 

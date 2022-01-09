@@ -5,31 +5,32 @@ import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
 /**
- * Entities with a [MoveComp] can move like a human (e.g. running, jumping).
+ * Entities with an [ActionComp] can move like a human (e.g. running) and perform combat.
  */
-class MoveComp: Component, Pool.Poolable {
+class ActionComp: Component, Pool.Poolable {
 	companion object {
-		val mapper = mapperFor<MoveComp>()
-		const val ACC_GRAVITY = -2000f
-	}
-
-	enum class MoveAction {
-		STOP, RUN_LEFT, RUN_RIGHT, JUMP
+		val mapper = mapperFor<ActionComp>()
 	}
 
 	//these may be specified when creating the entity. If not specified they'll have the default value defined below
 	var runSpeed = 100f
-	var jumpSpeed = 600f
 
 	//these shouldn't be specified when creating the entity, as they will be controlled by MoveSys
-	var moveAction = MoveAction.STOP
-	var yVelocity = 0f
+	var action = Action.IDLE
+	var facing = Facing.RIGHT
 
 	override fun reset() {
 		runSpeed = 100f
-		jumpSpeed = 600f
 
-		moveAction = MoveAction.STOP
-		yVelocity = 0f
+		action = Action.IDLE
+		facing = Facing.RIGHT
 	}
+}
+
+enum class Action {
+	IDLE, RUN
+}
+
+enum class Facing {
+	LEFT, RIGHT
 }
