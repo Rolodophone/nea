@@ -52,7 +52,7 @@ class TextRenderSys(
 		val transformComp = entity.getNotNull(TransformComp.mapper)
 		val textComp = entity.getNotNull(TextComp.mapper)
 
-		font.color = Color.WHITE
+		font.color = textComp.colour
 
 		// add the height of the font because by default text is drawn with the origin at the top left. Adding the
 		// on the height means the text is drawn with the origin in the bottom left, consistent with the rest of my game

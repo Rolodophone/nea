@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.WORLD_HEIGHT
@@ -71,7 +72,10 @@ class GameScreen(
 				y = WORLD_HEIGHT - TextComp.FONT_HEIGHT - 1f
 			}
 			with<ScoreComp>()
-			with<TextComp>() //text is set each frame by ScoreSys
+			with<TextComp> {
+				colour = Color.BLACK
+				//text is set each frame by ScoreSys
+			}
 		}
 
 		//add systems

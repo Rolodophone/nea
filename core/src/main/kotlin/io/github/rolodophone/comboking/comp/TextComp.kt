@@ -1,6 +1,7 @@
 package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
@@ -17,8 +18,10 @@ class TextComp: Component, Pool.Poolable {
 	}
 
 	var text = ""
+	var colour: Color = Color.WHITE
 
 	override fun reset() {
 		text = ""
+		colour = Color.WHITE
 	}
 }
