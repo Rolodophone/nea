@@ -15,22 +15,24 @@ class ActionComp: Component, Pool.Poolable {
 	//these may be specified when creating the entity. If not specified they'll have the default value defined below
 	var runSpeed = 100f
 
-	//these shouldn't be specified when creating the entity, as they will be controlled by MoveSys
+	//these shouldn't be specified when creating the entity, as they will be controlled by ActionSys
 	var action = Action.IDLE
 	var facing = Facing.RIGHT
+	var actionStartTime = 0L
 
 	override fun reset() {
 		runSpeed = 100f
 
 		action = Action.IDLE
 		facing = Facing.RIGHT
+		actionStartTime = 0L
 	}
 }
 
 enum class Action {
-	IDLE, RUN
+	IDLE, RUN, PUNCH, SPIN_PUNCH, PUSH, HIT_KB
 }
 
-enum class Facing {
-	LEFT, RIGHT
+enum class Facing(val sign: Int) {
+	LEFT(-1), RIGHT(1)
 }

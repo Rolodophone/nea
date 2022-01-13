@@ -3,6 +3,7 @@ package io.github.rolodophone.comboking.sys
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
+import io.github.rolodophone.comboking.comp.Action
 import io.github.rolodophone.comboking.ComboKingTextures
 import io.github.rolodophone.comboking.WORLD_WIDTH
 import io.github.rolodophone.comboking.comp.*

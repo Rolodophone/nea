@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
+import io.github.rolodophone.comboking.comp.Action
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.WORLD_HEIGHT
 import io.github.rolodophone.comboking.comp.*
@@ -64,7 +65,6 @@ class GameScreen(
 			with<ActionComp> {
 				runSpeed = 120f
 			}
-			with<PlayerComp>()
 		}
 		val scoreEntity = engine.entity {
 			with<TransformComp> {
@@ -81,7 +81,7 @@ class GameScreen(
 		//add systems
 		gameScreenSystems = listOf(
 			PlayerInputSys(player, gameEventManager),
-			MoveSys(),
+			ActionSys(),
 			CameraSys(viewport, player),
 			BackgroundSys(textures, player),
 			ScoreSys(player, scoreEntity),
