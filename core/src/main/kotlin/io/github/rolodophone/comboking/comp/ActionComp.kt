@@ -24,6 +24,7 @@ class ActionComp: Component, Pool.Poolable {
 		}
 	var facing = Facing.RIGHT
 	var actionStartTime = 0L
+	var actionExecuted = false
 
 	override fun reset() {
 		runSpeed = 100f
@@ -31,6 +32,7 @@ class ActionComp: Component, Pool.Poolable {
 		action = Action.IDLE
 		facing = Facing.RIGHT
 		actionStartTime = 0L
+		actionExecuted = false
 	}
 }
 

@@ -31,25 +31,32 @@ class ActionSys: IteratingSystem(
 				//stop punching after punch frame ends
 				if (currentTime > actionComp.actionStartTime + 693L) {
 					actionComp.action = Action.IDLE
+					actionComp.actionExecuted = false
 				}
 
 				// perform punch effect when switches to punch frame
-				else if (currentTime > actionComp.actionStartTime + 231L) {
+				else if (!actionComp.actionExecuted && currentTime > actionComp.actionStartTime + 231L) {
 
 					// find entity closest to this entity in direction of punch
 					var target: Entity? = null
 					for (possibleTarget in entities) {
+						//do not affect itself
+						if (possibleTarget == entity) continue
+
 						val otherHitboxComp = possibleTarget[HitboxComp.mapper]
 						val otherHPComp = possibleTarget[HPComp.mapper]
 
 						//do not affect entities without a hitbox or without health
 						if (otherHitboxComp == null || otherHPComp == null) continue
 
-						if (actionComp.facing == Facing.LEFT) {
-							// ignore entities that are too close or to the right
-							if (otherHitboxComp.right > hitboxComp.left) continue
+						//do not affect entities that are too high or too low
+						if (otherHitboxComp.top < hitboxComp.bottom || otherHitboxComp.bottom > hitboxComp.top) continue
 
-							//ignore enemies that are too far to the left
+						if (actionComp.facing == Facing.LEFT) {
+							// ignore entities that are on the right
+							if (otherHitboxComp.left > hitboxComp.left) continue
+
+							//ignore enemies that are too far away to the left
 							if (otherHitboxComp.right < hitboxComp.left - 20) continue
 
 							//store closest valid target
@@ -64,10 +71,10 @@ class ActionSys: IteratingSystem(
 							}
 						}
 						else { //facing right
-							// ignore entities that are too close or to the left
-							if (otherHitboxComp.left < hitboxComp.right) continue
+							// ignore entities that are on the left
+							if (otherHitboxComp.right < hitboxComp.right) continue
 
-							//ignore enemies that are too far to the right
+							//ignore enemies that are too far away to the right
 							if (otherHitboxComp.left > hitboxComp.right + 20) continue
 
 							//store closest valid target
@@ -87,6 +94,8 @@ class ActionSys: IteratingSystem(
 						val targetHPComp = target.getNotNull(HPComp.mapper)
 						targetHPComp.hp -= 25f
 					}
+
+					actionComp.actionExecuted = true
 				}
 			}
 		}
