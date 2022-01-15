@@ -28,11 +28,15 @@ class KeyboardControlsInputProcessor(
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)
 				return true
 			}
-//			Input.Keys.W -> {
-//				GameEvent.PlayerPlayerInput.moveAction = MoveAction.JUMP
-//				gameEventManager.trigger(GameEvent.PlayerPlayerInput)
-//				return true
-//			}
+			Input.Keys.J -> {
+				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_LEFT
+				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+				return true
+			}
+			Input.Keys.L -> {
+				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_RIGHT
+				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+			}
 		}
 
 		return false

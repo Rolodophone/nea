@@ -14,5 +14,5 @@ sealed class GameEvent {
 }
 
 enum class PlayerInput {
-	STOP, LEFT, RIGHT
+	STOP, LEFT, RIGHT, PUNCH_LEFT, PUNCH_RIGHT
 }

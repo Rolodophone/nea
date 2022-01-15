@@ -2,6 +2,7 @@ package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.utils.Pool
+import com.badlogic.gdx.utils.TimeUtils
 import ktx.ashley.mapperFor
 
 /**
@@ -17,6 +18,10 @@ class ActionComp: Component, Pool.Poolable {
 
 	//these shouldn't be specified when creating the entity, as they will be controlled by ActionSys
 	var action = Action.IDLE
+		set(value) {
+			actionStartTime = TimeUtils.millis()
+			field = value
+		}
 	var facing = Facing.RIGHT
 	var actionStartTime = 0L
 

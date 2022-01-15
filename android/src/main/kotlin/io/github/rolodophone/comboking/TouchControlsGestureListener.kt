@@ -15,11 +15,13 @@ private const val MIN_SWIPE_DISTANCE = 40f
  * Handles detecting the touch gesture controls on Android.
  */
 class TouchControlsGestureListener(
-	private val gameEventManager: GameEventManager
+	private val gameEventManager: GameEventManager,
+	private val screenWidth: Int,
+	private val screenHeight: Int
 ): GestureDetector.GestureListener {
 
-	private var touchHoldX = 0f
-	private var touchHoldY = 0f
+	private var touchHoldXMove = 0f
+	private var touchHoldXCombat = 0f
 
 	/**
 	 * Returns a customised gesture detector for this listener
@@ -47,23 +49,39 @@ class TouchControlsGestureListener(
 	}
 
 	override fun pan(x: Float, y: Float, deltaX: Float, deltaY: Float): Boolean {
-		if (x < touchHoldX - MIN_SWIPE_DISTANCE) {
-			touchHoldX = x
-			GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
-			gameEventManager.trigger(GameEvent.PlayerInputEvent)
+		//moving controls
+		if (x < screenWidth/2f) {
+			if (x < touchHoldXMove - MIN_SWIPE_DISTANCE) {
+				touchHoldXMove = x
+				GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+			} else if (x > touchHoldXMove + MIN_SWIPE_DISTANCE) {
+				touchHoldXMove = x
+				GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
+				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+			}
 		}
-		else if (x > touchHoldX + MIN_SWIPE_DISTANCE) {
-			touchHoldX = x
-			GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
-			gameEventManager.trigger(GameEvent.PlayerInputEvent)
+		// combat controls
+		else {
+			if (x < touchHoldXCombat - MIN_SWIPE_DISTANCE) {
+				touchHoldXCombat = x
+				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_LEFT
+				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+			} else if (x > touchHoldXMove + MIN_SWIPE_DISTANCE) {
+				touchHoldXCombat = x
+				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_RIGHT
+				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+			}
 		}
 
 		return true
 	}
 
 	override fun panStop(x: Float, y: Float, pointer: Int, button: Int): Boolean {
-		GameEvent.PlayerInputEvent.input = PlayerInput.STOP
-		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+		if (x < screenWidth/2f) {
+			GameEvent.PlayerInputEvent.input = PlayerInput.STOP
+			gameEventManager.trigger(GameEvent.PlayerInputEvent)
+		}
 		return false
 	}
 

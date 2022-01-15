@@ -29,6 +29,18 @@ class HitboxComp : Component, Pool.Poolable {
 		set(value) { rect.height = value }
 		get() = rect.height
 
+	val left: Float
+		get() = x
+
+	val bottom: Float
+		get() = y
+
+	val right: Float
+		get() = x + width
+
+	val top: Float
+		get() = y + height
+
 	override fun reset() {
 		rect.set(0f, 0f, 0f, 0f)
 	}

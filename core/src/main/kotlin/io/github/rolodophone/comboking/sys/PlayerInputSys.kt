@@ -20,17 +20,25 @@ class PlayerInputSys(
 ) : EntitySystem(0) {
 
 	private val eventCallback = { event: GameEvent.PlayerInputEvent ->
-		val moveComp = player.getNotNull(ActionComp.mapper)
+		val actionComp = player.getNotNull(ActionComp.mapper)
 
-		moveComp.action = when (event.input) {
+		actionComp.action = when (event.input) {
 			PlayerInput.STOP -> Action.IDLE
 			PlayerInput.LEFT, PlayerInput.RIGHT -> Action.RUN
+			PlayerInput.PUNCH_LEFT -> when(actionComp.facing) {
+				Facing.LEFT -> Action.PUNCH
+				Facing.RIGHT -> Action.SPIN_PUNCH
+			}
+			PlayerInput.PUNCH_RIGHT -> when(actionComp.facing) {
+				Facing.LEFT -> Action.SPIN_PUNCH
+				Facing.RIGHT -> Action.PUNCH
+			}
 		}
 
-		moveComp.facing = when (event.input) {
+		actionComp.facing = when (event.input) {
 			PlayerInput.LEFT -> Facing.LEFT
 			PlayerInput.RIGHT -> Facing.RIGHT
-			else -> moveComp.facing // otherwise keep it the same
+			else -> actionComp.facing // otherwise keep it the same
 		}
 	}
 	

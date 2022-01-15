@@ -9,9 +9,11 @@ class HPComp : Component, Pool.Poolable {
 		val mapper = mapperFor<HPComp>()
 	}
 
+	var deleteWhenHP0 = false
 	var hp = 1f
 
 	override fun reset() {
+		deleteWhenHP0 = false
 		hp = 1f
 	}
 }

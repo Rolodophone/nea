@@ -52,18 +52,31 @@ class GameScreen(
 					AnimationComp.AnimationLoop(462, listOf(textures.player_idle0, textures.player_idle1)),
 					AnimationComp.AnimationLoop(77, listOf(textures.player_run0, textures.player_run1,
 						textures.player_run2, textures.player_run3, textures.player_run4, textures.player_run5,
-						textures.player_run6, textures.player_run7))
+						textures.player_run6, textures.player_run7)),
+					AnimationComp.AnimationLoop(231, listOf(textures.player_punch0, textures.player_punch1,
+						textures.player_punch0))
 				)
 				determineAnimationLoop = { _, action ->
 					when (action) {
 						Action.IDLE -> 0
 						Action.RUN -> 1
+						Action.PUNCH -> 2
 						else -> 0
 					}
 				}
 			}
 			with<ActionComp> {
 				runSpeed = 120f
+			}
+			with<HitboxComp> {
+				x = 136f
+				y = 8f
+				width = 16f
+				height = 52f
+			}
+			with<HPComp> {
+				deleteWhenHP0 = false
+				hp = 100f
 			}
 		}
 		val scoreEntity = engine.entity {
@@ -81,13 +94,16 @@ class GameScreen(
 		//add systems
 		gameScreenSystems = listOf(
 			PlayerInputSys(player, gameEventManager),
-			ActionSys(),
-			CameraSys(viewport, player),
-			BackgroundSys(textures, player),
-			ScoreSys(player, scoreEntity),
-			EnemySpawningSystem(player, textures),
 			AISys(player),
-			AnimationSys()
+			ActionSys(),
+			SpawningSys(player, textures),
+			KillingSys(),
+			ScoreSys(player, scoreEntity),
+			BackgroundSys(textures, player),
+			CameraSys(viewport, player),
+			AnimationSys(),
+			DebugRenderSys(viewport),
+			HPRenderSys(batch, viewport),
 		)
 
 		gameScreenSystems?.forEach { system ->

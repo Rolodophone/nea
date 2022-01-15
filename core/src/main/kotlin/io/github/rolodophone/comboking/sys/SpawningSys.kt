@@ -17,7 +17,7 @@ import kotlin.random.Random.Default.nextInt
 /**
  * Spawns the enemy entities automatically.
  */
-class EnemySpawningSystem(
+class SpawningSys(
 	private val player: Entity,
 	private val textures: ComboKingTextures
 ): EntitySystem(15) {
@@ -44,12 +44,15 @@ class EnemySpawningSystem(
 	}
 
 	private fun spawnOfficeWorker() {
+		val transformCompX = if (nextBoolean()) playerTransformComp.x + WORLD_WIDTH
+							 else playerTransformComp.x - WORLD_WIDTH
+		val transformCompY = (if (nextBoolean()) nextInt(0, 11)
+							 else nextInt(90, 101)).toFloat()
+
 		engine.entity {
 			with<TransformComp> {
-				x = if (nextBoolean()) playerTransformComp.x + WORLD_WIDTH
-					else playerTransformComp.x - WORLD_WIDTH
-				y = (if (nextBoolean()) nextInt(0, 11)
-					 else nextInt(90, 101)).toFloat()
+				x = transformCompX
+				y = transformCompY
 				setSizeFromTexture(textures.office_worker_idle)
 			}
 			with<GraphicsComp>()
@@ -74,7 +77,13 @@ class EnemySpawningSystem(
 			with<AIComp> {
 				//States: 0 Idle
 				//        1 Attack player
-				determineState = { _, _ -> 1 }
+				determineState = { enemy, player ->
+					val enemyHitbox = enemy.getNotNull(HitboxComp.mapper)
+					val playerHitbox = player.getNotNull(HitboxComp.mapper)
+
+					if (enemyHitbox.overlaps(playerHitbox)) 0
+					else 1
+				}
 				determineAction = { _, _, state ->
 					when (state) {
 						1 -> Action.RUN
@@ -88,6 +97,16 @@ class EnemySpawningSystem(
 					if (playerTransformComp.x < enemyTransformComp.x) Facing.LEFT
 					else Facing.RIGHT
 				}
+			}
+			with<HitboxComp> {
+				x = transformCompX + 9f
+				y = transformCompY
+				width = 18f
+				height = 56f
+			}
+			with<HPComp> {
+				deleteWhenHP0 = true
+				hp = 50f
 			}
 		}
 	}

@@ -28,8 +28,13 @@ class ActionSys: IteratingSystem(
 			Action.PUNCH -> {
 				val currentTime = TimeUtils.millis()
 
+				//stop punching after punch frame ends
+				if (currentTime > actionComp.actionStartTime + 693L) {
+					actionComp.action = Action.IDLE
+				}
+
 				// perform punch effect when switches to punch frame
-				if (currentTime > actionComp.actionStartTime + 231L) {
+				else if (currentTime > actionComp.actionStartTime + 231L) {
 
 					// find entity closest to this entity in direction of punch
 					var target: Entity? = null
@@ -42,10 +47,10 @@ class ActionSys: IteratingSystem(
 
 						if (actionComp.facing == Facing.LEFT) {
 							// ignore entities that are too close or to the right
-							if (otherHitboxComp.x + otherHitboxComp.width > hitboxComp.x) continue
+							if (otherHitboxComp.right > hitboxComp.left) continue
 
 							//ignore enemies that are too far to the left
-							if (otherHitboxComp.x + otherHitboxComp.width < hitboxComp.x - 20) continue
+							if (otherHitboxComp.right < hitboxComp.left - 20) continue
 
 							//store closest valid target
 							if (target == null) {
@@ -53,18 +58,17 @@ class ActionSys: IteratingSystem(
 							}
 							else {
 								val targetHitboxComp = target.getNotNull(HitboxComp.mapper)
-								if (otherHitboxComp.x + otherHitboxComp.width > targetHitboxComp.x + targetHitboxComp
-										.width) {
+								if (otherHitboxComp.right > targetHitboxComp.right) {
 									target = possibleTarget
 								}
 							}
 						}
 						else { //facing right
 							// ignore entities that are too close or to the left
-							if (otherHitboxComp.x < hitboxComp.x + hitboxComp.width) continue
+							if (otherHitboxComp.left < hitboxComp.right) continue
 
 							//ignore enemies that are too far to the right
-							if (otherHitboxComp.x > hitboxComp.x + hitboxComp.width + 20) continue
+							if (otherHitboxComp.left > hitboxComp.right + 20) continue
 
 							//store closest valid target
 							if (target == null) {
@@ -72,7 +76,7 @@ class ActionSys: IteratingSystem(
 							}
 							else {
 								val targetHitboxComp = target.getNotNull(HitboxComp.mapper)
-								if (otherHitboxComp.x < targetHitboxComp.x) {
+								if (otherHitboxComp.left < targetHitboxComp.left) {
 									target = possibleTarget
 								}
 							}

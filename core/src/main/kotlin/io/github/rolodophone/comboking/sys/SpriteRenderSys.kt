@@ -12,12 +12,12 @@ import ktx.ashley.allOf
 import ktx.graphics.use
 import ktx.log.logger
 
-private val log = logger<RenderSystem>()
+private val log = logger<SpriteRenderSys>()
 
 /**
  * Renders the entities on the screen
  */
-class RenderSystem(
+class SpriteRenderSys(
 	private val batch: Batch,
 	private val viewport: Viewport
 ): SortedIteratingSystem(

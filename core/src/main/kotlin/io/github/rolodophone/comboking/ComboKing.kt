@@ -13,7 +13,7 @@ import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameScreen
 import io.github.rolodophone.comboking.screen.MainMenuScreen
-import io.github.rolodophone.comboking.sys.RenderSystem
+import io.github.rolodophone.comboking.sys.SpriteRenderSys
 import io.github.rolodophone.comboking.sys.TextRenderSys
 import ktx.app.KtxGame
 import ktx.log.logger
@@ -63,9 +63,9 @@ class ComboKing(
 
 		textRenderSys = TextRenderSys(batch, viewport)
 
-		//add systems to engine (it is recommended to render *before* stepping the physics for some reason)
+		//add systems to engine
 		engine.run {
-			addSystem(RenderSystem(batch, viewport))
+			addSystem(SpriteRenderSys(batch, viewport))
 			addSystem(textRenderSys)
 		}
 
