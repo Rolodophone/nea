@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.github.rolodophone.comboking.comp.HPComp
 import io.github.rolodophone.comboking.comp.HitboxComp
+import io.github.rolodophone.comboking.comp.TextComp
 import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
@@ -45,7 +46,15 @@ class HPRenderSys(
 	override fun processEntity(entity: Entity, deltaTime: Float) {
 		val transformComp = entity.getNotNull(TransformComp.mapper)
 		val hpComp = entity.getNotNull(HPComp.mapper)
+		val hitboxComp = entity[HitboxComp.mapper]
 
-		font.draw(batch, hpComp.hp.roundToInt().toString(), transformComp.x, transformComp.y + transformComp.height)
+		if (hitboxComp == null) {
+			font.draw(batch, hpComp.hp.roundToInt().toString(),
+				transformComp.x, transformComp.y + transformComp.height + TextComp.FONT_HEIGHT + 1f)
+		}
+		else {
+			font.draw(batch, hpComp.hp.roundToInt().toString(),
+				hitboxComp.x, hitboxComp.y + hitboxComp.height + TextComp.FONT_HEIGHT + 1f)
+		}
 	}
 }
