@@ -11,7 +11,7 @@ import io.github.rolodophone.comboking.WORLD_WIDTH
  */
 fun main() {
 	Lwjgl3Application(
-		ComboKing { gameEventManager ->
+		ComboKing { gameEventManager, _, _ ->
 			KeyboardControlsInputProcessor(gameEventManager)
 		},
 		Lwjgl3ApplicationConfiguration().apply {

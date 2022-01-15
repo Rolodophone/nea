@@ -12,7 +12,8 @@ class AndroidLauncher : AndroidApplication() {
 		super.onCreate(savedInstanceState)
 
 		initialize(
-			ComboKing { gameEventManager -> TouchControlsGestureListener(gameEventManager).createGestureDetector() },
+			ComboKing { gameEventManager, screenWidth, screenHeight ->
+				TouchControlsGestureListener(gameEventManager, screenWidth, screenHeight).createGestureDetector() },
 			AndroidApplicationConfiguration().apply { useImmersiveMode = true }
 		)
 	}

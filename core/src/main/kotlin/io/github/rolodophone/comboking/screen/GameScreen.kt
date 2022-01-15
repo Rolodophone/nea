@@ -20,7 +20,8 @@ import ktx.ashley.with
  */
 class GameScreen(
 	game: ComboKing,
-	private val createPlayerInputProcessor: (GameEventManager) -> InputProcessor
+	private val createPlayerInputProcessor: (GameEventManager: GameEventManager, screenWidth: Int, screenHeight: Int)
+	-> InputProcessor
 ): ComboKingScreen(game) {
 
 	private lateinit var playerInputProcessor: InputProcessor
@@ -29,7 +30,7 @@ class GameScreen(
 
 	override fun show() {
 		//add player controls input processor
-		playerInputProcessor = createPlayerInputProcessor(gameEventManager)
+		playerInputProcessor = createPlayerInputProcessor(gameEventManager, viewport.screenWidth, viewport.screenHeight)
 		(Gdx.input.inputProcessor as InputMultiplexer).addProcessor(playerInputProcessor)
 
 		//set camera

@@ -34,7 +34,8 @@ private val log = logger<ComboKing>()
  * game controls input. This is passed in as a parameter as the controls are different on Android and PC.
  */
 class ComboKing(
-	private val createPlayerInputProcessor: (GameEventManager) -> InputProcessor
+	private val createPlayerInputProcessor: (GameEventManager: GameEventManager, screenWidth: Int, screenHeight: Int)
+	-> InputProcessor
 ): KtxGame<ComboKingScreen>() {
 
 	val viewport = FitViewport(WORLD_WIDTH.toFloat(), WORLD_HEIGHT.toFloat())
