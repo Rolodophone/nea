@@ -1,7 +1,9 @@
 package io.github.rolodophone.comboking.event
 
 import com.badlogic.gdx.utils.ObjectMap
+import io.github.rolodophone.comboking.ckLogger
 
+private val log = ckLogger<GameEventManager>()
 
 /**
  * Enables listening to and triggering [GameEvent]s.
@@ -41,6 +43,8 @@ class GameEventManager {
 	 * Trigger the registered callbacks for the given [GameEvent].
 	 */
 	fun trigger(event: GameEvent) {
+		log.debug { "Event triggered: $event" }
+
 		val listenerSet = callbacks[event]
 
 		if (listenerSet != null) {

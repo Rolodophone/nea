@@ -30,7 +30,7 @@ class ActionSys: IteratingSystem(
 
 				//stop punching after punch frame ends
 				if (currentTime > actionComp.actionStartTime + 693L) {
-					actionComp.action = Action.IDLE
+					actionComp.startAction(actionComp.returnToAction)
 					actionComp.actionExecuted = false
 				}
 

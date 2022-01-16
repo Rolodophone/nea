@@ -5,14 +5,14 @@ import com.badlogic.ashley.systems.SortedIteratingSystem
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.utils.viewport.Viewport
+import io.github.rolodophone.comboking.ckLogger
 import io.github.rolodophone.comboking.comp.GraphicsComp
 import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 import ktx.graphics.use
-import ktx.log.logger
 
-private val log = logger<SpriteRenderSys>()
+private val log = ckLogger<SpriteRenderSys>()
 
 /**
  * Renders the entities on the screen

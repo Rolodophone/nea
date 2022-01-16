@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
 import io.github.rolodophone.comboking.comp.Action
 import io.github.rolodophone.comboking.ComboKingTextures
+import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.WORLD_WIDTH
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.util.getNotNull
@@ -50,6 +51,9 @@ class SpawningSys(
 							 else nextInt(90, 101)).toFloat()
 
 		engine.entity {
+			with<InfoComp> {
+				name = "OfficeWorker"
+			}
 			with<TransformComp> {
 				x = transformCompX
 				y = transformCompY

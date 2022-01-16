@@ -17,7 +17,7 @@ class AISys(
 		val entityMoveComp = entity.getNotNull(ActionComp.mapper)
 
 		entityAIComp.state = entityAIComp.determineState(entity, player)
-		entityMoveComp.action = entityAIComp.determineAction(entity, player, entityAIComp.state)
+		entityMoveComp.startAction(entityAIComp.determineAction(entity, player, entityAIComp.state))
 		entityMoveComp.facing = entityAIComp.determineFacing(entity, player, entityAIComp.state)
 	}
 }

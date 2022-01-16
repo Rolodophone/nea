@@ -33,6 +33,9 @@ class TouchControlsGestureListener(
 	// to indicate that it should be passed on.
 
 	override fun touchDown(x: Float, y: Float, pointer: Int, button: Int): Boolean {
+		if (x < screenWidth/2f) touchHoldXMove = x
+		else touchHoldXCombat = x
+
 		return false
 	}
 

@@ -9,6 +9,7 @@ import kotlin.random.Random.Default.nextFloat
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.viewport.Viewport
+import io.github.rolodophone.comboking.comp.InfoComp
 import ktx.ashley.get
 
 private val tempVector = Vector2()
@@ -45,8 +46,11 @@ operator fun Float.times(vec: Vector2) = vec * this
  */
 fun <T : Component> Entity.getNotNull(mapper: ComponentMapper<T>): T {
 	val component = this[mapper]
-	requireNotNull(component) { "Entity $this hasn't got the requested component" }
+	requireNotNull(component) { "${repr()} hasn't got the requested component" }
 	return component
 }
 
 fun nextFloat(from: Float, until: Float) = (nextFloat() * (until - from)) + from
+
+// string representations for logging
+fun Entity.repr() = "${get(InfoComp.mapper)?.name ?: "Unnamed"}@${hashCode()}"

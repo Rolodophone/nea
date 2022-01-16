@@ -16,7 +16,6 @@ import io.github.rolodophone.comboking.screen.MainMenuScreen
 import io.github.rolodophone.comboking.sys.SpriteRenderSys
 import io.github.rolodophone.comboking.sys.TextRenderSys
 import ktx.app.KtxGame
-import ktx.log.logger
 
 // 16x9 aspect ratio with a highest common factor of 20. This means I can scale by any multiple of 1/20
 const val WORLD_WIDTH = 16*20
@@ -24,7 +23,7 @@ const val WORLD_HEIGHT = 9*20
 
 private const val BATCH_SIZE = 1000
 
-private val log = logger<ComboKing>()
+private val log = ckLogger<ComboKing>()
 
 
 /**

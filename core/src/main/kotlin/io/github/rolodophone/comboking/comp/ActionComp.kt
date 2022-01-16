@@ -18,13 +18,11 @@ class ActionComp: Component, Pool.Poolable {
 
 	//these shouldn't be specified when creating the entity, as they will be controlled by ActionSys
 	var action = Action.IDLE
-		set(value) {
-			actionStartTime = TimeUtils.millis()
-			field = value
-		}
+		private set
 	var facing = Facing.RIGHT
 	var actionStartTime = 0L
 	var actionExecuted = false
+	var returnToAction = Action.IDLE
 
 	override fun reset() {
 		runSpeed = 100f
@@ -33,6 +31,14 @@ class ActionComp: Component, Pool.Poolable {
 		facing = Facing.RIGHT
 		actionStartTime = 0L
 		actionExecuted = false
+		returnToAction = Action.IDLE
+	}
+
+	fun startAction(value: Action) {
+		if (value != action) {
+			actionStartTime = TimeUtils.millis()
+			action = value
+		}
 	}
 }
 

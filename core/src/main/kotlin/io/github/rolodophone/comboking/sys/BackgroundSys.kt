@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
 import io.github.rolodophone.comboking.ComboKingTextures
+import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.comp.GraphicsComp
 import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
@@ -25,6 +26,9 @@ class BackgroundSys(
 		// create 3 background wall entities, one directly in line with the screen and one on either side
 		walls = List(3) { i ->
 			engine.entity {
+				with<InfoComp> {
+					name = "GameBackground"
+				}
 				with<TransformComp> {
 					x = (textures.game_bg.regionWidth * (i-1)).toFloat()
 					y = 0f

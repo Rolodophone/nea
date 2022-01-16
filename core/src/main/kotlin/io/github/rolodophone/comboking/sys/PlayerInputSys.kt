@@ -22,23 +22,69 @@ class PlayerInputSys(
 	private val eventCallback = { event: GameEvent.PlayerInputEvent ->
 		val actionComp = player.getNotNull(ActionComp.mapper)
 
-		actionComp.action = when (event.input) {
-			PlayerInput.STOP -> Action.IDLE
-			PlayerInput.LEFT, PlayerInput.RIGHT -> Action.RUN
-			PlayerInput.PUNCH_LEFT -> when(actionComp.facing) {
-				Facing.LEFT -> Action.PUNCH
-				Facing.RIGHT -> Action.SPIN_PUNCH
+		when (event.input) {
+			PlayerInput.STOP -> {
+				when (actionComp.action) {
+					Action.IDLE -> {}
+					Action.RUN -> {
+						actionComp.startAction(Action.IDLE)
+					}
+					Action.PUNCH, Action.SPIN_PUNCH, Action.HIT_KB, Action.PUSH -> {
+						actionComp.returnToAction = Action.IDLE
+					}
+				}
 			}
-			PlayerInput.PUNCH_RIGHT -> when(actionComp.facing) {
-				Facing.LEFT -> Action.SPIN_PUNCH
-				Facing.RIGHT -> Action.PUNCH
+			PlayerInput.LEFT, PlayerInput.RIGHT -> {
+				actionComp.startAction(Action.RUN)
+			}
+			PlayerInput.PUNCH_LEFT -> {
+				when (actionComp.action) {
+					Action.IDLE -> {
+						actionComp.returnToAction = Action.IDLE
+
+						actionComp.startAction(when (actionComp.facing) {
+							Facing.LEFT -> Action.PUNCH
+							Facing.RIGHT -> Action.SPIN_PUNCH
+						})
+					}
+					Action.RUN -> {
+						actionComp.returnToAction = Action.RUN
+
+						actionComp.startAction(when (actionComp.facing) {
+							Facing.LEFT -> Action.PUNCH
+							Facing.RIGHT -> Action.SPIN_PUNCH
+						})
+					}
+					else -> {}
+				}
+			}
+			PlayerInput.PUNCH_RIGHT -> {
+				when (actionComp.action) {
+					Action.IDLE -> {
+						actionComp.returnToAction = Action.IDLE
+
+						actionComp.startAction(when (actionComp.facing) {
+							Facing.LEFT -> Action.SPIN_PUNCH
+							Facing.RIGHT -> Action.PUNCH
+						})
+					}
+					Action.RUN -> {
+						actionComp.returnToAction = Action.RUN
+
+						actionComp.startAction(when (actionComp.facing) {
+							Facing.LEFT -> Action.SPIN_PUNCH
+							Facing.RIGHT -> Action.PUNCH
+						})
+					}
+					else -> {}
+				}
 			}
 		}
 
-		actionComp.facing = when (event.input) {
-			PlayerInput.LEFT -> Facing.LEFT
-			PlayerInput.RIGHT -> Facing.RIGHT
-			else -> actionComp.facing // otherwise keep it the same
+		when (event.input) {
+			PlayerInput.LEFT -> actionComp.facing = Facing.LEFT
+			PlayerInput.RIGHT -> actionComp.facing = Facing.RIGHT
+			else -> {} // otherwise keep it the same
 		}
 	}
 	

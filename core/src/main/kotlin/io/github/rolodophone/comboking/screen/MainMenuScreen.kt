@@ -2,6 +2,7 @@ package io.github.rolodophone.comboking.screen
 
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
+import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.comp.ButtonComp
 import io.github.rolodophone.comboking.comp.GraphicsComp
 import io.github.rolodophone.comboking.comp.TransformComp
@@ -22,6 +23,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 
 		// background
 		engine.entity {
+			with<InfoComp> {
+				name = "MainMenuBackground"
+			}
 			with<TransformComp> {
 				x = 0f
 				y = 0f
@@ -34,6 +38,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 
 		//buttons
 		engine.entity {
+			with<InfoComp> {
+				name = "PlayButton"
+			}
 			with<TransformComp> {
 				x = 34f
 				y = 29f
@@ -47,6 +54,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 			}
 		}
 		engine.entity {
+			with<InfoComp> {
+				name = "OptionsButton"
+			}
 			with<TransformComp> {
 				x = 34f
 				y = 18f
@@ -60,6 +70,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 			}
 		}
 		engine.entity {
+			with<InfoComp> {
+				name = "CreditsButton"
+			}
 			with<TransformComp> {
 				x = 34f
 				y = 7f

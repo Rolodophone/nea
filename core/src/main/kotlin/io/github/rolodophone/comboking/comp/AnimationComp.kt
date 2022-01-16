@@ -10,7 +10,9 @@ class AnimationComp : Component, Pool.Poolable {
 		val mapper = mapperFor<AnimationComp>()
 	}
 
-	class AnimationLoop(val frameDuration: Int, val frames: List<TextureRegion>)
+	class AnimationLoop(val frameDuration: Int, val frames: List<TextureRegion>) {
+		override fun toString() = "AnimationLoop(${frames.joinToString(", ")})"
+	}
 
 	var animationLoops = listOf<AnimationLoop>()
 	var determineAnimationLoop: (state: Int?, action: Action?) -> Int = { _, _ -> 0 }

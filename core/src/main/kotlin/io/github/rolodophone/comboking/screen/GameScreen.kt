@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.comp.Action
 import io.github.rolodophone.comboking.ComboKing
+import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.WORLD_HEIGHT
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.event.GameEventManager
@@ -42,6 +43,9 @@ class GameScreen(
 
 		// add entities
 		val player = engine.entity {
+			with<InfoComp> {
+				name = "Player"
+			}
 			with<TransformComp> {
 				x = 120f
 				y = 5f
@@ -81,6 +85,9 @@ class GameScreen(
 			}
 		}
 		val scoreEntity = engine.entity {
+			with<InfoComp> {
+				name = "Score"
+			}
 			with<TransformComp> {
 				x = 1f
 				y = WORLD_HEIGHT - TextComp.FONT_HEIGHT - 1f
