@@ -37,58 +37,7 @@ class ActionSys: IteratingSystem(
 				// perform punch effect when switches to punch frame
 				else if (!actionComp.actionExecuted && currentTime > actionComp.actionStartTime + 231L) {
 
-					// find entity closest to this entity in direction of punch
-					var target: Entity? = null
-					for (possibleTarget in entities) {
-						//do not affect itself
-						if (possibleTarget == entity) continue
-
-						val otherHitboxComp = possibleTarget[HitboxComp.mapper]
-						val otherHPComp = possibleTarget[HPComp.mapper]
-
-						//do not affect entities without a hitbox or without health
-						if (otherHitboxComp == null || otherHPComp == null) continue
-
-						//do not affect entities that are too high or too low
-						if (otherHitboxComp.top < hitboxComp.bottom || otherHitboxComp.bottom > hitboxComp.top) continue
-
-						if (actionComp.facing == Facing.LEFT) {
-							// ignore entities that are on the right
-							if (otherHitboxComp.left > hitboxComp.left) continue
-
-							//ignore enemies that are too far away to the left
-							if (otherHitboxComp.right < hitboxComp.left - 20) continue
-
-							//store closest valid target
-							if (target == null) {
-								target = possibleTarget
-							}
-							else {
-								val targetHitboxComp = target.getNotNull(HitboxComp.mapper)
-								if (otherHitboxComp.right > targetHitboxComp.right) {
-									target = possibleTarget
-								}
-							}
-						}
-						else { //facing right
-							// ignore entities that are on the left
-							if (otherHitboxComp.right < hitboxComp.right) continue
-
-							//ignore enemies that are too far away to the right
-							if (otherHitboxComp.left > hitboxComp.right + 20) continue
-
-							//store closest valid target
-							if (target == null) {
-								target = possibleTarget
-							}
-							else {
-								val targetHitboxComp = target.getNotNull(HitboxComp.mapper)
-								if (otherHitboxComp.left < targetHitboxComp.left) {
-									target = possibleTarget
-								}
-							}
-						}
-					}
+					val target = findClosestNearbyEntityInDirection(entity, actionComp.facing)
 
 					if (target != null) {
 						val targetHPComp = target.getNotNull(HPComp.mapper)
@@ -98,6 +47,87 @@ class ActionSys: IteratingSystem(
 					actionComp.actionExecuted = true
 				}
 			}
+			Action.SPIN_PUNCH -> {
+				val currentTime = TimeUtils.millis()
+
+				//stop punching after punch frame ends
+				if (currentTime > actionComp.actionStartTime + 231*5L) {
+					actionComp.startAction(actionComp.returnToAction)
+					actionComp.actionExecuted = false
+				}
+
+				// perform punch effect when switches to punch frame
+				else if (!actionComp.actionExecuted && currentTime > actionComp.actionStartTime + 231*2L) {
+
+					val target = findClosestNearbyEntityInDirection(entity, actionComp.facing.reverse())
+
+					if (target != null) {
+						val targetHPComp = target.getNotNull(HPComp.mapper)
+						targetHPComp.hp -= 50f
+					}
+
+					actionComp.actionExecuted = true
+				}
+			}
 		}
+	}
+
+	private fun findClosestNearbyEntityInDirection(entity: Entity, facing: Facing): Entity? {
+		val hitboxComp = entity.getNotNull(HitboxComp.mapper)
+
+		var target: Entity? = null
+
+		for (possibleTarget in entities) {
+			//ignore itself
+			if (possibleTarget == entity) continue
+
+			val otherHitboxComp = possibleTarget[HitboxComp.mapper]
+			val otherHPComp = possibleTarget[HPComp.mapper]
+
+			//ignore entities without a hitbox or without health
+			if (otherHitboxComp == null || otherHPComp == null) continue
+
+			//ignore entities that are too high or too low
+			if (otherHitboxComp.top < hitboxComp.bottom || otherHitboxComp.bottom > hitboxComp.top) continue
+
+			if (facing == Facing.LEFT) {
+				// ignore entities that are on the right
+				if (otherHitboxComp.left > hitboxComp.left) continue
+
+				//ignore enemies that are too far away to the left
+				if (otherHitboxComp.right < hitboxComp.left - 20) continue
+
+				//store closest valid target
+				if (target == null) {
+					target = possibleTarget
+				}
+				else {
+					val targetHitboxComp = target.getNotNull(HitboxComp.mapper)
+					if (otherHitboxComp.right > targetHitboxComp.right) {
+						target = possibleTarget
+					}
+				}
+			}
+			else { //facing right
+				// ignore entities that are on the left
+				if (otherHitboxComp.right < hitboxComp.right) continue
+
+				//ignore enemies that are too far away to the right
+				if (otherHitboxComp.left > hitboxComp.right + 20) continue
+
+				//store closest valid target
+				if (target == null) {
+					target = possibleTarget
+				}
+				else {
+					val targetHitboxComp = target.getNotNull(HitboxComp.mapper)
+					if (otherHitboxComp.left < targetHitboxComp.left) {
+						target = possibleTarget
+					}
+				}
+			}
+		}
+
+		return target
 	}
 }

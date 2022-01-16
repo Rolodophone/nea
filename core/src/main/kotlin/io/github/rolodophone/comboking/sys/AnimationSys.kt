@@ -32,7 +32,9 @@ class AnimationSys : IteratingSystem(
 
 		if (newAnimationLoopIndex == animationComp.animationLoop) {
 			//animation loop hasn't changed
-			if (currentTime > animationComp.timeOfLastFrameChange + animLoop.frameDuration) {
+			if (animLoop.frameDuration != -1 &&
+				currentTime > animationComp.timeOfLastFrameChange + animLoop.frameDuration
+			) {
 				//frame increment is due
 				animationComp.frameIndex = (animationComp.frameIndex + 1) % animLoop.frames.count()
 				animationComp.timeOfLastFrameChange = currentTime

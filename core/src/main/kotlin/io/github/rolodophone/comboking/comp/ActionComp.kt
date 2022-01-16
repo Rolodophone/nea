@@ -47,5 +47,10 @@ enum class Action {
 }
 
 enum class Facing(val sign: Int) {
-	LEFT(-1), RIGHT(1)
+	LEFT(-1), RIGHT(1);
+
+	fun reverse() = when (this) {
+		LEFT -> RIGHT
+		RIGHT -> LEFT
+	}
 }
