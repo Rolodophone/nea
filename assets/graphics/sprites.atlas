@@ -6,7 +6,7 @@ filter: Nearest, Nearest
 repeat: none
 btn_credits
   rotate: false
-  xy: 694, 130
+  xy: 1, 18
   size: 29, 9
   orig: 29, 9
   offset: 0, 0
@@ -20,9 +20,16 @@ btn_options
   index: -1
 btn_play
   rotate: false
-  xy: 1, 18
+  xy: 33, 29
   size: 17, 9
   orig: 17, 9
+  offset: 0, 0
+  index: -1
+door
+  rotate: false
+  xy: 694, 73
+  size: 34, 66
+  orig: 34, 66
   offset: 0, 0
   index: -1
 game_bg
@@ -111,7 +118,7 @@ office_worker_run1
   index: -1
 office_worker_run2
   rotate: false
-  xy: 123, 17
+  xy: 83, 17
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
@@ -202,7 +209,7 @@ office_worker_run_kb6
   index: -1
 office_worker_run_kb7
   rotate: false
-  xy: 83, 17
+  xy: 123, 17
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
