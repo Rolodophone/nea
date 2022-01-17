@@ -1,335 +1,342 @@
 
 sprites.png
-size: 730, 268
+size: 1061, 204
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 btn_credits
   rotate: false
-  xy: 1, 18
+  xy: 1, 1
   size: 29, 9
   orig: 29, 9
   offset: 0, 0
   index: -1
 btn_options
   rotate: false
-  xy: 1, 29
+  xy: 1, 12
   size: 30, 9
   orig: 30, 9
   offset: 0, 0
   index: -1
 btn_play
   rotate: false
-  xy: 33, 29
+  xy: 32, 1
   size: 17, 9
   orig: 17, 9
   offset: 0, 0
   index: -1
 door
   rotate: false
-  xy: 694, 73
+  xy: 795, 112
   size: 34, 66
   orig: 34, 66
   offset: 0, 0
   index: -1
 game_bg
   rotate: false
-  xy: 1, 87
+  xy: 1, 23
   size: 320, 180
   orig: 320, 180
   offset: 0, 0
   index: -1
 main_menu_bg
   rotate: false
-  xy: 1, 40
+  xy: 807, 1
   size: 80, 45
   orig: 80, 45
   offset: 0, 0
   index: -1
 office_worker_enter_door
   rotate: false
-  xy: 479, 1
+  xy: 681, 135
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_exit_door
   rotate: false
-  xy: 555, 1
+  xy: 719, 110
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_exit_door_kb
   rotate: false
-  xy: 669, 1
+  xy: 769, 40
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_hit_kb0
   rotate: false
-  xy: 593, 1
+  xy: 731, 40
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_hit_kb1
   rotate: false
-  xy: 517, 1
+  xy: 681, 65
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_idle
   rotate: false
-  xy: 441, 1
+  xy: 643, 65
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_idle_kb
   rotate: false
-  xy: 403, 1
+  xy: 643, 135
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_push
   rotate: false
-  xy: 631, 1
+  xy: 757, 110
   size: 36, 68
   orig: 36, 68
   offset: 0, 0
   index: -1
 office_worker_run0
   rotate: false
-  xy: 574, 71
+  xy: 403, 65
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run1
   rotate: false
-  xy: 363, 1
+  xy: 603, 65
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run2
   rotate: false
-  xy: 83, 17
+  xy: 483, 135
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run3
   rotate: false
-  xy: 454, 71
+  xy: 363, 135
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run4
   rotate: false
-  xy: 243, 17
+  xy: 563, 135
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run5
   rotate: false
-  xy: 614, 71
+  xy: 443, 135
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run6
   rotate: false
-  xy: 414, 71
+  xy: 323, 65
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run7
   rotate: false
-  xy: 163, 17
+  xy: 523, 135
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run_kb0
   rotate: false
-  xy: 494, 71
+  xy: 363, 65
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run_kb1
   rotate: false
-  xy: 283, 17
+  xy: 563, 65
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run_kb2
   rotate: false
-  xy: 654, 71
+  xy: 443, 65
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run_kb3
   rotate: false
-  xy: 374, 71
+  xy: 323, 135
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run_kb4
   rotate: false
-  xy: 203, 17
+  xy: 523, 65
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run_kb5
   rotate: false
-  xy: 534, 71
+  xy: 403, 135
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run_kb6
   rotate: false
-  xy: 323, 7
+  xy: 603, 135
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 office_worker_run_kb7
   rotate: false
-  xy: 123, 17
+  xy: 483, 65
   size: 38, 68
   orig: 38, 68
   offset: 0, 0
   index: -1
 player_enter_door
   rotate: false
-  xy: 323, 141
+  xy: 374, 1
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_exit_door
   rotate: false
-  xy: 425, 205
+  xy: 527, 1
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_idle0
   rotate: false
-  xy: 323, 205
+  xy: 323, 1
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_idle1
   rotate: false
-  xy: 578, 205
+  xy: 858, 52
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_punch0
   rotate: false
-  xy: 680, 205
+  xy: 933, 116
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_punch1
   rotate: false
-  xy: 476, 141
+  xy: 680, 1
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run0
   rotate: false
-  xy: 578, 141
+  xy: 882, 116
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run1
   rotate: false
-  xy: 425, 141
+  xy: 578, 1
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run2
   rotate: false
-  xy: 629, 141
+  xy: 984, 116
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run3
   rotate: false
-  xy: 527, 205
+  xy: 807, 48
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run4
   rotate: false
-  xy: 374, 205
+  xy: 425, 1
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run5
   rotate: false
-  xy: 629, 205
+  xy: 909, 52
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run6
   rotate: false
-  xy: 476, 205
+  xy: 629, 1
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_run7
   rotate: false
-  xy: 323, 77
+  xy: 1011, 52
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch0
   rotate: false
-  xy: 680, 141
+  xy: 960, 52
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch1
   rotate: false
-  xy: 527, 141
+  xy: 831, 116
   size: 49, 62
   orig: 49, 62
   offset: 0, 0
   index: -1
 player_spinning_punch2
   rotate: false
-  xy: 374, 141
+  xy: 476, 1
   size: 49, 62
   orig: 49, 62
+  offset: 0, 0
+  index: -1
+railing
+  rotate: false
+  xy: 731, 180
+  size: 320, 23
+  orig: 320, 23
   offset: 0, 0
   index: -1

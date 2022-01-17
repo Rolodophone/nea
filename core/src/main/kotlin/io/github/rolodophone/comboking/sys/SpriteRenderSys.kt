@@ -22,7 +22,7 @@ class SpriteRenderSys(
 	private val viewport: Viewport
 ): SortedIteratingSystem(
 	allOf(TransformComp::class, GraphicsComp::class).get(),
-	compareBy { entity -> entity.getNotNull(TransformComp.mapper).z },
+	EntityRenderingComparator(),
 	30
 ) {
 	private val sprite = Sprite() //reused for each entity to draw using a batch
@@ -51,4 +51,20 @@ class SpriteRenderSys(
 		sprite.setFlip(graphicsComp.flippedHorizontally, false)
 		sprite.draw(batch)
 	}
+}
+
+class EntityRenderingComparator: Comparator<Entity> {
+	override fun compare(p0: Entity, p1: Entity): Int {
+		val p0TransformComp = p0.getNotNull(TransformComp.mapper)
+		val p1TransformComp = p1.getNotNull(TransformComp.mapper)
+
+		return when {
+			p0TransformComp.z < p1TransformComp.z -> -1
+			p0TransformComp.z > p1TransformComp.z -> 1
+			p0TransformComp.y < p1TransformComp.y -> -1
+			p0TransformComp.y > p1TransformComp.y -> 1
+			else -> 0
+		}
+	}
+
 }

@@ -3,6 +3,7 @@ package io.github.rolodophone.comboking.sys
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
+import com.badlogic.gdx.utils.TimeUtils
 import io.github.rolodophone.comboking.comp.Action
 import io.github.rolodophone.comboking.ComboKingTextures
 import io.github.rolodophone.comboking.comp.InfoComp
@@ -14,6 +15,7 @@ import ktx.ashley.entity
 import ktx.ashley.with
 import kotlin.random.Random.Default.nextBoolean
 import kotlin.random.Random.Default.nextInt
+import kotlin.random.Random.Default.nextLong
 
 /**
  * Spawns the enemy entities automatically.
@@ -23,24 +25,23 @@ class SpawningSys(
 	private val textures: ComboKingTextures
 ): EntitySystem(15) {
 
-	lateinit var playerTransformComp: TransformComp
+	private lateinit var playerTransformComp: TransformComp
 
-	var gameUptime = 0f
-	var officeWorkerSpawnInterval = 1f
-	var lastOfficeWorkerSpawnTime = 0f
+	private var officeWorkerSpawnInterval = 1000L
+	private var lastOfficeWorkerSpawnTime = 0L
 
 	override fun addedToEngine(engine: Engine) {
 		playerTransformComp = player.getNotNull(TransformComp.mapper)
 	}
 
 	override fun update(deltaTime: Float) {
-		gameUptime += deltaTime
+		val currentTime = TimeUtils.millis()
 
 		//office worker
-		if (gameUptime > lastOfficeWorkerSpawnTime + officeWorkerSpawnInterval) {
+		if (currentTime > lastOfficeWorkerSpawnTime + officeWorkerSpawnInterval) {
 			spawnOfficeWorker()
-			lastOfficeWorkerSpawnTime = gameUptime
-			officeWorkerSpawnInterval = nextFloat(1f, 8f)
+			lastOfficeWorkerSpawnTime = currentTime
+			officeWorkerSpawnInterval = nextLong(1000, 8000)
 		}
 	}
 

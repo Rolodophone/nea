@@ -12,7 +12,7 @@ import ktx.ashley.entity
 import ktx.ashley.with
 
 /**
- * Draws the repeating background.
+ * Controls the background and door entities
  */
 class BackgroundSys(
 	private val textures: ComboKingTextures,
@@ -20,7 +20,10 @@ class BackgroundSys(
 ): EntitySystem(20) {
 
 	private lateinit var walls: List<Entity>
-	private var leftmostWallIndex = 0
+	private lateinit var doors: List<Pair<Entity, Entity>>
+	private lateinit var railings: List<Entity>
+	private lateinit var allEntities: List<List<Entity>>
+	private var leftmostIndex = 0
 
 	override fun addedToEngine(engine: Engine) {
 		// create 3 background wall entities, one directly in line with the screen and one on either side
@@ -40,28 +43,75 @@ class BackgroundSys(
 				}
 			}
 		}
-	}
-	override fun update(deltaTime: Float) {
-		// see diagram for explanation
 
+		doors = List(3) { i ->
+			Pair(
+				spawnDoor(textures.game_bg.regionWidth * (i-1) + 200f, 20f),
+				spawnDoor(textures.game_bg.regionWidth * (i-1) + 200f, 110f),
+			)
+		}
+
+		railings = List(3) { i ->
+			engine.entity {
+				with<InfoComp> {
+					name = "Railing"
+				}
+				with<TransformComp> {
+					x = (textures.game_bg.regionWidth * (i-1)).toFloat()
+					y = 91f
+					z = 10f
+					setSizeFromTexture(textures.railing)
+				}
+				with<GraphicsComp> {
+					textureRegion = textures.railing
+				}
+			}
+		}
+
+		allEntities = List(3) { i ->
+			listOf(walls[i], doors[i].first, doors[i].second, railings[i])
+		}
+	}
+
+	private fun spawnDoor(x: Float, y: Float): Entity {
+		return engine.entity {
+			with<InfoComp> {
+				name = "Door"
+			}
+			with<TransformComp> {
+				this.x = x
+				this.y = y
+				this.z = -5f
+				setSizeFromTexture(textures.door)
+			}
+			with<GraphicsComp> {
+				textureRegion = textures.door
+			}
+		}
+	}
+
+	override fun update(deltaTime: Float) {
 		val playerTransform = player.getNotNull(TransformComp.mapper)
 
-		val middleWallIndex = (leftmostWallIndex + 1) % 3
-		val rightmostWallIndex = (leftmostWallIndex + 2) % 3
+		val middleIndex = (leftmostIndex + 1) % 3
+		val rightmostIndex = (leftmostIndex + 2) % 3
 
-		val leftmostWallTransform = walls[leftmostWallIndex].getNotNull(TransformComp.mapper)
-		val middleWallTransform = walls[middleWallIndex].getNotNull(TransformComp.mapper)
-		val rightmostWallTransform = walls[rightmostWallIndex].getNotNull(TransformComp.mapper)
+		val middleWallTransform = walls[middleIndex].getNotNull(TransformComp.mapper)
+		val rightmostWallTransform = walls[rightmostIndex].getNotNull(TransformComp.mapper)
 
 		if (playerTransform.x < middleWallTransform.x) {
-			// move rightmost wall to the left-hand side
-			rightmostWallTransform.x -= textures.game_bg.regionWidth * 3
-			leftmostWallIndex = rightmostWallIndex
+			// move rightmost entities to the left-hand side
+			for (entity in allEntities[rightmostIndex]) {
+				entity.getNotNull(TransformComp.mapper).x -= textures.game_bg.regionWidth * 3
+			}
+			leftmostIndex = rightmostIndex
 		}
 		else if (playerTransform.x > rightmostWallTransform.x) {
-			// move leftmost wall to the right-hand side
-			leftmostWallTransform.x += textures.game_bg.regionWidth * 3
-			leftmostWallIndex = middleWallIndex
+			// move leftmost entities to the right-hand side
+			for (entity in allEntities[leftmostIndex]) {
+				entity.getNotNull(TransformComp.mapper).x += textures.game_bg.regionWidth * 3
+			}
+			leftmostIndex = middleIndex
 		}
 	}
 }
