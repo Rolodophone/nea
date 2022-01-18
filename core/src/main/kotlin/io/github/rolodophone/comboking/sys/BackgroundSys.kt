@@ -82,10 +82,10 @@ class BackgroundSys(
 				this.x = x
 				this.y = y
 				this.z = -5f
-				setSizeFromTexture(textures.door)
+				setSizeFromTexture(textures.door_closed)
 			}
 			with<GraphicsComp> {
-				textureRegion = textures.door
+				textureRegion = textures.door_closed
 			}
 		}
 	}

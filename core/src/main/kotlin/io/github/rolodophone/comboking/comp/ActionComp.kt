@@ -43,7 +43,7 @@ class ActionComp: Component, Pool.Poolable {
 }
 
 enum class Action {
-	IDLE, RUN, PUNCH, SPIN_PUNCH, PUSH, HIT_KB
+	IDLE, RUN, PUNCH, SPIN_PUNCH, PUSH, HIT_KB, USE_DOOR
 }
 
 enum class Facing(val sign: Int) {

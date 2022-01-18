@@ -7,6 +7,7 @@ import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 import ktx.ashley.get
+import kotlin.math.abs
 
 /**
  * Acts on entities according to their current action as specified by their [ActionComp].
@@ -69,6 +70,9 @@ class ActionSys: IteratingSystem(
 					actionComp.actionExecuted = true
 				}
 			}
+			Action.USE_DOOR -> {
+
+			}
 		}
 	}
 
@@ -129,5 +133,38 @@ class ActionSys: IteratingSystem(
 		}
 
 		return target
+	}
+
+	private fun findClosestDoors(entity: Entity): List<Entity> {
+		val thisHitboxComp = entity.getNotNull(HitboxComp.mapper)
+
+		var door1: Entity? = null
+		var door2: Entity? = null
+
+		for (possibleDoor in entities) {
+
+			//ignore entities that are not doors
+			if (possibleDoor[InfoComp.mapper]?.name != "Door") continue
+
+			val possibleDoorTransformComp = possibleDoor[TransformComp.mapper] ?: continue
+
+			if (door1 == null) {
+				door1 = possibleDoor
+			}
+			else {
+				val door1HitboxComp = door1.getNotNull(HitboxComp.mapper)
+
+				if (abs(thisHitboxComp.x - possibleDoorTransformComp.x) <
+					abs(thisHitboxComp.x - door1HitboxComp.x)) {
+					door1 = possibleDoor
+				}
+				else if (abs(thisHitboxComp.x - possibleDoorTransformComp.x) ==
+					     abs(thisHitboxComp.x - door1HitboxComp.x)) {
+					door2 = possibleDoor
+				}
+			}
+		}
+
+		return listOf(door1!!, door2!!)
 	}
 }
