@@ -13,6 +13,7 @@ import io.github.rolodophone.comboking.util.getNotNull
 import io.github.rolodophone.comboking.util.nextFloat
 import ktx.ashley.entity
 import ktx.ashley.with
+import kotlin.math.abs
 import kotlin.random.Random.Default.nextBoolean
 import kotlin.random.Random.Default.nextInt
 import kotlin.random.Random.Default.nextLong
@@ -86,8 +87,14 @@ class SpawningSys(
 					val enemyHitbox = enemy.getNotNull(HitboxComp.mapper)
 					val playerHitbox = player.getNotNull(HitboxComp.mapper)
 
-					if (enemyHitbox.overlaps(playerHitbox)) 0
-					else 1
+					when {
+						//if on different level do not attack player
+						abs(enemyHitbox.y - playerHitbox.y) > 50 -> 0
+
+						enemyHitbox.overlaps(playerHitbox) -> 0
+
+						else -> 1
+					}
 				}
 				determineAction = { _, _, state ->
 					when (state) {
