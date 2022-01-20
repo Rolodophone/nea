@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2
 import io.github.rolodophone.comboking.event.GameEvent
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.event.PlayerInput
+import kotlin.math.abs
 
 /**
  * The minimum distance (in pixels) that the cursor has to be dragged for it to register as a swipe
@@ -21,6 +22,7 @@ class TouchControlsGestureListener(
 ): GestureDetector.GestureListener {
 
 	private var touchHoldXMove = 0f
+	private var touchHoldYMove = 0f
 	private var touchHoldXCombat = 0f
 
 	/**
@@ -33,8 +35,13 @@ class TouchControlsGestureListener(
 	// to indicate that it should be passed on.
 
 	override fun touchDown(x: Float, y: Float, pointer: Int, button: Int): Boolean {
-		if (x < screenWidth/2f) touchHoldXMove = x
-		else touchHoldXCombat = x
+		if (x < screenWidth/2f) {
+			touchHoldXMove = x
+			touchHoldYMove = y
+		}
+		else {
+			touchHoldXCombat = x
+		}
 
 		return false
 	}
@@ -52,25 +59,48 @@ class TouchControlsGestureListener(
 	}
 
 	override fun pan(x: Float, y: Float, deltaX: Float, deltaY: Float): Boolean {
-		//moving controls
+		//LHS controls
 		if (x < screenWidth/2f) {
-			if (x < touchHoldXMove - MIN_SWIPE_DISTANCE) {
+			val distX = abs(x - touchHoldXMove)
+			val dispY = touchHoldYMove - y
+			val distY = abs(dispY)
+
+			//using doors
+			if (distY > MIN_SWIPE_DISTANCE && distY > distX) {
+				if (dispY < 0) { //swipe down
+					touchHoldXMove = x
+					touchHoldYMove = y
+					GameEvent.PlayerInputEvent.input = PlayerInput.DOWN_STAIRS
+					gameEventManager.trigger(GameEvent.PlayerInputEvent)
+				}
+				else { //swipe up
+					touchHoldXMove = x
+					touchHoldYMove = y
+					GameEvent.PlayerInputEvent.input = PlayerInput.UP_STAIRS
+					gameEventManager.trigger(GameEvent.PlayerInputEvent)
+				}
+			}
+			else if (x < touchHoldXMove - MIN_SWIPE_DISTANCE) {
 				touchHoldXMove = x
+				touchHoldYMove = y
 				GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)
-			} else if (x > touchHoldXMove + MIN_SWIPE_DISTANCE) {
+			}
+			else if (x > touchHoldXMove + MIN_SWIPE_DISTANCE) {
 				touchHoldXMove = x
+				touchHoldYMove = y
 				GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)
 			}
 		}
-		// combat controls
+		// RHS controls
 		else {
 			if (x < touchHoldXCombat - MIN_SWIPE_DISTANCE) {
 				touchHoldXCombat = x
 				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_LEFT
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)
-			} else if (x > touchHoldXMove + MIN_SWIPE_DISTANCE) {
+			}
+			else if (x > touchHoldXMove + MIN_SWIPE_DISTANCE) {
 				touchHoldXCombat = x
 				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_RIGHT
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)

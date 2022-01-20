@@ -32,6 +32,18 @@ class TransformComp: Component, Pool.Poolable {
 		set(value) { rect.height = value }
 		get() = rect.height
 
+	val left: Float
+		get() = x
+
+	val bottom: Float
+		get() = y
+
+	val right: Float
+		get() = x + width
+
+	val top: Float
+		get() = y + height
+
 	/**
 	 * The sprite will be drawn after all sprites with a lower [z]
 	 */
@@ -47,4 +59,11 @@ class TransformComp: Component, Pool.Poolable {
 	}
 
 	fun contains(x: Float, y: Float) = rect.contains(x, y)
+
+	fun overlaps(otherTransformComp: TransformComp) = rect.overlaps(otherTransformComp.rect)
+	fun overlaps(otherHitboxComp: HitboxComp)
+		= this.right > otherHitboxComp.left
+		&& this.left < otherHitboxComp.right
+		&& this.top > otherHitboxComp.bottom
+		&& this.bottom < otherHitboxComp.top
 }

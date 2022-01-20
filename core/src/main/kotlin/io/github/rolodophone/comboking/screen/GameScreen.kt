@@ -63,8 +63,6 @@ class GameScreen(
 					AnimationComp.AnimationLoop(231, listOf(textures.player_spinning_punch0,
 						textures.player_spinning_punch1, textures.player_spinning_punch2,
 						textures.player_spinning_punch1, textures.player_spinning_punch0)),
-					AnimationComp.AnimationLoop(-1, listOf(textures.player_enter_door)),
-					AnimationComp.AnimationLoop(-1, listOf(textures.player_exit_door)),
 				)
 				determineAnimationLoop = { _, action ->
 					when (action) {
@@ -72,6 +70,7 @@ class GameScreen(
 						Action.RUN -> 1
 						Action.PUNCH -> 2
 						Action.SPIN_PUNCH -> 3
+						Action.UP_STAIRS, Action.DOWN_STAIRS -> 0
 						else -> throw RuntimeException("No animation loop for action $action")
 					}
 				}

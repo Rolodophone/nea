@@ -3,13 +3,13 @@ package io.github.rolodophone.comboking.sys
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
-import io.github.rolodophone.comboking.comp.Action
-import io.github.rolodophone.comboking.comp.ActionComp
-import io.github.rolodophone.comboking.comp.Facing
+import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.event.GameEvent
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.event.PlayerInput
 import io.github.rolodophone.comboking.util.getNotNull
+import ktx.ashley.get
+import kotlin.math.abs
 
 /**
  * Resolves any keyboard or touch input events relating to controlling the player.
@@ -79,6 +79,16 @@ class PlayerInputSys(
 					else -> {}
 				}
 			}
+			PlayerInput.UP_STAIRS -> {
+				if (nearDoor(player)) {
+					actionComp.startAction(Action.UP_STAIRS)
+				}
+			}
+			PlayerInput.DOWN_STAIRS -> {
+				if (nearDoor(player)) {
+					actionComp.startAction(Action.DOWN_STAIRS)
+				}
+			}
 		}
 
 		when (event.input) {
@@ -94,5 +104,21 @@ class PlayerInputSys(
 
 	override fun removedFromEngine(engine: Engine) {
 		gameEventManager.stopListening(GameEvent.PlayerInputEvent, eventCallback)
+	}
+
+	private fun nearDoor(entity: Entity): Boolean {
+		val thisHitboxComp = entity.getNotNull(HitboxComp.mapper)
+
+		for (possibleDoor in engine.entities) {
+
+			//ignore entities that are not doors
+			if (possibleDoor[InfoComp.mapper]?.name != "Door") continue
+
+			val possibleDoorTransformComp = possibleDoor[TransformComp.mapper] ?: continue
+
+			if (possibleDoorTransformComp.overlaps(thisHitboxComp)) return true
+		}
+
+		return false
 	}
 }

@@ -32,11 +32,10 @@ class ActionSys: IteratingSystem(
 				//stop punching after punch frame ends
 				if (currentTime > actionComp.actionStartTime + 693L) {
 					actionComp.startAction(actionComp.returnToAction)
-					actionComp.actionExecuted = false
 				}
 
 				// perform punch effect when switches to punch frame
-				else if (!actionComp.actionExecuted && currentTime > actionComp.actionStartTime + 231L) {
+				else if (actionComp.actionState == 0 && currentTime > actionComp.actionStartTime + 231L) {
 
 					val target = findClosestNearbyEntityInDirection(entity, actionComp.facing)
 
@@ -45,7 +44,7 @@ class ActionSys: IteratingSystem(
 						targetHPComp.hp -= 25f
 					}
 
-					actionComp.actionExecuted = true
+					actionComp.actionState = 1
 				}
 			}
 			Action.SPIN_PUNCH -> {
@@ -54,11 +53,10 @@ class ActionSys: IteratingSystem(
 				//stop punching after punch frame ends
 				if (currentTime > actionComp.actionStartTime + 231*5L) {
 					actionComp.startAction(actionComp.returnToAction)
-					actionComp.actionExecuted = false
 				}
 
 				// perform punch effect when switches to punch frame
-				else if (!actionComp.actionExecuted && currentTime > actionComp.actionStartTime + 231*2L) {
+				else if (actionComp.actionState == 0 && currentTime > actionComp.actionStartTime + 231*2L) {
 
 					val target = findClosestNearbyEntityInDirection(entity, actionComp.facing.reverse())
 
@@ -67,11 +65,18 @@ class ActionSys: IteratingSystem(
 						targetHPComp.hp -= 50f
 					}
 
-					actionComp.actionExecuted = true
+					actionComp.actionState = 1
 				}
 			}
-			Action.USE_DOOR -> {
-
+			Action.UP_STAIRS -> {
+				transformComp.y = 95f
+				hitboxComp.y = 98f
+				actionComp.startAction(Action.IDLE)
+			}
+			Action.DOWN_STAIRS -> {
+				transformComp.y = 5f
+				hitboxComp.y = 8f
+				actionComp.startAction(Action.IDLE)
 			}
 		}
 	}
@@ -133,38 +138,5 @@ class ActionSys: IteratingSystem(
 		}
 
 		return target
-	}
-
-	private fun findClosestDoors(entity: Entity): List<Entity> {
-		val thisHitboxComp = entity.getNotNull(HitboxComp.mapper)
-
-		var door1: Entity? = null
-		var door2: Entity? = null
-
-		for (possibleDoor in entities) {
-
-			//ignore entities that are not doors
-			if (possibleDoor[InfoComp.mapper]?.name != "Door") continue
-
-			val possibleDoorTransformComp = possibleDoor[TransformComp.mapper] ?: continue
-
-			if (door1 == null) {
-				door1 = possibleDoor
-			}
-			else {
-				val door1HitboxComp = door1.getNotNull(HitboxComp.mapper)
-
-				if (abs(thisHitboxComp.x - possibleDoorTransformComp.x) <
-					abs(thisHitboxComp.x - door1HitboxComp.x)) {
-					door1 = possibleDoor
-				}
-				else if (abs(thisHitboxComp.x - possibleDoorTransformComp.x) ==
-					     abs(thisHitboxComp.x - door1HitboxComp.x)) {
-					door2 = possibleDoor
-				}
-			}
-		}
-
-		return listOf(door1!!, door2!!)
 	}
 }

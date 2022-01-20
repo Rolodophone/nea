@@ -21,8 +21,8 @@ class ActionComp: Component, Pool.Poolable {
 		private set
 	var facing = Facing.RIGHT
 	var actionStartTime = 0L
-	var actionExecuted = false
 	var returnToAction = Action.IDLE
+	var actionState = 0
 
 	override fun reset() {
 		runSpeed = 100f
@@ -30,20 +30,21 @@ class ActionComp: Component, Pool.Poolable {
 		action = Action.IDLE
 		facing = Facing.RIGHT
 		actionStartTime = 0L
-		actionExecuted = false
 		returnToAction = Action.IDLE
+		actionState = 0
 	}
 
 	fun startAction(value: Action) {
 		if (value != action) {
 			actionStartTime = TimeUtils.millis()
 			action = value
+			actionState = 0
 		}
 	}
 }
 
 enum class Action {
-	IDLE, RUN, PUNCH, SPIN_PUNCH, PUSH, HIT_KB, USE_DOOR
+	IDLE, RUN, PUNCH, SPIN_PUNCH, PUSH, HIT_KB, UP_STAIRS, DOWN_STAIRS
 }
 
 enum class Facing(val sign: Int) {
