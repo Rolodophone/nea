@@ -102,12 +102,16 @@ class SpawningSys(
 						else -> Action.IDLE
 					}
 				}
-				determineFacing = { enemy, player, _ ->
+				determineFacing = { enemy, player, state ->
 					val playerTransformComp = player.getNotNull(TransformComp.mapper)
 					val enemyTransformComp = enemy.getNotNull(TransformComp.mapper)
+					val enemyActionComp = enemy.getNotNull(ActionComp.mapper)
 
-					if (playerTransformComp.x < enemyTransformComp.x) Facing.LEFT
-					else Facing.RIGHT
+					when {
+						state == 0 -> enemyActionComp.facing
+						playerTransformComp.x < enemyTransformComp.x -> Facing.LEFT
+						else -> Facing.RIGHT
+					}
 				}
 			}
 			with<HitboxComp> {
