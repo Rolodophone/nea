@@ -67,12 +67,14 @@ class SpawningSys(
 					AnimationComp.AnimationLoop(Int.MAX_VALUE, listOf(textures.office_worker_idle)),
 					AnimationComp.AnimationLoop(77, listOf(textures.office_worker_run0, textures.office_worker_run1,
 						textures.office_worker_run2, textures.office_worker_run3, textures.office_worker_run4,
-						textures.office_worker_run5, textures.office_worker_run6, textures.office_worker_run7))
+						textures.office_worker_run5, textures.office_worker_run6, textures.office_worker_run7)),
+					AnimationComp.AnimationLoop(-1, listOf(textures.office_worker_push))
 				)
 				determineAnimationLoop = { _, action ->
 					when (action) {
 						Action.IDLE -> 0
 						Action.RUN -> 1
+						Action.PUSH -> 2
 						else -> 0
 					}
 				}
@@ -82,7 +84,8 @@ class SpawningSys(
 			}
 			with<AIComp> {
 				//States: 0 Idle
-				//        1 Attack player
+				//        1 Run towards player
+				//        2 Attack player
 				determineState = { enemy, player ->
 					val enemyHitbox = enemy.getNotNull(HitboxComp.mapper)
 					val playerHitbox = player.getNotNull(HitboxComp.mapper)
@@ -91,7 +94,7 @@ class SpawningSys(
 						//if on different level do not attack player
 						abs(enemyHitbox.y - playerHitbox.y) > 50 -> 0
 
-						enemyHitbox.overlaps(playerHitbox) -> 0
+						enemyHitbox.overlaps(playerHitbox) -> 2
 
 						else -> 1
 					}
@@ -99,6 +102,7 @@ class SpawningSys(
 				determineAction = { _, _, state ->
 					when (state) {
 						1 -> Action.RUN
+						2 -> Action.PUSH
 						else -> Action.IDLE
 					}
 				}

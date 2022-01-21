@@ -12,7 +12,9 @@ import kotlin.math.abs
 /**
  * Acts on entities according to their current action as specified by their [ActionComp].
  */
-class ActionSys: IteratingSystem(
+class ActionSys(
+	private val player: Entity
+) : IteratingSystem(
 	allOf(TransformComp::class, ActionComp::class, HitboxComp::class).get(), 10
 ) {
 	override fun processEntity(entity: Entity, deltaTime: Float) {
@@ -66,6 +68,27 @@ class ActionSys: IteratingSystem(
 					}
 
 					actionComp.actionState = 1
+				}
+			}
+			Action.PUSH -> {
+				val playerTransformComp = player.getNotNull(TransformComp.mapper)
+				val playerHitboxComp = player.getNotNull(HitboxComp.mapper)
+
+				when (actionComp.facing) {
+					Facing.LEFT -> {
+						val deltaX = (hitboxComp.x - playerHitboxComp.width) - playerHitboxComp.x
+						if (deltaX < 0) {
+							playerHitboxComp.x += deltaX + 1
+							playerTransformComp.x += deltaX + 1
+						}
+					}
+					Facing.RIGHT -> {
+						val deltaX = (hitboxComp.x + hitboxComp.width) - playerHitboxComp.x
+						if (deltaX > 0) {
+							playerHitboxComp.x += deltaX - 1
+							playerTransformComp.x += deltaX - 1
+						}
+					}
 				}
 			}
 			Action.UP_STAIRS -> {
