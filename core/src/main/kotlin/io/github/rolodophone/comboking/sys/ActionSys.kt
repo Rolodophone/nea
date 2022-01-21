@@ -91,6 +91,20 @@ class ActionSys(
 					}
 				}
 			}
+			Action.HIT_KB -> {
+				val currentTime = TimeUtils.millis()
+
+				// perform effect when switches to hit frame
+				if (currentTime > actionComp.actionStartTime + 462L * (actionComp.actionState*2 + 1)) {
+
+					val target = player
+
+					val targetHPComp = target.getNotNull(HPComp.mapper)
+					targetHPComp.hp -= 10f
+
+					actionComp.actionState++
+				}
+			}
 			Action.UP_STAIRS -> {
 				transformComp.y = 95f
 				hitboxComp.y = 98f
