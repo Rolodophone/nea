@@ -114,6 +114,7 @@ class GameScreen(
 			ScoreSys(player, scoreEntity),
 			BackgroundSys(textures, player),
 			CameraSys(viewport, player),
+			GameOverSys(game, player),
 			AnimationSys(),
 			DebugRenderSys(viewport),
 			HPRenderSys(batch, viewport),
