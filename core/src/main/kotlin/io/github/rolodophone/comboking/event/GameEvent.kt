@@ -1,5 +1,7 @@
 package io.github.rolodophone.comboking.event
 
+import io.github.rolodophone.comboking.comp.ScoreComp
+
 /**
  * An event that can be triggered and responded to. Each event type can store its own data.
  */
@@ -13,8 +15,12 @@ sealed class GameEvent {
 	 */
 	object PlayerInputEvent: GameEvent() {
 		var input = PlayerInput.STOP
-
 		override fun toString() = "PlayerInputEvent(${input.name})"
+	}
+
+	object GameOverEvent: GameEvent() {
+		lateinit var scoreComp: ScoreComp
+		override fun toString() = "GameOverEvent"
 	}
 }
 

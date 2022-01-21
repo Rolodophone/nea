@@ -20,9 +20,9 @@ class ScoreSys(
 		val playerTransformComp = player.getNotNull(TransformComp.mapper)
 
 		//calculate score
-		scoreComp.score =
-			playerTransformComp.x.toInt() - 120
+		scoreComp.distScore = playerTransformComp.x.toInt() - 120
+		scoreComp.totalScore = scoreComp.distScore + scoreComp.killsScore
 
-		scoreTextComp.text = "SCORE: ${scoreComp.score}"
+		scoreTextComp.text = "SCORE: ${scoreComp.totalScore}"
 	}
 }

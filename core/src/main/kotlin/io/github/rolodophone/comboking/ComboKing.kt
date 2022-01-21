@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
+import io.github.rolodophone.comboking.screen.GameOverScreen
 import io.github.rolodophone.comboking.screen.GameScreen
 import io.github.rolodophone.comboking.screen.MainMenuScreen
 import io.github.rolodophone.comboking.sys.SpriteRenderSys
@@ -57,6 +58,7 @@ class ComboKing(
 
 		addScreen(MainMenuScreen(this))
 		addScreen(GameScreen(this, createPlayerInputProcessor))
+		addScreen(GameOverScreen(this))
 
 		//update viewport so that TextRenderSys can save the projection matrix
 		viewport.update(viewport.screenWidth, viewport.screenHeight, true)
