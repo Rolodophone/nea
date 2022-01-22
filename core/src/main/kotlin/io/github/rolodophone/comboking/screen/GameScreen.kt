@@ -107,7 +107,7 @@ class GameScreen(
 		gameScreenSystems = listOf(
 			PlayerInputSys(player, gameEventManager),
 			AISys(player),
-			ActionSys(player),
+			ActionSys(player, sounds),
 			SpawningSys(player, textures, scoreEntity),
 			KillingSys(scoreEntity),
 			ScoreSys(player, scoreEntity),

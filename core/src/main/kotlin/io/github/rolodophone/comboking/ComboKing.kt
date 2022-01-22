@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.github.rolodophone.comboking.asset.ComboKingFonts
 import io.github.rolodophone.comboking.asset.ComboKingMusic
+import io.github.rolodophone.comboking.asset.ComboKingSounds
 import io.github.rolodophone.comboking.asset.ComboKingTextures
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
@@ -48,6 +49,7 @@ class ComboKing(
 	lateinit var comboKingTextures: ComboKingTextures
 	lateinit var comboKingFonts: ComboKingFonts
 	lateinit var comboKingMusic: ComboKingMusic
+	lateinit var comboKingSounds: ComboKingSounds
 	lateinit var engine: Engine
 
 	lateinit var textRenderSys: TextRenderSys
@@ -60,6 +62,7 @@ class ComboKing(
 		comboKingTextures = ComboKingTextures()
 		comboKingFonts = ComboKingFonts()
 		comboKingMusic = ComboKingMusic()
+		comboKingSounds = ComboKingSounds()
 		engine = PooledEngine()
 
 		Gdx.input.inputProcessor = InputMultiplexer(ButtonInputProcessor(engine, viewport))

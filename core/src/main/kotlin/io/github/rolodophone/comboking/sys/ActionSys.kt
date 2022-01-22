@@ -3,17 +3,18 @@ package io.github.rolodophone.comboking.sys
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.utils.TimeUtils
+import io.github.rolodophone.comboking.asset.ComboKingSounds
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 import ktx.ashley.get
-import kotlin.math.abs
 
 /**
  * Acts on entities according to their current action as specified by their [ActionComp].
  */
 class ActionSys(
-	private val player: Entity
+	private val player: Entity,
+	private val sounds: ComboKingSounds
 ) : IteratingSystem(
 	allOf(TransformComp::class, ActionComp::class, HitboxComp::class).get(), 10
 ) {
@@ -44,6 +45,7 @@ class ActionSys(
 					if (target != null) {
 						val targetHPComp = target.getNotNull(HPComp.mapper)
 						targetHPComp.hp -= 25f
+						sounds.punch_soft.play()
 					}
 
 					actionComp.actionState = 1
@@ -65,6 +67,7 @@ class ActionSys(
 					if (target != null) {
 						val targetHPComp = target.getNotNull(HPComp.mapper)
 						targetHPComp.hp -= 50f
+						sounds.punch_hard.play()
 					}
 
 					actionComp.actionState = 1
