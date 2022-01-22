@@ -37,7 +37,8 @@ class AnimationSys : IteratingSystem(
 			) {
 				//frame increment is due
 				animationComp.frameIndex = (animationComp.frameIndex + 1) % animLoop.frames.count()
-				animationComp.timeOfLastFrameChange += animLoop.frameDuration
+				val numFrameDurations = (currentTime - animationComp.timeOfLastFrameChange) / animLoop.frameDuration
+				animationComp.timeOfLastFrameChange += numFrameDurations * animLoop.frameDuration
 				graphicsComp.textureRegion = animLoop.frames[animationComp.frameIndex]
 			}
 		}
