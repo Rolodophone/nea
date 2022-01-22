@@ -100,7 +100,7 @@ class TouchControlsGestureListener(
 				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_LEFT
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)
 			}
-			else if (x > touchHoldXMove + MIN_SWIPE_DISTANCE) {
+			else if (x > touchHoldXCombat + MIN_SWIPE_DISTANCE) {
 				touchHoldXCombat = x
 				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_RIGHT
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)

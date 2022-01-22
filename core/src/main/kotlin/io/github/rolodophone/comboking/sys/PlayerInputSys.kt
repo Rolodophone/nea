@@ -9,7 +9,6 @@ import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.event.PlayerInput
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.get
-import kotlin.math.abs
 
 /**
  * Resolves any keyboard or touch input events relating to controlling the player.
@@ -25,13 +24,13 @@ class PlayerInputSys(
 		when (event.input) {
 			PlayerInput.STOP -> {
 				when (actionComp.action) {
-					Action.IDLE -> {}
 					Action.RUN -> {
 						actionComp.startAction(Action.IDLE)
 					}
 					Action.PUNCH, Action.SPIN_PUNCH, Action.HIT_KB, Action.PUSH -> {
 						actionComp.returnToAction = Action.IDLE
 					}
+					else -> {}
 				}
 			}
 			PlayerInput.LEFT, PlayerInput.RIGHT -> {
