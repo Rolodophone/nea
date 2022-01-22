@@ -105,6 +105,8 @@ class ActionSys(
 					val targetHPComp = target.getNotNull(HPComp.mapper)
 					targetHPComp.hp -= 10f
 
+					sounds.hit_kb.play()
+
 					actionComp.actionState++
 				}
 			}

@@ -100,5 +100,6 @@ class ComboKing(
 		comboKingTextures.dispose()
 		comboKingFonts.dispose()
 		comboKingMusic.dispose()
+		comboKingSounds.dispose()
 	}
 }
