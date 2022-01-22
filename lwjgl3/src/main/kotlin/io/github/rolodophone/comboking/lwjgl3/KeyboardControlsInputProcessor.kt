@@ -74,6 +74,17 @@ class KeyboardControlsInputProcessor(
 				}
 				return true
 			}
+			Input.Keys.W, Input.Keys.S -> {
+				if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+					GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+					gameEventManager.trigger(GameEvent.PlayerInputEvent)
+				}
+				else if (Gdx.input.isKeyPressed(Input.Keys.D)){
+					GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
+					gameEventManager.trigger(GameEvent.PlayerInputEvent)
+				}
+				return true
+			}
 		}
 
 		return false
