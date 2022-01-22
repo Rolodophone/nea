@@ -72,6 +72,7 @@ class GameScreen(
 						else -> throw RuntimeException("No animation loop for action $action")
 					}
 				}
+				animationLoop = 1 //set not equal to 0 so that it triggers an AnimationLoop change
 			}
 			with<ActionComp> {
 				runSpeed = 120f

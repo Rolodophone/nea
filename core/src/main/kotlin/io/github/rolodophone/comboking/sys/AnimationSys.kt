@@ -37,7 +37,7 @@ class AnimationSys : IteratingSystem(
 			) {
 				//frame increment is due
 				animationComp.frameIndex = (animationComp.frameIndex + 1) % animLoop.frames.count()
-				animationComp.timeOfLastFrameChange = currentTime
+				animationComp.timeOfLastFrameChange += animLoop.frameDuration
 				graphicsComp.textureRegion = animLoop.frames[animationComp.frameIndex]
 			}
 		}
