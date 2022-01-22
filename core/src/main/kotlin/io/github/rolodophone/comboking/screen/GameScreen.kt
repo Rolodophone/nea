@@ -108,7 +108,7 @@ class GameScreen(
 			PlayerInputSys(player, gameEventManager),
 			AISys(player),
 			ActionSys(player),
-			SpawningSys(player, textures),
+			SpawningSys(player, textures, scoreEntity),
 			KillingSys(scoreEntity),
 			ScoreSys(player, scoreEntity),
 			BackgroundSys(textures, player),

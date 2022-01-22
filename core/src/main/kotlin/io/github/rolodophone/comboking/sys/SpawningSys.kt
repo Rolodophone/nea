@@ -20,7 +20,8 @@ import kotlin.random.Random.Default.nextLong
  */
 class SpawningSys(
 	private val player: Entity,
-	private val textures: ComboKingTextures
+	private val textures: ComboKingTextures,
+	private val scoreEntity: Entity
 ): EntitySystem(15) {
 
 	private lateinit var playerTransformComp: TransformComp
@@ -37,9 +38,20 @@ class SpawningSys(
 
 		//office worker (both with and without keyboard)
 		if (currentTime > lastOfficeWorkerSpawnTime + officeWorkerSpawnInterval) {
+
 			if (nextBoolean()) spawnOfficeWorker() else spawnOfficeWorkerKB()
+
 			lastOfficeWorkerSpawnTime = currentTime
-			officeWorkerSpawnInterval = nextLong(1000, 8000)
+
+			val distScore = scoreEntity.getNotNull(ScoreComp.mapper).distScore
+			officeWorkerSpawnInterval = when {
+				distScore < 2000 -> nextLong(3000, 5000)
+				distScore < 4000 -> nextLong(2000, 4000)
+				distScore < 6000 -> nextLong(1000, 3000)
+				distScore < 8000 -> nextLong(500, 2500)
+				distScore < 10000 -> nextLong(400, 1500)
+				else -> nextLong(300, 1000)
+			}
 		}
 	}
 
