@@ -25,6 +25,9 @@ class TouchControlsGestureListener(
 	private var touchHoldYMove = 0f
 	private var touchHoldXCombat = 0f
 
+	private var usingLeftControls = false
+	private var usingRightControls = false
+
 	/**
 	 * Returns a customised gesture detector for this listener
 	 */
@@ -38,9 +41,11 @@ class TouchControlsGestureListener(
 		if (x < screenWidth/2f) {
 			touchHoldXMove = x
 			touchHoldYMove = y
+			usingLeftControls = true
 		}
 		else {
 			touchHoldXCombat = x
+			usingRightControls = true
 		}
 
 		return false
@@ -60,7 +65,7 @@ class TouchControlsGestureListener(
 
 	override fun pan(x: Float, y: Float, deltaX: Float, deltaY: Float): Boolean {
 		//LHS controls
-		if (x < screenWidth/2f) {
+		if (usingLeftControls) {
 			val distX = abs(x - touchHoldXMove)
 			val dispY = touchHoldYMove - y
 			val distY = abs(dispY)
@@ -111,10 +116,14 @@ class TouchControlsGestureListener(
 	}
 
 	override fun panStop(x: Float, y: Float, pointer: Int, button: Int): Boolean {
-		if (x < screenWidth/2f) {
+		if (usingLeftControls) {
 			GameEvent.PlayerInputEvent.input = PlayerInput.STOP
 			gameEventManager.trigger(GameEvent.PlayerInputEvent)
 		}
+
+		usingLeftControls = false
+		usingRightControls = false
+
 		return false
 	}
 
