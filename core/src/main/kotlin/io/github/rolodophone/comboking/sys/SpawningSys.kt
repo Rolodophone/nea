@@ -73,7 +73,9 @@ class SpawningSys(
 			with<GraphicsComp>()
 			with<AnimationComp> {
 				animationLoops = listOf(
-					AnimationComp.AnimationLoop(Int.MAX_VALUE, listOf(textures.office_worker_idle)),
+					AnimationComp.AnimationLoop(154, listOf(textures.office_worker_run0, textures.office_worker_run1,
+						textures.office_worker_run2, textures.office_worker_run3, textures.office_worker_run4,
+						textures.office_worker_run5, textures.office_worker_run6, textures.office_worker_run7)),
 					AnimationComp.AnimationLoop(77, listOf(textures.office_worker_run0, textures.office_worker_run1,
 						textures.office_worker_run2, textures.office_worker_run3, textures.office_worker_run4,
 						textures.office_worker_run5, textures.office_worker_run6, textures.office_worker_run7)),
@@ -87,9 +89,12 @@ class SpawningSys(
 						else -> 0
 					}
 				}
+				animationLoop = 2 //set animation loop so it changes, triggering the ActionSys to record the time
 			}
 			with<ActionComp> {
 				runSpeed = 80f
+				walkSpeed = 40f
+				facing = if (nextBoolean()) Facing.LEFT else Facing.RIGHT
 			}
 			with<AIComp> {
 				//States: 0 Idle
@@ -110,6 +115,7 @@ class SpawningSys(
 				}
 				determineAction = { _, _, state ->
 					when (state) {
+						0 -> Action.WALK
 						1 -> Action.RUN
 						2 -> Action.PUSH
 						else -> Action.IDLE
@@ -158,7 +164,10 @@ class SpawningSys(
 			with<GraphicsComp>()
 			with<AnimationComp> {
 				animationLoops = listOf(
-					AnimationComp.AnimationLoop(Int.MAX_VALUE, listOf(textures.office_worker_idle_kb)),
+					AnimationComp.AnimationLoop(154, listOf(textures.office_worker_run_kb0,
+						textures.office_worker_run_kb1, textures.office_worker_run_kb2, textures.office_worker_run_kb3,
+						textures.office_worker_run_kb4, textures.office_worker_run_kb5, textures.office_worker_run_kb6,
+						textures.office_worker_run_kb7)),
 					AnimationComp.AnimationLoop(77, listOf(textures.office_worker_run_kb0,
 						textures.office_worker_run_kb1, textures.office_worker_run_kb2, textures.office_worker_run_kb3,
 						textures.office_worker_run_kb4, textures.office_worker_run_kb5, textures.office_worker_run_kb6,
@@ -174,9 +183,12 @@ class SpawningSys(
 						else -> 0
 					}
 				}
+				animationLoop = 2 //set animation loop so it changes, triggering the ActionSys to record the time
 			}
 			with<ActionComp> {
 				runSpeed = 80f
+				walkSpeed = 40f
+				facing = if (nextBoolean()) Facing.LEFT else Facing.RIGHT
 			}
 			with<AIComp> {
 				//States: 0 Idle
@@ -197,6 +209,7 @@ class SpawningSys(
 				}
 				determineAction = { _, _, state ->
 					when (state) {
+						0 -> Action.WALK
 						1 -> Action.RUN
 						2 -> Action.HIT_KB
 						else -> Action.IDLE

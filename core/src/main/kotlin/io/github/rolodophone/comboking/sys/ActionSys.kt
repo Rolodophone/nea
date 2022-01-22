@@ -25,6 +25,10 @@ class ActionSys(
 
 		when (actionComp.action) {
 			Action.IDLE -> {}
+			Action.WALK -> {
+				transformComp.x += actionComp.facing.sign * actionComp.walkSpeed * deltaTime
+				hitboxComp.x += actionComp.facing.sign * actionComp.walkSpeed * deltaTime
+			}
 			Action.RUN -> {
 				transformComp.x += actionComp.facing.sign * actionComp.runSpeed * deltaTime
 				hitboxComp.x += actionComp.facing.sign * actionComp.runSpeed * deltaTime

@@ -15,6 +15,7 @@ class ActionComp: Component, Pool.Poolable {
 
 	//these may be specified when creating the entity. If not specified they'll have the default value defined below
 	var runSpeed = 100f
+	var walkSpeed = 50f
 
 	//these shouldn't be specified when creating the entity, as they will be controlled by ActionSys
 	var action = Action.IDLE
@@ -44,7 +45,7 @@ class ActionComp: Component, Pool.Poolable {
 }
 
 enum class Action {
-	IDLE, RUN, PUNCH, SPIN_PUNCH, PUSH, HIT_KB, UP_STAIRS, DOWN_STAIRS
+	IDLE, WALK, RUN, PUNCH, SPIN_PUNCH, PUSH, HIT_KB, UP_STAIRS, DOWN_STAIRS
 }
 
 enum class Facing(val sign: Int) {
