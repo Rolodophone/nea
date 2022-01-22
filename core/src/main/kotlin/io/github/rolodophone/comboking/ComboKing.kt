@@ -17,6 +17,7 @@ import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameOverScreen
 import io.github.rolodophone.comboking.screen.GameScreen
 import io.github.rolodophone.comboking.screen.MainMenuScreen
+import io.github.rolodophone.comboking.sys.MusicSys
 import io.github.rolodophone.comboking.sys.SpriteRenderSys
 import io.github.rolodophone.comboking.sys.TextRenderSys
 import ktx.app.KtxGame
@@ -76,6 +77,7 @@ class ComboKing(
 		engine.run {
 			addSystem(SpriteRenderSys(batch, viewport))
 			addSystem(textRenderSys)
+			addSystem(MusicSys(comboKingMusic, this@ComboKing))
 		}
 
 		setScreen<MainMenuScreen>()

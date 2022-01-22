@@ -116,8 +116,7 @@ class GameScreen(
 			GameOverSys(game, gameEventManager, player, scoreEntity),
 			AnimationSys(),
 			//DebugRenderSys(viewport),
-			HPRenderSys(batch, viewport, fonts),
-			MusicSys()
+			HPRenderSys(batch, viewport, fonts)
 		)
 
 		gameScreenSystems?.forEach { system ->
