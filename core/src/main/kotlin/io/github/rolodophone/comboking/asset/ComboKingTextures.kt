@@ -1,4 +1,4 @@
-package io.github.rolodophone.comboking
+package io.github.rolodophone.comboking.asset
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.TextureAtlas

@@ -13,6 +13,8 @@ abstract class ComboKingScreen(val game: ComboKing): KtxScreen {
     val viewport = game.viewport
     val engine = game.engine
     val textures = game.comboKingTextures
+    val fonts = game.comboKingFonts
+    val music = game.comboKingMusic
     val gameEventManager = game.gameEventManager
 
     override fun render(delta: Float) {

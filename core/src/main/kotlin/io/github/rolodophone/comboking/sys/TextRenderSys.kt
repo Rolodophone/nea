@@ -3,13 +3,10 @@ package io.github.rolodophone.comboking.sys
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.math.Matrix4
-import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.Viewport
+import io.github.rolodophone.comboking.asset.ComboKingFonts
 import io.github.rolodophone.comboking.comp.TextComp
 import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
@@ -22,16 +19,13 @@ import ktx.graphics.use
 class TextRenderSys(
 	private val batch: Batch,
 	private val viewport: Viewport,
+	private val fonts: ComboKingFonts
 ): IteratingSystem(
 	allOf(TransformComp::class, TextComp::class).get(), 35
-), Disposable {
-	private lateinit var font: BitmapFont
+) {
 	private lateinit var textProjectionMatrix: Matrix4
 
 	override fun addedToEngine(engine: Engine) {
-		// load font
-		font = BitmapFont(Gdx.files.internal("font/visitor.fnt"), Gdx.files.internal("font/visitor.png"), false)
-
 		// save the un-zoomed projection matrix for using when drawing text, so that text isn't moved when the
 		// camera moves. Translate it to put the origin in the bottom left.
 		textProjectionMatrix = viewport.camera.projection.cpy()
@@ -52,7 +46,7 @@ class TextRenderSys(
 		val transformComp = entity.getNotNull(TransformComp.mapper)
 		val textComp = entity.getNotNull(TextComp.mapper)
 
-		font.color = textComp.colour
+		fonts.visitor.color = textComp.colour
 
 		// add the height of the font because by default text is drawn with the origin at the top left. Adding the
 		// on the height means the text is drawn with the origin in the bottom left, consistent with the rest of my game
@@ -60,10 +54,6 @@ class TextRenderSys(
 		// convert text to uppercase because this font uses the lowercase letters as slight variants of the capital
 		// letters. So I'm converting all text for the letters to look consistent
 
-		font.draw(batch, textComp.text.uppercase(), transformComp.x, transformComp.y + TextComp.FONT_HEIGHT)
-	}
-
-	override fun dispose() {
-		font.dispose()
+		fonts.visitor.draw(batch, textComp.text.uppercase(), transformComp.x, transformComp.y + TextComp.FONT_HEIGHT)
 	}
 }

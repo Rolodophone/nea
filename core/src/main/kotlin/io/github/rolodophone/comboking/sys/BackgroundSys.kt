@@ -3,9 +3,9 @@ package io.github.rolodophone.comboking.sys
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
-import io.github.rolodophone.comboking.ComboKingTextures
-import io.github.rolodophone.comboking.comp.InfoComp
+import io.github.rolodophone.comboking.asset.ComboKingTextures
 import io.github.rolodophone.comboking.comp.GraphicsComp
+import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.comp.TransformComp
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.entity

@@ -6,9 +6,7 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
-import io.github.rolodophone.comboking.comp.Action
 import io.github.rolodophone.comboking.ComboKing
-import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.WORLD_HEIGHT
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.event.GameEventManager
@@ -116,8 +114,9 @@ class GameScreen(
 			CameraSys(viewport, player),
 			GameOverSys(game, gameEventManager, player, scoreEntity),
 			AnimationSys(),
-			DebugRenderSys(viewport),
-			HPRenderSys(batch, viewport),
+			//DebugRenderSys(viewport),
+			HPRenderSys(batch, viewport, fonts),
+			MusicSys()
 		)
 
 		gameScreenSystems?.forEach { system ->

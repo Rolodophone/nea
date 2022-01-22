@@ -4,13 +4,10 @@ import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.gdx.utils.TimeUtils
-import io.github.rolodophone.comboking.comp.Action
-import io.github.rolodophone.comboking.ComboKingTextures
-import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.WORLD_WIDTH
+import io.github.rolodophone.comboking.asset.ComboKingTextures
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.util.getNotNull
-import io.github.rolodophone.comboking.util.nextFloat
 import ktx.ashley.entity
 import ktx.ashley.with
 import kotlin.math.abs

@@ -9,6 +9,9 @@ import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
+import io.github.rolodophone.comboking.asset.ComboKingFonts
+import io.github.rolodophone.comboking.asset.ComboKingMusic
+import io.github.rolodophone.comboking.asset.ComboKingTextures
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameOverScreen
@@ -42,6 +45,8 @@ class ComboKing(
 	val gameEventManager = GameEventManager()
 	lateinit var batch: Batch
 	lateinit var comboKingTextures: ComboKingTextures
+	lateinit var comboKingFonts: ComboKingFonts
+	lateinit var comboKingMusic: ComboKingMusic
 	lateinit var engine: Engine
 
 	lateinit var textRenderSys: TextRenderSys
@@ -52,6 +57,8 @@ class ComboKing(
 		//init stuff
 		batch = SpriteBatch(BATCH_SIZE)
 		comboKingTextures = ComboKingTextures()
+		comboKingFonts = ComboKingFonts()
+		comboKingMusic = ComboKingMusic()
 		engine = PooledEngine()
 
 		Gdx.input.inputProcessor = InputMultiplexer(ButtonInputProcessor(engine, viewport))
@@ -63,7 +70,7 @@ class ComboKing(
 		//update viewport so that TextRenderSys can save the projection matrix
 		viewport.update(viewport.screenWidth, viewport.screenHeight, true)
 
-		textRenderSys = TextRenderSys(batch, viewport)
+		textRenderSys = TextRenderSys(batch, viewport, comboKingFonts)
 
 		//add systems to engine
 		engine.run {
@@ -86,7 +93,7 @@ class ComboKing(
 		batch.dispose()
 
 		comboKingTextures.dispose()
-
-		textRenderSys.dispose() // this system must be disposed because it holds a font
+		comboKingFonts.dispose()
+		comboKingMusic.dispose()
 	}
 }
