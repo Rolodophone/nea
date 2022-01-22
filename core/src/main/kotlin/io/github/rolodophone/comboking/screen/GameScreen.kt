@@ -124,8 +124,7 @@ class GameScreen(
 		}
 	}
 
-	override fun hide() {
-		engine.removeAllEntities()
+	override fun hide() { engine.removeAllEntities()
 
 		(Gdx.input.inputProcessor as InputMultiplexer).removeProcessor(playerInputProcessor)
 
