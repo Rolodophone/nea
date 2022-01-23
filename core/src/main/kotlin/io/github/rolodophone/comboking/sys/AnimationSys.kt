@@ -2,7 +2,6 @@ package io.github.rolodophone.comboking.sys
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
-import com.badlogic.gdx.utils.TimeUtils
 import io.github.rolodophone.comboking.ckLogger
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.util.getNotNull
@@ -12,7 +11,9 @@ import ktx.ashley.get
 
 private val log = ckLogger<AnimationSys>()
 
-class AnimationSys : IteratingSystem(
+class AnimationSys(
+	private val timeSys: TimeSys
+) : IteratingSystem(
 	allOf(AnimationComp::class, GraphicsComp::class).get(), 20
 ) {
 	override fun processEntity(entity: Entity, deltaTime: Float) {
@@ -28,24 +29,24 @@ class AnimationSys : IteratingSystem(
 		)
 
 		val animLoop = animationComp.animationLoops[newAnimationLoopIndex]
-		val currentTime = TimeUtils.millis()
 
 		if (newAnimationLoopIndex == animationComp.animationLoop) {
 			//animation loop hasn't changed
-			if (animLoop.frameDuration != -1 &&
-				currentTime > animationComp.timeOfLastFrameChange + animLoop.frameDuration
+			if (animLoop.frameDuration != -1f &&
+				timeSys.appUptime > animationComp.timeOfLastFrameChange + animLoop.frameDuration
 			) {
 				//frame increment is due
-				animationComp.frameIndex = (animationComp.frameIndex + 1) % animLoop.frames.count()
-				val numFrameDurations = (currentTime - animationComp.timeOfLastFrameChange) / animLoop.frameDuration
-				animationComp.timeOfLastFrameChange += numFrameDurations * animLoop.frameDuration
+				val numFrameIncrements = ((timeSys.appUptime - animationComp.timeOfLastFrameChange) /
+						animLoop.frameDuration).toInt()
+				animationComp.frameIndex = (animationComp.frameIndex + numFrameIncrements) % animLoop.frames.count()
+				animationComp.timeOfLastFrameChange += numFrameIncrements * animLoop.frameDuration
 				graphicsComp.textureRegion = animLoop.frames[animationComp.frameIndex]
 			}
 		}
 		else {
 			//animation loop has changed
 			animationComp.frameIndex = 0
-			animationComp.timeOfLastFrameChange = currentTime
+			animationComp.timeOfLastFrameChange = timeSys.appUptime
 			animationComp.animationLoop = newAnimationLoopIndex
 			graphicsComp.textureRegion = animLoop.frames[0]
 			if (entity[InfoComp.mapper]?.name == "Player") {

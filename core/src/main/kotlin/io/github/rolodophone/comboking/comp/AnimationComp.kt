@@ -10,7 +10,7 @@ class AnimationComp : Component, Pool.Poolable {
 		val mapper = mapperFor<AnimationComp>()
 	}
 
-	class AnimationLoop(val frameDuration: Int, val frames: List<TextureRegion>) {
+	class AnimationLoop(val frameDuration: Float, val frames: List<TextureRegion>) {
 		override fun toString() = "AnimationLoop(${frames.joinToString(", ")})"
 	}
 
@@ -20,7 +20,7 @@ class AnimationComp : Component, Pool.Poolable {
 
 	//for use of AnimationSys
 	var animationLoop = 0
-	var timeOfLastFrameChange = 0L
+	var timeOfLastFrameChange = 0f
 	var frameIndex = 0
 
 	override fun reset() {
@@ -29,7 +29,7 @@ class AnimationComp : Component, Pool.Poolable {
 		flipWhenFacingLeft = true
 
 		animationLoop = 0
-		timeOfLastFrameChange = 0L
+		timeOfLastFrameChange = 0f
 		frameIndex = 0
 	}
 }

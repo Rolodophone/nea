@@ -19,7 +19,7 @@ class KillingSys(
 		val hpComp = entity.getNotNull(HPComp.mapper)
 
 		if (hpComp.deleteWhenHP0 && hpComp.hp <= 0) {
-			scoreEntity.getNotNull(ScoreComp.mapper).killsScore += 1000
+			scoreEntity.getNotNull(ScoreComp.mapper).kills++
 			engine.removeEntity(entity)
 		}
 	}

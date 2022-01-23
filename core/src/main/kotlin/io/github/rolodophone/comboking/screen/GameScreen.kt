@@ -39,6 +39,9 @@ class GameScreen(
 			update()
 		}
 
+		//start counting gameUptime
+		game.timeSys.gameUptime = 0f
+
 		// add entities
 		val player = engine.entity {
 			with<InfoComp> {
@@ -52,13 +55,13 @@ class GameScreen(
 			with<GraphicsComp>()
 			with<AnimationComp> {
 				animationLoops = listOf(
-					AnimationComp.AnimationLoop(462, listOf(textures.player_idle0, textures.player_idle1)),
-					AnimationComp.AnimationLoop(77, listOf(textures.player_run0, textures.player_run1,
+					AnimationComp.AnimationLoop(0.462f, listOf(textures.player_idle0, textures.player_idle1)),
+					AnimationComp.AnimationLoop(0.077f, listOf(textures.player_run0, textures.player_run1,
 						textures.player_run2, textures.player_run3, textures.player_run4, textures.player_run5,
 						textures.player_run6, textures.player_run7)),
-					AnimationComp.AnimationLoop(231, listOf(textures.player_punch0, textures.player_punch1,
+					AnimationComp.AnimationLoop(0.231f, listOf(textures.player_punch0, textures.player_punch1,
 						textures.player_punch0)),
-					AnimationComp.AnimationLoop(231, listOf(textures.player_spinning_punch0,
+					AnimationComp.AnimationLoop(0.231f, listOf(textures.player_spinning_punch0,
 						textures.player_spinning_punch1, textures.player_spinning_punch2,
 						textures.player_spinning_punch1, textures.player_spinning_punch0)),
 				)
@@ -105,16 +108,16 @@ class GameScreen(
 
 		//add systems
 		gameScreenSystems = listOf(
-			PlayerInputSys(player, gameEventManager),
-			AISys(player),
-			ActionSys(player, sounds),
-			SpawningSys(player, textures, scoreEntity),
+			PlayerInputSys(player, gameEventManager, game.timeSys),
+			AISys(player, game.timeSys),
+			ActionSys(player, sounds, game.timeSys),
+			SpawningSys(player, textures, game.timeSys),
 			KillingSys(scoreEntity),
-			ScoreSys(player, scoreEntity),
+			ScoreSys(player, scoreEntity, game.timeSys),
 			BackgroundSys(textures, player),
 			CameraSys(viewport, player),
 			GameOverSys(game, gameEventManager, player, scoreEntity),
-			AnimationSys(),
+			AnimationSys(game.timeSys),
 			//DebugRenderSys(viewport),
 			HPRenderSys(batch, viewport, fonts)
 		)
@@ -124,7 +127,11 @@ class GameScreen(
 		}
 	}
 
-	override fun hide() { engine.removeAllEntities()
+	override fun hide() {
+		//stop counting gameUptime
+		game.timeSys.gameUptime = -1f
+
+		engine.removeAllEntities()
 
 		(Gdx.input.inputProcessor as InputMultiplexer).removeProcessor(playerInputProcessor)
 

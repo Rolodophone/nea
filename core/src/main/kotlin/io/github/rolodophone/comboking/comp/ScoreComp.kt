@@ -12,13 +12,15 @@ class ScoreComp: Component, Pool.Poolable {
 		val mapper = mapperFor<ScoreComp>()
 	}
 
-	var distScore = 0
-	var killsScore = 0
-	var totalScore = 0
+	var distance = 0f
+	var kills = 0
+	var time = 0f
+	var score = 0
 
 	override fun reset() {
-		distScore = 0
-		killsScore = 0
-		totalScore = 0
+		distance = 0f
+		kills = 0
+		time = 0f
+		score = 0
 	}
 }

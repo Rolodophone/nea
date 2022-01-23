@@ -8,7 +8,8 @@ import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 
 class AISys(
-	private val player: Entity
+	private val player: Entity,
+	private val timeSys: TimeSys
 ): IteratingSystem(
 	allOf(AIComp::class, ActionComp::class).get(), 10
 ) {
@@ -17,7 +18,7 @@ class AISys(
 		val entityMoveComp = entity.getNotNull(ActionComp.mapper)
 
 		entityAIComp.state = entityAIComp.determineState(entity, player)
-		entityMoveComp.startAction(entityAIComp.determineAction(entity, player, entityAIComp.state))
+		entityMoveComp.startAction(entityAIComp.determineAction(entity, player, entityAIComp.state), timeSys.appUptime)
 		entityMoveComp.facing = entityAIComp.determineFacing(entity, player, entityAIComp.state)
 	}
 }

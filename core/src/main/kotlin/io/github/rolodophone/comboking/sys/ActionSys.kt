@@ -2,7 +2,6 @@ package io.github.rolodophone.comboking.sys
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
-import com.badlogic.gdx.utils.TimeUtils
 import io.github.rolodophone.comboking.asset.ComboKingSounds
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.util.getNotNull
@@ -14,7 +13,8 @@ import ktx.ashley.get
  */
 class ActionSys(
 	private val player: Entity,
-	private val sounds: ComboKingSounds
+	private val sounds: ComboKingSounds,
+	private val timeSys: TimeSys
 ) : IteratingSystem(
 	allOf(TransformComp::class, ActionComp::class, HitboxComp::class).get(), 10
 ) {
@@ -34,15 +34,13 @@ class ActionSys(
 				hitboxComp.x += actionComp.facing.sign * actionComp.runSpeed * deltaTime
 			}
 			Action.PUNCH -> {
-				val currentTime = TimeUtils.millis()
-
 				//stop punching after punch frame ends
-				if (currentTime > actionComp.actionStartTime + 693L) {
-					actionComp.startAction(actionComp.returnToAction)
+				if (timeSys.appUptime > actionComp.actionStartTime + 0.693f) {
+					actionComp.startAction(actionComp.returnToAction, timeSys.appUptime)
 				}
 
 				// perform punch effect when switches to punch frame
-				else if (actionComp.actionState == 0 && currentTime > actionComp.actionStartTime + 231L) {
+				else if (actionComp.actionState == 0 && timeSys.appUptime > actionComp.actionStartTime + 0.231f) {
 
 					val target = findClosestNearbyEntityInDirection(entity, actionComp.facing)
 
@@ -56,15 +54,13 @@ class ActionSys(
 				}
 			}
 			Action.SPIN_PUNCH -> {
-				val currentTime = TimeUtils.millis()
-
 				//stop punching after punch frame ends
-				if (currentTime > actionComp.actionStartTime + 231*5L) {
-					actionComp.startAction(actionComp.returnToAction)
+				if (timeSys.appUptime > actionComp.actionStartTime + 0.231f*5) {
+					actionComp.startAction(actionComp.returnToAction, timeSys.appUptime)
 				}
 
 				// perform punch effect when switches to punch frame
-				else if (actionComp.actionState == 0 && currentTime > actionComp.actionStartTime + 231*2L) {
+				else if (actionComp.actionState == 0 && timeSys.appUptime > actionComp.actionStartTime + 0.231f*2) {
 
 					val target = findClosestNearbyEntityInDirection(entity, actionComp.facing.reverse())
 
@@ -99,10 +95,8 @@ class ActionSys(
 				}
 			}
 			Action.HIT_KB -> {
-				val currentTime = TimeUtils.millis()
-
 				// perform effect when switches to hit frame
-				if (currentTime > actionComp.actionStartTime + 462L * (actionComp.actionState*2 + 1)) {
+				if (timeSys.appUptime > actionComp.actionStartTime + 0.462f * (actionComp.actionState*2 + 1)) {
 
 					val target = player
 
@@ -117,12 +111,12 @@ class ActionSys(
 			Action.UP_STAIRS -> {
 				transformComp.y = 95f
 				hitboxComp.y = 98f
-				actionComp.startAction(Action.IDLE)
+				actionComp.startAction(Action.IDLE, timeSys.appUptime)
 			}
 			Action.DOWN_STAIRS -> {
 				transformComp.y = 5f
 				hitboxComp.y = 8f
-				actionComp.startAction(Action.IDLE)
+				actionComp.startAction(Action.IDLE, timeSys.appUptime)
 			}
 		}
 	}

@@ -16,6 +16,16 @@ class GameOverScreen(
 	private lateinit var scoreEntity: Entity
 	private var scoreComp: ScoreComp? = null
 
+	private val gameOverEventCallback = { event: GameEvent.GameOverEvent ->
+		//score score info
+		scoreComp = ScoreComp().apply {
+			distance = event.scoreComp.distance
+			kills = event.scoreComp.kills
+			time = event.scoreComp.time
+			score = event.scoreComp.score
+		}
+	}
+
 	override fun show() {
 		//set camera
 		with(viewport.camera as OrthographicCamera) {
@@ -31,7 +41,7 @@ class GameOverScreen(
 			}
 			with<TransformComp> {
 				x = 80f
-				y = 140f
+				y = 150f
 			}
 			with<TextComp>() //text set soon after when receive
 		}
@@ -70,14 +80,7 @@ class GameOverScreen(
 			}
 		}
 
-		gameEventManager.listen(GameEvent.GameOverEvent) { event ->
-			//score score info
-			scoreComp = ScoreComp().apply {
-				distScore = event.scoreComp.distScore
-				killsScore = event.scoreComp.killsScore
-				totalScore = event.scoreComp.totalScore
-			}
-		}
+		gameEventManager.listen(GameEvent.GameOverEvent, gameOverEventCallback)
 	}
 
 	override fun render(delta: Float) {
@@ -86,13 +89,15 @@ class GameOverScreen(
 		//set score display text from game event
 		scoreComp?.let { scoreComp ->
 			val scoreTextComp = scoreEntity.getNotNull(TextComp.mapper)
-			scoreTextComp.text = "DISTANCE: ${scoreComp.distScore}\n" +
-					"KILLS: ${scoreComp.killsScore}\n" +
-					"TOTAL SCORE: ${scoreComp.totalScore}"
+			scoreTextComp.text = "DISTANCE: ${scoreComp.distance.toInt()}\n" +
+					"KILLS: ${scoreComp.kills}\n" +
+					"TIME: ${scoreComp.time.toInt()}\n" +
+					"TOTAL SCORE: ${scoreComp.score}"
 		}
 	}
 
 	override fun hide() {
 		engine.removeAllEntities()
+		gameEventManager.stopListening(GameEvent.GameOverEvent, gameOverEventCallback)
 	}
 }

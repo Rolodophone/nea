@@ -15,7 +15,8 @@ import ktx.ashley.get
  */
 class PlayerInputSys(
 	private val player: Entity,
-	private val gameEventManager: GameEventManager
+	private val gameEventManager: GameEventManager,
+	private val timeSys: TimeSys
 ) : EntitySystem(0) {
 
 	private val eventCallback = { event: GameEvent.PlayerInputEvent ->
@@ -25,7 +26,7 @@ class PlayerInputSys(
 			PlayerInput.STOP -> {
 				when (actionComp.action) {
 					Action.RUN -> {
-						actionComp.startAction(Action.IDLE)
+						actionComp.startAction(Action.IDLE, timeSys.appUptime)
 					}
 					Action.PUNCH, Action.SPIN_PUNCH, Action.HIT_KB, Action.PUSH -> {
 						actionComp.returnToAction = Action.IDLE
@@ -34,7 +35,7 @@ class PlayerInputSys(
 				}
 			}
 			PlayerInput.LEFT, PlayerInput.RIGHT -> {
-				actionComp.startAction(Action.RUN)
+				actionComp.startAction(Action.RUN, timeSys.appUptime)
 			}
 			PlayerInput.PUNCH_LEFT -> {
 				when (actionComp.action) {
@@ -44,7 +45,7 @@ class PlayerInputSys(
 						actionComp.startAction(when (actionComp.facing) {
 							Facing.LEFT -> Action.PUNCH
 							Facing.RIGHT -> Action.SPIN_PUNCH
-						})
+						}, timeSys.appUptime)
 					}
 					Action.RUN -> {
 						actionComp.returnToAction = Action.RUN
@@ -52,7 +53,7 @@ class PlayerInputSys(
 						actionComp.startAction(when (actionComp.facing) {
 							Facing.LEFT -> Action.PUNCH
 							Facing.RIGHT -> Action.SPIN_PUNCH
-						})
+						}, timeSys.appUptime)
 					}
 					else -> {}
 				}
@@ -65,7 +66,7 @@ class PlayerInputSys(
 						actionComp.startAction(when (actionComp.facing) {
 							Facing.LEFT -> Action.SPIN_PUNCH
 							Facing.RIGHT -> Action.PUNCH
-						})
+						}, timeSys.appUptime)
 					}
 					Action.RUN -> {
 						actionComp.returnToAction = Action.RUN
@@ -73,19 +74,19 @@ class PlayerInputSys(
 						actionComp.startAction(when (actionComp.facing) {
 							Facing.LEFT -> Action.SPIN_PUNCH
 							Facing.RIGHT -> Action.PUNCH
-						})
+						}, timeSys.appUptime)
 					}
 					else -> {}
 				}
 			}
 			PlayerInput.UP_STAIRS -> {
 				if (nearDoor(player)) {
-					actionComp.startAction(Action.UP_STAIRS)
+					actionComp.startAction(Action.UP_STAIRS, timeSys.appUptime)
 				}
 			}
 			PlayerInput.DOWN_STAIRS -> {
 				if (nearDoor(player)) {
-					actionComp.startAction(Action.DOWN_STAIRS)
+					actionComp.startAction(Action.DOWN_STAIRS, timeSys.appUptime)
 				}
 			}
 		}

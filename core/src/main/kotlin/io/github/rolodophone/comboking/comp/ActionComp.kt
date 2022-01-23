@@ -2,7 +2,6 @@ package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.utils.Pool
-import com.badlogic.gdx.utils.TimeUtils
 import ktx.ashley.mapperFor
 
 /**
@@ -21,7 +20,7 @@ class ActionComp: Component, Pool.Poolable {
 	var action = Action.IDLE
 		private set
 	var facing = Facing.RIGHT
-	var actionStartTime = 0L
+	var actionStartTime = 0f
 	var returnToAction = Action.IDLE
 	var actionState = 0
 
@@ -30,14 +29,14 @@ class ActionComp: Component, Pool.Poolable {
 
 		action = Action.IDLE
 		facing = Facing.RIGHT
-		actionStartTime = 0L
+		actionStartTime = 0f
 		returnToAction = Action.IDLE
 		actionState = 0
 	}
 
-	fun startAction(value: Action) {
+	fun startAction(value: Action, gameUptime: Float) {
 		if (value != action) {
-			actionStartTime = TimeUtils.millis()
+			actionStartTime = gameUptime
 			action = value
 			actionState = 0
 		}

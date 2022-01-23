@@ -3,17 +3,16 @@ package io.github.rolodophone.comboking.sys
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
-import com.badlogic.gdx.utils.TimeUtils
 import io.github.rolodophone.comboking.WORLD_WIDTH
 import io.github.rolodophone.comboking.asset.ComboKingTextures
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.util.getNotNull
+import io.github.rolodophone.comboking.util.nextFloat
 import ktx.ashley.entity
 import ktx.ashley.with
 import kotlin.math.abs
 import kotlin.random.Random.Default.nextBoolean
 import kotlin.random.Random.Default.nextInt
-import kotlin.random.Random.Default.nextLong
 
 /**
  * Spawns the enemy entities automatically.
@@ -21,36 +20,33 @@ import kotlin.random.Random.Default.nextLong
 class SpawningSys(
 	private val player: Entity,
 	private val textures: ComboKingTextures,
-	private val scoreEntity: Entity
+	private val timeSys: TimeSys
 ): EntitySystem(15) {
 
 	private lateinit var playerTransformComp: TransformComp
 
-	private var officeWorkerSpawnInterval = 1000L
-	private var lastOfficeWorkerSpawnTime = 0L
+	private var officeWorkerSpawnInterval = 1f
+	private var lastOfficeWorkerSpawnTime = 0f
 
 	override fun addedToEngine(engine: Engine) {
 		playerTransformComp = player.getNotNull(TransformComp.mapper)
 	}
 
 	override fun update(deltaTime: Float) {
-		val currentTime = TimeUtils.millis()
-
 		//office worker (both with and without keyboard)
-		if (currentTime > lastOfficeWorkerSpawnTime + officeWorkerSpawnInterval) {
+		if (timeSys.appUptime > lastOfficeWorkerSpawnTime + officeWorkerSpawnInterval) {
 
 			if (nextBoolean()) spawnOfficeWorker() else spawnOfficeWorkerKB()
 
-			lastOfficeWorkerSpawnTime = currentTime
+			lastOfficeWorkerSpawnTime = timeSys.appUptime
 
-			val distScore = scoreEntity.getNotNull(ScoreComp.mapper).distScore
 			officeWorkerSpawnInterval = when {
-				distScore < 2000 -> nextLong(3000, 5000)
-				distScore < 4000 -> nextLong(2000, 4000)
-				distScore < 6000 -> nextLong(1000, 3000)
-				distScore < 8000 -> nextLong(500, 2500)
-				distScore < 10000 -> nextLong(400, 1500)
-				else -> nextLong(300, 1000)
+				timeSys.gameUptime < 20 -> nextFloat(3f, 5f)
+				timeSys.gameUptime < 40 -> nextFloat(2f, 4f)
+				timeSys.gameUptime < 60 -> nextFloat(1f, 3f)
+				timeSys.gameUptime < 80 -> nextFloat(0.5f, 2.5f)
+				timeSys.gameUptime < 100 -> nextFloat(0.4f, 1.5f)
+				else -> nextFloat(0.3f, 1f)
 			}
 		}
 	}
@@ -73,13 +69,13 @@ class SpawningSys(
 			with<GraphicsComp>()
 			with<AnimationComp> {
 				animationLoops = listOf(
-					AnimationComp.AnimationLoop(154, listOf(textures.office_worker_run0, textures.office_worker_run1,
+					AnimationComp.AnimationLoop(0.154f, listOf(textures.office_worker_run0, textures.office_worker_run1,
 						textures.office_worker_run2, textures.office_worker_run3, textures.office_worker_run4,
 						textures.office_worker_run5, textures.office_worker_run6, textures.office_worker_run7)),
-					AnimationComp.AnimationLoop(77, listOf(textures.office_worker_run0, textures.office_worker_run1,
+					AnimationComp.AnimationLoop(0.077f, listOf(textures.office_worker_run0, textures.office_worker_run1,
 						textures.office_worker_run2, textures.office_worker_run3, textures.office_worker_run4,
 						textures.office_worker_run5, textures.office_worker_run6, textures.office_worker_run7)),
-					AnimationComp.AnimationLoop(-1, listOf(textures.office_worker_push))
+					AnimationComp.AnimationLoop(-1f, listOf(textures.office_worker_push))
 				)
 				determineAnimationLoop = { _, action ->
 					when (action) {
@@ -164,15 +160,15 @@ class SpawningSys(
 			with<GraphicsComp>()
 			with<AnimationComp> {
 				animationLoops = listOf(
-					AnimationComp.AnimationLoop(154, listOf(textures.office_worker_run_kb0,
+					AnimationComp.AnimationLoop(0.154f, listOf(textures.office_worker_run_kb0,
 						textures.office_worker_run_kb1, textures.office_worker_run_kb2, textures.office_worker_run_kb3,
 						textures.office_worker_run_kb4, textures.office_worker_run_kb5, textures.office_worker_run_kb6,
 						textures.office_worker_run_kb7)),
-					AnimationComp.AnimationLoop(77, listOf(textures.office_worker_run_kb0,
+					AnimationComp.AnimationLoop(0.077f, listOf(textures.office_worker_run_kb0,
 						textures.office_worker_run_kb1, textures.office_worker_run_kb2, textures.office_worker_run_kb3,
 						textures.office_worker_run_kb4, textures.office_worker_run_kb5, textures.office_worker_run_kb6,
 						textures.office_worker_run_kb7)),
-					AnimationComp.AnimationLoop(462, listOf(textures.office_worker_hit_kb0,
+					AnimationComp.AnimationLoop(0.462f, listOf(textures.office_worker_hit_kb0,
 						textures.office_worker_hit_kb1))
 				)
 				determineAnimationLoop = { _, action ->

@@ -21,6 +21,7 @@ import io.github.rolodophone.comboking.screen.MainMenuScreen
 import io.github.rolodophone.comboking.sys.MusicSys
 import io.github.rolodophone.comboking.sys.SpriteRenderSys
 import io.github.rolodophone.comboking.sys.TextRenderSys
+import io.github.rolodophone.comboking.sys.TimeSys
 import ktx.app.KtxGame
 
 // 16x9 aspect ratio with a highest common factor of 20. This means I can scale by any multiple of 1/20
@@ -53,6 +54,7 @@ class ComboKing(
 	lateinit var engine: Engine
 
 	lateinit var textRenderSys: TextRenderSys
+	lateinit var timeSys: TimeSys
 
 	override fun create() {
 		Gdx.app.logLevel = LOG_DEBUG
@@ -75,9 +77,11 @@ class ComboKing(
 		viewport.update(viewport.screenWidth, viewport.screenHeight, true)
 
 		textRenderSys = TextRenderSys(batch, viewport, comboKingFonts)
+		timeSys = TimeSys()
 
 		//add systems to engine
 		engine.run {
+			addSystem(timeSys)
 			addSystem(SpriteRenderSys(batch, viewport))
 			addSystem(textRenderSys)
 			addSystem(MusicSys(comboKingMusic, this@ComboKing))
