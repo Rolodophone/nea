@@ -2,6 +2,8 @@ package io.github.rolodophone.comboking
 
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Input
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.github.rolodophone.comboking.comp.ButtonComp
@@ -24,6 +26,16 @@ class ButtonInputProcessor(
 	private var buttonPressed: Entity? = null
 
 	override fun keyDown(keycode: Int): Boolean {
+		//toggle borderless fullscreen when F11 pressed
+		if (keycode == Input.Keys.F11) {
+			if (Gdx.graphics.isFullscreen) {
+				Gdx.graphics.setWindowedMode(WORLD_WIDTH*3, WORLD_HEIGHT*3)
+			}
+			else {
+				Gdx.graphics.setFullscreenMode(Gdx.graphics.displayMode)
+			}
+		}
+
 		return false
 	}
 
