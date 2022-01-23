@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package io.github.rolodophone.comboking
+package io.github.rolodophone.comboking.util
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.ComponentMapper
