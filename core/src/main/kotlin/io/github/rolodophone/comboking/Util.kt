@@ -1,16 +1,16 @@
 @file:Suppress("unused")
 
-package io.github.rolodophone.comboking.util
+package io.github.rolodophone.comboking
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.ComponentMapper
 import com.badlogic.ashley.core.Entity
-import kotlin.random.Random.Default.nextFloat
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.github.rolodophone.comboking.comp.InfoComp
 import ktx.ashley.get
+import kotlin.random.Random.Default.nextFloat
 
 private val tempVector = Vector2()
 
