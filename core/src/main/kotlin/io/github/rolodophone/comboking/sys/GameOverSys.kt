@@ -8,9 +8,11 @@ import io.github.rolodophone.comboking.comp.ScoreComp
 import io.github.rolodophone.comboking.event.GameEvent
 import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.GameOverScreen
-import io.github.rolodophone.comboking.screen.MainMenuScreen
 import io.github.rolodophone.comboking.util.getNotNull
 
+/**
+ * Handles switching to the [GameOverScreen] when the player runs out of HP.
+ */
 class GameOverSys(
 	private val game: ComboKing,
 	private val gameEventManager: GameEventManager,

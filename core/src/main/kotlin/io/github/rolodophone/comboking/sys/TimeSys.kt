@@ -2,6 +2,9 @@ package io.github.rolodophone.comboking.sys
 
 import com.badlogic.ashley.core.EntitySystem
 
+/**
+ * Keeps track of the app uptime and game uptime to enable timing of various things.
+ */
 class TimeSys : EntitySystem(-100) {
 
 	/**

@@ -16,6 +16,9 @@ import ktx.ashley.get
 import ktx.graphics.use
 import kotlin.math.roundToInt
 
+/**
+ * Draws the HP of entities above them.
+ */
 class HPRenderSys(
 	private val batch: Batch,
 	private val viewport: Viewport,

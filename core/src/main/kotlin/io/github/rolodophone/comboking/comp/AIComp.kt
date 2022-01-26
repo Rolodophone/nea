@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
 /**
- * Entities with an [AIComp] move and fight according to a rule-based AI
+ * Entities with an [AIComp] move and fight according to a rule-based AI.
  */
 class AIComp: Component, Pool.Poolable {
 	companion object {

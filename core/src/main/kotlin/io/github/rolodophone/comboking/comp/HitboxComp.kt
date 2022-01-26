@@ -1,11 +1,16 @@
 package io.github.rolodophone.comboking.comp
 
 import com.badlogic.ashley.core.Component
-import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
+/**
+ * Entities with a [HitboxComp] have additional size and position to the one specified by [TransformComp].
+ *
+ * The [HitboxComp] is used for collision detection whereas the [TransformComp] specifies the size and position of the
+ * entity's texture.
+ */
 class HitboxComp : Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<HitboxComp>()

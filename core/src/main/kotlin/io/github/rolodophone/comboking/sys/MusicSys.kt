@@ -6,6 +6,9 @@ import io.github.rolodophone.comboking.asset.ComboKingMusic
 import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameScreen
 
+/**
+ * Handles playing the game music.
+ */
 class MusicSys(
 	private val music: ComboKingMusic,
 	private val game: ComboKing

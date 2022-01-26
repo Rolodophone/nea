@@ -11,6 +11,9 @@ import ktx.ashley.get
 
 private val log = ckLogger<AnimationSys>()
 
+/**
+ * Sets entities' textures according to the rules specified by their [AnimationComp].
+ */
 class AnimationSys(
 	private val timeSys: TimeSys
 ) : IteratingSystem(

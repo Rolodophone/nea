@@ -9,6 +9,9 @@ import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.entity
 import ktx.ashley.with
 
+/**
+ * The screen that's showing just after the player has run out of HP.
+ */
 class GameOverScreen(
 	game: ComboKing
 ): ComboKingScreen(game) {

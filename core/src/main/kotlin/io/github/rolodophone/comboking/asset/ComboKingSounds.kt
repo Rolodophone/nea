@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.utils.Disposable
 
+/**
+ * Stores and manages the game's sound assets.
+ */
 @Suppress("unused","PropertyName")
 class ComboKingSounds: Disposable {
 	val hit_kb: Sound = Gdx.audio.newSound(Gdx.files.internal("audio/hit_kb.ogg"))

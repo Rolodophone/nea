@@ -11,6 +11,9 @@ import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 import ktx.graphics.use
 
+/**
+ * Draw entities' hitboxes (for debugging).
+ */
 class DebugRenderSys(
 	private val viewport: Viewport
 ) : IteratingSystem(

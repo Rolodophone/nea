@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
+/**
+ * Entities with an [AnimationComp] have an animated texture.
+ */
 class AnimationComp : Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<AnimationComp>()

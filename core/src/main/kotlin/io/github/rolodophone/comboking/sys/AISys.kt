@@ -7,6 +7,9 @@ import io.github.rolodophone.comboking.comp.ActionComp
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.allOf
 
+/**
+ * Chooses an action for each entity based on the current game state and the rules specified by the entity's [AIComp].
+ */
 class AISys(
 	private val player: Entity,
 	private val timeSys: TimeSys
