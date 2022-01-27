@@ -585,8 +585,8 @@ ComboKing                                  |The main class. This is created from
 
 What I've done                             |Evidence
 -------------------------------------------|---------------------------------------------------------------------------------------
-Complex use of ECS model                   |component and system packages, and entities defined in GameScreen and MainMenuScreen
-Passing around lambda functions            |GameEventManager (each callback is a lambda function)
+ECS architecture                           |component and system packages, and entities defined in GameScreen and MainMenuScreen
+Passing around lambda functions            |GameEventManager (each callback is a lambda function), AIComp, AnimationComp, ButtonComp, GameScreen
 Generic functions                          |GameEventManager, Entity.getNotNull (in Util file)
 Complex game events model                  |GameEventManager
 3-module structure (meaning vast majority of code is platform-agnostic)|See AndroidLauncher, Lwjgl3Launcher and ComboKing for how the modules speak to each other
@@ -597,19 +597,19 @@ What I've done                             |Evidence
 -------------------------------------------|---------------------------------------------------------------------------------------
 Map of a set                               |GameEventManager, see callbacks property
 Companion objects (static fields)          |Each of the components
-Encapsulation                              |TransformComponent
-Dealing with nullable types                |GraphicsComponent, GameEventManager
-Enum classes                               |MoveComponent.MoveAction
+Encapsulation                              |TransformComp, HitboxComp
+Nullable types                             |GraphicsComp, GameEventManager, GameOverScreen, GameScreen
+Enum classes                               |ActionComp file, GameEvent file
 Sealed classes                             |GameEvent
 
 ### Group C
 
 What I've done                             |Evidence
 -------------------------------------------|---------------------------------------------------------------------------------------
-Simple mathematical calculations           |TouchControlsGestureListener.pan, CameraSystem.update, Util
-Private properties                         |TransformComponent, CameraSystem
-Getters and setters                        |TransformComponent
-Casting                                    |TransformComponent.setSizeFromTexture, GameScreen.show
+Simple mathematical calculations           |TouchControlsGestureListener.pan, CameraSys.update, Util, ActionSys.processEntity
+Private properties                         |TransformComp, CameraSys
+Getters and setters                        |TransformComp
+Casting                                    |TransformComp.setSizeFromTexture, GameScreen.show
 
 ## Objectives
 
