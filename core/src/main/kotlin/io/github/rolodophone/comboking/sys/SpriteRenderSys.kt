@@ -66,5 +66,4 @@ class EntityRenderingComparator: Comparator<Entity> {
 			else -> 0
 		}
 	}
-
 }

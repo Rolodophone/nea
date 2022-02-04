@@ -585,11 +585,13 @@ ComboKing                                  |The main class. This is created from
 
 What I've done                             |Evidence
 -------------------------------------------|---------------------------------------------------------------------------------------
-ECS architecture                           |component and system packages, and entities defined in GameScreen and MainMenuScreen
+Composition-based ECS architecture         |component and system packages, and entities defined in GameScreen and MainMenuScreen
 Passing around lambda functions            |GameEventManager (each callback is a lambda function), AIComp, AnimationComp, ButtonComp, GameScreen
 Generic functions                          |GameEventManager, Entity.getNotNull (in Util file)
 Complex game events model                  |GameEventManager
 3-module structure (meaning vast majority of code is platform-agnostic)|See AndroidLauncher, Lwjgl3Launcher and ComboKing for how the modules speak to each other
+Complex user-defined algorithms            |ActionSys.findClosestNearbyEntityInDirection
+Decomposition of complex behaviour into interacting classes that each do simple things|The complicated combat logic is decomposed into the (loosely-coupled) classes TouchControlsGestureListener, KeyboardControlsInputProcessor, ActionComp, AIComp, AnimationComp, HPComp, ActionSys, AISys, AnimationSys, KillingSys and SpawningSys
 
 ### Group B
 
@@ -606,7 +608,7 @@ Sealed classes                             |GameEvent
 
 What I've done                             |Evidence
 -------------------------------------------|---------------------------------------------------------------------------------------
-Simple mathematical calculations           |TouchControlsGestureListener.pan, CameraSys.update, Util, ActionSys.processEntity
+Simple mathematical calculations           |TouchControlsGestureListener.pan, CameraSys.update, Util file, ActionSys.processEntity, ScoreSys.update
 Private properties                         |TransformComp, CameraSys
 Getters and setters                        |TransformComp
 Casting                                    |TransformComp.setSizeFromTexture, GameScreen.show
