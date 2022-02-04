@@ -261,8 +261,6 @@ Finally, when the user loses all of their health, a popup appears saying that yo
 
 ## Objectives
 
-TODO fix numbering
-
 Since writing the rest of my analysis, my idea for the game has changed somewhat. This list of objectives is the most complete and up-to-date definition of what my game should be like. In addition, I have deliberately left out details on exactly how the controls for movement and combat will work, as this is likely to change many times and I will need to decide this through rapidly iterating between prototyping and testing and asking Rudy for his opinion.
 
 ### A-level Standard Objectives
@@ -271,41 +269,41 @@ TODO add sketches to better explain things
 
 1. Main menu
 	1. The "play" button should start the game
-	3. The "settings" button should display the settings
-	4. The "credits" button should display the credits
-	6. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
-	7. The buttons should be displayed on this screen
-	8. The highscore should also be displayed on this screen
+	2. The "settings" button should display the settings
+	3. The "credits" button should display the credits
+	4. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
+	5. The buttons should be displayed on this screen
+	6. The highscore should also be displayed on this screen
 2. Settings
 	1. There should be a setting to change SFX volume
-	1. There should be a setting to change music volume
-	1. There should be a button to return to the main menu
-2. Credits
+	2. There should be a setting to change music volume
+	3. There should be a button to return to the main menu
+3. Credits
 	1. All the credits should be displayed
 	2. The user should be able to scroll (unless all the credits fit on the screen)
 	3. There should be a button to return to the main menu
-2. Game UI
+4. Game UI
 	1. There should be the current score displayed at the top
-	1. The current health should also be displayed
-	2. There should be a pause button displayed
-	3. Pressing the pause button pauses the game logic and animation
-	4. Pressing the pause button displays a popup
-	4. The popup indicates that the game is paused
-	5. The popup includes a button to resume the game
-	6. The popup includes a button to return to the main menu
-	7. The resume button resumes game logic and animation and closes the popup
-	8. The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
-3. Movement and physics
+	2. The current health should also be displayed
+	3. There should be a pause button displayed
+	4. Pressing the pause button pauses the game logic and animation
+	5. Pressing the pause button displays a popup
+	6. The popup indicates that the game is paused
+	7. The popup includes a button to resume the game
+	8. The popup includes a button to return to the main menu
+	9. The resume button resumes game logic and animation and closes the popup
+	10. The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
+5. Movement and physics
 	1. Jane should be able to run left and right
 	2. Jane should be able to jump
-	2. Jane should be able to go up or down between the ground and upper level
-	2. Jane should not be able to walk through enemies; they should block her path
-5. Combat
+	3. Jane should be able to go up or down between the ground and upper level
+	4. Jane should not be able to walk through enemies; they should block her path
+6. Combat
 	1. Jane should be able to punch enemies
 	2. There should be at least 3 different types of punches
-	1. Jane should be able to kick enemies
-	2. There should be at least 3 different types of kicks
-6. Enemies
+	3. Jane should be able to kick enemies
+	4. There should be at least 3 different types of kicks
+7. Enemies
 	1. There should be at least 3 different types of enemy
 	2. Each type of enemy should behave noticeably differently
 	3. The enemies should be controlled by a rule-based AI
@@ -315,14 +313,14 @@ TODO add sketches to better explain things
 	1. The game should render a background behind Jane
 	2. Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly
 	3. Staircases, ladders, objects that Jane can climb on top of, enemies and items should not appear too close together or too far apart, making the game unfairly easy or hard
-	3. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
-	4. The score increases when Jane progresses to the right
-	5. The score also increases when Jane eliminates enemies
-8. Sound
+	4. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
+	5. The score increases when Jane progresses to the right
+	6. The score also increases when Jane eliminates enemies
+9. Sound
 	1. A music loop should be played in the main menu
 	2. A different loop should be played in the game
 	3. Sound effects should be played whenever it makes sense (e.g. the player or an enemy was hit)
-8. Game over screen
+10. Game over screen
 	1. When the player runs out of health, a game over screen should be displayed
 	2. The score should be displayed
 	3. The highscore should be displayed
@@ -335,46 +333,46 @@ TODO add sketches to better explain things
 
 1. Extra-nice main menu screen
 	1. Jane could be animated to appear to be spying undercover before she is found out (before the game starts)
-	1. When the "play" button is pressed, there could be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
-	2. Jane could then start running towards the right
-	3. Then, the camera could zoom out and the game UI (i.e. the score and pause button) could appear (thereby seamlessly transitioning from the main menu to the game)
+	2. When the "play" button is pressed, there could be a short animation where a picture of Jane Pond will appear on the screen, along with the flashing words, "Impostor detected"
+	3. Jane could then start running towards the right
+	4. Then, the camera could zoom out and the game UI (i.e. the score and pause button) could appear (thereby seamlessly transitioning from the main menu to the game)
 2. Abilities screen
 	1. There could be a button in the main menu to open the abilities screen
-	1. Could display the amount of XP the user currently has
-	2. Could display the current level of each of Jane's abilities
-	3. Each ability could have a button to upgrade it
-	4. Could display the cost of upgrading each ability
-	5. Could display the amount the ability level would go up by if the user were to press the button
-	6. Pressing a button could increase the ability level by the amount specified and decrease the XP by the amount specified
-	6. There could be a button to return to the main menu
-	7. The level of each of Jane's abilities and the user's current XP level could persist when the app is closed
-2. Tutorial
+	2. Could display the amount of XP the user currently has
+	3. Could display the current level of each of Jane's abilities
+	4. Each ability could have a button to upgrade it
+	5. Could display the cost of upgrading each ability
+	6. Could display the amount the ability level would go up by if the user were to press the button
+	7. Pressing a button could increase the ability level by the amount specified and decrease the XP by the amount specified
+	8. There could be a button to return to the main menu
+	9. The level of each of Jane's abilities and the user's current XP level could persist when the app is closed
+3. Tutorial
 	1. There could be a tutorial that teaches you the controls for the game
 	2. It could also teach you strategies on how to play the game well
 	3. It could be interactive, i.e. it teaches you as you play the game
 	4. There could be different levels of tutorial: a basic tutorial to get started, an intermediate tutorial, and an advanced tutorial
 	5. There could be a button in the main menu that starts the tutorial
-2. More movement options
+4. More movement options
 	1. Jane could be able to roll
 	2. Jane could be able to go up or down staircases
-	2. Jane could be able to climb on top of large objects
-	2. Jane could be able to jump from large objects to climb onto the upper level
-	2. Jane could be able to drop from the upper level down to the ground level
-	3. Jane could only be able to jump when she is on solid ground
-	1. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased
-3. Background objects
+	3. Jane could be able to climb on top of large objects
+	4. Jane could be able to jump from large objects to climb onto the upper level
+	5. Jane could be able to drop from the upper level down to the ground level
+	6. Jane could only be able to jump when she is on solid ground
+	7. When Jane drops from a large height (e.g. from the upper level or from near the top of a ladder or staircase), if the user does not do a forward roll within 500 ms of touching the ground, Jane's health is decreased
+5. Background objects
 	1. There could be objects that appear randomly, such as a desk, a plant or a door
 	2. Jane would not be able to interact with these objects; she would walk past them as it they weren't there
-7. Items
+6. Items
 	1. There could be at least 3 different types of item, including an ammunition item and a bandage item
 	2. When Jane touches an item, the item's effect could be applied
 	3. When touching the ammo item, Jane's pistol is filled back up to its maximum capacity
-	3. The ammunition item could be rare enough so that the player is usually forced to use punch and kick rather than use the pistol
-	4. When touching the bandage item, Jane's health is increased (but not past the maximum health)
-	1. Jane could be able to shoot enemies with her pistol
-	2. Jane could only be able to shoot when she has at least one round in her pistol
-	1. There could be other weapons that Jane could pick up and use, such as a knife
-5. Missions
+	4. The ammunition item could be rare enough so that the player is usually forced to use punch and kick rather than use the pistol
+	5. When touching the bandage item, Jane's health is increased (but not past the maximum health)
+	6. Jane could be able to shoot enemies with her pistol
+	7. Jane could only be able to shoot when she has at least one round in her pistol
+	8. There could be other weapons that Jane could pick up and use, such as a knife
+7. Missions
 	1. There could be various missions available to complete
 	2. They could be displayed on groups of 3
 	3. When the user completes all 3 missions, their level could increase and they could be presented with the next 3 missions
@@ -382,12 +380,12 @@ TODO add sketches to better explain things
 	5. The 3 active missions could be displayed in the main menu
 	6. The 3 active missions could be displayed for a few seconds after the user presses the "play" button
 	7. The missions that are already completed could be highlighted to indicate that they're completed
-6. Coins
+8. Coins
 	1. Coins could appear in the game
 	2. The player could collect the coins when they run through them
 	3. The current number of coins that the user has could be displayed in the shop (see below)
 	4. The game over popup could display the number of coins gained in that run
-7. Shop
+9. Shop
 	1. There could be another button in the main menu to open the shop screen
 	2. In the shop screen, the player's current number of coins could be displayed
 	3. The user could buy various different items using their coins
@@ -615,17 +613,67 @@ Casting                                    |TransformComp.setSizeFromTexture, Ga
 
 ## Objectives
 
-TODO fix objective numbers
-
-Objective                                                                                     |Implementation
-----------------------------------------------------------------------------------------------|------------------------------------
-1.1. The "play" button should start the game                                                  |MainMenuScreen 46
-1.4. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)|N/A
-1.5. The buttons should be displayed on this screen                                           |MainMenuScreen 36-87
-4.1. There should be the current score displayed at the top                                   |ScoreSystem
-5.1. Jane should be able to run left and right                                                |MoveSystem 23-28
-8.1. The game should render a background behind Jane                                          |BackgroundSystem
-8.5. The score increases when Jane progresses to the right                                    |ScoreSystem 23
+1. ➖ Main menu
+	1. ✅ The "play" button should start the game
+	2. ❌ The "settings" button should display the settings
+	3. ❌ The "credits" button should display the credits
+	4. ✅ In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
+	5. ✅ The buttons should be displayed on this screen
+	6. ❌ The highscore should also be displayed on this screen
+2. ❌ Settings
+	1. ❌ There should be a setting to change SFX volume
+	2. ❌ There should be a setting to change music volume
+	3. ❌ There should be a button to return to the main menu
+3. ❌ Credits
+	1. ❌ All the credits should be displayed
+	2. ❌ The user should be able to scroll (unless all the credits fit on the screen)
+	3. ❌ There should be a button to return to the main menu
+4. ➖ Game UI
+	1. ✅ There should be the current score displayed at the top
+	2. ✅ The current health should also be displayed
+	3. ❌ There should be a pause button displayed
+	4. ❌ Pressing the pause button pauses the game logic and animation
+	5. ❌ Pressing the pause button displays a popup
+	6. ❌ The popup indicates that the game is paused
+	7. ❌ The popup includes a button to resume the game
+	8. ❌ The popup includes a button to return to the main menu
+	9. ❌ The resume button resumes game logic and animation and closes the popup
+	10. ❌ The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
+5. ➖ Movement and physics
+	1. ✅ Jane should be able to run left and right
+	2. ❌ Jane should be able to jump
+	3. ✅ Jane should be able to go up or down between the ground and upper level
+	4. ✅ Jane should not be able to walk through enemies; they should block her path
+6. ➖ Combat
+	1. ✅ Jane should be able to punch enemies
+	2. ❌ There should be at least 3 different types of punches
+	3. ✅ Jane should be able to kick enemies
+	4. ❌ There should be at least 3 different types of kicks
+7. ➖ Enemies
+	1. ❌ There should be at least 3 different types of enemy
+	2. ✅ Each type of enemy should behave noticeably differently
+	3. ✅ The enemies should be controlled by a rule-based AI
+	4. ❌ The enemies should appear to behave intelligently
+	5. ✅ Enemies should be able to deal damage to Jane, which decreases her health
+8. ➖ Game logic
+	1. ✅ The game should render a background behind Jane
+	2. ❌ Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly
+	3. ✅ Staircases, ladders, objects that Jane can climb on top of, enemies and items should not appear too close together or too far apart, making the game unfairly easy or hard
+	4. ✅ The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
+	5. ✅ The score increases when Jane progresses to the right
+	6. ✅ The score also increases when Jane eliminates enemies
+9. ➖ Sound
+	1. ✅ A music loop should be played in the main menu
+	2. ✅ A different loop should be played in the game
+	3. ✅ Sound effects should be played whenever it makes sense (e.g. the player or an enemy was hit)
+10. ➖ Game over screen
+	1. ✅ When the player runs out of health, a game over screen should be displayed
+	2. ✅ The score should be displayed
+	3. ❌ The highscore should be displayed
+	4. ✅ There should be a button to play again
+	5. ✅ There should be a button to return to the main menu
+	6. ❌ If the user has beaten their highscore, this should be indicated
+	7. ❌ The highscore should be saved so that it persists when the app is closed
 
 ## Code
 
