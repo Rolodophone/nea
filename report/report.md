@@ -638,7 +638,7 @@ Casting                                    |TransformComp.setSizeFromTexture, Ga
 	7. ❌ The popup includes a button to resume the game
 	8. ❌ The popup includes a button to return to the main menu
 	9. ❌ The resume button resumes game logic and animation and closes the popup
-	10. ❌ The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
+	10.❌ The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
 5. ➖ Movement and physics
 	1. ✅ Jane should be able to run left and right
 	2. ❌ Jane should be able to jump
@@ -662,11 +662,11 @@ Casting                                    |TransformComp.setSizeFromTexture, Ga
 	4. ✅ The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
 	5. ✅ The score increases when Jane progresses to the right
 	6. ✅ The score also increases when Jane eliminates enemies
-9. ➖ Sound
+9. ✅ Sound
 	1. ✅ A music loop should be played in the main menu
 	2. ✅ A different loop should be played in the game
 	3. ✅ Sound effects should be played whenever it makes sense (e.g. the player or an enemy was hit)
-10. ➖ Game over screen
+10.➖ Game over screen
 	1. ✅ When the player runs out of health, a game over screen should be displayed
 	2. ✅ The score should be displayed
 	3. ❌ The highscore should be displayed
