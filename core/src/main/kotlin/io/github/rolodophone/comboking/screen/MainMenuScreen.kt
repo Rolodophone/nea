@@ -2,9 +2,9 @@ package io.github.rolodophone.comboking.screen
 
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
-import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.comp.ButtonComp
 import io.github.rolodophone.comboking.comp.GraphicsComp
+import io.github.rolodophone.comboking.comp.InfoComp
 import io.github.rolodophone.comboking.comp.TransformComp
 import ktx.ashley.entity
 import ktx.ashley.with
@@ -44,7 +44,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 			with<TransformComp> {
 				x = 34f
 				y = 29f
-				setSizeFromTexture(textures.btn_play)
+				width = textures.btn_play.regionWidth/2f
+				height = textures.btn_play.regionHeight/2f
 			}
 			with<GraphicsComp> {
 				textureRegion = textures.btn_play
