@@ -16,8 +16,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 	override fun show() {
 		//set camera
 		with(viewport.camera as OrthographicCamera) {
-			zoom = 1/4f
-			position.set(viewport.worldWidth * 1/8f, viewport.worldHeight * 1/8f, 0f)
+			zoom = 1/2f
+			position.set(viewport.worldWidth * 1/4f, viewport.worldHeight * 1/4f, 0f)
 			update()
 		}
 
@@ -29,7 +29,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 			with<TransformComp> {
 				x = 0f
 				y = 0f
-				setSizeFromTexture(textures.main_menu_bg)
+				width = textures.main_menu_bg.regionWidth * 2f
+				height = textures.main_menu_bg.regionHeight * 2f
 			}
 			with<GraphicsComp> {
 				textureRegion = textures.main_menu_bg
@@ -42,10 +43,9 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				name = "PlayButton"
 			}
 			with<TransformComp> {
-				x = 34f
-				y = 29f
-				width = textures.btn_play.regionWidth/2f
-				height = textures.btn_play.regionHeight/2f
+				x = 89f
+				y = 47f
+				setSizeFromTexture(textures.btn_play)
 			}
 			with<GraphicsComp> {
 				textureRegion = textures.btn_play
@@ -59,8 +59,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				name = "OptionsButton"
 			}
 			with<TransformComp> {
-				x = 34f
-				y = 18f
+				x = 77f
+				y = 29f
 				setSizeFromTexture(textures.btn_options)
 			}
 			with<GraphicsComp> {
@@ -75,8 +75,8 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 				name = "CreditsButton"
 			}
 			with<TransformComp> {
-				x = 34f
-				y = 7f
+				x = 77f
+				y = 11f
 				setSizeFromTexture(textures.btn_credits)
 			}
 			with<GraphicsComp> {

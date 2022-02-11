@@ -11,11 +11,13 @@ import com.badlogic.gdx.utils.Disposable
 class ComboKingTextures: Disposable {
 	private val graphicsAtlas = TextureAtlas(Gdx.files.internal("graphics/sprites.atlas"))
 
+	val btn_back = loadTextureRegion("btn_back")
 	val btn_credits = loadTextureRegion("btn_credits")
 	val btn_main_menu = loadTextureRegion("btn_main_menu")
 	val btn_options = loadTextureRegion("btn_options")
 	val btn_play_again = loadTextureRegion("btn_play_again")
 	val btn_play = loadTextureRegion("btn_play")
+	val content_options = loadTextureRegion("content_options")
 	val door_closed = loadTextureRegion("door_closed")
 	val door_open = loadTextureRegion("door_open")
 	val game_bg = loadTextureRegion("game_bg")
@@ -62,6 +64,11 @@ class ComboKingTextures: Disposable {
 	val player_spinning_punch1 = loadTextureRegion("player_spinning_punch1")
 	val player_spinning_punch2 = loadTextureRegion("player_spinning_punch2")
 	val railing = loadTextureRegion("railing")
+	val slider0 = loadTextureRegion("slider0")
+	val slider1 = loadTextureRegion("slider1")
+	val slider2 = loadTextureRegion("slider2")
+	val slider3 = loadTextureRegion("slider3")
+	val slider4 = loadTextureRegion("slider4")
 
 	override fun dispose() {
 		graphicsAtlas.dispose()
