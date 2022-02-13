@@ -414,11 +414,9 @@ The critical path for my game (the crucial steps that are most important to get 
 
 # Documented Design
 
-The following is a temporary summary of the structure of my project. I will be able to go into more detail when I've done more of the technical solution
-
 ## Entity-component-system Pattern
 
-I will use ECS, which I believe to be a very good programming pattern and will increase cohesion and reduce coupling.
+I will use ECS, which I believe to be a very good programming pattern and will increase cohesion and reduce coupling. Below is a brief description of the pattern.
 
 ### Entities
 
@@ -426,19 +424,19 @@ I will use ECS, which I believe to be a very good programming pattern and will i
 - Often initialises each component with specific values, e.g. a player entity might specify the coordinates of the transform component
 - Examples are: the player, a specific enemy, a specific item, a specific flight of stairs, and perhaps also abstract things such as game state
 - They can be hard-coded or generated dynamically
-- In libGDX they are an object
+- In libGDX they are represented by an object
 - You can add and remove them from the engine to remove them from the game, while their state is still saved in the object
-- I will probably initialise them from a screen's initialiser (e.g. player) or dynamically from a system (e.g. the enemies and items)
+- I initialise some entities from a screen's `show` method (e.g. player) and some entities dynamically from a system (e.g. the enemies)
 
 ### Components
 
 - Only holds data related to a specific thing
 - Because each entity can have any combination of components, ECS is a more flexible approach to reusing code than inheritance
-- In libGDX they are a class
-- I will put all my components in the `component` package
+- In libGDX they are represented by a class
+- I put all my components in the `comp` package
 - When I add components to an entity, libGDX tries to reuse component instances from deleted entities, or otherwise creates a new instance
 - Whenever it reuses an old component, libGDX first calls the `reset` method to prepare the component to be used again
-- Example components: `TransformComponent` (specifies position and orientation of an entity), `GraphicsComponent` (specifies texture and whether it should be rendered)
+- Example components: `TransformComp` (specifies position and orientation of an entity), `GraphicsComp` (specifies texture and whether it should be rendered)
 
 ### Systems
 
@@ -446,72 +444,10 @@ I will use ECS, which I believe to be a very good programming pattern and will i
 - Systems act on the data stored in different entities' components
 - Separating game code into different systems increases cohesion and makes specific sections of code easier to find
 - It makes it easier to turn on or off specific functionality
-- For example `PhysicsSystem`, `InputSystem`, `RenderSystem`
+- For example `ActionSys`, `PlayerInputSys`, `RenderSys`
 - Systems can also be added and removed from the engine at runtime to turn them on or off
 - `IteratingSystem`s are a type of system that iterate over a group of entities that have specific components and perform some task for each entity
-- For example, `RenderSystem` is an `IteratingSystem` that iterates over all entities with a `TransformComponent` and a `GraphicsComponent` and renders each one onto the screen
-
-## Enemy AI
-
-There could be an `EnemyComponent` that has a variable `enemyAI` of type `EnemyAI`. I would have an abstract class `EnemyAI` with methods such as `decideAction` that has various different implementations. Each different type of enemy will have an `EnemyComponent` that will have a different `EnemyAI`.
-
-The actual AI could be implemented as such: first, the enemy decides what state it should be in based on context such as how near the player is. Different states could include `APPROACH_PLAYER`, `ATTACK_PLAYER`, and `RETREAT`. Then, based on the state it's in, it decides where to move and what attacks to do.
-
-## Game Events
-
-- These will be controlled by a `GameEventManager` class
-- Any system will be able to listen to a game event, which means the system calls a method on the game event manager and passes in a lambda that gets called whenever the event is triggered
-- Any system is also able to trigger an event
-
-## Graphical User Interface
-
-TODO actually I think I won't use Scene2D because my game's UI will be fairly simple (just buttons, touch gestures, check boxes and possibly scrolling) so it will be better to implement it myself and get credit for it than to spend time learning how to use scene2d. Scene2D operates completely differently than Ashley so I would have to work out how to combine the two, but it might be easier to just implement buttons etc myself.
-
-For this I will use Scene2D, which provides abstractions for buttons and menus and handles UI events.
-
-### Actors
-
-- They are the nodes on Scene2D's scene graph
-- Each actor is a visible UI element, for example a button or some text
-- Scene2D detects touch events and notifies the actors about them
-
-### Groups
-
-- These are a type of actor that can have child actors
-- For example, a popup box
-- When a touch event is received, the root group is notified first
-
-### Scene
-
-- The scene handles rendering the whole application and distributing input events
-- It has a viewport, which handles camera perspective and how the app should look on different resolutions
-- For instance, I might use a `FitViewport`, which means that the game has a constant aspect ratio across all devices
-- This is done by scaling the game and drawing black bars
-- The viewport also contains a camera instance which describes the model, view and projection matrices
-- I can manipulate the view matrix to zoom in or out on certain parts of the game
-
-### Widgets
-
-- These are pre-made actors that implement commonly used UI elements, such as buttons and checkboxes
-
-## Systems overview
-
-- `RenderSystem`: renders entities
-- `ScoreSystem`: listens to game events and increases score
-- `SpawningSystem`: randomly spawns items, enemies and background objects
-- `InputSystem`: makes the player move/attack by responding to keyboard, mouse and touch input
-- `PhysicsSystem`: steps the Box2D world to update the coordinates of entities
-- `GameSystem`: controls high-level game logic
-- `AnimationSystem`: controls animations such as Jane's animation in the main menu
-- `PlayerActionSystem`: listens to game events from `InputSystem` and triggers combat and movement game events
-- `CombatSystem`: controls combat between Jane and enemies
-- `DebugSystem`: temporary code for debugging
-
-These are all the systems I can think of for the moment.
-
-## Persistent storage
-
-The highscore and other persistent data will be stored in a single JSON file. libGDX has a JSON serialisation and deserialisation API.
+- For example, `RenderSys` is an `IteratingSystem` that iterates over all entities with a `TransformComp` and a `GraphicsComp` and renders each one onto the screen
 
 # Technical Solution
 
