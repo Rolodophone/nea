@@ -79,7 +79,7 @@ class GameOverScreen(
 				textureRegion = textures.btn_main_menu
 			}
 			with<ButtonComp> {
-				onPress = { game.setScreen<MainMenuScreen>() }
+				onPress = { game.setScreen<MenuScreen>() }
 			}
 		}
 

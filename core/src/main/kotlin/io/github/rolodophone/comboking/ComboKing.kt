@@ -17,7 +17,7 @@ import io.github.rolodophone.comboking.event.GameEventManager
 import io.github.rolodophone.comboking.screen.ComboKingScreen
 import io.github.rolodophone.comboking.screen.GameOverScreen
 import io.github.rolodophone.comboking.screen.GameScreen
-import io.github.rolodophone.comboking.screen.MainMenuScreen
+import io.github.rolodophone.comboking.screen.MenuScreen
 import io.github.rolodophone.comboking.sys.MusicSys
 import io.github.rolodophone.comboking.sys.SpriteRenderSys
 import io.github.rolodophone.comboking.sys.TextRenderSys
@@ -69,7 +69,7 @@ class ComboKing(
 
 		Gdx.input.inputProcessor = InputMultiplexer(ButtonInputProcessor(engine, viewport))
 
-		addScreen(MainMenuScreen(this))
+		addScreen(MenuScreen(this))
 		addScreen(GameScreen(this, createPlayerInputProcessor))
 		addScreen(GameOverScreen(this))
 
@@ -87,7 +87,7 @@ class ComboKing(
 			addSystem(MusicSys(comboKingMusic, this@ComboKing))
 		}
 
-		setScreen<MainMenuScreen>()
+		setScreen<MenuScreen>()
 	}
 
 	override fun dispose() {

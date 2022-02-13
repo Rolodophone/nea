@@ -10,9 +10,13 @@ import ktx.ashley.entity
 import ktx.ashley.with
 
 /**
- * The screen that's showing when the user is in the main menu.
+ * The screen that's showing when the user is navigating the menus.
  */
-class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
+class MenuScreen(game: ComboKing): ComboKingScreen(game) {
+	init {
+		subScreen = MainState(game)
+	}
+
 	override fun show() {
 		//set camera
 		with(viewport.camera as OrthographicCamera) {
@@ -21,6 +25,15 @@ class MainMenuScreen(game: ComboKing): ComboKingScreen(game) {
 			update()
 		}
 
+		super.show() //show subScreen
+	}
+}
+
+/**
+ * The main menu state.
+ */
+private class MainState(game: ComboKing): ComboKingScreen(game) {
+	override fun show() {
 		// background
 		engine.entity {
 			with<InfoComp> {
