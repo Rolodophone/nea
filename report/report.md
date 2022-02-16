@@ -474,59 +474,59 @@ Below is a brief description of the pattern.
 
 ### Android module
 
-Class/file                                 |Description                                                                            
+Class/file                                 |Description
 -------------------------------------------|---------------------------------------------------------------------------------------
-AndroidLauncher                            |Launches the game on Android.                                                          
-TouchControlsGestureListener               |Handles detecting the touch gesture controls on Android.                               
+AndroidLauncher                            |Launches the game on Android.
+TouchControlsGestureListener               |Handles detecting the touch gesture controls on Android.
 
 ### Lwjgl3 (desktop) module
 
-Class/file                                 |Description                                                                            
+Class/file                                 |Description
 -------------------------------------------|---------------------------------------------------------------------------------------
-KeyboardControlsInputProcessor             |Handles keyboard and mouse events for player controls on PC.                           
-Lwjgl3Launcher                             |Launches the game on desktop (LWJGL3).                                                 
+KeyboardControlsInputProcessor             |Handles keyboard and mouse events for player controls on PC.
+Lwjgl3Launcher                             |Launches the game on desktop (LWJGL3).
 
 ### Core module
 
-Class/file                                 |Description                                                                            
+Class/file                                 |Description
 -------------------------------------------|---------------------------------------------------------------------------------------
 asset.ComboKingFonts                       |Stores and manages the game's fonts.
 asset.ComboKingMusic                       |Stores and manages the game's music assets.
 asset.ComboKingSounds                      |Stores and manages the game's sound assets.
 asset.ComboKingTextures                    |Stores the game's textures.
-component.ActionComp                       |Entities with an [ActionComp] can move like a human (e.g. running) and perform combat.
-component.AIComp                           |Entities with an [AIComp] move and fight according to a rule-based AI.
-component.AnimationComp                    |Entities with an [AnimationComp] have an animated texture.
-component.ButtonComp                       |Entities with a [ButtonComp] can be clicked on by the user.                       
-component.GraphicsComp                     |Entities with a [GraphicsComp] and a [TransformComp] are drawn on the screen.
-component.HitboxComp                       |Entities with a [HitboxComp] have additional size and position to the one specified by [TransformComp].
-component.HPComp                           |Entities with an [HPComp] can take damage and have a finite number of health points.
-component.InfoComp                         |Stores basic information about an entity that is useful for game logic or debugging.
-component.ScoreComp     									 |The score entity has a [ScoreComp] so it can store the current score.
-component.TextComp                         |Entities with a [TextComp] can specify some text that will be drawn on the screen.
-component.TransformComp                    |Entities with a [TransformComp] have a size and position in the game world.
+comp.ActionComp                            |Entities with an [ActionComp] can move like a human (e.g. running) and perform combat.
+comp.AIComp                                |Entities with an [AIComp] move and fight according to a rule-based AI.
+comp.AnimationComp                         |Entities with an [AnimationComp] have an animated texture.
+comp.ButtonComp                            |Entities with a [ButtonComp] can be clicked on by the user.
+comp.GraphicsComp                          |Entities with a [GraphicsComp] and a [TransformComp] are drawn on the screen.
+comp.HitboxComp                            |Entities with a [HitboxComp] have additional size and position to the one specified by [TransformComp].
+comp.HPComp                                |Entities with an [HPComp] can take damage and have a finite number of health points.
+comp.InfoComp                              |Stores basic information about an entity that is useful for game logic or debugging.
+comp.ScoreComp                             |The score entity has a [ScoreComp] so it can store the current score.
+comp.TextComp                              |Entities with a [TextComp] can specify some text that will be drawn on the screen.
+comp.TransformComp                         |Entities with a [TransformComp] have a size and position in the game world.
 event.GameEvent                            |An event that can be triggered and responded to. Each event type can store its own data.
 event.GameEventManager                     |Enables listening to and triggering [GameEvent]s.
 screen.ComboKingScreen                     |Common code for all screens.
 screen.GameOverScreen                      |The screen that's showing just after the player has run out of HP.
 screen.GameScreen                          |The screen that's showing when the game is being played.
 screen.MainMenuScreen                      |The screen that's showing when the user is in the main menu.
-system.ActionSys                           |Acts on entities according to their current action as specified by their [ActionComp].
-system.AISys                               |Chooses an action for each entity based on the current game state and the rules specified by the entity's [AIComp].
-system.AnimationSys                        |Sets entities' textures according to the rules specified by their [AnimationComp].
-system.BackgroundSys                       |Controls the background and door entities
-system.CameraSys                           |Pans the camera to keep the player entity visible on the screen.
-system.DebugRenderSys                      |Draw entities' hitboxes (for debugging).
-system.GameOverSys                         |Handles switching to the [GameOverScreen] when the player runs out of HP.
-system.HPRenderSys                         |Draws the HP of entities above them.
-system.KillingSys                          |Deletes entities with a HP of 0 or less, if automatic deletion is enabled in their [HPComp].
-system.MusicSys                            |Handles playing the game music.
-system.PlayerInputSys                      |Resolves any keyboard or touch input events relating to controlling the player.
-system.ScoreSys                            |Increases the score when certain game events are triggered.
-system.SpawningSys                         |Spawns the enemy entities automatically.
-system.SpriteRenderSys                     |Renders the entities on the screen.
-system.TextRenderSys                       |Draws the text of entities with a [TextComp].
-system.TimeSys                             |Keeps track of the app uptime and game uptime to enable timing of various things.
+sys.ActionSys                              |Acts on entities according to their current action as specified by their [ActionComp].
+sys.AISys                                  |Chooses an action for each entity based on the current game state and the rules specified by the entity's [AIComp].
+sys.AnimationSys                           |Sets entities' textures according to the rules specified by their [AnimationComp].
+sys.BackgroundSys                          |Controls the background and door entities
+sys.CameraSys                              |Pans the camera to keep the player entity visible on the screen.
+sys.DebugRenderSys                         |Draw entities' hitboxes (for debugging).
+sys.GameOverSys                            |Handles switching to the [GameOverScreen] when the player runs out of HP.
+sys.HPRenderSys                            |Draws the HP of entities above them.
+sys.KillingSys                             |Deletes entities with a HP of 0 or less, if automatic deletion is enabled in their [HPComp].
+sys.MusicSys                               |Handles playing the game music.
+sys.PlayerInputSys                         |Resolves any keyboard or touch input events relating to controlling the player.
+sys.ScoreSys                               |Increases the score when certain game events are triggered.
+sys.SpawningSys                            |Spawns the enemy entities automatically.
+sys.SpriteRenderSys                        |Renders the entities on the screen.
+sys.TextRenderSys                          |Draws the text of entities with a [TextComp].
+sys.TimeSys                                |Keeps track of the app uptime and game uptime to enable timing of various things.
 util.Util                                  |Various utility functions.
 ButtonInputProcessor                       |Handles touch and key events for buttons.
 CKLogger                                   |Wrapper for libKTX [Logger] that logs only the tag and the message, without logging the debug level.
