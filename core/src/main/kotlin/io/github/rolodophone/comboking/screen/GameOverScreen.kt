@@ -53,8 +53,8 @@ class GameOverScreen(
 				name = "PlayAgainButton"
 			}
 			with<TransformComp> {
-				width = textures.btn_play_again.regionWidth * 4f
-				height = textures.btn_play_again.regionHeight * 4f
+				width = textures.btn_play_again.regionWidth * 2f
+				height = textures.btn_play_again.regionHeight * 2f
 				x = (viewport.worldWidth - width) / 2f
 				y = 60f
 			}
@@ -70,8 +70,8 @@ class GameOverScreen(
 				name = "MainMenuButton"
 			}
 			with<TransformComp> {
-				width = textures.btn_main_menu.regionWidth * 4f
-				height = textures.btn_main_menu.regionHeight * 4f
+				width = textures.btn_main_menu.regionWidth * 2f
+				height = textures.btn_main_menu.regionHeight * 2f
 				x = (viewport.worldWidth - width) / 2f
 				y = 15f
 			}
