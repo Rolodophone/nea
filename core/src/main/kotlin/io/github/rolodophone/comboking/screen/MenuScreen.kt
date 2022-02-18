@@ -3,10 +3,7 @@ package io.github.rolodophone.comboking.screen
 import com.badlogic.ashley.core.Entity
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
-import io.github.rolodophone.comboking.comp.ButtonComp
-import io.github.rolodophone.comboking.comp.GraphicsComp
-import io.github.rolodophone.comboking.comp.InfoComp
-import io.github.rolodophone.comboking.comp.TransformComp
+import io.github.rolodophone.comboking.comp.*
 import ktx.ashley.entity
 import ktx.ashley.with
 
@@ -101,6 +98,9 @@ class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 		menuContentEntities.forEach { engine.removeEntity(it) }
 		menuContentEntities.clear()
 
+		val sliderTextures = listOf(game.comboKingTextures.slider0, game.comboKingTextures.slider1,
+			game.comboKingTextures.slider2, game.comboKingTextures.slider3, game.comboKingTextures.slider4)
+
 		menuContentEntities.add(engine.entity {
 			with<InfoComp> {
 				name = "OptionsContent"
@@ -128,6 +128,40 @@ class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 			}
 			with<ButtonComp> {
 				onPress = { showMainMenu() }
+			}
+		})
+		menuContentEntities.add(engine.entity {
+			with<InfoComp> {
+				name = "SFXSlider"
+			}
+			with<TransformComp> {
+				x = 66f
+				y = 41f
+				setSizeFromTexture(textures.slider0)
+			}
+			with<GraphicsComp> {
+				textureRegion = sliderTextures[(game.ckPrefs.getSFXVolume() * 4).toInt()]
+			}
+			with<SliderComp> {
+				textures.addAll(sliderTextures)
+				onChange = { progress -> game.ckPrefs.putSFXVolume(progress) }
+			}
+		})
+		menuContentEntities.add(engine.entity {
+			with<InfoComp> {
+				name = "MusicSlider"
+			}
+			with<TransformComp> {
+				x = 66f
+				y = 15f
+				setSizeFromTexture(textures.slider0)
+			}
+			with<GraphicsComp> {
+				textureRegion = sliderTextures[(game.ckPrefs.getMusicVolume() * 4).toInt()]
+			}
+			with<SliderComp> {
+				textures.addAll(sliderTextures)
+				onChange = { progress -> game.ckPrefs.putMusicVolume(progress) }
 			}
 		})
 	}

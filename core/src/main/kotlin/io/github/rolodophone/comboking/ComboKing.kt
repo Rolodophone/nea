@@ -51,6 +51,7 @@ class ComboKing(
 	lateinit var comboKingFonts: ComboKingFonts
 	lateinit var comboKingMusic: ComboKingMusic
 	lateinit var comboKingSounds: ComboKingSounds
+	lateinit var ckPrefs: CKPrefs
 	lateinit var engine: Engine
 
 	lateinit var textRenderSys: TextRenderSys
@@ -65,9 +66,10 @@ class ComboKing(
 		comboKingFonts = ComboKingFonts()
 		comboKingMusic = ComboKingMusic()
 		comboKingSounds = ComboKingSounds()
+		ckPrefs = CKPrefs()
 		engine = PooledEngine()
 
-		Gdx.input.inputProcessor = InputMultiplexer(ButtonInputProcessor(engine, viewport))
+		Gdx.input.inputProcessor = InputMultiplexer(UIInputProcessor(engine, viewport))
 
 		addScreen(MenuScreen(this))
 		addScreen(GameScreen(this, createPlayerInputProcessor))
