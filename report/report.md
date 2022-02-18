@@ -422,7 +422,7 @@ Below is a class diagram of the project. Directed associations (![Directed assoc
 
 ## Entity-component-system Pattern
 
-In my project I used the entity-component-system architectural pattern, which I believe to be a very good pattern for separating logic and data, increasing cohesion and reducing coupling. In addition, ECS is primarily composition-based rather than inheritance-based, which makes it more flexible and easier to maintain and adapt. The entities, components and systems make up the majority of the code. See the technical solution section table of contents for a brief description of every component and system. Below is a brief description of the pattern.
+In my project I used the entity-component-system architectural pattern, which I believe to be a very good pattern for separating logic and data, increasing cohesion and reducing coupling. In addition, ECS is primarily composition-based rather than inheritance-based, which makes it more flexible and easier to maintain and adapt. The entities, components and systems make up the majority of the code. See the technical solution section table of contents for a brief description of every component and system.
 
 ### Entities
 
@@ -434,6 +434,37 @@ In my project I used the entity-component-system architectural pattern, which I 
 - You can add and remove them from the engine to remove them from the game, while their state is still saved in the object
 - I initialise some entities from a screen's `show` method (e.g. player) and some entities dynamically from a system (e.g. the enemies)
 
+Everything that should be visible on the screen or should store data is represented by an entity. These entities are added to the engine either by a screen's show method, or dynamically by a system. For example, the "PLAY" button is defined like this:
+
+```kotlin
+engine.entity {
+	with<InfoComp> {
+		name = "PlayButton"
+	}
+	with<TransformComp> {
+		x = 89f
+		y = 47f
+		setSizeFromTexture(textures.btn_play)
+	}
+	with<GraphicsComp> {
+		textureRegion = textures.btn_play
+	}
+	with<ButtonComp> {
+		onPress = { game.setScreen<GameScreen>() }
+	}
+}
+```
+
+This is executed when the main menu is shown, to add the button the engine. Behind the scenes, first this creates a new entity object. Then, for each component listed, if there is a component of the same type available in the component pool (a pool of components that are no longer in use), it reuses that component. Otherwise, it creates a new one. For each component it also runs its reset method and then executes the configuration that you can see inside the with function. Finally, it adds the new entity to the engine.
+
+First, I configure an InfoComp. I do this for all entities, because it's useful to give them a name so that you can easily see which entity is which when you are debugging.
+
+Inside TransformComp I set the x and y coordinates and also the width and the height. Since the width and height are the same as the dimensions of the texture for most entities, I usually use my helper method setSizeFromTexture, however it's also possible to set the width and height manually.
+
+All I need to do inside GraphicsComp is set the texture that it uses.
+
+Lastly, inside ButtonComp I define what should happen when the button is pressed.
+
 ### Components
 
 - Only holds data related to a specific thing
@@ -443,6 +474,30 @@ In my project I used the entity-component-system architectural pattern, which I 
 - When I add components to an entity, libGDX tries to reuse component instances from deleted entities, or otherwise creates a new instance
 - Whenever it reuses an old component, libGDX first calls the `reset` method to prepare the component to be used again
 - Example components: `TransformComp` (specifies position and orientation of an entity), `GraphicsComp` (specifies texture and whether it should be rendered)
+
+Each component defines a type of entity, but the types are composition-based instead of inheritance-based. This means that entities can mix and match types, resulting in more flexibility. For example, the TransformComp is defined like this:
+
+```kotlin
+class GraphicsComp : Component, Pool.Poolable {
+	companion object {
+		val mapper = mapperFor<GraphicsComp>()
+	}
+
+	var textureRegion: TextureRegion? = null
+	var visible = true
+	var flippedHorizontally = false
+
+	override fun reset() {
+		textureRegion = null
+		visible = true
+		flippedHorizontally = false
+	}
+}
+```
+
+Companion objects are Kotlin's way of defining static variables and methods. So the mapper variable belongs to the class itself, not the instances of the class. The mapper is used for retrieving components from entities efficiently.
+
+Below that you can see that all the component does is define some variables to store the component's data, and define a method which resets the variables to their default state. As the components get reused, all the variables must be mutable.
 
 ### Systems
 
@@ -454,6 +509,30 @@ In my project I used the entity-component-system architectural pattern, which I 
 - Systems can also be added and removed from the engine at runtime to turn them on or off
 - `IteratingSystem`s are a type of system that iterate over a group of entities that have specific components and perform some task for each entity
 - For example, `RenderSys` is an `IteratingSystem` that iterates over all entities with a `TransformComp` and a `GraphicsComp` and renders each one onto the screen
+
+Here is the code for AISys:
+
+```kotlin
+class AISys(
+	private val player: Entity,
+	private val timeSys: TimeSys
+): IteratingSystem(
+	allOf(AIComp::class, ActionComp::class).get(), 10
+) {
+	override fun processEntity(entity: Entity, deltaTime: Float) {
+		val entityAIComp = entity.getNotNull(AIComp.mapper)
+		val entityMoveComp = entity.getNotNull(ActionComp.mapper)
+
+		entityAIComp.state = entityAIComp.determineState(entity, player)
+		entityMoveComp.startAction(entityAIComp.determineAction(entity, player, entityAIComp.state), timeSys.appUptime)
+		entityMoveComp.facing = entityAIComp.determineFacing(entity, player, entityAIComp.state)
+	}
+}
+```
+
+AISys is an IteratingSystem, which means that it performs a certain method (namely processEntity) on each entity that has the right components. In this case the requirements are that each entity must have an AIComp and an ActionComp for it to be processed by AISys. I also define the priority of the system, 10, in this case.
+
+Then, in each frame, the processEntity method is executed for each entity. First I retrieve the AIComp and ActionComp of the entity. Then, because the actual AI procedures are defined within each entity's AIComp, all AISys does is it executes them.
 
 ## Launch
 
@@ -469,13 +548,19 @@ Next, the main class creates the screens and adds some systems to the engine. Th
 
 ## Menu Screen
 
-TODO do this after I've finished the settings and credits
+TODO do this after I've finished the settings and credits and highscore
 
 ## Rendering
 
-## User Input
+Everything that should be rendered onto the screen is represented by an entity which has both a GraphicsComp and a TransformComp
+
+## User Interface
+
+## Player Input
 
 ## Actions
+
+## Spawning Enemies
 
 # Technical Solution
 
