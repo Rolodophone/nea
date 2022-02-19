@@ -1,10 +1,12 @@
 package io.github.rolodophone.comboking.screen
 
 import com.badlogic.ashley.core.Entity
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.comp.*
 import io.github.rolodophone.comboking.event.GameEvent
+import io.github.rolodophone.comboking.sys.TextRenderSys
 import io.github.rolodophone.comboking.util.getNotNull
 import ktx.ashley.entity
 import ktx.ashley.with
@@ -18,6 +20,8 @@ class GameOverScreen(
 
 	private lateinit var scoreEntity: Entity
 	private var scoreComp: ScoreComp? = null
+
+	private lateinit var textRenderSys: TextRenderSys
 
 	private val gameOverEventCallback = { event: GameEvent.GameOverEvent ->
 		//score score info
@@ -44,9 +48,12 @@ class GameOverScreen(
 			}
 			with<TransformComp> {
 				x = 80f
-				y = 150f
+				y = 160f
 			}
-			with<TextComp>() //text set soon after when receive
+			with<TextComp> {
+				colour = Color(95/255f, 205/255f, 228/255f, 1f)
+				//text is set soon after when I receive the GameOverEvent
+			}
 		}
 		engine.entity {
 			with<InfoComp> {
@@ -83,6 +90,9 @@ class GameOverScreen(
 			}
 		}
 
+		textRenderSys = TextRenderSys(batch, viewport, fonts)
+		engine.addSystem(textRenderSys)
+
 		gameEventManager.listen(GameEvent.GameOverEvent, gameOverEventCallback)
 	}
 
@@ -92,15 +102,26 @@ class GameOverScreen(
 		//set score display text from game event
 		scoreComp?.let { scoreComp ->
 			val scoreTextComp = scoreEntity.getNotNull(TextComp.mapper)
-			scoreTextComp.text = "DISTANCE: ${scoreComp.distance.toInt()}\n" +
-					"KILLS: ${scoreComp.kills}\n" +
-					"TIME: ${scoreComp.time.toInt()}\n" +
-					"TOTAL SCORE: ${scoreComp.score}"
+			val highscore = game.ckPrefs.getHighscore()
+
+			scoreTextComp.text = "DISTANCE: ${scoreComp.distance.toInt()} (X50)\n" +
+					"KILLS: ${scoreComp.kills} (X1000)\n" +
+					"TIME: ${scoreComp.time.toInt()} (X10)\n" +
+					"TOTAL SCORE: ${scoreComp.score}\n" +
+					"HIGHSCORE: $highscore\n"
+
+			if (scoreComp.score > highscore) {
+				scoreTextComp.text += "NEW HIGHSCORE!\n"
+				game.ckPrefs.putHighscore(scoreComp.score)
+			}
+
+			this.scoreComp = null
 		}
 	}
 
 	override fun hide() {
 		engine.removeAllEntities()
+		engine.removeSystem(textRenderSys)
 		gameEventManager.stopListening(GameEvent.GameOverEvent, gameOverEventCallback)
 	}
 }

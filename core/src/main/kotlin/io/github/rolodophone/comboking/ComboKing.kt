@@ -20,7 +20,6 @@ import io.github.rolodophone.comboking.screen.GameScreen
 import io.github.rolodophone.comboking.screen.MenuScreen
 import io.github.rolodophone.comboking.sys.MusicSys
 import io.github.rolodophone.comboking.sys.SpriteRenderSys
-import io.github.rolodophone.comboking.sys.TextRenderSys
 import io.github.rolodophone.comboking.sys.TimeSys
 import ktx.app.KtxGame
 
@@ -54,7 +53,6 @@ class ComboKing(
 	lateinit var ckPrefs: CKPrefs
 	lateinit var engine: Engine
 
-	lateinit var textRenderSys: TextRenderSys
 	lateinit var timeSys: TimeSys
 
 	override fun create() {
@@ -75,17 +73,12 @@ class ComboKing(
 		addScreen(GameScreen(this, createPlayerInputProcessor))
 		addScreen(GameOverScreen(this))
 
-		//update viewport so that TextRenderSys can save the projection matrix
-		viewport.update(viewport.screenWidth, viewport.screenHeight, true)
-
-		textRenderSys = TextRenderSys(batch, viewport, comboKingFonts)
 		timeSys = TimeSys()
 
 		//add systems to engine
 		engine.run {
 			addSystem(timeSys)
 			addSystem(SpriteRenderSys(batch, viewport))
-			addSystem(textRenderSys)
 			addSystem(MusicSys(comboKingMusic, this@ComboKing, ckPrefs))
 		}
 

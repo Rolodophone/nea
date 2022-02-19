@@ -3,6 +3,7 @@ package io.github.rolodophone.comboking.sys
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.utils.viewport.Viewport
@@ -26,10 +27,11 @@ class TextRenderSys(
 	private lateinit var textProjectionMatrix: Matrix4
 
 	override fun addedToEngine(engine: Engine) {
-		// save the un-zoomed projection matrix for using when drawing text, so that text isn't moved when the
+		// save the translated projection matrix for using when drawing text, so that text isn't moved when the
 		// camera moves. Translate it to put the origin in the bottom left.
+		val zoom = (viewport.camera as OrthographicCamera).zoom
 		textProjectionMatrix = viewport.camera.projection.cpy()
-			.translate(-viewport.worldWidth / 2f, -viewport.worldHeight / 2f, 0f)
+			.translate(-viewport.worldWidth / 2f * zoom, -viewport.worldHeight / 2f * zoom, 0f)
 
 		super.addedToEngine(engine)
 	}

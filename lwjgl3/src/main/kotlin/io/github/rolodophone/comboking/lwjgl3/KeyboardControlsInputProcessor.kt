@@ -36,14 +36,17 @@ class KeyboardControlsInputProcessor(
 			Input.Keys.L -> {
 				GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_RIGHT
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+				return true
 			}
 			Input.Keys.W -> {
 				GameEvent.PlayerInputEvent.input = PlayerInput.UP_STAIRS
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+				return true
 			}
 			Input.Keys.S -> {
 				GameEvent.PlayerInputEvent.input = PlayerInput.DOWN_STAIRS
 				gameEventManager.trigger(GameEvent.PlayerInputEvent)
+				return true
 			}
 		}
 

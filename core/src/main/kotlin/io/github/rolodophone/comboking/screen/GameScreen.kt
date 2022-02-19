@@ -118,6 +118,7 @@ class GameScreen(
 			CameraSys(viewport, player),
 			GameOverSys(game, gameEventManager, player, scoreEntity),
 			AnimationSys(game.timeSys),
+			TextRenderSys(batch, viewport, fonts),
 			//DebugRenderSys(viewport),
 			HPRenderSys(batch, viewport, fonts)
 		)

@@ -1,9 +1,11 @@
 package io.github.rolodophone.comboking.screen
 
 import com.badlogic.ashley.core.Entity
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
 import io.github.rolodophone.comboking.ComboKing
 import io.github.rolodophone.comboking.comp.*
+import io.github.rolodophone.comboking.sys.TextRenderSys
 import ktx.ashley.entity
 import ktx.ashley.with
 
@@ -12,6 +14,7 @@ import ktx.ashley.with
  */
 class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 	private val menuContentEntities = mutableListOf<Entity>()
+	private lateinit var textRenderSys: TextRenderSys
 
 	override fun show() {
 		//set camera
@@ -37,6 +40,9 @@ class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 			}
 		}
 
+		textRenderSys = TextRenderSys(batch, viewport, fonts)
+		engine.addSystem(textRenderSys)
+
 		showMainMenu()
 	}
 
@@ -44,6 +50,19 @@ class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 		menuContentEntities.forEach { engine.removeEntity(it) }
 		menuContentEntities.clear()
 
+		menuContentEntities.add(engine.entity {
+			with<InfoComp> {
+				name = "HighscoreText"
+			}
+			with<TransformComp> {
+				x = 66f
+				y = 71f
+			}
+			with<TextComp> {
+				colour = Color(95/255f, 205/255f, 228/255f, 1f)
+				text = "HS: " + game.ckPrefs.getHighscore()
+			}
+		})
 		menuContentEntities.add(engine.entity {
 			with<InfoComp> {
 				name = "PlayButton"
@@ -196,5 +215,6 @@ class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 
 	override fun hide() {
 		engine.removeAllEntities()
+		engine.removeSystem(textRenderSys)
 	}
 }
