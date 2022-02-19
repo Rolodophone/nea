@@ -9,13 +9,25 @@ import com.badlogic.gdx.utils.Disposable
  */
 @Suppress("unused","PropertyName")
 class ComboKingSounds: Disposable {
-	val hit_kb: Sound = Gdx.audio.newSound(Gdx.files.internal("audio/hit_kb.ogg"))
-	val punch_hard: Sound = Gdx.audio.newSound(Gdx.files.internal("audio/punch_hard.ogg"))
-	val punch_soft: Sound = Gdx.audio.newSound(Gdx.files.internal("audio/punch_soft.ogg"))
+	private val hitKb: Sound = Gdx.audio.newSound(Gdx.files.internal("audio/hit_kb.ogg"))
+	private val punchHard: Sound = Gdx.audio.newSound(Gdx.files.internal("audio/punch_hard.ogg"))
+	private val punchSoft: Sound = Gdx.audio.newSound(Gdx.files.internal("audio/punch_soft.ogg"))
+
+	private var volume = 1f
+
+	fun playHitKb() = hitKb.play(volume)
+	fun playPunchHard() = punchHard.play(volume)
+	fun playPunchSoft() = punchSoft.play(volume)
+
+	fun setVolume(volume: Float) {
+		if (volume in 0f..1f) {
+			this.volume = volume
+		}
+	}
 
 	override fun dispose() {
-		hit_kb.dispose()
-		punch_hard.dispose()
-		punch_soft.dispose()
+		hitKb.dispose()
+		punchHard.dispose()
+		punchSoft.dispose()
 	}
 }

@@ -47,7 +47,7 @@ class ActionSys(
 					if (target != null) {
 						val targetHPComp = target.getNotNull(HPComp.mapper)
 						targetHPComp.hp -= 25f
-						sounds.punch_soft.play()
+						sounds.playPunchSoft()
 					}
 
 					actionComp.actionState = 1
@@ -67,7 +67,7 @@ class ActionSys(
 					if (target != null) {
 						val targetHPComp = target.getNotNull(HPComp.mapper)
 						targetHPComp.hp -= 50f
-						sounds.punch_hard.play()
+						sounds.playPunchHard()
 					}
 
 					actionComp.actionState = 1
@@ -103,7 +103,7 @@ class ActionSys(
 					val targetHPComp = target.getNotNull(HPComp.mapper)
 					targetHPComp.hp -= 10f
 
-					sounds.hit_kb.play()
+					sounds.playHitKb()
 
 					actionComp.actionState++
 				}

@@ -424,7 +424,7 @@ Below is a class diagram of the project. Directed associations (![Directed assoc
 
 In my project I used the entity-component-system architectural pattern, which I believe to be a very good pattern for separating logic and data, increasing cohesion and reducing coupling. In addition, ECS is primarily composition-based rather than inheritance-based, which makes it more flexible and easier to maintain and adapt. The entities, components and systems make up the majority of the code. See the technical solution section table of contents for a brief description of every component and system.
 
-### Entities
+## Entities
 
 - Just a bag of components
 - Often initialises each component with specific values, e.g. a player entity might specify the coordinates of the transform component
@@ -465,7 +465,7 @@ All I need to do inside GraphicsComp is set the texture that it uses.
 
 Lastly, inside ButtonComp I define what should happen when the button is pressed.
 
-### Components
+## Components
 
 - Only holds data related to a specific thing
 - Because each entity can have any combination of components, ECS is a more flexible approach to reusing code than inheritance
@@ -499,7 +499,7 @@ Companion objects are Kotlin's way of defining static variables and methods. So 
 
 Below that you can see that all the component does is define some variables to store the component's data, and define a method which resets the variables to their default state. As the components get reused, all the variables must be mutable.
 
-### Systems
+## Systems
 
 - A system is a class that contains code for a specific part of the game logic
 - Systems act on the data stored in different entities' components
@@ -552,7 +552,20 @@ TODO do this after I've finished the settings and credits and highscore
 
 ## Rendering
 
-Everything that should be rendered onto the screen is represented by an entity which has both a GraphicsComp and a TransformComp
+Everything that should be rendered onto the screen is represented by an entity which has both a GraphicsComp and a TransformComp. The GraphicsComp stores the texture, and the TransformComp stores the position and dimensions. Each entity is rendered by SpriteRenderSys.
+
+SpriteRenderSys is a SortedIteratingSystem which means it iterates over certain entities in a specific order. The order is determined by EntityRenderingComparator (in the same file). EntityRenderingComparator sorts entities first by the z coordinate, and then by the y coordinate, which means if two entities have the same z coordinate, the one which is lower on the screen will be drawn on top. Entities that are lower down should be in-front because from the perspective of the camera they look closer.
+
+```kotlin
+override fun update(deltaTime: Float) {
+	viewport.apply()
+	batch.use(viewport.camera.combined) {
+		super.update(deltaTime)
+	}
+}
+```
+
+Inside the update method, I call viewport.apply, which updates the camera's projection and view matrices in case the camera has been moved or the app has been resized. Then 
 
 ## User Interface
 
@@ -561,6 +574,8 @@ Everything that should be rendered onto the screen is represented by an entity w
 ## Actions
 
 ## Spawning Enemies
+
+## Camera Scrolling
 
 # Technical Solution
 

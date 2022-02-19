@@ -86,8 +86,10 @@ class ComboKing(
 			addSystem(timeSys)
 			addSystem(SpriteRenderSys(batch, viewport))
 			addSystem(textRenderSys)
-			addSystem(MusicSys(comboKingMusic, this@ComboKing))
+			addSystem(MusicSys(comboKingMusic, this@ComboKing, ckPrefs))
 		}
+
+		comboKingSounds.setVolume(ckPrefs.getSFXVolume())
 
 		setScreen<MenuScreen>()
 	}

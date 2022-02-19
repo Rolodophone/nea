@@ -144,7 +144,10 @@ class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 			}
 			with<SliderComp> {
 				textures.addAll(sliderTextures)
-				onChange = { progress -> game.ckPrefs.putSFXVolume(progress) }
+				onChange = { progress ->
+					sounds.setVolume(progress)
+					game.ckPrefs.putSFXVolume(progress)
+				}
 			}
 		})
 		menuContentEntities.add(engine.entity {
@@ -161,7 +164,10 @@ class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 			}
 			with<SliderComp> {
 				textures.addAll(sliderTextures)
-				onChange = { progress -> game.ckPrefs.putMusicVolume(progress) }
+				onChange = { progress ->
+					music.setVolume(progress)
+					game.ckPrefs.putMusicVolume(progress)
+				}
 			}
 		})
 	}
