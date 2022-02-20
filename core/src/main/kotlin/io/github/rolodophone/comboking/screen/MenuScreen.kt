@@ -14,7 +14,22 @@ import ktx.ashley.with
  */
 class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 	private val menuContentEntities = mutableListOf<Entity>()
+
 	private lateinit var textRenderSys: TextRenderSys
+
+	private lateinit var creditsTextComp: TextComp
+	private val credits = listOf(
+		"Programming\nSergi\nLange-Soler",
+		"Artwork\nSergi\nLange-Soler",
+		"\"Spy Glass\"\nKevin MacLeod\nCC BY 4.0",
+		"\"In a\nHeartbeat\"\nKevin MacLeod\nCC BY 4.0",
+		"\"Plastic\nImpact 1\"\nSophia_C\nFreesound\nCC BY 3.0",
+		"\"PUNCH-BOXING-\n04.wav\"\nnewagesoup\nFreesound\nCC0 1.0",
+		"\"Punch2.wav\"\nMerrick079\nFreesound\nCC0 1.0",
+		"\"Visitor\"\nBrian Kent",
+		"\"Setback\"\nBrian Kent"
+	)
+	private var creditIndex = 0
 
 	override fun show() {
 		//set camera
@@ -209,6 +224,60 @@ class MenuScreen(game: ComboKing): ComboKingScreen(game) {
 			}
 			with<ButtonComp> {
 				onPress = { showMainMenu() }
+			}
+		})
+		menuContentEntities.add(engine.entity {
+			with<InfoComp> {
+				name = "PrevCreditButton"
+			}
+			with<TransformComp> {
+				x = 118f
+				y = 67f
+				setSizeFromTexture(textures.btn_back)
+			}
+			with<GraphicsComp> {
+				textureRegion = textures.btn_back
+			}
+			with<ButtonComp> {
+				onPress = {
+					creditIndex -= 1
+					if (creditIndex == -1) creditIndex = credits.size - 1
+					creditsTextComp.text = credits[creditIndex]
+				}
+			}
+		})
+		menuContentEntities.add(engine.entity {
+			with<InfoComp> {
+				name = "NextCreditButton"
+			}
+			with<TransformComp> {
+				x = 134f
+				y = 67f
+				setSizeFromTexture(textures.btn_back)
+			}
+			with<GraphicsComp> {
+				textureRegion = textures.btn_back
+				flippedHorizontally = true
+			}
+			with<ButtonComp> {
+				onPress = {
+					creditIndex += 1
+					if (creditIndex == credits.size) creditIndex = 0
+					creditsTextComp.text = credits[creditIndex]
+				}
+			}
+		})
+		menuContentEntities.add(engine.entity {
+			with<InfoComp> {
+				name = "CreditsText"
+			}
+			with<TransformComp> {
+				x = 65f
+				y = 58f
+			}
+			creditsTextComp = with {
+				colour = Color(95/255f, 205/255f, 228/255f, 1f)
+				text = credits[creditIndex]
 			}
 		})
 	}
