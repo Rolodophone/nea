@@ -2,6 +2,9 @@ package io.github.rolodophone.comboking
 
 import com.badlogic.gdx.Gdx
 
+/**
+ * Manages putting values to and getting values from the persistent storage.
+ */
 class CKPrefs {
 	private val prefs = Gdx.app.getPreferences("io.github.rolodophone.comboking")
 

@@ -785,14 +785,15 @@ comp.HitboxComp                            |Entities with a [HitboxComp] have ad
 comp.HPComp                                |Entities with an [HPComp] can take damage and have a finite number of health points.
 comp.InfoComp                              |Stores basic information about an entity that is useful for game logic or debugging.
 comp.ScoreComp                             |The score entity has a [ScoreComp] so it can store the current score.
+comp.SliderComp														 |Used by UI elements that slide between different values.
 comp.TextComp                              |Entities with a [TextComp] can specify some text that will be drawn on the screen.
 comp.TransformComp                         |Entities with a [TransformComp] have a size and position in the game world.
 event.GameEvent                            |An event that can be triggered and responded to. Each event type can store its own data.
 event.GameEventManager                     |Enables listening to and triggering [GameEvent]s.
-screen.ComboKingScreen                     |Common code for all screens.
+screen.ComboKingScreen                     |Base class for all [KtxScreen]s in the game.
 screen.GameOverScreen                      |The screen that's showing just after the player has run out of HP.
 screen.GameScreen                          |The screen that's showing when the game is being played.
-screen.MainMenuScreen                      |The screen that's showing when the user is in the main menu.
+screen.MenuScreen                          |The screen that's showing when the user is navigating the menus.
 sys.ActionSys                              |Acts on entities according to their current action as specified by their [ActionComp].
 sys.AISys                                  |Chooses an action for each entity based on the current game state and the rules specified by the entity's [AIComp].
 sys.AnimationSys                           |Sets entities' textures according to the rules specified by their [AnimationComp].
@@ -810,9 +811,10 @@ sys.SpriteRenderSys                        |Renders the entities on the screen.
 sys.TextRenderSys                          |Draws the text of entities with a [TextComp].
 sys.TimeSys                                |Keeps track of the app uptime and game uptime to enable timing of various things.
 util.Util                                  |Various utility functions.
-ButtonInputProcessor                       |Handles touch and key events for buttons.
 CKLogger                                   |Wrapper for libKTX [Logger] that logs only the tag and the message, without logging the debug level.
+CKPrefs                                    |Manages putting values to and getting values from the persistent storage.
 ComboKing                                  |The main class. This is created from a platform-specific launcher to start the app.
+UIInputProcessor                           |Handles touch and key events for UI elements.
 
 ## Groups
 
@@ -850,21 +852,21 @@ Casting                                    |TransformComp.setSizeFromTexture, Ga
 
 ## Objectives
 
-1. ➖ Main menu
+1. ✅ Main menu
 	1. ✅ The "play" button should start the game
-	2. ❌ The "settings" button should display the settings
-	3. ❌ The "credits" button should display the credits
+	2. ✅ The "settings" button should display the settings
+	3. ✅ The "credits" button should display the credits
 	4. ✅ In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
 	5. ✅ The buttons should be displayed on this screen
-	6. ❌ The highscore should also be displayed on this screen
-2. ❌ Settings
-	1. ❌ There should be a setting to change SFX volume
-	2. ❌ There should be a setting to change music volume
-	3. ❌ There should be a button to return to the main menu
-3. ❌ Credits
-	1. ❌ All the credits should be displayed
-	2. ❌ The user should be able to scroll (unless all the credits fit on the screen)
-	3. ❌ There should be a button to return to the main menu
+	6. ✅ The highscore should also be displayed on this screen
+2. ✅ Settings
+	1. ✅ There should be a setting to change SFX volume
+	2. ✅ There should be a setting to change music volume
+	3. ✅ There should be a button to return to the main menu
+3. ✅ Credits
+	1. ✅ All the credits should be displayed
+	2. ✅ The user should be able to scroll (unless all the credits fit on the screen)
+	3. ✅ There should be a button to return to the main menu
 4. ➖ Game UI
 	1. ✅ There should be the current score displayed at the top
 	2. ✅ The current health should also be displayed
@@ -903,14 +905,14 @@ Casting                                    |TransformComp.setSizeFromTexture, Ga
 	1. ✅ A music loop should be played in the main menu
 	2. ✅ A different loop should be played in the game
 	3. ✅ Sound effects should be played whenever it makes sense (e.g. the player or an enemy was hit)
-10.➖ Game over screen
+10.✅ Game over screen
 	1. ✅ When the player runs out of health, a game over screen should be displayed
 	2. ✅ The score should be displayed
-	3. ❌ The highscore should be displayed
+	3. ✅ The highscore should be displayed
 	4. ✅ There should be a button to play again
 	5. ✅ There should be a button to return to the main menu
-	6. ❌ If the user has beaten their highscore, this should be indicated
-	7. ❌ The highscore should be saved so that it persists when the app is closed
+	6. ✅ If the user has beaten their highscore, this should be indicated
+	7. ✅ The highscore should be saved so that it persists when the app is closed
 
 ## Code
 

@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
 
+/**
+ * Used by UI elements that slide between different values.
+ */
 class SliderComp: Component, Pool.Poolable {
 	companion object {
 		val mapper = mapperFor<SliderComp>()
