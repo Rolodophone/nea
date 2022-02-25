@@ -546,13 +546,26 @@ Then it sets libGDX's active InputProcessor to a new InputMultiplexer. An InputM
 
 Next, the main class creates the screens and adds some systems to the engine. Those systems remain active until the app is closed because they are required on all screens, however most systems are only required in some screens, so they are added when the screen is shown. Finally, the main class shows the MenuScreen.
 
-## Menu Screen
-
-TODO do this after I've finished the settings and credits and highscore
-
 ## Rendering
 
 Everything that should be rendered onto the screen is represented by an entity which has both a GraphicsComp and a TransformComp. The GraphicsComp stores the texture, and the TransformComp stores the position and dimensions. Each entity is rendered by SpriteRenderSys.
+
+```kotlin
+class EntityRenderingComparator: Comparator<Entity> {
+	override fun compare(p0: Entity, p1: Entity): Int {
+		val p0TransformComp = p0.getNotNull(TransformComp.mapper)
+		val p1TransformComp = p1.getNotNull(TransformComp.mapper)
+
+		return when {
+			p0TransformComp.z < p1TransformComp.z -> -1
+			p0TransformComp.z > p1TransformComp.z -> 1
+			p0TransformComp.y < p1TransformComp.y -> -1
+			p0TransformComp.y > p1TransformComp.y -> 1
+			else -> 0
+		}
+	}
+}
+```
 
 SpriteRenderSys is a SortedIteratingSystem which means it iterates over certain entities in a specific order. The order is determined by EntityRenderingComparator (in the same file). EntityRenderingComparator sorts entities first by the z coordinate, and then by the y coordinate, which means if two entities have the same z coordinate, the one which is lower on the screen will be drawn on top. Entities that are lower down should be in-front because from the perspective of the camera they look closer.
 
@@ -565,13 +578,173 @@ override fun update(deltaTime: Float) {
 }
 ```
 
-Inside the update method, I call viewport.apply, which updates the camera's projection and view matrices in case the camera has been moved or the app has been resized. Then 
+Inside the update method, I call viewport.apply, which updates the camera's projection and view matrices in case the camera has been moved or the app has been resized. Then I call the superclass's update method within the context of a batch, which essentially means that any rendering that happens now will actually get rendered onto the screen all in one go, which significantly increases performance. The superclass's update method is the method that iterates over all the entities and calls processEntity on each of them.
+
+```kotlin
+override fun processEntity(entity: Entity, deltaTime: Float) {
+	val graphicsComp = entity.getNotNull(GraphicsComp.mapper)
+
+	if (!graphicsComp.visible) return
+
+	if (graphicsComp.textureRegion == null) {
+		log.error { "Entity $entity is set to be visible but has no texture." }
+		return
+	}
+
+	val transformComp = entity.getNotNull(TransformComp.mapper)
+
+	sprite.setBounds(transformComp.x, transformComp.y, transformComp.width, transformComp.height)
+	sprite.setRegion(graphicsComp.textureRegion)
+	sprite.setFlip(graphicsComp.flippedHorizontally, false)
+	sprite.draw(batch)
+}
+```
+
+Inside processEntity, I first retrieve the relevant components. I skip the rendering if the entity is set to be invisible or if no texture has been set. Then I make use of a Sprite object (the same Sprite object gets reused each time) to do the rendering, setting the position, dimensions and texture as shown.
 
 ## User Interface
 
+TODO do this after I've finished the settings and credits and highscore
+
 ## Player Input
 
+When the GameScreen gets shown, the first thing that happens is I add the player input processor to the input multiplexer. As explained previously, the player input processor that is created depends on the platform that the game is running on – on PC it's KeyboardControlsInputProcessor and on Android it's TouchControlsGestureListener.
+
+```kotlin
+//add player controls input processor
+playerInputProcessor = createPlayerInputProcessor(gameEventManager, viewport.screenWidth, viewport.screenHeight)
+(Gdx.input.inputProcessor as InputMultiplexer).addProcessor(playerInputProcessor)
+```
+
+The keyboard controls are not as simple as you might expect. Whenever a key gets pressed down, I trigger the corresponding input event, for instance:
+
+```kotlin
+Input.Keys.A -> {
+	GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+	gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	return true
+}
+```
+
+This has the effect that if two keys are pressed down at the same time, the player will move in the direction corresponding the key that was pressed last. For example, if the user holds down A and then holds down D while still holding down A, the player will run to the left at first and then run to the right as soon as D is pressed. This behaviour is desirable because if the user is quickly switching from moving left to moving right, it is likely that there will be a short period of time when both keys are pressed. If the player only started moving to the right once A is released, the game will feel less responsive.
+
+This functionality has some subtle consequences. Using the previous example of holding down A and then D, if the user then lets go of D, they would expect the player to switch back to running to the left, since A is the only key being pressed. But if A is not being pressed when the user lets go of D, they would expect the player to stop moving. (This works similarly for letting go of the A key.)
+
+```kotlin
+Input.Keys.D -> {
+	if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+		GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	}
+	else {
+		GameEvent.PlayerInputEvent.input = PlayerInput.STOP
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	}
+	return true
+}
+```
+
+Finally, if the player still holding down A or D after pressing W or S to go through a door, they would expect to carry on moving in the same direction when the player comes out of the other door.
+
+```kotlin
+Input.Keys.W, Input.Keys.S -> {
+	if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+		GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	}
+	else if (Gdx.input.isKeyPressed(Input.Keys.D)){
+		GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	}
+	return true
+}
+```
+
+On Android, user input is controlled by TouchControlsGestureListener. The controls are as follows. The left side of the screen is used for movement and the right side of the screen is used for combat. I made it such that if the user starts swiping on the left side and accidentally moves over to the right side during the swipe, the whole swipe still counts as movement input, so the player doesn't end up punching. To move left, the user swipes from right to left the left side of the screen and keeps their finger on the screen. To move right, the user swipes from left to right the left side of the screen and keeps their finger on the screen. To stop moving, the user lifts their finger off the screen. To use doors, the user swipes upwards or downwards on the left side of the screen while near a door. To punch to the left, the user swipes from right to left on the right side of the screen. To punch to the right, the user swipes from left to right on the right side of the screen.
+
+I implemented the above as follows. I keep track of the current position of the finger on the screen in `touchHoldXMove`, `touchHoldYMove` and `touchHoldXCombat`. I also keep track of whether the user is using the left side of the screen or the right side of the screen in `usingLeftControls` and `usingRightControls`. in `touchDown`, I store the initial position of the finger and what side of the screen we are using.
+
+```kotlin
+if (x < screenWidth/2f) {
+	touchHoldXMove = x
+	touchHoldYMove = y
+	usingLeftControls = true
+}
+else {
+	touchHoldXCombat = x
+	usingRightControls = true
+}
+```
+
+Then, inside of `pan`, if using the left-hand side of the screen, I first calculate the x distance, y distance and y displacement that the finger has travelled from the last stored position. The y displacement is positive if the finger moved upwards and negative if the finger moved downwards. The x and y distances are always positive regardless of direction. Throughout the `pan` method, I make comparisons between the distance the finger has moved and a constant `MIN_SWIPE_DISTANCE`. This is so that the game doesn't detect tiny swipes while the user is trying to hold down on the screen in the same place. Then, if `distY > distX` it means that the swipe moved more in the y direction than in the x direction, so the swipe was either upwards or downwards. So, I trigger the appropriate events and take note of the new finger position. Otherwise, `distY <= distX` so the swipe was either leftwards or rightwards. Then once again I trigger the appropriate game events and store the new finger position. Finally, if using the right-hand side of the screen, the code is simpler because I only have to discern between swipes to the left and swipes to the right.
+
+```kotlin
+//LHS controls
+if (usingLeftControls) {
+	val distX = abs(x - touchHoldXMove)
+	val dispY = touchHoldYMove - y
+	val distY = abs(dispY)
+
+	//using doors
+	if (distY > MIN_SWIPE_DISTANCE && distY > distX) {
+		if (dispY < 0) { //swipe down
+			touchHoldXMove = x
+			touchHoldYMove = y
+			GameEvent.PlayerInputEvent.input = PlayerInput.DOWN_STAIRS
+			gameEventManager.trigger(GameEvent.PlayerInputEvent)
+		}
+		else { //swipe up
+			touchHoldXMove = x
+			touchHoldYMove = y
+			GameEvent.PlayerInputEvent.input = PlayerInput.UP_STAIRS
+			gameEventManager.trigger(GameEvent.PlayerInputEvent)
+		}
+	}
+	else if (x < touchHoldXMove - MIN_SWIPE_DISTANCE) {
+		touchHoldXMove = x
+		touchHoldYMove = y
+		GameEvent.PlayerInputEvent.input = PlayerInput.LEFT
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	}
+	else if (x > touchHoldXMove + MIN_SWIPE_DISTANCE) {
+		touchHoldXMove = x
+		touchHoldYMove = y
+		GameEvent.PlayerInputEvent.input = PlayerInput.RIGHT
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	}
+}
+// RHS controls
+else {
+	if (x < touchHoldXCombat - MIN_SWIPE_DISTANCE) {
+		touchHoldXCombat = x
+		GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_LEFT
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	}
+	else if (x > touchHoldXCombat + MIN_SWIPE_DISTANCE) {
+		touchHoldXCombat = x
+		GameEvent.PlayerInputEvent.input = PlayerInput.PUNCH_RIGHT
+		gameEventManager.trigger(GameEvent.PlayerInputEvent)
+	}
+}
+```
+
+Lastly, when the user lifts their finger, I trigger a stop event if the left-hand side is being used, and I set `usingLeftControls` and `usingRightControls` to false.
+
+```kotlin
+if (usingLeftControls) {
+	GameEvent.PlayerInputEvent.input = PlayerInput.STOP
+	gameEventManager.trigger(GameEvent.PlayerInputEvent)
+}
+
+usingLeftControls = false
+usingRightControls = false
+```
+
 ## Actions
+
+In my game, actions are any action related to movement or combat that an entity can do. Each entity can only do one action at a time. Both the player and the enemies can do actions. In this way, controlling the player is reduced to mapping the input to the appropriate action, and the enemy AI is reduced to mapping 
+
+## Enemy AI
 
 ## Spawning Enemies
 
