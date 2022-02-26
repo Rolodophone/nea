@@ -414,7 +414,7 @@ The critical path for my game (the crucial steps that are most important to get 
 
 # Documented Design
 
-# Class Diagram
+## Class Diagram
 
 Below is a class diagram of the project. Directed associations (![Directed association](images/directed_association.png)) signify that the first class has a member variable of the second class's type. Generalisation associations (![Generalisation association](images/generalisation_association.png)) signify that the first class is a subclass of the second class.
 
@@ -606,7 +606,7 @@ Inside processEntity, I first retrieve the relevant components. I skip the rende
 
 TODO do this after I've finished the settings and credits and highscore
 
-## Player Input
+## Controls
 
 When the GameScreen gets shown, the first thing that happens is I add the player input processor to the input multiplexer. As explained previously, the player input processor that is created depends on the platform that the game is running on – on PC it's KeyboardControlsInputProcessor and on Android it's TouchControlsGestureListener.
 
@@ -740,9 +740,196 @@ usingLeftControls = false
 usingRightControls = false
 ```
 
+## Mapping controls input to player actions
+
+To increase cohesion and flexibility, I implemented the input processors in such a way that they are not coupled to the actions. This means that when the input processor triggers an input event, the input event contains a PlayerInput type (which is represented by an enum) and the PlayerInput types don't map exactly one-to-one with the Action types. 
+
+Perhaps this is better explained with an example. When the user swipes from right to left on the right side of the screen, if the player is facing left, they will perform a normal punch, whereas if the player is facing right, they will perform a spinning punch. Therefore, even with the same input, the action that is performed can depend on the game state. So, to avoid coupling the input processors with the game state, I had to use 2 different enums, PlayerInput and Action, which are similar but not quite the same. PlayerInputSys is the system that maps PlayerInputs to Actions.
+
+The `eventCallback` is the function that gets called when a PlayerInputEvent gets triggered. Inside the callback, based on what type of PlayerInput it is and what type of Action the player is currently doing, it decides what action the player should now start doing, and what action the player should return to once it finishes the action. I make use of lots of `when` statements, which are like Java's `switch` statements. Note that `when` statements can also be used as expressions, so they can be used inside a function call.
+
 ## Actions
 
-In my game, actions are any action related to movement or combat that an entity can do. Each entity can only do one action at a time. Both the player and the enemies can do actions. In this way, controlling the player is reduced to mapping the input to the appropriate action, and the enemy AI is reduced to mapping 
+In my game, actions are any action related to movement or combat that an entity can do. Each entity can only do one action at a time. Both the player and the enemies can do actions. In this way, controlling the player is reduced to mapping the input to the appropriate action, and the enemy AI is reduced to mapping the enemy's internal state to an appropriate action (I explain enemy AI in detail below).
+
+Actions are represented by the enum `Action`, defined like this:
+
+```kotlin
+enum class Action {
+	IDLE, WALK, RUN, PUNCH, SPIN_PUNCH, PUSH, HIT_KB, UP_STAIRS, DOWN_STAIRS
+}
+```
+
+The IDLE and RUN actions are used by both the player and the enemies. At the moment only the enemies WALK. Only the player performs PUNCH, SPIN_PUNCH, UP_STAIRS and DOWN_STAIRS, and only the enemies perform PUSH and HIT_KB.
+
+The action that an entity is currently doing is stored in its ActionComp, along with various other information:
+
+- runSpeed: the number of world units per second that the entity moves by when it's running
+- walkSpeed: the number of world units per second that the entity moves by when it's walking
+- action: the action that the entity is currently doing
+- facing: the direction that the entity is currently facing in (more on that below)
+- actionStartTime: the time it started doing the action 
+- returnToAction: the action that the entity should return to once it finishes its current action
+- actionState: the *state* of the action (more on that later)
+
+The facing direction is represented by an enum, as you can see below. The syntax is a little difficult to understand, so I will explain it. There are 2 entries in Facing: LEFT and RIGHT. Each entry is required to have an integer that represents the sign of the direction (this is just to simplify code a bit in ActionSys). For LEFT the sign is -1 and for RIGHT the sign is 1. Each entry also has a `reverse` method, which returns RIGHT when called on LEFT and returns LEFT when called on RIGHT.
+
+```kotlin
+enum class Facing(val sign: Int) {
+	LEFT(-1), RIGHT(1);
+
+	fun reverse() = when (this) {
+		LEFT -> RIGHT
+		RIGHT -> LEFT
+	}
+}
+```
+
+ActionSys takes care of actually performing these actions. It iterates over every entity with an ActionComp, TransformComp and HitboxComp and it performs the action stored in its ActionComp. If the action is IDLE, it does nothing. If it's WALK or RUN, it increases the x position by the facing's sign (as described above), times the walk/run speed, times deltaTime. deltaTime is the time it took to completely process the previous frame. Speed = distance / time, so multiplying the speed by deltaTime results in the distance that the entity should move in a single frame. Furthermore, I also move the x position of the entity's hitbox by the same amount. The TransformComp's position is the position at which the entity is rendered, whereas the HitboxComp's position defines the area in which attacks have to land for damage to be dealt.
+
+```kotlin
+when (actionComp.action) {
+	Action.IDLE -> {}
+	Action.WALK -> {
+		transformComp.x += actionComp.facing.sign * actionComp.walkSpeed * deltaTime
+		hitboxComp.x += actionComp.facing.sign * actionComp.walkSpeed * deltaTime
+	}
+	Action.RUN -> {
+		transformComp.x += actionComp.facing.sign * actionComp.runSpeed * deltaTime
+		hitboxComp.x += actionComp.facing.sign * actionComp.runSpeed * deltaTime
+	}
+```
+
+Next, I will explain the `findClosestNearbyEntityInDirection` method (below), which is used for several of the actions. This method is used for finding the closest nearby entity to a given entity in a given direction. It's used for instance to find which entity a punch should damage. The method iterates over all entities in the engine. As explained in the code, it performs various checks on each entity, ignoring entities that don't pass the checks. If the entity passes all the tests, and it is closer to the given entity than the current closest entity (or if the current closest entity is null), the entity is stored in the `target` variable. Therefore, when it returns `target`, it returns the closest nearby entity in the given direction, or null if there are no nearby entities.
+
+```kotlin
+private fun findClosestNearbyEntityInDirection(entity: Entity, facing: Facing): Entity? {
+	val hitboxComp = entity.getNotNull(HitboxComp.mapper)
+
+	var target: Entity? = null
+
+	for (possibleTarget in entities) {
+		//ignore itself
+		if (possibleTarget == entity) continue
+
+		val otherHitboxComp = possibleTarget[HitboxComp.mapper]
+		val otherHPComp = possibleTarget[HPComp.mapper]
+
+		//ignore entities without a hitbox or without health
+		if (otherHitboxComp == null || otherHPComp == null) continue
+
+		//ignore entities that are too high or too low
+		if (otherHitboxComp.top < hitboxComp.bottom || otherHitboxComp.bottom > hitboxComp.top) continue
+
+		if (facing == Facing.LEFT) {
+			// ignore entities that are on the right
+			if (otherHitboxComp.left > hitboxComp.left) continue
+
+			//ignore enemies that are too far away to the left
+			if (otherHitboxComp.right < hitboxComp.left - 20) continue
+
+			//store closest valid target
+			if (target == null) {
+				target = possibleTarget
+			}
+			else {
+				val targetHitboxComp = target.getNotNull(HitboxComp.mapper)
+				if (otherHitboxComp.right > targetHitboxComp.right) {
+					target = possibleTarget
+				}
+			}
+		}
+		else { //facing right
+			// ignore entities that are on the left
+			if (otherHitboxComp.right < hitboxComp.right) continue
+
+			//ignore enemies that are too far away to the right
+			if (otherHitboxComp.left > hitboxComp.right + 20) continue
+
+			//store closest valid target
+			if (target == null) {
+				target = possibleTarget
+			}
+			else {
+				val targetHitboxComp = target.getNotNull(HitboxComp.mapper)
+				if (otherHitboxComp.left < targetHitboxComp.left) {
+					target = possibleTarget
+				}
+			}
+		}
+	}
+
+	return target
+}
+```
+
+Continuing with the different actions, if the action is PUNCH, first it checks whether it has been punching for longer than 0.693 seconds, in which case it starts the action that PlayerInputSys told it to go back to after the punch ends. In most cases this is IDLE. Otherwise, it checks if it has been punching for over 0.231 seconds, because that is when the AnimationSys switches to the frame with the arm extended, so that is when the punch's damage should be dealt. (The animation is explained in the next section.) If true, it finds uses the function explained above to find the target entity, decreases its HP by 25, and plays the punch sound effect. Finally, it switches the action's state from 0 to 1 so that this effect only occurs once per punch. SPIN_PUNCH works similarly.
+
+```kotlin
+Action.PUNCH -> {
+	//stop punching after punch frame ends
+	if (timeSys.appUptime > actionComp.actionStartTime + 0.693f) {
+		actionComp.startAction(actionComp.returnToAction, timeSys.appUptime)
+	}
+
+	// perform punch effect when switches to punch frame
+	else if (actionComp.actionState == 0 && timeSys.appUptime > actionComp.actionStartTime + 0.231f) {
+
+		val target = findClosestNearbyEntityInDirection(entity, actionComp.facing)
+
+		if (target != null) {
+			val targetHPComp = target.getNotNull(HPComp.mapper)
+			targetHPComp.hp -= 25f
+			sounds.playPunchSoft()
+		}
+
+		actionComp.actionState = 1
+	}
+}
+```
+
+The PUSH action is what an enemy can do to prevent the player from getting past them. All it does is checks if the player's hitbox is overlapping with the enemy's hitbox. If it is, it moves the player away so that it's not. The reason that there is a +/- 1 when moving the player is so that it leaves the hitboxes overlapping by just 1 pixel. Otherwise, the enemy would realise that it's no longer overlapping with the player and run towards the player. This would cause a glitch where the enemy is rapidly switching between the running animation and the pushing animation.
+
+```kotlin
+Action.PUSH -> {
+	val playerTransformComp = player.getNotNull(TransformComp.mapper)
+	val playerHitboxComp = player.getNotNull(HitboxComp.mapper)
+
+	when (actionComp.facing) {
+		Facing.LEFT -> {
+			val deltaX = (hitboxComp.x - playerHitboxComp.width) - playerHitboxComp.x
+			if (deltaX < 0) {
+				playerHitboxComp.x += deltaX + 1
+				playerTransformComp.x += deltaX + 1
+			}
+		}
+		Facing.RIGHT -> {
+			val deltaX = (hitboxComp.x + hitboxComp.width) - playerHitboxComp.x
+			if (deltaX > 0) {
+				playerHitboxComp.x += deltaX - 1
+				playerTransformComp.x += deltaX - 1
+			}
+		}
+	}
+}
+```
+
+Finally, the UP_STAIRS and DOWN_STAIRS actions simply move the player from the lower level to the upper level, or from the upper level to the lower level.
+
+```kotlin
+Action.UP_STAIRS -> {
+	transformComp.y = 95f
+	hitboxComp.y = 98f
+	actionComp.startAction(Action.IDLE, timeSys.appUptime)
+}
+Action.DOWN_STAIRS -> {
+	transformComp.y = 5f
+	hitboxComp.y = 8f
+	actionComp.startAction(Action.IDLE, timeSys.appUptime)
+}
+```
+
+## Animation
 
 ## Enemy AI
 
