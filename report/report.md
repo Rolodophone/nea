@@ -420,6 +420,10 @@ Below is a class diagram of the project. Directed associations (![Directed assoc
 
 ![Class diagram](images/class_diagram.png)
 
+## Overview Flowchart
+
+TODO overview flowchart
+
 ## Entity-component-system Pattern
 
 In my project I used the entity-component-system architectural pattern, which I believe to be a very good pattern for separating logic and data, increasing cohesion and reducing coupling. In addition, ECS is primarily composition-based rather than inheritance-based, which makes it more flexible and easier to maintain and adapt. The entities, components and systems make up the majority of the code. See the technical solution section table of contents for a brief description of every component and system.
@@ -534,7 +538,7 @@ AISys is an IteratingSystem, which means that it performs a certain method (name
 
 Then, in each frame, the processEntity method is executed for each entity. First I retrieve the AIComp and ActionComp of the entity. Then, because the actual AI procedures are defined within each entity's AIComp, all AISys does is it executes them.
 
-The majority of the actual game logic occurs in one of the systems. See the System Flowchart section for an overview of the order in which the systems act and how it all fits together.
+The majority of the actual game logic occurs in one of the systems. See the Overview Flowchart section for an overview of the order in which the systems act and how it all fits together.
 
 ## Launch
 
@@ -613,10 +617,6 @@ TODO flowchart
 The following diagrams describe the UI elements of each screen.
 
 TODO UI diagram for each screen
-
-## System Flowchart
-
-TODO system flowchart
 
 ## Controls
 
@@ -949,7 +949,11 @@ Inside AnimationSys, first I execute `determineAnimationLoop` to find out the in
 
 ## Enemy AI
 
+Every entity with an AI has an AIComp. Inside it 3 functions are stored. They determine the state, action and facing direction of the entity, based on certain factors. The current state is also stored in AIComp.
 
+AISys is very simple, it simply executes these 3 functions for each entity with an AIComp and an ActionComp, starting the action that is returned.
+
+The actual implementation of the AI for both types of enemy is found in SpawningSys, inside `spawnOfficeWorker` and `spawnOfficeWorkerKB` (the "KB" stands for "with keyboard"). Under the configuration of the AIComp, you can see each entity's implementation of the 3 AI-related functions. The 2 types of enemy have very similar implementations. They are pretty self-explanatory: WALK when the player is on a different level, RUN when the player is on the same level, and PUSH/HIT_KB when overlapping with the player. Always face towards the player, unless the player is on a different level, in which case carry on facing in whatever direction it was previously facing.
 
 # Technical Solution
 
