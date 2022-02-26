@@ -534,6 +534,8 @@ AISys is an IteratingSystem, which means that it performs a certain method (name
 
 Then, in each frame, the processEntity method is executed for each entity. First I retrieve the AIComp and ActionComp of the entity. Then, because the actual AI procedures are defined within each entity's AIComp, all AISys does is it executes them.
 
+The majority of the actual game logic occurs in one of the systems. See the System Flowchart section for an overview of the order in which the systems act and how it all fits together.
+
 ## Launch
 
 The project consists of three Gradle modules: android, core and lwjgl3. The vast majority of the code is platform-agnostic and is located in the core module, which leaves the platform-specific code in the android and lwjgl3 modules. There are two entry points for the app: AndroidLauncher and Lwjgl3Launcher, which launch the app on Android and PC respectively. The launcher classes both create ComboKing, which is the main class for the game. android and lwjgl3 both depend on core, but core does not depend on android or lwjgl3. This means that if I wanted to add support for a third platform (e.g. HTML5), in theory I wouldn't have to edit any of the existing modules. All I would have to do is create a new HTML5 module with a HTML5 launcher class. 
@@ -604,7 +606,17 @@ Inside processEntity, I first retrieve the relevant components. I skip the rende
 
 ## User Interface
 
-TODO do this after I've finished the settings and credits and highscore
+There are 3 different screens in the app, MenuScreen, GameScreen and GameOverScreen. MenuScreen has 3 different states that it can be in. Below is a flowchart describing how to switch between the screens and states.
+
+TODO flowchart
+
+The following diagrams describe the UI elements of each screen.
+
+TODO UI diagram for each screen
+
+## System Flowchart
+
+TODO system flowchart
 
 ## Controls
 
@@ -931,11 +943,13 @@ Action.DOWN_STAIRS -> {
 
 ## Animation
 
+Each entity that has an animated texture has an AnimationComp. Some entities have multiple animation loops that they switch between depending on what action they're currently doing. These are represented by the class AnimationLoop. Each AnimationLoop consists of a list of frames (textures) that the entity will cycle through indefinitely, together with the duration that each frame in seconds. Inside AnimationComp, I store the list of AnimationLoops that the entity needs. I also store a function that determines the index of the loop that the entity should be on, based on the state of the entity's AIComp, and the action the entity is currently doing. I also store a variable that describes whether the texture should be flipped when the entity is facing to the left. Finally, I store some self-explanatory variables that are used by AnimationSys.
+
+Inside AnimationSys, first I execute `determineAnimationLoop` to find out the index of the AnimationLoop the entity should be on. Then I check whether the AnimationLoop has changed since the previous frame. If it hasn't, and it's been on that frame for longer than the frame duration, it switches the entity's texture to the next one in the AnimationLoop. If the AnimationLoop has changed, it switches the texture to the first frame in the new loop. Finally, if the AnimationComp indicates that the texture should be flipped when facing left, it sets the `flippedHorizontally` flag in the GraphicsComp accordingly.
+
 ## Enemy AI
 
-## Spawning Enemies
 
-## Camera Scrolling
 
 # Technical Solution
 
