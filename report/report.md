@@ -44,45 +44,7 @@ Rudy has experience playing PC and Android games, so his opinion is valuable hel
 
 There are many features that were mentioned in the conversation that I could add to my game, however I must be careful not to add too many features because that would make it too hard to code and maintain. I have outlined beside each of my notes my thoughts on it, and the extent to which I will implement it in my game.
 
-Below are my notes for the conversation.
-
-***What do you think makes a good endless running game?***
-
-- High score definitely
-  - Was already going to do this
-- Should change each time you play it
-  - Will be randomised, and I will implement a leveling up system
-- Needs some level of randomisation
-  - The layout and enemies will be randomised
-- Pickups and items
-  - I will implement a small number of items
-
-***Can you give some examples of items or power-ups that I can include in my game?***
-
-- Health pickup, like bandages
-	- I will implement bandages
-- Different weapons that you can pick up
-  - I will implement a pistol but that will likely be the only weapon, and Jane will start out with it
-
-***What important thing do many games get wrong?***
-
-- Become stale quickly
-	- I will implement leveling up, and the layout will be randomised so no two runs will be the same
-- If there's no progress, you're going to get bored quickly
-	- You will be able to level up, which should create a sense of progress
-- Needs a highscore or leveling up
-	- See above
-- Leveling up means permanently improving the player's abilities (e.g. more health) using XP earned by getting far
-  - This is how leveling up will work in my game
-
-**Other ideas that came up in the conversation**
-
-- Swipe with knife for area of effect damage
-	- I will not implement a knife as that would make punching and kicking useless
-- Buttons to change between weapons you have picked up
-	- Instead of another button, the user will be able to draw a circle with their right thumb to switch between using fists and using the pistol
-- There could be a pistol but with limited ammunition, which could be picked up as a rare item
-  - I will do this, and the pistol's ammo capacity can be another ability that you can level up
+My notes for the conversation are in Appendix 1.
 	
 I also asked Rudy for his opinion on using touch gestures on Android rather than virtual buttons, which most mobile games use. He liked the idea.
 
@@ -409,6 +371,7 @@ The critical path for my game (the crucial steps that are most important to get 
 6. Jane can attack the enemies
 7. The enemies can decrease Jane's health
 8. When Jane's health reaches zero, the game is over
+9. The game over popup displays the final score
 9. The game over popup displays the final score
 10. The game over popup has a button to play again
 
@@ -1059,10 +1022,6 @@ Private properties                         |TransformComp, CameraSys
 Getters and setters                        |TransformComp
 Casting                                    |TransformComp.setSizeFromTexture, GameScreen.show
 
-## Code
-
-TODO include code (see [GitHub repo](https://github.com/Rolodophone/nea) for code for now)
-
 # Testing
 
 ## Table of Tests
@@ -1143,13 +1102,15 @@ Test no.|Image(s)
 
 ## Adherence to Requirements
 
-As you can see from the Testing section, my project met the majority of my A-level standard objectives. I did not complete any of the extension objectives since I wanted to focus on the A-level standard ones. Overall, I believe I met all the requirements of what would be expected of my project. Although I did not complete all of my objectives, I think this is because I was too ambitious when I wrote the objectives, not because my project is inadequate. Individually, I don't think the objectives are above A-level standard, but there are so many of them, and it becomes very complicated to put it all together such that the codebase remains manageable and well-written in general. The wide scope of the project added lots of complexity. On top of this there is the fact that having so much functionality makes it very time-consuming to code.
+As you can see from the Testing section, my project met the majority of my A-level standard objectives. All the objectives which are ticked were met to a full extent. I did not complete any of the extension objectives since I wanted to focus on the A-level standard ones. Overall, I believe I met all the requirements of what would be expected of my project. Although I did not complete all of my objectives, I think this is because I was too ambitious when I wrote the objectives, not because my project is inadequate. Individually, I don't think the objectives are above A-level standard, but there are so many of them, and it becomes very complicated to put it all together such that the codebase remains manageable and well-written in general. The wide scope of the project added lots of complexity. On top of this there is the fact that having so much functionality makes it very time-consuming to code.
+
+## Challenges
 
 It was not easy to code the game. According to IntelliJ IDEA's Statistic plugin, my project has 3,130 (2,422 non-blank and non-comment) lines of Kotlin code, and Kotlin is a very concise programming language. Although I used libraries such as libGDX that handle a lot of low-level stuff for me, I still have to learn how to use the libraries, which is challenging in and of itself. But the most difficult part overall was figuring out how the classes should be designed so that I can get the behaviour I would like, while keeping the code easy to change, easy to extend, sensible, and easy to understand. In other words, flexible, loosely-coupled and coherent.
 
 ## Possible Improvements
 
-All the objectives which are ticked are met to a full extent. Perhaps I could have extended objective 7.4 and made the enemy AI more intelligent, for example, the enemies could work together to surround and trap the player, or they could run away when they're nearly out of HP. The flexible design of my code means that it would not be very difficult to implement this.
+Perhaps I could have extended objective 7.4 and made the enemy AI more intelligent, for example, the enemies could work together to surround and trap the player, or they could run away when they're nearly out of HP. The flexible design of my code means that it would not be very difficult to implement this.
 
 In the end I did not have time to implement the ability to pause the game. If I wanted to implement it, I would add a new entity inside GameScreen.show, with a ButtonComp that calls a new function GameScreen.pause. This function would add some new entities to the engine to display the pause overlay and the resume and main menu buttons. To actually pause the game I think it would be as simple as disabling TimeSys, as that would stop all the animation and actions from progressing. However, it should also disable some other systems so that they are not wasting resources doing nothing. The resume button would call a GameScreen.resume function that does the opposite of GameScreen.pause. The main menu button would call game.setScreen<MenuScreen>().
 
@@ -1164,6 +1125,54 @@ Random generation of items and objects could also be implemented inside Spawning
 TODO
 
 # Appendix
+
+## Initial Communication with Third Party
+
+***What do you think makes a good endless running game?***
+
+- High score definitely
+	- Was already going to do this
+- Should change each time you play it
+	- Will be randomised, and I will implement a leveling up system
+- Needs some level of randomisation
+	- The layout and enemies will be randomised
+- Pickups and items
+	- I will implement a small number of items
+
+***Can you give some examples of items or power-ups that I can include in my game?***
+
+- Health pickup, like bandages
+	- I will implement bandages
+- Different weapons that you can pick up
+	- I will implement a pistol but that will likely be the only weapon, and Jane will start out with it
+
+***What important thing do many games get wrong?***
+
+- Become stale quickly
+	- I will implement leveling up, and the layout will be randomised so no two runs will be the same
+- If there's no progress, you're going to get bored quickly
+	- You will be able to level up, which should create a sense of progress
+- Needs a highscore or leveling up
+	- See above
+- Leveling up means permanently improving the player's abilities (e.g. more health) using XP earned by getting far
+	- This is how leveling up will work in my game
+
+**Other ideas that came up in the conversation**
+
+- Swipe with knife for area of effect damage
+	- I will not implement a knife as that would make punching and kicking useless
+- Buttons to change between weapons you have picked up
+	- Instead of another button, the user will be able to draw a circle with their right thumb to switch between using fists and using the pistol
+- There could be a pistol but with limited ammunition, which could be picked up as a rare item
+	- I will do this, and the pistol's ammo capacity can be another ability that you can level up
+	
+## Code
+
+TODO
+
+## Feedback from Third Party
+
+TODO
 
 # References
 
