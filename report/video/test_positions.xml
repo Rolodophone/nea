@@ -1,0 +1,145 @@
+<playlist id="playlist4">
+  <blank length="00:00:01.500"/>
+  <entry producer="producer2" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">4</property>
+  </entry>
+  <blank length="00:00:13.167"/>
+  <entry producer="producer3" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">5</property>
+  </entry>
+  <blank length="00:00:00.867"/>
+  <entry producer="producer4" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">6</property>
+  </entry>
+  <blank length="00:00:04.933"/>
+  <entry producer="producer5" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">7</property>
+  </entry>
+  <blank length="00:00:03.767"/>
+  <entry producer="producer6" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">8</property>
+  </entry>
+  <blank length="00:00:01.567"/>
+  <entry producer="producer7" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">9</property>
+  </entry>
+  <entry producer="producer8" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">10</property>
+  </entry>
+  <entry producer="producer9" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">11</property>
+  </entry>
+  <blank length="00:00:08.900"/>
+  <entry producer="producer10" in="00:00:00.000" out="00:00:41.467">
+   <property name="kdenlive:id">12</property>
+  </entry>
+  <blank length="00:00:22.233"/>
+  <entry producer="producer12" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">14</property>
+  </entry>
+  <blank length="00:00:13.400"/>
+  <entry producer="producer13" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">15</property>
+  </entry>
+  <entry producer="producer14" in="00:00:00.000" out="00:00:19.667">
+   <property name="kdenlive:id">16</property>
+  </entry>
+  <blank length="00:00:00.433"/>
+  <entry producer="producer15" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">17</property>
+  </entry>
+  <blank length="00:00:12.800"/>
+  <entry producer="producer16" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">18</property>
+  </entry>
+  <blank length="00:00:05.200"/>
+  <entry producer="producer17" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">19</property>
+  </entry>
+  <blank length="00:00:12.467"/>
+  <entry producer="producer26" in="00:00:00.000" out="00:00:04.600">
+   <property name="kdenlive:id">28</property>
+  </entry>
+  <blank length="00:00:07.433"/>
+  <entry producer="producer28" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">30</property>
+  </entry>
+  <blank length="00:00:04.700"/>
+  <entry producer="producer29" in="00:00:00.000" out="00:00:04.700">
+   <property name="kdenlive:id">31</property>
+  </entry>
+  <blank length="00:00:02.800"/>
+  <entry producer="producer30" in="00:00:00.000" out="00:00:16.433">
+   <property name="kdenlive:id">32</property>
+  </entry>
+  <blank length="00:00:20.033"/>
+  <entry producer="producer35" in="00:00:00.000" out="00:00:22.700">
+   <property name="kdenlive:id">37</property>
+  </entry>
+  <blank length="00:00:19.867"/>
+  <entry producer="producer36" in="00:00:00.000" out="00:00:10.233">
+   <property name="kdenlive:id">38</property>
+  </entry>
+  <blank length="00:00:05.267"/>
+  <entry producer="producer38" in="00:00:00.000" out="00:00:09.267">
+   <property name="kdenlive:id">40</property>
+  </entry>
+  <blank length="00:00:01.767"/>
+  <entry producer="producer39" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">41</property>
+  </entry>
+  <blank length="00:00:30.700"/>
+  <entry producer="producer42" in="00:00:00.000" out="00:02:25.033">
+   <property name="kdenlive:id">44</property>
+  </entry>
+  <blank length="00:00:09.967"/>
+  <entry producer="producer43" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">45</property>
+  </entry>
+  <blank length="00:00:04.067"/>
+  <entry producer="producer44" in="00:00:00.000" out="00:00:05.133">
+   <property name="kdenlive:id">46</property>
+  </entry>
+  <blank length="00:00:21.000"/>
+  <entry producer="producer45" in="00:00:00.000" out="00:00:09.533">
+   <property name="kdenlive:id">47</property>
+  </entry>
+  <blank length="00:00:02.633"/>
+  <entry producer="producer46" in="00:00:00.000" out="00:00:04.533">
+   <property name="kdenlive:id">48</property>
+  </entry>
+  <blank length="00:00:28.867"/>
+  <entry producer="producer47" in="00:00:00.000" out="00:00:10.800">
+   <property name="kdenlive:id">49</property>
+  </entry>
+  <blank length="00:00:03.233"/>
+  <entry producer="producer48" in="00:00:00.000" out="00:00:04.433">
+   <property name="kdenlive:id">50</property>
+  </entry>
+  <blank length="00:00:03.867"/>
+  <entry producer="producer49" in="00:00:00.000" out="00:00:03.300">
+   <property name="kdenlive:id">51</property>
+  </entry>
+  <entry producer="producer50" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">52</property>
+  </entry>
+  <blank length="00:00:10.400"/>
+  <entry producer="producer51" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">53</property>
+  </entry>
+  <blank length="00:00:02.000"/>
+  <entry producer="producer52" in="00:00:00.000" out="00:00:02.967">
+   <property name="kdenlive:id">54</property>
+  </entry>
+  <blank length="00:00:02.133"/>
+  <entry producer="producer53" in="00:00:00.000" out="00:00:56.433">
+   <property name="kdenlive:id">55</property>
+  </entry>
+  <blank length="00:00:02.033"/>
+  <entry producer="producer54" in="00:00:00.000" out="00:00:22.433">
+   <property name="kdenlive:id">56</property>
+  </entry>
+  <entry producer="producer55" in="00:00:00.000" out="00:00:56.533">
+   <property name="kdenlive:id">57</property>
+  </entry>
+ </playlist>

@@ -959,6 +959,8 @@ The actual implementation of the AI for both types of enemy is found in Spawning
 
 ## Table of contents
 
+TODO add page numbers
+
 ### Android module
 
 Class/file                                 |Description
@@ -1023,6 +1025,8 @@ UIInputProcessor                           |Handles touch and key events for UI 
 
 ## Groups
 
+TODO add page numbers
+
 ### Group A
 
 What I've done                             |Evidence
@@ -1055,75 +1059,76 @@ Private properties                         |TransformComp, CameraSys
 Getters and setters                        |TransformComp
 Casting                                    |TransformComp.setSizeFromTexture, GameScreen.show
 
-## Objectives
-
-1. ✅ Main menu
-	1. ✅ The "play" button should start the game
-	2. ✅ The "settings" button should display the settings
-	3. ✅ The "credits" button should display the credits
-	4. ✅ In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)
-	5. ✅ The buttons should be displayed on this screen
-	6. ✅ The highscore should also be displayed on this screen
-2. ✅ Settings
-	1. ✅ There should be a setting to change SFX volume
-	2. ✅ There should be a setting to change music volume
-	3. ✅ There should be a button to return to the main menu
-3. ✅ Credits
-	1. ✅ All the credits should be displayed
-	2. ✅ The user should be able to scroll (unless all the credits fit on the screen)
-	3. ✅ There should be a button to return to the main menu
-4. ➖ Game UI
-	1. ✅ There should be the current score displayed at the top
-	2. ✅ The current health should also be displayed
-	3. ❌ There should be a pause button displayed
-	4. ❌ Pressing the pause button pauses the game logic and animation
-	5. ❌ Pressing the pause button displays a popup
-	6. ❌ The popup indicates that the game is paused
-	7. ❌ The popup includes a button to resume the game
-	8. ❌ The popup includes a button to return to the main menu
-	9. ❌ The resume button resumes game logic and animation and closes the popup
-	10.❌ The main menu button discards the user's progress in the game and returns to the main menu, without saving the score
-5. ➖ Movement and physics
-	1. ✅ Jane should be able to run left and right
-	2. ❌ Jane should be able to jump
-	3. ✅ Jane should be able to go up or down between the ground and upper level
-	4. ✅ Jane should not be able to walk through enemies; they should block her path
-6. ➖ Combat
-	1. ✅ Jane should be able to punch enemies
-	2. ❌ There should be at least 3 different types of punches
-	3. ✅ Jane should be able to kick enemies
-	4. ❌ There should be at least 3 different types of kicks
-7. ➖ Enemies
-	1. ❌ There should be at least 3 different types of enemy
-	2. ✅ Each type of enemy should behave noticeably differently
-	3. ✅ The enemies should be controlled by a rule-based AI
-	4. ❌ The enemies should appear to behave intelligently
-	5. ✅ Enemies should be able to deal damage to Jane, which decreases her health
-8. ➖ Game logic
-	1. ✅ The game should render a background behind Jane
-	2. ❌ Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly
-	3. ✅ Staircases, ladders, objects that Jane can climb on top of, enemies and items should not appear too close together or too far apart, making the game unfairly easy or hard
-	4. ✅ The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often
-	5. ✅ The score increases when Jane progresses to the right
-	6. ✅ The score also increases when Jane eliminates enemies
-9. ✅ Sound
-	1. ✅ A music loop should be played in the main menu
-	2. ✅ A different loop should be played in the game
-	3. ✅ Sound effects should be played whenever it makes sense (e.g. the player or an enemy was hit)
-10.✅ Game over screen
-	1. ✅ When the player runs out of health, a game over screen should be displayed
-	2. ✅ The score should be displayed
-	3. ✅ The highscore should be displayed
-	4. ✅ There should be a button to play again
-	5. ✅ There should be a button to return to the main menu
-	6. ✅ If the user has beaten their highscore, this should be indicated
-	7. ✅ The highscore should be saved so that it persists when the app is closed
-
 ## Code
 
 TODO include code (see [GitHub repo](https://github.com/Rolodophone/nea) for code for now)
 
 # Testing
+
+## Table of Tests
+
+ ✅|No.|Timestamp|Objective/Description|Comment
+---|---|---------|---------------------|-------
+ ✅|1  |00:01.50|The game creates a window when it is started on PC/Mac/Linux|Works as expected
+ ✅|2  |00:17.66|F11 makes the game fullscreen|Works as expected
+ ✅|3  |00:21.53|1.1. The "play" button should start the game|Works as expected
+ ✅|4  |00:29.46|1.2. The "settings" button should display the settings|Works as expected
+ ✅|5  |00:36.23|1.3. The "credits" button should display the credits|Works as expected
+ ✅|6  |00:40.80|1.4. In the main menu, to the right of Jane, there should be a display screen (i.e. in the intelligence headquarters, Jane is near a large screen. It is imagined that there are many of these screens throughout the building which are used to communicate messages to everyone)|Present
+ ✅|7  |00:43.80|1.5. The buttons should be displayed on this screen|Present
+ ✅|8  |00:46.80|1.6. The highscore should also be displayed on this screen|Present
+ ✅|9  |00:58.70|2.1. There should be a setting to change SFX volume|Works as expected
+ ✅|10 |00:58.70|2.2. There should be a setting to change music volume|Works as expected
+ ✅|11 |02:02.43|2.3. There should be a button to return to the main menu|Works as expected
+ ✅|12 |02:18.83|3.1. All the credits should be displayed|Present
+ ✅|13 |02:21.83|3.2. The user should be able to scroll (unless all the credits fit on the screen)|Works as expected
+ ✅|14 |02:41.96|3.3. There should be a button to return to the main menu|Works as expected
+ ✅|15 |02:57.76|4.1. There should be the current score displayed at the top|Present
+ ✅|16 |03:05.96|4.2. The current health should also be displayed|Present
+ ❌|17 |N/A|4.3. There should be a pause button displayed|Not implemented
+ ❌|18 |N/A|4.4. Pressing the pause button pauses the game logic and animation|Not implemented
+ ❌|19 |N/A|4.5. Pressing the pause button displays a popup|Not implemented
+ ❌|20 |N/A|4.6. The popup indicates that the game is paused|Not implemented
+ ❌|21 |N/A|4.7. The popup includes a button to resume the game|Not implemented
+ ❌|22 |N/A|4.8. The popup includes a button to return to the main menu|Not implemented
+ ❌|23 |N/A|4.9. The resume button resumes game logic and animation and closes the popup|Not implemented
+ ❌|24 |N/A|4.10. The main menu button discards the user's progress in the game and returns to the main menu, without saving the score|Not implemented
+ ✅|25 |03:21.43|5.1. Jane should be able to run left and right|Works as expected
+ ❌|26 |N/A|5.2. Jane should be able to jump|Not implemented
+ ✅|27 |03:33.50|5.3. Jane should be able to go up or down between the ground and upper level|Works as expected
+ ✅|28 |03:41.20|5.4. Jane should not be able to walk through enemies; they should block her path|Works as expected
+ ✅|29 |03:48.73|6.1. Jane should be able to punch enemies|Works as expected
+ ❌|30 |03:48.73|6.2. There should be at least 3 different types of punches|Only 2 implemented
+ ❌|31 |N/A|6.3. Jane should be able to kick enemies|Not implemented
+ ❌|32 |N/A|6.4. There should be at least 3 different types of kicks|0 implemented
+ ❌|33 |04:25.23|7.1. There should be at least 3 different types of enemy|Only 2 implemented
+ ✅|34 |04:25.23|7.2. Each type of enemy should behave noticeably differently|Noticeable difference between "push" enemy and "hit" enemy
+ ✅|35 |05:07.83|7.3. The enemies should be controlled by a rule-based AI|Evident intelligent behaviour
+ ✅|36 |05:07.83|7.4. The enemies should appear to behave intelligently|Evident intelligent behaviour
+ ✅|37 |05:23.36|7.5. Enemies should be able to deal damage to Jane, which decreases her health|Works as expected
+ ✅|38 |05:34.43|8.1. The game should render a background behind Jane|Present
+ ❌|39 |N/A|8.2. Staircases, ladders, objects that Jane can climb on top of, enemies and items should appear randomly|Not implemented
+ ❌|40 |N/A|8.3. Staircases, ladders, objects that Jane can climb on top of, enemies and items should not appear too close together or too far apart, making the game unfairly easy or hard|Not implemented
+ ✅|41 |06:08.13|8.4. The difficulty of the game should increase the further the player gets – this should be done by making tough enemies appear more often and making everything good for the player appear less often|Works as expected
+ ✅|42 |08:43.16|8.5. The score increases when Jane progresses to the right|Works as expected
+ ✅|43 |08:50.23|8.6. The score also increases when Jane eliminates enemies|Works as expected
+ ✅|44 |09:16.39|9.1. A music loop should be played in the main menu|Works as expected
+ ✅|45 |09:28.59|9.2. A different loop should be played in the game|Works as expected
+ ✅|46 |10:02.03|9.3. Sound effects should be played whenever it makes sense (e.g. the player or an enemy was hit)|Works as expected
+ ✅|47 |10:16.09|10.1. When the player runs out of health, a game over screen should be displayed|Works as expected
+ ✅|48 |10:24.42|10.2. The score should be displayed|Present
+ ✅|49 |10:27.76|10.3. The highscore should be displayed|Present
+ ✅|50 |10:41.16|10.4. There should be a button to play again|Present
+ ✅|51 |10:46.16|10.5. There should be a button to return to the main menu|Present
+ ✅|52 |10:51.29|10.6. If the user has beaten their highscore, this should be indicated|Works as expected
+ ✅|53 |11:49.79|10.7. The highscore should be saved so that it persists when the app is closed|Works as expected
+ ✅|54 |12:12.26|The game also works on Android|Works as expected
+	
+## Testing Video
+
+The video of the tests can be found at TODO link. Below is a sample of frames from the video, showcasing some of the tests.
+
+TODO sample frames
 
 # Evaluation
 
