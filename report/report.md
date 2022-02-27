@@ -1128,9 +1128,20 @@ TODO include code (see [GitHub repo](https://github.com/Rolodophone/nea) for cod
 
 The video of the tests can be found at TODO link. Below is a sample of frames from the video, showcasing some of the tests.
 
-TODO sample frames
+Test no.|Image(s)
+--------|------------------------------
+2|![](images/video-f000524.png)![](images/video-f000605.png)
+3|![](images/video-f000702.png)
+4|![](images/video-f000989.png)
+5|![](images/video-f001138.png)
+25|![](images/video-f006050.png)
+29|![](images/video-f006998.png)![](images/video-f007008.png)![](images/video-f007137.png)![](images/video-f007170.png)
+41|![](images/video-f014168.png)
+52|![](images/video-f021103.png)
 
 # Evaluation
+
+
 
 # Appendix
 
