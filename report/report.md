@@ -1126,7 +1126,7 @@ TODO include code (see [GitHub repo](https://github.com/Rolodophone/nea) for cod
 	
 ## Testing Video
 
-The video of the tests can be found at TODO link. Below is a sample of frames from the video, showcasing some of the tests.
+The video of the tests can be found at [https://youtu.be/c_sRNlJWJVs](https://youtu.be/c_sRNlJWJVs). Below is a sample of frames from the video, showcasing some of the tests.
 
 Test no.|Image(s)
 --------|------------------------------
@@ -1141,13 +1141,31 @@ Test no.|Image(s)
 
 # Evaluation
 
+## Adherence to Requirements
 
+As you can see from the Testing section, my project met the majority of my A-level standard objectives. I did not complete any of the extension objectives since I wanted to focus on the A-level standard ones. Overall, I believe I met all the requirements of what would be expected of my project. Although I did not complete all of my objectives, I think this is because I was too ambitious when I wrote the objectives, not because my project is inadequate. Individually, I don't think the objectives are above A-level standard, but there are so many of them, and it becomes very complicated to put it all together such that the codebase remains manageable and well-written in general. The wide scope of the project added lots of complexity. On top of this there is the fact that having so much functionality makes it very time-consuming to code.
+
+It was not easy to code the game. According to IntelliJ IDEA's Statistic plugin, my project has 3,130 (2,422 non-blank and non-comment) lines of Kotlin code, and Kotlin is a very concise programming language. Although I used libraries such as libGDX that handle a lot of low-level stuff for me, I still have to learn how to use the libraries, which is challenging in and of itself. But the most difficult part overall was figuring out how the classes should be designed so that I can get the behaviour I would like, while keeping the code easy to change, easy to extend, sensible, and easy to understand. In other words, flexible, loosely-coupled and coherent.
+
+## Possible Improvements
+
+All the objectives which are ticked are met to a full extent. Perhaps I could have extended objective 7.4 and made the enemy AI more intelligent, for example, the enemies could work together to surround and trap the player, or they could run away when they're nearly out of HP. The flexible design of my code means that it would not be very difficult to implement this.
+
+In the end I did not have time to implement the ability to pause the game. If I wanted to implement it, I would add a new entity inside GameScreen.show, with a ButtonComp that calls a new function GameScreen.pause. This function would add some new entities to the engine to display the pause overlay and the resume and main menu buttons. To actually pause the game I think it would be as simple as disabling TimeSys, as that would stop all the animation and actions from progressing. However, it should also disable some other systems so that they are not wasting resources doing nothing. The resume button would call a GameScreen.resume function that does the opposite of GameScreen.pause. The main menu button would call game.setScreen<MenuScreen>().
+
+I didn't implement jumping as I didn't think the game needed it. To add jumping, I could add a PhysicsComp which stores vertical velocity and whether the entity is on the ground or in the air. Then a PhysicsSys could iterate over entities with a PhysicsComp, apply the vertical velocity to TransformComp.y, and apply some constant downwards acceleration to the vertical velocity. If the entity is below the ground it would move it on top of the group and turn on the onGround flag. However, if I wanted the player to be able to jump on top of objects and climb between levels as I described in my analysis, the physics would be a lot more complicated and I would probably be better off using Box2D.
+
+Adding more combat moves such as punches and kicks would be implemented by adding new entries to the Action enum and adding new cases to the when statement in ActionSys. Adding new enemies would be implemented by adding new functions to spawn the enemies to SpawningSys. When the function spawns the enemy it would of course use a different AI and different actions to the other functions that spawn enemies.
+
+Random generation of items and objects could also be implemented inside SpawningSys. It would maintain a list of all the spawnable objects and check against it whenever it spawns a new object to make sure the new object isn't too close to an existing object. If the number of objects gets so large that is causes performance issues, I would remove off-screen entities from the engine but keep them in the list and add them back to the engine if they go back on-screen. This means off-screen entities would not be processed by the engine, resulting in a huge performance increase, but also the side effect that off-screen entities do not move.
+
+## Independent Feedback
+
+TODO
 
 # Appendix
 
 # References
-
-TODO present references properly
 
 [1] https://www.levelwinner.com/prizefighters-2-guide-13-tips-tricks-strategies-to-win-more-fights-and-become-a-champion/
 
